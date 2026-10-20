@@ -3,7 +3,10 @@
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
+    "dados:tracos": "node scripts/gerar-tracos.mjs",
+    "prestart": "npm run dados:tracos",
     "start": "ng serve",
+    "prebuild": "npm run dados:tracos",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test"
