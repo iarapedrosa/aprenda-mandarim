@@ -1,1 +1,464 @@
-/* You can add global styles to this file, and also import other style files */
+/* ==========================================================================
+   Aprenda Mandarim — estilos globais
+   Mobile-first, tema claro/escuro via [data-tema] no <html>.
+   ========================================================================== */
+
+:root {
+  color-scheme: light;
+
+  --fonte-texto: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial,
+    sans-serif;
+  --fonte-hanzi: 'Noto Sans SC', 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei',
+    'Source Han Sans SC', 'Noto Sans CJK SC', sans-serif;
+
+  --cor-fundo: #f7f5f0;
+  --cor-superficie: #ffffff;
+  --cor-superficie-2: #f0ede6;
+  --cor-borda: #ddd7cc;
+  --cor-texto: #1f1b16;
+  --cor-texto-suave: #5c554b;
+  --cor-primaria: #b3261e;
+  --cor-primaria-forte: #8c1d17;
+  --cor-primaria-suave: #fbe7e4;
+  --cor-sobre-primaria: #ffffff;
+  --cor-destaque: #8a5a00;
+  --cor-sucesso: #1e7a3c;
+  --cor-sucesso-suave: #e3f4e8;
+  --cor-erro: #b3261e;
+  --cor-erro-suave: #fde8e6;
+  --cor-aviso: #7a5200;
+  --cor-aviso-suave: #fff3d6;
+  --cor-foco: #1d5fd1;
+
+  /* cores dos tons (padrão usado em vários materiais: 1 vermelho, 2 verde/laranja...) */
+  --tom-1: #c62828;
+  --tom-2: #e07b00;
+  --tom-3: #2e7d32;
+  --tom-4: #1565c0;
+  --tom-5: #6b6b6b;
+
+  --raio: 14px;
+  --raio-p: 10px;
+  --sombra: 0 1px 2px rgb(0 0 0 / 6%), 0 4px 14px rgb(0 0 0 / 6%);
+  --altura-nav: 64px;
+  --largura-max: 960px;
+}
+
+:root[data-tema='escuro'] {
+  color-scheme: dark;
+  --cor-fundo: #15130f;
+  --cor-superficie: #1f1c17;
+  --cor-superficie-2: #2a2620;
+  --cor-borda: #3d372e;
+  --cor-texto: #f2eee6;
+  --cor-texto-suave: #bdb5a8;
+  --cor-primaria: #ff8a7d;
+  --cor-primaria-forte: #ffb4a9;
+  --cor-primaria-suave: #3d1d19;
+  --cor-sobre-primaria: #2b0a06;
+  --cor-destaque: #f5c15c;
+  --cor-sucesso: #7bd88f;
+  --cor-sucesso-suave: #17321f;
+  --cor-erro: #ff8a7d;
+  --cor-erro-suave: #3d1d19;
+  --cor-aviso: #f5c15c;
+  --cor-aviso-suave: #3a2e12;
+  --cor-foco: #8fb4ff;
+
+  --tom-1: #ff7b7b;
+  --tom-2: #ffb74d;
+  --tom-3: #81c784;
+  --tom-4: #64b5f6;
+  --tom-5: #bdbdbd;
+
+  --sombra: 0 1px 2px rgb(0 0 0 / 40%), 0 4px 14px rgb(0 0 0 / 30%);
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  min-height: 100dvh;
+  font-family: var(--fonte-texto);
+  font-size: 1rem;
+  line-height: 1.55;
+  background: var(--cor-fundo);
+  color: var(--cor-texto);
+  -webkit-font-smoothing: antialiased;
+}
+
+img,
+svg {
+  max-width: 100%;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  line-height: 1.25;
+  margin: 0 0 0.5em;
+}
+
+h1 {
+  font-size: 1.6rem;
+}
+
+h2 {
+  font-size: 1.3rem;
+}
+
+h3 {
+  font-size: 1.1rem;
+}
+
+p {
+  margin: 0 0 0.75em;
+}
+
+a {
+  color: var(--cor-primaria);
+}
+
+:focus-visible {
+  outline: 3px solid var(--cor-foco);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+.visualmente-oculto {
+  position: absolute !important;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* ---------- Texto chinês ---------- */
+.hanzi,
+[lang='zh-CN'] {
+  font-family: var(--fonte-hanzi);
+  font-weight: 400;
+}
+
+.hanzi-grande {
+  font-family: var(--fonte-hanzi);
+  font-size: clamp(3rem, 18vw, 5.5rem);
+  line-height: 1.1;
+}
+
+.pinyin {
+  color: var(--cor-texto-suave);
+  font-style: normal;
+}
+
+.tom-1 {
+  color: var(--tom-1);
+}
+.tom-2 {
+  color: var(--tom-2);
+}
+.tom-3 {
+  color: var(--tom-3);
+}
+.tom-4 {
+  color: var(--tom-4);
+}
+.tom-5 {
+  color: var(--tom-5);
+}
+
+/* ---------- Layout ---------- */
+.pagina {
+  max-width: var(--largura-max);
+  margin: 0 auto;
+  padding: 16px 16px calc(var(--altura-nav) + 32px + env(safe-area-inset-bottom, 0px));
+}
+
+.pagina > header {
+  margin-bottom: 16px;
+}
+
+.subtitulo {
+  color: var(--cor-texto-suave);
+  margin-top: -0.25em;
+}
+
+.cartao {
+  background: var(--cor-superficie);
+  border: 1px solid var(--cor-borda);
+  border-radius: var(--raio);
+  padding: 16px;
+  box-shadow: var(--sombra);
+}
+
+.cartao + .cartao {
+  margin-top: 12px;
+}
+
+.grade {
+  display: grid;
+  gap: 12px;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 260px), 1fr));
+}
+
+.linha {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  align-items: center;
+}
+
+.empilhado > * + * {
+  margin-top: 12px;
+}
+
+.suave {
+  color: var(--cor-texto-suave);
+}
+
+.pequeno {
+  font-size: 0.875rem;
+}
+
+/* ---------- Botões ---------- */
+.botao {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-height: 44px;
+  padding: 10px 18px;
+  border-radius: 999px;
+  border: 1px solid var(--cor-borda);
+  background: var(--cor-superficie);
+  color: var(--cor-texto);
+  font: inherit;
+  font-weight: 600;
+  text-decoration: none;
+  cursor: pointer;
+  transition:
+    background-color 0.15s,
+    border-color 0.15s,
+    transform 0.05s;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.botao:hover {
+  background: var(--cor-superficie-2);
+}
+
+.botao:active {
+  transform: scale(0.98);
+}
+
+.botao:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.botao-primario {
+  background: var(--cor-primaria);
+  border-color: var(--cor-primaria);
+  color: var(--cor-sobre-primaria);
+}
+
+.botao-primario:hover {
+  background: var(--cor-primaria-forte);
+  border-color: var(--cor-primaria-forte);
+}
+
+.botao-texto {
+  border-color: transparent;
+  background: transparent;
+}
+
+.botao-bloco {
+  width: 100%;
+}
+
+.botao-icone {
+  min-width: 44px;
+  padding: 10px;
+}
+
+.opcoes {
+  display: grid;
+  gap: 10px;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 140px), 1fr));
+}
+
+.opcao {
+  min-height: 56px;
+  padding: 12px;
+  border-radius: var(--raio-p);
+  border: 2px solid var(--cor-borda);
+  background: var(--cor-superficie);
+  color: var(--cor-texto);
+  font: inherit;
+  font-size: 1.05rem;
+  cursor: pointer;
+  text-align: center;
+}
+
+.opcao:hover:not(:disabled) {
+  border-color: var(--cor-primaria);
+}
+
+.opcao.correta {
+  border-color: var(--cor-sucesso);
+  background: var(--cor-sucesso-suave);
+}
+
+.opcao.errada {
+  border-color: var(--cor-erro);
+  background: var(--cor-erro-suave);
+}
+
+.opcao:disabled {
+  cursor: default;
+}
+
+/* ---------- Formulários ---------- */
+label {
+  font-weight: 600;
+}
+
+.campo {
+  display: block;
+  width: 100%;
+  min-height: 48px;
+  padding: 10px 14px;
+  border-radius: var(--raio-p);
+  border: 2px solid var(--cor-borda);
+  background: var(--cor-superficie);
+  color: var(--cor-texto);
+  font: inherit;
+  font-size: 1.1rem;
+}
+
+.campo:focus {
+  border-color: var(--cor-foco);
+  outline: none;
+}
+
+/* ---------- Mensagens ---------- */
+.aviso,
+.sucesso,
+.erro,
+.info {
+  border-radius: var(--raio-p);
+  padding: 12px 14px;
+  border: 1px solid transparent;
+}
+
+.aviso {
+  background: var(--cor-aviso-suave);
+  color: var(--cor-aviso);
+  border-color: color-mix(in srgb, var(--cor-aviso) 30%, transparent);
+}
+
+.sucesso {
+  background: var(--cor-sucesso-suave);
+  color: var(--cor-sucesso);
+  border-color: color-mix(in srgb, var(--cor-sucesso) 30%, transparent);
+}
+
+.erro {
+  background: var(--cor-erro-suave);
+  color: var(--cor-erro);
+  border-color: color-mix(in srgb, var(--cor-erro) 30%, transparent);
+}
+
+.info {
+  background: var(--cor-superficie-2);
+  color: var(--cor-texto);
+  border-color: var(--cor-borda);
+}
+
+/* ---------- Abas ---------- */
+.abas {
+  display: flex;
+  gap: 6px;
+  overflow-x: auto;
+  padding-bottom: 4px;
+  margin-bottom: 16px;
+  scrollbar-width: thin;
+}
+
+.abas a {
+  flex: none;
+  padding: 8px 14px;
+  border-radius: 999px;
+  border: 1px solid var(--cor-borda);
+  background: var(--cor-superficie);
+  color: var(--cor-texto);
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 0.95rem;
+  white-space: nowrap;
+}
+
+.abas a.ativa {
+  background: var(--cor-primaria);
+  border-color: var(--cor-primaria);
+  color: var(--cor-sobre-primaria);
+}
+
+/* ---------- Diversos ---------- */
+.etiqueta {
+  display: inline-block;
+  padding: 2px 10px;
+  border-radius: 999px;
+  background: var(--cor-superficie-2);
+  border: 1px solid var(--cor-borda);
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--cor-texto-suave);
+}
+
+.barra-progresso {
+  height: 10px;
+  border-radius: 999px;
+  background: var(--cor-superficie-2);
+  overflow: hidden;
+}
+
+.barra-progresso > span {
+  display: block;
+  height: 100%;
+  background: var(--cor-primaria);
+  border-radius: inherit;
+  transition: width 0.3s;
+}
+
+table {
+  border-collapse: collapse;
+}
+
+.rolagem-x {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
