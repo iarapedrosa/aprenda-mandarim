@@ -1,0 +1,2689 @@
+[
+ {
+  "id": "h01",
+  "tipo": "historia",
+  "nivel": 1,
+  "titulo": "Meu dia",
+  "tituloHanzi": "我的一天",
+  "resumo": "A rotina de um estudante, da manhã à noite.",
+  "linhas": [
+   {
+    "tokens": [
+     {
+      "hanzi": "我",
+      "pinyin": "wǒ",
+      "traducao": "eu",
+      "palavra": "我"
+     },
+     {
+      "hanzi": "叫",
+      "pinyin": "jiào",
+      "traducao": "chamar(-se)",
+      "palavra": "叫"
+     },
+     {
+      "hanzi": "小明",
+      "pinyin": "Xiǎomíng",
+      "traducao": "Xiaoming (nome)"
+     },
+     {
+      "hanzi": "，"
+     },
+     {
+      "hanzi": "我",
+      "pinyin": "wǒ",
+      "traducao": "eu",
+      "palavra": "我"
+     },
+     {
+      "hanzi": "是",
+      "pinyin": "shì",
+      "traducao": "ser",
+      "palavra": "是"
+     },
+     {
+      "hanzi": "学生",
+      "pinyin": "xuésheng",
+      "traducao": "estudante; aluno(a)",
+      "palavra": "学生"
+     },
+     {
+      "hanzi": "。"
+     }
+    ],
+    "traducao": "Eu me chamo Xiaoming, sou estudante."
+   },
+   {
+    "tokens": [
+     {
+      "hanzi": "我",
+      "pinyin": "wǒ",
+      "traducao": "eu",
+      "palavra": "我"
+     },
+     {
+      "hanzi": "每天",
+      "pinyin": "měitiān",
+      "traducao": "todo dia"
+     },
+     {
+      "hanzi": "六",
+      "pinyin": "liù",
+      "traducao": "seis",
+      "palavra": "六"
+     },
+     {
+      "hanzi": "点",
+      "pinyin": "diǎn",
+      "traducao": "hora (em ponto); ponto",
+      "palavra": "点"
+     },
+     {
+      "hanzi": "起床",
+      "pinyin": "qǐchuáng",
+      "traducao": "levantar-se (da cama)",
+      "palavra": "起床"
+     },
+     {
+      "hanzi": "，"
+     },
+     {
+      "hanzi": "七",
+      "pinyin": "qī",
+      "traducao": "sete",
+      "palavra": "七"
+     },
+     {
+      "hanzi": "点",
+      "pinyin": "diǎn",
+      "traducao": "hora (em ponto); ponto",
+      "palavra": "点"
+     },
+     {
+      "hanzi": "吃",
+      "pinyin": "chī",
+      "traducao": "comer",
+      "palavra": "吃"
+     },
+     {
+      "hanzi": "早饭",
+      "pinyin": "zǎofàn",
+      "traducao": "café da manhã"
+     },
+     {
+      "hanzi": "。"
+     }
+    ],
+    "traducao": "Todo dia eu me levanto às seis e tomo café da manhã às sete."
+   },
+   {
+    "tokens": [
+     {
+      "hanzi": "我",
+      "pinyin": "wǒ",
+      "traducao": "eu",
+      "palavra": "我"
+     },
+     {
+      "hanzi": "坐",
+      "pinyin": "zuò",
+      "traducao": "sentar; pegar (transporte)",
+      "palavra": "坐"
+     },
+     {
+      "hanzi": "公共汽车",
+      "pinyin": "gōnggòng qìchē",
+      "traducao": "ônibus",
+      "palavra": "公共汽车"
+     },
+     {
+      "hanzi": "去",
+      "pinyin": "qù",
+      "traducao": "ir",
+      "palavra": "去"
+     },
+     {
+      "hanzi": "学校",
+      "pinyin": "xuéxiào",
+      "traducao": "escola",
+      "palavra": "学校"
+     },
+     {
+      "hanzi": "。"
+     }
+    ],
+    "traducao": "Vou de ônibus para a escola."
+   },
+   {
+    "tokens": [
+     {
+      "hanzi": "上午",
+      "pinyin": "shàngwǔ",
+      "traducao": "manhã",
+      "palavra": "上午"
+     },
+     {
+      "hanzi": "我们",
+      "pinyin": "wǒmen",
+      "traducao": "nós",
+      "palavra": "我们"
+     },
+     {
+      "hanzi": "有",
+      "pinyin": "yǒu",
+      "traducao": "ter; haver",
+      "palavra": "有"
+     },
+     {
+      "hanzi": "四",
+      "pinyin": "sì",
+      "traducao": "quatro",
+      "palavra": "四"
+     },
+     {
+      "hanzi": "节",
+      "pinyin": "jié",
+      "traducao": "(classificador de aulas)"
+     },
+     {
+      "hanzi": "课",
+      "pinyin": "kè",
+      "traducao": "aula; lição",
+      "palavra": "课"
+     },
+     {
+      "hanzi": "。"
+     },
+     {
+      "hanzi": "我",
+      "pinyin": "wǒ",
+      "traducao": "eu",
+      "palavra": "我"
+     },
+     {
+      "hanzi": "最",
+      "pinyin": "zuì",
+      "traducao": "o mais",
+      "palavra": "最"
+     },
+     {
+      "hanzi": "喜欢",
+      "pinyin": "xǐhuan",
+      "traducao": "gostar",
+      "palavra": "喜欢"
+     },
+     {
+      "hanzi": "汉语",
+      "pinyin": "Hànyǔ",
+      "traducao": "língua chinesa (mandarim)",
+      "palavra": "汉语"
+     },
+     {
+      "hanzi": "课",
+      "pinyin": "kè",
+      "traducao": "aula; lição",
+      "palavra": "课"
+     },
+     {
+      "hanzi": "。"
+     }
+    ],
+    "traducao": "De manhã temos quatro aulas. A que eu mais gosto é a de chinês."
+   },
+   {
+    "tokens": [
+     {
+      "hanzi": "中午",
+      "pinyin": "zhōngwǔ",
+      "traducao": "meio-dia",
+      "palavra": "中午"
+     },
+     {
+      "hanzi": "我",
+      "pinyin": "wǒ",
+      "traducao": "eu",
+      "palavra": "我"
+     },
+     {
+      "hanzi": "和",
+      "pinyin": "hé",
+      "traducao": "e (entre palavras); com",
+      "palavra": "和"
+     },
+     {
+      "hanzi": "同学",
+      "pinyin": "tóngxué",
+      "traducao": "colega de classe",
+      "palavra": "同学"
+     },
+     {
+      "hanzi": "们",
+      "pinyin": "men",
+      "traducao": "(plural de pessoas)"
+     },
+     {
+      "hanzi": "一起",
+      "pinyin": "yìqǐ",
+      "traducao": "juntos",
+      "palavra": "一起"
+     },
+     {
+      "hanzi": "吃饭",
+      "pinyin": "chī fàn",
+      "traducao": "comer (uma refeição)"
+     },
+     {
+      "hanzi": "。"
+     }
+    ],
+    "traducao": "Ao meio-dia almoço com os colegas."
+   },
+   {
+    "tokens": [
+     {
+      "hanzi": "下午",
+      "pinyin": "xiàwǔ",
+      "traducao": "tarde",
+      "palavra": "下午"
+     },
+     {
+      "hanzi": "我",
+      "pinyin": "wǒ",
+      "traducao": "eu",
+      "palavra": "我"
+     },
+     {
+      "hanzi": "去",
+      "pinyin": "qù",
+      "traducao": "ir",
+      "palavra": "去"
+     },
+     {
+      "hanzi": "打篮球",
+      "pinyin": "dǎ lánqiú",
+      "traducao": "jogar basquete",
+      "palavra": "打篮球"
+     },
+     {
+      "hanzi": "。"
+     }
+    ],
+    "traducao": "À tarde vou jogar basquete."
+   },
+   {
+    "tokens": [
+     {
+      "hanzi": "晚上",
+      "pinyin": "wǎnshang",
+      "traducao": "noite",
+      "palavra": "晚上"
+     },
+     {
+      "hanzi": "我",
+      "pinyin": "wǒ",
+      "traducao": "eu",
+      "palavra": "我"
+     },
+     {
+      "hanzi": "在",
+      "pinyin": "zài",
+      "traducao": "estar (em); em",
+      "palavra": "在"
+     },
+     {
+      "hanzi": "家",
+      "pinyin": "jiā",
+      "traducao": "casa; família",
+      "palavra": "家"
+     },
+     {
+      "hanzi": "学习",
+      "pinyin": "xuéxí",
+      "traducao": "estudar; aprender",
+      "palavra": "学习"
+     },
+     {
+      "hanzi": "，"
+     },
+     {
+      "hanzi": "看",
+      "pinyin": "kàn",
+      "traducao": "olhar; ver; ler",
+      "palavra": "看"
+     },
+     {
+      "hanzi": "一点儿",
+      "pinyin": "yìdiǎnr",
+      "traducao": "um pouco",
+      "palavra": "一点儿"
+     },
+     {
+      "hanzi": "电视",
+      "pinyin": "diànshì",
+      "traducao": "televisão",
+      "palavra": "电视"
+     },
+     {
+      "hanzi": "。"
+     }
+    ],
+    "traducao": "À noite estudo em casa e vejo um pouco de televisão."
+   },
+   {
+    "tokens": [
+     {
+      "hanzi": "十",
+      "pinyin": "shí",
+      "traducao": "dez",
+      "palavra": "十"
+     },
+     {
+      "hanzi": "点",
+      "pinyin": "diǎn",
+      "traducao": "hora (em ponto); ponto",
+      "palavra": "点"
+     },
+     {
+      "hanzi": "我",
+      "pinyin": "wǒ",
+      "traducao": "eu",
+      "palavra": "我"
+     },
+     {
+      "hanzi": "就",
+      "pinyin": "jiù",
+      "traducao": "já; então; justamente",
+      "palavra": "就"
+     },
+     {
+      "hanzi": "睡觉",
+      "pinyin": "shuìjiào",
+      "traducao": "dormir",
+      "palavra": "睡觉"
+     },
+     {
+      "hanzi": "了",
+      "pinyin": "le",
+      "traducao": "(partícula de ação concluída ou mudança)",
+      "palavra": "了"
+     },
+     {
+      "hanzi": "。"
+     }
+    ],
+    "traducao": "Às dez eu já vou dormir."
+   }
+  ],
+  "perguntas": [
+   {
+    "pergunta": "Como Xiaoming vai para a escola?",
+    "opcoes": [
+     "De ônibus",
+     "De táxi",
+     "A pé"
+    ],
+    "correta": 0
+   },
+   {
+    "pergunta": "De qual aula ele mais gosta?",
+    "opcoes": [
+     "Chinês",
+     "Matemática",
+     "Inglês"
+    ],
+    "correta": 0
+   },
+   {
+    "pergunta": "A que horas ele vai dormir?",
+    "opcoes": [
+     "Às 22h",
+     "Às 21h",
+     "Às 23h"
+    ],
+    "correta": 0
+   }
+  ]
+ },
+ {
+  "id": "h02",
+  "tipo": "historia",
+  "nivel": 1,
+  "titulo": "O gatinho e o cachorrinho",
+  "tituloHanzi": "小猫和小狗",
+  "resumo": "Dois bichinhos muito diferentes… e um esconderijo.",
+  "linhas": [
+   {
+    "tokens": [
+     {
+      "hanzi": "我",
+      "pinyin": "wǒ",
+      "traducao": "eu",
+      "palavra": "我"
+     },
+     {
+      "hanzi": "家",
+      "pinyin": "jiā",
+      "traducao": "casa; família",
+      "palavra": "家"
+     },
+     {
+      "hanzi": "有",
+      "pinyin": "yǒu",
+      "traducao": "ter; haver",
+      "palavra": "有"
+     },
+     {
+      "hanzi": "一",
+      "pinyin": "yì",
+      "traducao": "um",
+      "palavra": "一"
+     },
+     {
+      "hanzi": "只",
+      "pinyin": "zhī",
+      "traducao": "(classificador de animais)"
+     },
+     {
+      "hanzi": "小",
+      "pinyin": "xiǎo",
+      "traducao": "pequeno",
+      "palavra": "小"
+     },
+     {
+      "hanzi": "猫",
+      "pinyin": "māo",
+      "traducao": "gato",
+      "palavra": "猫"
+     },
+     {
+      "hanzi": "和",
+      "pinyin": "hé",
+      "traducao": "e (entre palavras); com",
+      "palavra": "和"
+     },
+     {
+      "hanzi": "一",
+      "pinyin": "yì",
+      "traducao": "um",
+      "palavra": "一"
+     },
+     {
+      "hanzi": "只",
+      "pinyin": "zhī",
+      "traducao": "(classificador de animais)"
+     },
+     {
+      "hanzi": "小",
+      "pinyin": "xiǎo",
+      "traducao": "pequeno",
+      "palavra": "小"
+     },
+     {
+      "hanzi": "狗",
+      "pinyin": "gǒu",
+      "traducao": "cachorro",
+      "palavra": "狗"
+     },
+     {
+      "hanzi": "。"
+     }
+    ],
+    "traducao": "Na minha casa há um gatinho e um cachorrinho."
+   },
+   {
+    "tokens": [
+     {
+      "hanzi": "小",
+      "pinyin": "xiǎo",
+      "traducao": "pequeno",
+      "palavra": "小"
+     },
+     {
+      "hanzi": "猫",
+      "pinyin": "māo",
+      "traducao": "gato",
+      "palavra": "猫"
+     },
+     {
+      "hanzi": "是",
+      "pinyin": "shì",
+      "traducao": "ser",
+      "palavra": "是"
+     },
+     {
+      "hanzi": "白色",
+      "pinyin": "báisè",
+      "traducao": "branco"
+     },
+     {
+      "hanzi": "的",
+      "pinyin": "de",
+      "traducao": "(partícula de posse: \"de\")",
+      "palavra": "的"
+     },
+     {
+      "hanzi": "，"
+     },
+     {
+      "hanzi": "小",
+      "pinyin": "xiǎo",
+      "traducao": "pequeno",
+      "palavra": "小"
+     },
+     {
+      "hanzi": "狗",
+      "pinyin": "gǒu",
+      "traducao": "cachorro",
+      "palavra": "狗"
+     },
+     {
+      "hanzi": "是",
+      "pinyin": "shì",
+      "traducao": "ser",
+      "palavra": "是"
+     },
+     {
+      "hanzi": "黑色",
+      "pinyin": "hēisè",
+      "traducao": "preto"
+     },
+     {
+      "hanzi": "的",
+      "pinyin": "de",
+      "traducao": "(partícula de posse: \"de\")",
+      "palavra": "的"
+     },
+     {
+      "hanzi": "。"
+     }
+    ],
+    "traducao": "O gatinho é branco, o cachorrinho é preto."
+   },
+   {
+    "tokens": [
+     {
+      "hanzi": "小",
+      "pinyin": "xiǎo",
+      "traducao": "pequeno",
+      "palavra": "小"
+     },
+     {
+      "hanzi": "猫",
+      "pinyin": "māo",
+      "traducao": "gato",
+      "palavra": "猫"
+     },
+     {
+      "hanzi": "喜欢",
+      "pinyin": "xǐhuan",
+      "traducao": "gostar",
+      "palavra": "喜欢"
+     },
+     {
+      "hanzi": "睡觉",
+      "pinyin": "shuìjiào",
+      "traducao": "dormir",
+      "palavra": "睡觉"
+     },
+     {
+      "hanzi": "，"
+     },
+     {
+      "hanzi": "小",
+      "pinyin": "xiǎo",
+      "traducao": "pequeno",
+      "palavra": "小"
+     },
+     {
+      "hanzi": "狗",
+      "pinyin": "gǒu",
+      "traducao": "cachorro",
+      "palavra": "狗"
+     },
+     {
+      "hanzi": "喜欢",
+      "pinyin": "xǐhuan",
+      "traducao": "gostar",
+      "palavra": "喜欢"
+     },
+     {
+      "hanzi": "玩",
+      "pinyin": "wán",
+      "traducao": "brincar; divertir-se",
+      "palavra": "玩"
+     },
+     {
+      "hanzi": "。"
+     }
+    ],
+    "traducao": "O gatinho gosta de dormir, o cachorrinho gosta de brincar."
+   },
+   {
+    "tokens": [
+     {
+      "hanzi": "有",
+      "pinyin": "yǒu",
+      "traducao": "ter; haver",
+      "palavra": "有"
+     },
+     {
+      "hanzi": "一",
+      "pinyin": "yì",
+      "traducao": "um",
+      "palavra": "一"
+     },
+     {
+      "hanzi": "天",
+      "pinyin": "tiān",
+      "traducao": "dia"
+     },
+     {
+      "hanzi": "，"
+     },
+     {
+      "hanzi": "小",
+      "pinyin": "xiǎo",
+      "traducao": "pequeno",
+      "palavra": "小"
+     },
+     {
+      "hanzi": "狗",
+      "pinyin": "gǒu",
+      "traducao": "cachorro",
+      "palavra": "狗"
+     },
+     {
+      "hanzi": "找不到",
+      "pinyin": "zhǎo bu dào",
+      "traducao": "não conseguir achar"
+     },
+     {
+      "hanzi": "小",
+      "pinyin": "xiǎo",
+      "traducao": "pequeno",
+      "palavra": "小"
+     },
+     {
+      "hanzi": "猫",
+      "pinyin": "māo",
+      "traducao": "gato",
+      "palavra": "猫"
+     },
+     {
+      "hanzi": "了",
+      "pinyin": "le",
+      "traducao": "(partícula de ação concluída ou mudança)",
+      "palavra": "了"
+     },
+     {
+      "hanzi": "。"
+     }
+    ],
+    "traducao": "Um dia, o cachorrinho não conseguia achar o gatinho."
+   },
+   {
+    "tokens": [
+     {
+      "hanzi": "它",
+      "pinyin": "tā",
+      "traducao": "ele; ela (para coisas e animais)",
+      "palavra": "它"
+     },
+     {
+      "hanzi": "找",
+      "pinyin": "zhǎo",
+      "traducao": "procurar",
+      "palavra": "找"
+     },
+     {
+      "hanzi": "了",
+      "pinyin": "le",
+      "traducao": "(partícula de ação concluída ou mudança)",
+      "palavra": "了"
+     },
+     {
+      "hanzi": "很",
+      "pinyin": "hěn",
+      "traducao": "muito",
+      "palavra": "很"
+     },
+     {
+      "hanzi": "长",
+      "pinyin": "cháng",
+      "traducao": "comprido; longo",
+      "palavra": "长"
+     },
+     {
+      "hanzi": "时间",
+      "pinyin": "shíjiān",
+      "traducao": "tempo; horário",
+      "palavra": "时间"
+     },
+     {
+      "hanzi": "："
+     },
+     {
+      "hanzi": "“"
+     },
+     {
+      "hanzi": "小",
+      "pinyin": "xiǎo",
+      "traducao": "pequeno",
+      "palavra": "小"
+     },
+     {
+      "hanzi": "猫",
+      "pinyin": "māo",
+      "traducao": "gato",
+      "palavra": "猫"
+     },
+     {
+      "hanzi": "，"
+     },
+     {
+      "hanzi": "你",
+      "pinyin": "nǐ",
+      "traducao": "você",
+      "palavra": "你"
+     },
+     {
+      "hanzi": "在",
+      "pinyin": "zài",
+      "traducao": "estar (em); em",
+      "palavra": "在"
+     },
+     {
+      "hanzi": "哪儿",
+      "pinyin": "nǎr",
+      "traducao": "onde",
+      "palavra": "哪儿"
+     },
+     {
+      "hanzi": "？"
+     },
+     {
+      "hanzi": "”"
+     }
+    ],
+    "traducao": "Ele procurou por muito tempo: \"Gatinho, onde você está?\""
+   },
+   {
+    "tokens": [
+     {
+      "hanzi": "最后",
+      "pinyin": "zuìhòu",
+      "traducao": "no fim"
+     },
+     {
+      "hanzi": "，"
+     },
+     {
+      "hanzi": "小",
+      "pinyin": "xiǎo",
+      "traducao": "pequeno",
+      "palavra": "小"
+     },
+     {
+      "hanzi": "狗",
+      "pinyin": "gǒu",
+      "traducao": "cachorro",
+      "palavra": "狗"
+     },
+     {
+      "hanzi": "看见",
+      "pinyin": "kànjiàn",
+      "traducao": "ver (conseguir ver)",
+      "palavra": "看见"
+     },
+     {
+      "hanzi": "小",
+      "pinyin": "xiǎo",
+      "traducao": "pequeno",
+      "palavra": "小"
+     },
+     {
+      "hanzi": "猫",
+      "pinyin": "māo",
+      "traducao": "gato",
+      "palavra": "猫"
+     },
+     {
+      "hanzi": "在",
+      "pinyin": "zài",
+      "traducao": "estar (em); em",
+      "palavra": "在"
+     },
+     {
+      "hanzi": "我",
+      "pinyin": "wǒ",
+      "traducao": "eu",
+      "palavra": "我"
+     },
+     {
+      "hanzi": "的",
+      "pinyin": "de",
+      "traducao": "(partícula de posse: \"de\")",
+      "palavra": "的"
+     },
+     {
+      "hanzi": "床",
+      "pinyin": "chuáng",
+      "traducao": "cama"
+     },
+     {
+      "hanzi": "上",
+      "pinyin": "shang",
+      "traducao": "em cima; subir; anterior",
+      "palavra": "上"
+     },
+     {
+      "hanzi": "睡觉",
+      "pinyin": "shuìjiào",
+      "traducao": "dormir",
+      "palavra": "睡觉"
+     },
+     {
+      "hanzi": "！"
+     }
+    ],
+    "traducao": "No fim, o cachorrinho viu o gatinho dormindo na minha cama!"
+   }
+  ],
+  "perguntas": [
+   {
+    "pergunta": "De que cor é o gatinho?",
+    "opcoes": [
+     "Branco",
+     "Preto",
+     "Amarelo"
+    ],
+    "correta": 0
+   },
+   {
+    "pergunta": "O que o cachorrinho gosta de fazer?",
+    "opcoes": [
+     "Brincar",
+     "Dormir",
+     "Comer"
+    ],
+    "correta": 0
+   },
+   {
+    "pergunta": "Onde estava o gatinho?",
+    "opcoes": [
+     "Dormindo na cama",
+     "Embaixo da mesa",
+     "Na rua"
+    ],
+    "correta": 0
+   }
+  ]
+ },
+ {
+  "id": "h03",
+  "tipo": "historia",
+  "nivel": 2,
+  "titulo": "Começou a chover",
+  "tituloHanzi": "下雨了",
+  "resumo": "Lili esqueceu o guarda-chuva…",
+  "linhas": [
+   {
+    "tokens": [
+     {
+      "hanzi": "今天",
+      "pinyin": "jīntiān",
+      "traducao": "hoje",
+      "palavra": "今天"
+     },
+     {
+      "hanzi": "早上",
+      "pinyin": "zǎoshang",
+      "traducao": "manhã (cedo)",
+      "palavra": "早上"
+     },
+     {
+      "hanzi": "天气",
+      "pinyin": "tiānqì",
+      "traducao": "tempo (clima)",
+      "palavra": "天气"
+     },
+     {
+      "hanzi": "很",
+      "pinyin": "hěn",
+      "traducao": "muito",
+      "palavra": "很"
+     },
+     {
+      "hanzi": "好",
+      "pinyin": "hǎo",
+      "traducao": "bom; bem",
+      "palavra": "好"
+     },
+     {
+      "hanzi": "，"
+     },
+     {
+      "hanzi": "是",
+      "pinyin": "shì",
+      "traducao": "ser",
+      "palavra": "是"
+     },
+     {
+      "hanzi": "晴天",
+      "pinyin": "qíngtiān",
+      "traducao": "dia ensolarado"
+     },
+     {
+      "hanzi": "。"
+     }
+    ],
+    "traducao": "Hoje de manhã o tempo estava ótimo, fazia sol."
+   },
+   {
+    "tokens": [
+     {
+      "hanzi": "丽丽",
+      "pinyin": "Lìli",
+      "traducao": "Lili (nome)"
+     },
+     {
+      "hanzi": "没",
+      "pinyin": "méi",
+      "traducao": "não (no passado)"
+     },
+     {
+      "hanzi": "带",
+      "pinyin": "dài",
+      "traducao": "levar consigo"
+     },
+     {
+      "hanzi": "伞",
+      "pinyin": "sǎn",
+      "traducao": "guarda-chuva"
+     },
+     {
+      "hanzi": "就",
+      "pinyin": "jiù",
+      "traducao": "já; então; justamente",
+      "palavra": "就"
+     },
+     {
+      "hanzi": "去",
+      "pinyin": "qù",
+      "traducao": "ir",
+      "palavra": "去"
+     },
+     {
+      "hanzi": "学校",
+      "pinyin": "xuéxiào",
+      "traducao": "escola",
+      "palavra": "学校"
+     },
+     {
+      "hanzi": "了",
+      "pinyin": "le",
+      "traducao": "(partícula de ação concluída ou mudança)",
+      "palavra": "了"
+     },
+     {
+      "hanzi": "。"
+     }
+    ],
+    "traducao": "Lili foi para a escola sem levar guarda-chuva."
+   },
+   {
+    "tokens": [
+     {
+      "hanzi": "下午",
+      "pinyin": "xiàwǔ",
+      "traducao": "tarde",
+      "palavra": "下午"
+     },
+     {
+      "hanzi": "，"
+     },
+     {
+      "hanzi": "天",
+      "pinyin": "tiān",
+      "traducao": "céu"
+     },
+     {
+      "hanzi": "阴",
+      "pinyin": "yīn",
+      "traducao": "nublado",
+      "palavra": "阴"
+     },
+     {
+      "hanzi": "了",
+      "pinyin": "le",
+      "traducao": "(partícula de ação concluída ou mudança)",
+      "palavra": "了"
+     },
+     {
+      "hanzi": "，"
+     },
+     {
+      "hanzi": "开始",
+      "pinyin": "kāishǐ",
+      "traducao": "começar",
+      "palavra": "开始"
+     },
+     {
+      "hanzi": "下雨",
+      "pinyin": "xià yǔ",
+      "traducao": "chover",
+      "palavra": "下雨"
+     },
+     {
+      "hanzi": "。"
+     }
+    ],
+    "traducao": "À tarde o céu fechou e começou a chover."
+   },
+   {
+    "tokens": [
+     {
+      "hanzi": "丽丽",
+      "pinyin": "Lìli",
+      "traducao": "Lili (nome)"
+     },
+     {
+      "hanzi": "很",
+      "pinyin": "hěn",
+      "traducao": "muito",
+      "palavra": "很"
+     },
+     {
+      "hanzi": "着急",
+      "pinyin": "zháojí",
+      "traducao": "aflito(a)"
+     },
+     {
+      "hanzi": "："
+     },
+     {
+      "hanzi": "“"
+     },
+     {
+      "hanzi": "我",
+      "pinyin": "wǒ",
+      "traducao": "eu",
+      "palavra": "我"
+     },
+     {
+      "hanzi": "怎么",
+      "pinyin": "zěnme",
+      "traducao": "como",
+      "palavra": "怎么"
+     },
+     {
+      "hanzi": "回",
+      "pinyin": "huí",
+      "traducao": "voltar",
+      "palavra": "回"
+     },
+     {
+      "hanzi": "家",
+      "pinyin": "jiā",
+      "traducao": "casa; família",
+      "palavra": "家"
+     },
+     {
+      "hanzi": "呢",
+      "pinyin": "ne",
+      "traducao": "(partícula: \"e ...?\")",
+      "palavra": "呢"
+     },
+     {
+      "hanzi": "？"
+     },
+     {
+      "hanzi": "”"
+     }
+    ],
+    "traducao": "Lili ficou aflita: \"Como eu vou voltar para casa?\""
+   },
+   {
+    "tokens": [
+     {
+      "hanzi": "这时候",
+      "pinyin": "zhè shíhou",
+      "traducao": "nesse momento"
+     },
+     {
+      "hanzi": "，"
+     },
+     {
+      "hanzi": "她",
+      "pinyin": "tā",
+      "traducao": "ela",
+      "palavra": "她"
+     },
+     {
+      "hanzi": "的",
+      "pinyin": "de",
+      "traducao": "(partícula de posse: \"de\")",
+      "palavra": "的"
+     },
+     {
+      "hanzi": "同学",
+      "pinyin": "tóngxué",
+      "traducao": "colega de classe",
+      "palavra": "同学"
+     },
+     {
+      "hanzi": "大卫",
+      "pinyin": "Dàwèi",
+      "traducao": "David (nome)"
+     },
+     {
+      "hanzi": "说",
+      "pinyin": "shuō",
+      "traducao": "falar; dizer",
+      "palavra": "说"
+     },
+     {
+      "hanzi": "："
+     },
+     {
+      "hanzi": "“"
+     },
+     {
+      "hanzi": "别",
+      "pinyin": "bié",
+      "traducao": "não (faça)!",
+      "palavra": "别"
+     },
+     {
+      "hanzi": "担心",
+      "pinyin": "dānxīn",
+      "traducao": "preocupar-se"
+     },
+     {
+      "hanzi": "，"
+     },
+     {
+      "hanzi": "我",
+      "pinyin": "wǒ",
+      "traducao": "eu",
+      "palavra": "我"
+     },
+     {
+      "hanzi": "有",
+      "pinyin": "yǒu",
+      "traducao": "ter; haver",
+      "palavra": "有"
+     },
+     {
+      "hanzi": "伞",
+      "pinyin": "sǎn",
+      "traducao": "guarda-chuva"
+     },
+     {
+      "hanzi": "。"
+     },
+     {
+      "hanzi": "我们",
+      "pinyin": "wǒmen",
+      "traducao": "nós",
+      "palavra": "我们"
+     },
+     {
+      "hanzi": "一起",
+      "pinyin": "yìqǐ",
+      "traducao": "juntos",
+      "palavra": "一起"
+     },
+     {
+      "hanzi": "走",
+      "pinyin": "zǒu",
+      "traducao": "andar; ir embora",
+      "palavra": "走"
+     },
+     {
+      "hanzi": "吧",
+      "pinyin": "ba",
+      "traducao": "(partícula de sugestão: \"vamos...\", \"...né?\")",
+      "palavra": "吧"
+     },
+     {
+      "hanzi": "！"
+     },
+     {
+      "hanzi": "”"
+     }
+    ],
+    "traducao": "Nesse momento, o colega dela, David, disse: \"Não se preocupe, eu tenho guarda-chuva. Vamos juntos!\""
+   },
+   {
+    "tokens": [
+     {
+      "hanzi": "丽丽",
+      "pinyin": "Lìli",
+      "traducao": "Lili (nome)"
+     },
+     {
+      "hanzi": "笑",
+      "pinyin": "xiào",
+      "traducao": "rir; sorrir",
+      "palavra": "笑"
+     },
+     {
+      "hanzi": "了",
+      "pinyin": "le",
+      "traducao": "(partícula de ação concluída ou mudança)",
+      "palavra": "了"
+     },
+     {
+      "hanzi": "："
+     },
+     {
+      "hanzi": "“"
+     },
+     {
+      "hanzi": "谢谢",
+      "pinyin": "xièxie",
+      "traducao": "obrigado(a)",
+      "palavra": "谢谢"
+     },
+     {
+      "hanzi": "你",
+      "pinyin": "nǐ",
+      "traducao": "você",
+      "palavra": "你"
+     },
+     {
+      "hanzi": "，"
+     },
+     {
+      "hanzi": "大卫",
+      "pinyin": "Dàwèi",
+      "traducao": "David (nome)"
+     },
+     {
+      "hanzi": "！"
+     },
+     {
+      "hanzi": "”"
+     }
+    ],
+    "traducao": "Lili sorriu: \"Obrigada, David!\""
+   }
+  ],
+  "perguntas": [
+   {
+    "pergunta": "Como estava o tempo de manhã?",
+    "opcoes": [
+     "Ensolarado",
+     "Chuvoso",
+     "Nublado"
+    ],
+    "correta": 0
+   },
+   {
+    "pergunta": "Qual era o problema de Lili?",
+    "opcoes": [
+     "Não tinha guarda-chuva",
+     "Perdeu o ônibus",
+     "Ficou doente"
+    ],
+    "correta": 0
+   },
+   {
+    "pergunta": "Quem ajudou Lili?",
+    "opcoes": [
+     "O colega David",
+     "A mãe dela",
+     "A professora"
+    ],
+    "correta": 0
+   }
+  ]
+ },
+ {
+  "id": "h04",
+  "tipo": "historia",
+  "nivel": 2,
+  "titulo": "O aniversário da mamãe",
+  "tituloHanzi": "妈妈的生日",
+  "resumo": "Um presente especial.",
+  "linhas": [
+   {
+    "tokens": [
+     {
+      "hanzi": "今天",
+      "pinyin": "jīntiān",
+      "traducao": "hoje",
+      "palavra": "今天"
+     },
+     {
+      "hanzi": "是",
+      "pinyin": "shì",
+      "traducao": "ser",
+      "palavra": "是"
+     },
+     {
+      "hanzi": "五",
+      "pinyin": "wǔ",
+      "traducao": "cinco",
+      "palavra": "五"
+     },
+     {
+      "hanzi": "月",
+      "pinyin": "yuè",
+      "traducao": "mês; lua",
+      "palavra": "月"
+     },
+     {
+      "hanzi": "十",
+      "pinyin": "shí",
+      "traducao": "dez",
+      "palavra": "十"
+     },
+     {
+      "hanzi": "号",
+      "pinyin": "hào",
+      "traducao": "dia (do mês); número",
+      "palavra": "号"
+     },
+     {
+      "hanzi": "，"
+     },
+     {
+      "hanzi": "是",
+      "pinyin": "shì",
+      "traducao": "ser",
+      "palavra": "是"
+     },
+     {
+      "hanzi": "妈妈",
+      "pinyin": "māma",
+      "traducao": "mãe",
+      "palavra": "妈妈"
+     },
+     {
+      "hanzi": "的",
+      "pinyin": "de",
+      "traducao": "(partícula de posse: \"de\")",
+      "palavra": "的"
+     },
+     {
+      "hanzi": "生日",
+      "pinyin": "shēngrì",
+      "traducao": "aniversário",
+      "palavra": "生日"
+     },
+     {
+      "hanzi": "。"
+     }
+    ],
+    "traducao": "Hoje é 10 de maio, aniversário da mamãe."
+   },
+   {
+    "tokens": [
+     {
+      "hanzi": "爸爸",
+      "pinyin": "bàba",
+      "traducao": "pai",
+      "palavra": "爸爸"
+     },
+     {
+      "hanzi": "和",
+      "pinyin": "hé",
+      "traducao": "e (entre palavras); com",
+      "palavra": "和"
+     },
+     {
+      "hanzi": "我",
+      "pinyin": "wǒ",
+      "traducao": "eu",
+      "palavra": "我"
+     },
+     {
+      "hanzi": "想",
+      "pinyin": "xiǎng",
+      "traducao": "querer; pensar; sentir saudade",
+      "palavra": "想"
+     },
+     {
+      "hanzi": "送",
+      "pinyin": "sòng",
+      "traducao": "dar (de presente); levar (alguém)",
+      "palavra": "送"
+     },
+     {
+      "hanzi": "妈妈",
+      "pinyin": "māma",
+      "traducao": "mãe",
+      "palavra": "妈妈"
+     },
+     {
+      "hanzi": "一个",
+      "pinyin": "yí ge",
+      "traducao": "um(a)"
+     },
+     {
+      "hanzi": "礼物",
+      "pinyin": "lǐwù",
+      "traducao": "presente"
+     },
+     {
+      "hanzi": "。"
+     }
+    ],
+    "traducao": "Papai e eu queremos dar um presente para a mamãe."
+   },
+   {
+    "tokens": [
+     {
+      "hanzi": "我们",
+      "pinyin": "wǒmen",
+      "traducao": "nós",
+      "palavra": "我们"
+     },
+     {
+      "hanzi": "去",
+      "pinyin": "qù",
+      "traducao": "ir",
+      "palavra": "去"
+     },
+     {
+      "hanzi": "商店",
+      "pinyin": "shāngdiàn",
+      "traducao": "loja",
+      "palavra": "商店"
+     },
+     {
+      "hanzi": "买",
+      "pinyin": "mǎi",
+      "traducao": "comprar",
+      "palavra": "买"
+     },
+     {
+      "hanzi": "了",
+      "pinyin": "le",
+      "traducao": "(partícula de ação concluída ou mudança)",
+      "palavra": "了"
+     },
+     {
+      "hanzi": "一",
+      "pinyin": "yí",
+      "traducao": "um",
+      "palavra": "一"
+     },
+     {
+      "hanzi": "件",
+      "pinyin": "jiàn",
+      "traducao": "(classificador de roupas e assuntos)",
+      "palavra": "件"
+     },
+     {
+      "hanzi": "红色",
+      "pinyin": "hóngsè",
+      "traducao": "vermelho"
+     },
+     {
+      "hanzi": "的",
+      "pinyin": "de",
+      "traducao": "(partícula de posse: \"de\")",
+      "palavra": "的"
+     },
+     {
+      "hanzi": "衣服",
+      "pinyin": "yīfu",
+      "traducao": "roupa",
+      "palavra": "衣服"
+     },
+     {
+      "hanzi": "。"
+     }
+    ],
+    "traducao": "Fomos à loja e compramos uma roupa vermelha."
+   },
+   {
+    "tokens": [
+     {
+      "hanzi": "妈妈",
+      "pinyin": "māma",
+      "traducao": "mãe",
+      "palavra": "妈妈"
+     },
+     {
+      "hanzi": "最",
+      "pinyin": "zuì",
+      "traducao": "o mais",
+      "palavra": "最"
+     },
+     {
+      "hanzi": "喜欢",
+      "pinyin": "xǐhuan",
+      "traducao": "gostar",
+      "palavra": "喜欢"
+     },
+     {
+      "hanzi": "红色",
+      "pinyin": "hóngsè",
+      "traducao": "vermelho"
+     },
+     {
+      "hanzi": "。"
+     }
+    ],
+    "traducao": "A cor preferida da mamãe é vermelho."
+   },
+   {
+    "tokens": [
+     {
+      "hanzi": "晚上",
+      "pinyin": "wǎnshang",
+      "traducao": "noite",
+      "palavra": "晚上"
+     },
+     {
+      "hanzi": "，"
+     },
+     {
+      "hanzi": "我们",
+      "pinyin": "wǒmen",
+      "traducao": "nós",
+      "palavra": "我们"
+     },
+     {
+      "hanzi": "在",
+      "pinyin": "zài",
+      "traducao": "estar (em); em",
+      "palavra": "在"
+     },
+     {
+      "hanzi": "饭店",
+      "pinyin": "fàndiàn",
+      "traducao": "restaurante; hotel",
+      "palavra": "饭店"
+     },
+     {
+      "hanzi": "吃饭",
+      "pinyin": "chī fàn",
+      "traducao": "comer (uma refeição)"
+     },
+     {
+      "hanzi": "。"
+     }
+    ],
+    "traducao": "À noite jantamos num restaurante."
+   },
+   {
+    "tokens": [
+     {
+      "hanzi": "我",
+      "pinyin": "wǒ",
+      "traducao": "eu",
+      "palavra": "我"
+     },
+     {
+      "hanzi": "和",
+      "pinyin": "hé",
+      "traducao": "e (entre palavras); com",
+      "palavra": "和"
+     },
+     {
+      "hanzi": "爸爸",
+      "pinyin": "bàba",
+      "traducao": "pai",
+      "palavra": "爸爸"
+     },
+     {
+      "hanzi": "说",
+      "pinyin": "shuō",
+      "traducao": "falar; dizer",
+      "palavra": "说"
+     },
+     {
+      "hanzi": "："
+     },
+     {
+      "hanzi": "“"
+     },
+     {
+      "hanzi": "妈妈",
+      "pinyin": "māma",
+      "traducao": "mãe",
+      "palavra": "妈妈"
+     },
+     {
+      "hanzi": "，"
+     },
+     {
+      "hanzi": "生日",
+      "pinyin": "shēngrì",
+      "traducao": "aniversário",
+      "palavra": "生日"
+     },
+     {
+      "hanzi": "快乐",
+      "pinyin": "kuàilè",
+      "traducao": "feliz; alegre",
+      "palavra": "快乐"
+     },
+     {
+      "hanzi": "！"
+     },
+     {
+      "hanzi": "”"
+     }
+    ],
+    "traducao": "Eu e o papai dissemos: \"Mamãe, feliz aniversário!\""
+   },
+   {
+    "tokens": [
+     {
+      "hanzi": "妈妈",
+      "pinyin": "māma",
+      "traducao": "mãe",
+      "palavra": "妈妈"
+     },
+     {
+      "hanzi": "看到",
+      "pinyin": "kàndào",
+      "traducao": "ver"
+     },
+     {
+      "hanzi": "礼物",
+      "pinyin": "lǐwù",
+      "traducao": "presente"
+     },
+     {
+      "hanzi": "，"
+     },
+     {
+      "hanzi": "非常",
+      "pinyin": "fēicháng",
+      "traducao": "extremamente; muito",
+      "palavra": "非常"
+     },
+     {
+      "hanzi": "高兴",
+      "pinyin": "gāoxìng",
+      "traducao": "feliz; contente",
+      "palavra": "高兴"
+     },
+     {
+      "hanzi": "。"
+     }
+    ],
+    "traducao": "Quando viu o presente, a mamãe ficou muito feliz."
+   }
+  ],
+  "perguntas": [
+   {
+    "pergunta": "De quem é o aniversário?",
+    "opcoes": [
+     "Da mãe",
+     "Do pai",
+     "Do narrador"
+    ],
+    "correta": 0
+   },
+   {
+    "pergunta": "Que presente eles compraram?",
+    "opcoes": [
+     "Uma roupa vermelha",
+     "Um livro",
+     "Um relógio"
+    ],
+    "correta": 0
+   },
+   {
+    "pergunta": "Qual é a cor preferida da mãe?",
+    "opcoes": [
+     "Vermelho",
+     "Branco",
+     "Preto"
+    ],
+    "correta": 0
+   }
+  ]
+ },
+ {
+  "id": "h05",
+  "tipo": "historia",
+  "nivel": 2,
+  "titulo": "Xiaoming vai a Pequim",
+  "tituloHanzi": "小明去北京",
+  "resumo": "Uma viagem de férias.",
+  "linhas": [
+   {
+    "tokens": [
+     {
+      "hanzi": "去年",
+      "pinyin": "qùnián",
+      "traducao": "ano passado",
+      "palavra": "去年"
+     },
+     {
+      "hanzi": "七",
+      "pinyin": "qī",
+      "traducao": "sete",
+      "palavra": "七"
+     },
+     {
+      "hanzi": "月",
+      "pinyin": "yuè",
+      "traducao": "mês; lua",
+      "palavra": "月"
+     },
+     {
+      "hanzi": "，"
+     },
+     {
+      "hanzi": "小明",
+      "pinyin": "Xiǎomíng",
+      "traducao": "Xiaoming (nome)"
+     },
+     {
+      "hanzi": "和",
+      "pinyin": "hé",
+      "traducao": "e (entre palavras); com",
+      "palavra": "和"
+     },
+     {
+      "hanzi": "爸爸",
+      "pinyin": "bàba",
+      "traducao": "pai",
+      "palavra": "爸爸"
+     },
+     {
+      "hanzi": "妈妈",
+      "pinyin": "māma",
+      "traducao": "mãe",
+      "palavra": "妈妈"
+     },
+     {
+      "hanzi": "去",
+      "pinyin": "qù",
+      "traducao": "ir",
+      "palavra": "去"
+     },
+     {
+      "hanzi": "北京",
+      "pinyin": "Běijīng",
+      "traducao": "Pequim",
+      "palavra": "北京"
+     },
+     {
+      "hanzi": "旅游",
+      "pinyin": "lǚyóu",
+      "traducao": "viajar (a passeio); turismo",
+      "palavra": "旅游"
+     },
+     {
+      "hanzi": "。"
+     }
+    ],
+    "traducao": "Em julho do ano passado, Xiaoming e os pais viajaram para Pequim."
+   },
+   {
+    "tokens": [
+     {
+      "hanzi": "他们",
+      "pinyin": "tāmen",
+      "traducao": "eles"
+     },
+     {
+      "hanzi": "坐",
+      "pinyin": "zuò",
+      "traducao": "sentar; pegar (transporte)",
+      "palavra": "坐"
+     },
+     {
+      "hanzi": "飞机",
+      "pinyin": "fēijī",
+      "traducao": "avião",
+      "palavra": "飞机"
+     },
+     {
+      "hanzi": "去",
+      "pinyin": "qù",
+      "traducao": "ir",
+      "palavra": "去"
+     },
+     {
+      "hanzi": "，"
+     },
+     {
+      "hanzi": "两",
+      "pinyin": "liǎng",
+      "traducao": "dois (antes de classificador)",
+      "palavra": "两"
+     },
+     {
+      "hanzi": "个",
+      "pinyin": "ge",
+      "traducao": "(classificador geral)",
+      "palavra": "个"
+     },
+     {
+      "hanzi": "小时",
+      "pinyin": "xiǎoshí",
+      "traducao": "hora (duração)",
+      "palavra": "小时"
+     },
+     {
+      "hanzi": "就",
+      "pinyin": "jiù",
+      "traducao": "já; então; justamente",
+      "palavra": "就"
+     },
+     {
+      "hanzi": "到",
+      "pinyin": "dào",
+      "traducao": "chegar; até",
+      "palavra": "到"
+     },
+     {
+      "hanzi": "了",
+      "pinyin": "le",
+      "traducao": "(partícula de ação concluída ou mudança)",
+      "palavra": "了"
+     },
+     {
+      "hanzi": "。"
+     }
+    ],
+    "traducao": "Foram de avião e chegaram em apenas duas horas."
+   },
+   {
+    "tokens": [
+     {
+      "hanzi": "北京",
+      "pinyin": "Běijīng",
+      "traducao": "Pequim",
+      "palavra": "北京"
+     },
+     {
+      "hanzi": "很",
+      "pinyin": "hěn",
+      "traducao": "muito",
+      "palavra": "很"
+     },
+     {
+      "hanzi": "大",
+      "pinyin": "dà",
+      "traducao": "grande",
+      "palavra": "大"
+     },
+     {
+      "hanzi": "，"
+     },
+     {
+      "hanzi": "人",
+      "pinyin": "rén",
+      "traducao": "pessoa",
+      "palavra": "人"
+     },
+     {
+      "hanzi": "也",
+      "pinyin": "yě",
+      "traducao": "também",
+      "palavra": "也"
+     },
+     {
+      "hanzi": "很",
+      "pinyin": "hěn",
+      "traducao": "muito",
+      "palavra": "很"
+     },
+     {
+      "hanzi": "多",
+      "pinyin": "duō",
+      "traducao": "muito(s)",
+      "palavra": "多"
+     },
+     {
+      "hanzi": "。"
+     }
+    ],
+    "traducao": "Pequim é muito grande e tem muita gente."
+   },
+   {
+    "tokens": [
+     {
+      "hanzi": "他们",
+      "pinyin": "tāmen",
+      "traducao": "eles"
+     },
+     {
+      "hanzi": "去",
+      "pinyin": "qù",
+      "traducao": "ir",
+      "palavra": "去"
+     },
+     {
+      "hanzi": "了",
+      "pinyin": "le",
+      "traducao": "(partícula de ação concluída ou mudança)",
+      "palavra": "了"
+     },
+     {
+      "hanzi": "很",
+      "pinyin": "hěn",
+      "traducao": "muito",
+      "palavra": "很"
+     },
+     {
+      "hanzi": "多",
+      "pinyin": "duō",
+      "traducao": "muito(s)",
+      "palavra": "多"
+     },
+     {
+      "hanzi": "地方",
+      "pinyin": "dìfang",
+      "traducao": "lugar"
+     },
+     {
+      "hanzi": "，"
+     },
+     {
+      "hanzi": "吃",
+      "pinyin": "chī",
+      "traducao": "comer",
+      "palavra": "吃"
+     },
+     {
+      "hanzi": "了",
+      "pinyin": "le",
+      "traducao": "(partícula de ação concluída ou mudança)",
+      "palavra": "了"
+     },
+     {
+      "hanzi": "北京",
+      "pinyin": "Běijīng",
+      "traducao": "Pequim",
+      "palavra": "北京"
+     },
+     {
+      "hanzi": "烤鸭",
+      "pinyin": "kǎoyā",
+      "traducao": "pato laqueado"
+     },
+     {
+      "hanzi": "。"
+     }
+    ],
+    "traducao": "Eles foram a muitos lugares e comeram pato laqueado de Pequim."
+   },
+   {
+    "tokens": [
+     {
+      "hanzi": "小明",
+      "pinyin": "Xiǎomíng",
+      "traducao": "Xiaoming (nome)"
+     },
+     {
+      "hanzi": "觉得",
+      "pinyin": "juéde",
+      "traducao": "achar; sentir",
+      "palavra": "觉得"
+     },
+     {
+      "hanzi": "烤鸭",
+      "pinyin": "kǎoyā",
+      "traducao": "pato laqueado"
+     },
+     {
+      "hanzi": "非常",
+      "pinyin": "fēicháng",
+      "traducao": "extremamente; muito",
+      "palavra": "非常"
+     },
+     {
+      "hanzi": "好吃",
+      "pinyin": "hǎochī",
+      "traducao": "gostoso",
+      "palavra": "好吃"
+     },
+     {
+      "hanzi": "。"
+     }
+    ],
+    "traducao": "Xiaoming achou o pato laqueado delicioso."
+   },
+   {
+    "tokens": [
+     {
+      "hanzi": "北京",
+      "pinyin": "Běijīng",
+      "traducao": "Pequim",
+      "palavra": "北京"
+     },
+     {
+      "hanzi": "的",
+      "pinyin": "de",
+      "traducao": "(partícula de posse: \"de\")",
+      "palavra": "的"
+     },
+     {
+      "hanzi": "夏天",
+      "pinyin": "xiàtiān",
+      "traducao": "verão"
+     },
+     {
+      "hanzi": "很",
+      "pinyin": "hěn",
+      "traducao": "muito",
+      "palavra": "很"
+     },
+     {
+      "hanzi": "热",
+      "pinyin": "rè",
+      "traducao": "quente",
+      "palavra": "热"
+     },
+     {
+      "hanzi": "，"
+     },
+     {
+      "hanzi": "可是",
+      "pinyin": "kěshì",
+      "traducao": "mas"
+     },
+     {
+      "hanzi": "小明",
+      "pinyin": "Xiǎomíng",
+      "traducao": "Xiaoming (nome)"
+     },
+     {
+      "hanzi": "玩",
+      "pinyin": "wán",
+      "traducao": "brincar; divertir-se",
+      "palavra": "玩"
+     },
+     {
+      "hanzi": "得",
+      "pinyin": "de",
+      "traducao": "(partícula de grau ou modo)",
+      "palavra": "得"
+     },
+     {
+      "hanzi": "很",
+      "pinyin": "hěn",
+      "traducao": "muito",
+      "palavra": "很"
+     },
+     {
+      "hanzi": "开心",
+      "pinyin": "kāixīn",
+      "traducao": "contente"
+     },
+     {
+      "hanzi": "。"
+     }
+    ],
+    "traducao": "O verão em Pequim é muito quente, mas Xiaoming se divertiu muito."
+   },
+   {
+    "tokens": [
+     {
+      "hanzi": "他",
+      "pinyin": "tā",
+      "traducao": "ele",
+      "palavra": "他"
+     },
+     {
+      "hanzi": "说",
+      "pinyin": "shuō",
+      "traducao": "falar; dizer",
+      "palavra": "说"
+     },
+     {
+      "hanzi": "："
+     },
+     {
+      "hanzi": "“"
+     },
+     {
+      "hanzi": "明年",
+      "pinyin": "míngnián",
+      "traducao": "ano que vem"
+     },
+     {
+      "hanzi": "我",
+      "pinyin": "wǒ",
+      "traducao": "eu",
+      "palavra": "我"
+     },
+     {
+      "hanzi": "还",
+      "pinyin": "hái",
+      "traducao": "ainda; também",
+      "palavra": "还"
+     },
+     {
+      "hanzi": "想",
+      "pinyin": "xiǎng",
+      "traducao": "querer; pensar; sentir saudade",
+      "palavra": "想"
+     },
+     {
+      "hanzi": "去",
+      "pinyin": "qù",
+      "traducao": "ir",
+      "palavra": "去"
+     },
+     {
+      "hanzi": "北京",
+      "pinyin": "Běijīng",
+      "traducao": "Pequim",
+      "palavra": "北京"
+     },
+     {
+      "hanzi": "！"
+     },
+     {
+      "hanzi": "”"
+     }
+    ],
+    "traducao": "Ele disse: \"Ano que vem quero ir a Pequim de novo!\""
+   }
+  ],
+  "perguntas": [
+   {
+    "pergunta": "Quando eles viajaram?",
+    "opcoes": [
+     "Em julho do ano passado",
+     "Em maio deste ano",
+     "Em dezembro"
+    ],
+    "correta": 0
+   },
+   {
+    "pergunta": "Como eles viajaram?",
+    "opcoes": [
+     "De avião",
+     "De trem",
+     "De ônibus"
+    ],
+    "correta": 0
+   },
+   {
+    "pergunta": "O que Xiaoming achou do pato laqueado?",
+    "opcoes": [
+     "Delicioso",
+     "Caro",
+     "Apimentado"
+    ],
+    "correta": 0
+   }
+  ]
+ },
+ {
+  "id": "h06",
+  "tipo": "historia",
+  "nivel": 2,
+  "titulo": "Esperando coelhos",
+  "tituloHanzi": "守株待兔",
+  "resumo": "Uma fábula chinesa antiga (成语).",
+  "linhas": [
+   {
+    "tokens": [
+     {
+      "hanzi": "很",
+      "pinyin": "hěn",
+      "traducao": "muito",
+      "palavra": "很"
+     },
+     {
+      "hanzi": "久",
+      "pinyin": "jiǔ",
+      "traducao": "muito tempo"
+     },
+     {
+      "hanzi": "以前",
+      "pinyin": "yǐqián",
+      "traducao": "antes; atrás"
+     },
+     {
+      "hanzi": "，"
+     },
+     {
+      "hanzi": "有",
+      "pinyin": "yǒu",
+      "traducao": "ter; haver",
+      "palavra": "有"
+     },
+     {
+      "hanzi": "一个",
+      "pinyin": "yí ge",
+      "traducao": "um(a)"
+     },
+     {
+      "hanzi": "农民",
+      "pinyin": "nóngmín",
+      "traducao": "camponês"
+     },
+     {
+      "hanzi": "。"
+     }
+    ],
+    "traducao": "Há muito tempo, havia um camponês."
+   },
+   {
+    "tokens": [
+     {
+      "hanzi": "有",
+      "pinyin": "yǒu",
+      "traducao": "ter; haver",
+      "palavra": "有"
+     },
+     {
+      "hanzi": "一",
+      "pinyin": "yì",
+      "traducao": "um",
+      "palavra": "一"
+     },
+     {
+      "hanzi": "天",
+      "pinyin": "tiān",
+      "traducao": "dia"
+     },
+     {
+      "hanzi": "，"
+     },
+     {
+      "hanzi": "他",
+      "pinyin": "tā",
+      "traducao": "ele",
+      "palavra": "他"
+     },
+     {
+      "hanzi": "在",
+      "pinyin": "zài",
+      "traducao": "estar (em); em",
+      "palavra": "在"
+     },
+     {
+      "hanzi": "地",
+      "pinyin": "dì",
+      "traducao": "campo"
+     },
+     {
+      "hanzi": "里",
+      "pinyin": "li",
+      "traducao": "dentro",
+      "palavra": "里"
+     },
+     {
+      "hanzi": "工作",
+      "pinyin": "gōngzuò",
+      "traducao": "trabalho; trabalhar",
+      "palavra": "工作"
+     },
+     {
+      "hanzi": "。"
+     }
+    ],
+    "traducao": "Um dia, ele estava trabalhando no campo."
+   },
+   {
+    "tokens": [
+     {
+      "hanzi": "一",
+      "pinyin": "yì",
+      "traducao": "um",
+      "palavra": "一"
+     },
+     {
+      "hanzi": "只",
+      "pinyin": "zhī",
+      "traducao": "(classificador de animais)"
+     },
+     {
+      "hanzi": "兔子",
+      "pinyin": "tùzi",
+      "traducao": "coelho"
+     },
+     {
+      "hanzi": "跑",
+      "pinyin": "pǎo",
+      "traducao": "correr"
+     },
+     {
+      "hanzi": "过来",
+      "pinyin": "guòlai",
+      "traducao": "(vir em direção a)"
+     },
+     {
+      "hanzi": "，"
+     },
+     {
+      "hanzi": "撞",
+      "pinyin": "zhuàng",
+      "traducao": "bater"
+     },
+     {
+      "hanzi": "到",
+      "pinyin": "dào",
+      "traducao": "chegar; até",
+      "palavra": "到"
+     },
+     {
+      "hanzi": "树",
+      "pinyin": "shù",
+      "traducao": "árvore"
+     },
+     {
+      "hanzi": "上",
+      "pinyin": "shang",
+      "traducao": "em cima; subir; anterior",
+      "palavra": "上"
+     },
+     {
+      "hanzi": "，"
+     },
+     {
+      "hanzi": "死",
+      "pinyin": "sǐ",
+      "traducao": "morrer"
+     },
+     {
+      "hanzi": "了",
+      "pinyin": "le",
+      "traducao": "(partícula de ação concluída ou mudança)",
+      "palavra": "了"
+     },
+     {
+      "hanzi": "。"
+     }
+    ],
+    "traducao": "Um coelho veio correndo, bateu numa árvore e morreu."
+   },
+   {
+    "tokens": [
+     {
+      "hanzi": "农民",
+      "pinyin": "nóngmín",
+      "traducao": "camponês"
+     },
+     {
+      "hanzi": "很",
+      "pinyin": "hěn",
+      "traducao": "muito",
+      "palavra": "很"
+     },
+     {
+      "hanzi": "高兴",
+      "pinyin": "gāoxìng",
+      "traducao": "feliz; contente",
+      "palavra": "高兴"
+     },
+     {
+      "hanzi": "："
+     },
+     {
+      "hanzi": "“"
+     },
+     {
+      "hanzi": "太",
+      "pinyin": "tài",
+      "traducao": "demais; muito",
+      "palavra": "太"
+     },
+     {
+      "hanzi": "好",
+      "pinyin": "hǎo",
+      "traducao": "bom; bem",
+      "palavra": "好"
+     },
+     {
+      "hanzi": "了",
+      "pinyin": "le",
+      "traducao": "(partícula de ação concluída ou mudança)",
+      "palavra": "了"
+     },
+     {
+      "hanzi": "！"
+     },
+     {
+      "hanzi": "我",
+      "pinyin": "wǒ",
+      "traducao": "eu",
+      "palavra": "我"
+     },
+     {
+      "hanzi": "不用",
+      "pinyin": "bú yòng",
+      "traducao": "não precisar"
+     },
+     {
+      "hanzi": "工作",
+      "pinyin": "gōngzuò",
+      "traducao": "trabalho; trabalhar",
+      "palavra": "工作"
+     },
+     {
+      "hanzi": "了",
+      "pinyin": "le",
+      "traducao": "(partícula de ação concluída ou mudança)",
+      "palavra": "了"
+     },
+     {
+      "hanzi": "！"
+     },
+     {
+      "hanzi": "”"
+     }
+    ],
+    "traducao": "O camponês ficou muito feliz: \"Que ótimo! Não preciso mais trabalhar!\""
+   },
+   {
+    "tokens": [
+     {
+      "hanzi": "从",
+      "pinyin": "cóng",
+      "traducao": "de; desde",
+      "palavra": "从"
+     },
+     {
+      "hanzi": "那天",
+      "pinyin": "nà tiān",
+      "traducao": "aquele dia"
+     },
+     {
+      "hanzi": "开始",
+      "pinyin": "kāishǐ",
+      "traducao": "começar",
+      "palavra": "开始"
+     },
+     {
+      "hanzi": "，"
+     },
+     {
+      "hanzi": "他",
+      "pinyin": "tā",
+      "traducao": "ele",
+      "palavra": "他"
+     },
+     {
+      "hanzi": "每天",
+      "pinyin": "měitiān",
+      "traducao": "todo dia"
+     },
+     {
+      "hanzi": "坐",
+      "pinyin": "zuò",
+      "traducao": "sentar; pegar (transporte)",
+      "palavra": "坐"
+     },
+     {
+      "hanzi": "在",
+      "pinyin": "zài",
+      "traducao": "estar (em); em",
+      "palavra": "在"
+     },
+     {
+      "hanzi": "树",
+      "pinyin": "shù",
+      "traducao": "árvore"
+     },
+     {
+      "hanzi": "旁边",
+      "pinyin": "pángbiān",
+      "traducao": "ao lado",
+      "palavra": "旁边"
+     },
+     {
+      "hanzi": "等",
+      "pinyin": "děng",
+      "traducao": "esperar",
+      "palavra": "等"
+     },
+     {
+      "hanzi": "兔子",
+      "pinyin": "tùzi",
+      "traducao": "coelho"
+     },
+     {
+      "hanzi": "。"
+     }
+    ],
+    "traducao": "A partir daquele dia, ele se sentava todo dia ao lado da árvore esperando coelhos."
+   },
+   {
+    "tokens": [
+     {
+      "hanzi": "可是",
+      "pinyin": "kěshì",
+      "traducao": "mas"
+     },
+     {
+      "hanzi": "，"
+     },
+     {
+      "hanzi": "再",
+      "pinyin": "zài",
+      "traducao": "de novo; outra vez",
+      "palavra": "再"
+     },
+     {
+      "hanzi": "也",
+      "pinyin": "yě",
+      "traducao": "também",
+      "palavra": "也"
+     },
+     {
+      "hanzi": "没有",
+      "pinyin": "méiyǒu",
+      "traducao": "não ter; não haver",
+      "palavra": "没有"
+     },
+     {
+      "hanzi": "兔子",
+      "pinyin": "tùzi",
+      "traducao": "coelho"
+     },
+     {
+      "hanzi": "来",
+      "pinyin": "lái",
+      "traducao": "vir",
+      "palavra": "来"
+     },
+     {
+      "hanzi": "了",
+      "pinyin": "le",
+      "traducao": "(partícula de ação concluída ou mudança)",
+      "palavra": "了"
+     },
+     {
+      "hanzi": "。"
+     }
+    ],
+    "traducao": "Mas nunca mais apareceu coelho nenhum."
+   },
+   {
+    "tokens": [
+     {
+      "hanzi": "他",
+      "pinyin": "tā",
+      "traducao": "ele",
+      "palavra": "他"
+     },
+     {
+      "hanzi": "的",
+      "pinyin": "de",
+      "traducao": "(partícula de posse: \"de\")",
+      "palavra": "的"
+     },
+     {
+      "hanzi": "地",
+      "pinyin": "dì",
+      "traducao": "campo"
+     },
+     {
+      "hanzi": "里",
+      "pinyin": "li",
+      "traducao": "dentro",
+      "palavra": "里"
+     },
+     {
+      "hanzi": "也",
+      "pinyin": "yě",
+      "traducao": "também",
+      "palavra": "也"
+     },
+     {
+      "hanzi": "没有",
+      "pinyin": "méiyǒu",
+      "traducao": "não ter; não haver",
+      "palavra": "没有"
+     },
+     {
+      "hanzi": "菜",
+      "pinyin": "cài",
+      "traducao": "prato (comida); verdura",
+      "palavra": "菜"
+     },
+     {
+      "hanzi": "了",
+      "pinyin": "le",
+      "traducao": "(partícula de ação concluída ou mudança)",
+      "palavra": "了"
+     },
+     {
+      "hanzi": "。"
+     }
+    ],
+    "traducao": "E no campo dele também não havia mais verduras."
+   }
+  ],
+  "perguntas": [
+   {
+    "pergunta": "O que aconteceu com o coelho?",
+    "opcoes": [
+     "Bateu numa árvore",
+     "Fugiu para a floresta",
+     "Comeu as verduras"
+    ],
+    "correta": 0
+   },
+   {
+    "pergunta": "O que o camponês fez depois?",
+    "opcoes": [
+     "Esperou ao lado da árvore",
+     "Trabalhou ainda mais",
+     "Foi para a cidade"
+    ],
+    "correta": 0
+   },
+   {
+    "pergunta": "Qual é a moral da história?",
+    "opcoes": [
+     "Não esperar pela sorte sem se esforçar",
+     "Coelhos são rápidos",
+     "Árvores são perigosas"
+    ],
+    "correta": 0
+   }
+  ],
+  "nota": "守株待兔 (shǒu zhū dài tù) virou um provérbio: ficar esperando a sorte em vez de se esforçar."
+ }
+]

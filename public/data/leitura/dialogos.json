@@ -1,0 +1,3267 @@
+[
+ {
+  "id": "d01",
+  "tipo": "dialogo",
+  "nivel": 1,
+  "titulo": "Prazer em conhecer",
+  "tituloHanzi": "认识你很高兴",
+  "resumo": "Apresentar-se: nome, nacionalidade e profissão.",
+  "linhas": [
+   {
+    "tokens": [
+     {
+      "hanzi": "你好",
+      "pinyin": "nǐ hǎo",
+      "traducao": "olá"
+     },
+     {
+      "hanzi": "！"
+     },
+     {
+      "hanzi": "我",
+      "pinyin": "wǒ",
+      "traducao": "eu",
+      "palavra": "我"
+     },
+     {
+      "hanzi": "叫",
+      "pinyin": "jiào",
+      "traducao": "chamar(-se)",
+      "palavra": "叫"
+     },
+     {
+      "hanzi": "安娜",
+      "pinyin": "Ānnà",
+      "traducao": "Ana (nome)"
+     },
+     {
+      "hanzi": "。"
+     },
+     {
+      "hanzi": "你",
+      "pinyin": "nǐ",
+      "traducao": "você",
+      "palavra": "你"
+     },
+     {
+      "hanzi": "叫",
+      "pinyin": "jiào",
+      "traducao": "chamar(-se)",
+      "palavra": "叫"
+     },
+     {
+      "hanzi": "什么",
+      "pinyin": "shénme",
+      "traducao": "o quê; que",
+      "palavra": "什么"
+     },
+     {
+      "hanzi": "名字",
+      "pinyin": "míngzi",
+      "traducao": "nome",
+      "palavra": "名字"
+     },
+     {
+      "hanzi": "？"
+     }
+    ],
+    "traducao": "Olá! Eu me chamo Ana. Como você se chama?",
+    "falante": {
+     "hanzi": "安娜",
+     "pinyin": "Ānnà"
+    }
+   },
+   {
+    "tokens": [
+     {
+      "hanzi": "你好",
+      "pinyin": "nǐ hǎo",
+      "traducao": "olá"
+     },
+     {
+      "hanzi": "！"
+     },
+     {
+      "hanzi": "我",
+      "pinyin": "wǒ",
+      "traducao": "eu",
+      "palavra": "我"
+     },
+     {
+      "hanzi": "叫",
+      "pinyin": "jiào",
+      "traducao": "chamar(-se)",
+      "palavra": "叫"
+     },
+     {
+      "hanzi": "王明",
+      "pinyin": "Wáng Míng",
+      "traducao": "Wang Ming (nome)"
+     },
+     {
+      "hanzi": "。"
+     },
+     {
+      "hanzi": "你",
+      "pinyin": "nǐ",
+      "traducao": "você",
+      "palavra": "你"
+     },
+     {
+      "hanzi": "是",
+      "pinyin": "shì",
+      "traducao": "ser",
+      "palavra": "是"
+     },
+     {
+      "hanzi": "哪",
+      "pinyin": "nǎ",
+      "traducao": "qual",
+      "palavra": "哪"
+     },
+     {
+      "hanzi": "国",
+      "pinyin": "guó",
+      "traducao": "país"
+     },
+     {
+      "hanzi": "人",
+      "pinyin": "rén",
+      "traducao": "pessoa",
+      "palavra": "人"
+     },
+     {
+      "hanzi": "？"
+     }
+    ],
+    "traducao": "Olá! Eu me chamo Wang Ming. De que país você é?",
+    "falante": {
+     "hanzi": "王明",
+     "pinyin": "Wáng Míng"
+    }
+   },
+   {
+    "tokens": [
+     {
+      "hanzi": "我",
+      "pinyin": "wǒ",
+      "traducao": "eu",
+      "palavra": "我"
+     },
+     {
+      "hanzi": "是",
+      "pinyin": "shì",
+      "traducao": "ser",
+      "palavra": "是"
+     },
+     {
+      "hanzi": "巴西",
+      "pinyin": "Bāxī",
+      "traducao": "Brasil"
+     },
+     {
+      "hanzi": "人",
+      "pinyin": "rén",
+      "traducao": "pessoa",
+      "palavra": "人"
+     },
+     {
+      "hanzi": "。"
+     },
+     {
+      "hanzi": "你",
+      "pinyin": "nǐ",
+      "traducao": "você",
+      "palavra": "你"
+     },
+     {
+      "hanzi": "呢",
+      "pinyin": "ne",
+      "traducao": "(partícula: \"e ...?\")",
+      "palavra": "呢"
+     },
+     {
+      "hanzi": "？"
+     }
+    ],
+    "traducao": "Sou brasileira. E você?",
+    "falante": {
+     "hanzi": "安娜",
+     "pinyin": "Ānnà"
+    }
+   },
+   {
+    "tokens": [
+     {
+      "hanzi": "我",
+      "pinyin": "wǒ",
+      "traducao": "eu",
+      "palavra": "我"
+     },
+     {
+      "hanzi": "是",
+      "pinyin": "shì",
+      "traducao": "ser",
+      "palavra": "是"
+     },
+     {
+      "hanzi": "中国",
+      "pinyin": "Zhōngguó",
+      "traducao": "China",
+      "palavra": "中国"
+     },
+     {
+      "hanzi": "人",
+      "pinyin": "rén",
+      "traducao": "pessoa",
+      "palavra": "人"
+     },
+     {
+      "hanzi": "，"
+     },
+     {
+      "hanzi": "我",
+      "pinyin": "wǒ",
+      "traducao": "eu",
+      "palavra": "我"
+     },
+     {
+      "hanzi": "是",
+      "pinyin": "shì",
+      "traducao": "ser",
+      "palavra": "是"
+     },
+     {
+      "hanzi": "北京",
+      "pinyin": "Běijīng",
+      "traducao": "Pequim",
+      "palavra": "北京"
+     },
+     {
+      "hanzi": "人",
+      "pinyin": "rén",
+      "traducao": "pessoa",
+      "palavra": "人"
+     },
+     {
+      "hanzi": "。"
+     }
+    ],
+    "traducao": "Sou chinês, sou de Pequim.",
+    "falante": {
+     "hanzi": "王明",
+     "pinyin": "Wáng Míng"
+    }
+   },
+   {
+    "tokens": [
+     {
+      "hanzi": "你",
+      "pinyin": "nǐ",
+      "traducao": "você",
+      "palavra": "你"
+     },
+     {
+      "hanzi": "是",
+      "pinyin": "shì",
+      "traducao": "ser",
+      "palavra": "是"
+     },
+     {
+      "hanzi": "学生",
+      "pinyin": "xuésheng",
+      "traducao": "estudante; aluno(a)",
+      "palavra": "学生"
+     },
+     {
+      "hanzi": "吗",
+      "pinyin": "ma",
+      "traducao": "(partícula de pergunta de sim ou não)",
+      "palavra": "吗"
+     },
+     {
+      "hanzi": "？"
+     }
+    ],
+    "traducao": "Você é estudante?",
+    "falante": {
+     "hanzi": "安娜",
+     "pinyin": "Ānnà"
+    }
+   },
+   {
+    "tokens": [
+     {
+      "hanzi": "不",
+      "pinyin": "bú",
+      "traducao": "não",
+      "palavra": "不"
+     },
+     {
+      "hanzi": "是",
+      "pinyin": "shì",
+      "traducao": "ser",
+      "palavra": "是"
+     },
+     {
+      "hanzi": "，"
+     },
+     {
+      "hanzi": "我",
+      "pinyin": "wǒ",
+      "traducao": "eu",
+      "palavra": "我"
+     },
+     {
+      "hanzi": "是",
+      "pinyin": "shì",
+      "traducao": "ser",
+      "palavra": "是"
+     },
+     {
+      "hanzi": "老师",
+      "pinyin": "lǎoshī",
+      "traducao": "professor(a)",
+      "palavra": "老师"
+     },
+     {
+      "hanzi": "。"
+     },
+     {
+      "hanzi": "你",
+      "pinyin": "nǐ",
+      "traducao": "você",
+      "palavra": "你"
+     },
+     {
+      "hanzi": "呢",
+      "pinyin": "ne",
+      "traducao": "(partícula: \"e ...?\")",
+      "palavra": "呢"
+     },
+     {
+      "hanzi": "？"
+     }
+    ],
+    "traducao": "Não, sou professor. E você?",
+    "falante": {
+     "hanzi": "王明",
+     "pinyin": "Wáng Míng"
+    }
+   },
+   {
+    "tokens": [
+     {
+      "hanzi": "我",
+      "pinyin": "wǒ",
+      "traducao": "eu",
+      "palavra": "我"
+     },
+     {
+      "hanzi": "是",
+      "pinyin": "shì",
+      "traducao": "ser",
+      "palavra": "是"
+     },
+     {
+      "hanzi": "学生",
+      "pinyin": "xuésheng",
+      "traducao": "estudante; aluno(a)",
+      "palavra": "学生"
+     },
+     {
+      "hanzi": "，"
+     },
+     {
+      "hanzi": "我",
+      "pinyin": "wǒ",
+      "traducao": "eu",
+      "palavra": "我"
+     },
+     {
+      "hanzi": "学习",
+      "pinyin": "xuéxí",
+      "traducao": "estudar; aprender",
+      "palavra": "学习"
+     },
+     {
+      "hanzi": "汉语",
+      "pinyin": "Hànyǔ",
+      "traducao": "língua chinesa (mandarim)",
+      "palavra": "汉语"
+     },
+     {
+      "hanzi": "。"
+     }
+    ],
+    "traducao": "Sou estudante, estudo chinês.",
+    "falante": {
+     "hanzi": "安娜",
+     "pinyin": "Ānnà"
+    }
+   },
+   {
+    "tokens": [
+     {
+      "hanzi": "认识",
+      "pinyin": "rènshi",
+      "traducao": "conhecer (alguém)",
+      "palavra": "认识"
+     },
+     {
+      "hanzi": "你",
+      "pinyin": "nǐ",
+      "traducao": "você",
+      "palavra": "你"
+     },
+     {
+      "hanzi": "很",
+      "pinyin": "hěn",
+      "traducao": "muito",
+      "palavra": "很"
+     },
+     {
+      "hanzi": "高兴",
+      "pinyin": "gāoxìng",
+      "traducao": "feliz; contente",
+      "palavra": "高兴"
+     },
+     {
+      "hanzi": "！"
+     }
+    ],
+    "traducao": "Prazer em te conhecer!",
+    "falante": {
+     "hanzi": "王明",
+     "pinyin": "Wáng Míng"
+    }
+   },
+   {
+    "tokens": [
+     {
+      "hanzi": "认识",
+      "pinyin": "rènshi",
+      "traducao": "conhecer (alguém)",
+      "palavra": "认识"
+     },
+     {
+      "hanzi": "你",
+      "pinyin": "nǐ",
+      "traducao": "você",
+      "palavra": "你"
+     },
+     {
+      "hanzi": "我",
+      "pinyin": "wǒ",
+      "traducao": "eu",
+      "palavra": "我"
+     },
+     {
+      "hanzi": "也",
+      "pinyin": "yě",
+      "traducao": "também",
+      "palavra": "也"
+     },
+     {
+      "hanzi": "很",
+      "pinyin": "hěn",
+      "traducao": "muito",
+      "palavra": "很"
+     },
+     {
+      "hanzi": "高兴",
+      "pinyin": "gāoxìng",
+      "traducao": "feliz; contente",
+      "palavra": "高兴"
+     },
+     {
+      "hanzi": "！"
+     }
+    ],
+    "traducao": "O prazer também é meu!",
+    "falante": {
+     "hanzi": "安娜",
+     "pinyin": "Ānnà"
+    }
+   }
+  ],
+  "perguntas": [
+   {
+    "pergunta": "Qual é a nacionalidade de Ana?",
+    "opcoes": [
+     "Brasileira",
+     "Chinesa",
+     "Americana"
+    ],
+    "correta": 0
+   },
+   {
+    "pergunta": "O que Wang Ming faz?",
+    "opcoes": [
+     "É professor",
+     "É estudante",
+     "É médico"
+    ],
+    "correta": 0
+   },
+   {
+    "pergunta": "O que Ana estuda?",
+    "opcoes": [
+     "Chinês",
+     "Inglês",
+     "Medicina"
+    ],
+    "correta": 0
+   }
+  ]
+ },
+ {
+  "id": "d02",
+  "tipo": "dialogo",
+  "nivel": 1,
+  "titulo": "Minha família",
+  "tituloHanzi": "我的家",
+  "resumo": "Quantas pessoas há na família, profissão e idade.",
+  "linhas": [
+   {
+    "tokens": [
+     {
+      "hanzi": "安娜",
+      "pinyin": "Ānnà",
+      "traducao": "Ana (nome)"
+     },
+     {
+      "hanzi": "，"
+     },
+     {
+      "hanzi": "你",
+      "pinyin": "nǐ",
+      "traducao": "você",
+      "palavra": "你"
+     },
+     {
+      "hanzi": "家",
+      "pinyin": "jiā",
+      "traducao": "casa; família",
+      "palavra": "家"
+     },
+     {
+      "hanzi": "有",
+      "pinyin": "yǒu",
+      "traducao": "ter; haver",
+      "palavra": "有"
+     },
+     {
+      "hanzi": "几",
+      "pinyin": "jǐ",
+      "traducao": "quantos (poucos); que (número)",
+      "palavra": "几"
+     },
+     {
+      "hanzi": "口",
+      "pinyin": "kǒu",
+      "traducao": "(classificador para membros da família)"
+     },
+     {
+      "hanzi": "人",
+      "pinyin": "rén",
+      "traducao": "pessoa",
+      "palavra": "人"
+     },
+     {
+      "hanzi": "？"
+     }
+    ],
+    "traducao": "Ana, quantas pessoas há na sua família?",
+    "falante": {
+     "hanzi": "王明",
+     "pinyin": "Wáng Míng"
+    }
+   },
+   {
+    "tokens": [
+     {
+      "hanzi": "我",
+      "pinyin": "wǒ",
+      "traducao": "eu",
+      "palavra": "我"
+     },
+     {
+      "hanzi": "家",
+      "pinyin": "jiā",
+      "traducao": "casa; família",
+      "palavra": "家"
+     },
+     {
+      "hanzi": "有",
+      "pinyin": "yǒu",
+      "traducao": "ter; haver",
+      "palavra": "有"
+     },
+     {
+      "hanzi": "四",
+      "pinyin": "sì",
+      "traducao": "quatro",
+      "palavra": "四"
+     },
+     {
+      "hanzi": "口",
+      "pinyin": "kǒu",
+      "traducao": "(classificador para membros da família)"
+     },
+     {
+      "hanzi": "人",
+      "pinyin": "rén",
+      "traducao": "pessoa",
+      "palavra": "人"
+     },
+     {
+      "hanzi": "："
+     },
+     {
+      "hanzi": "爸爸",
+      "pinyin": "bàba",
+      "traducao": "pai",
+      "palavra": "爸爸"
+     },
+     {
+      "hanzi": "、"
+     },
+     {
+      "hanzi": "妈妈",
+      "pinyin": "māma",
+      "traducao": "mãe",
+      "palavra": "妈妈"
+     },
+     {
+      "hanzi": "、"
+     },
+     {
+      "hanzi": "哥哥",
+      "pinyin": "gēge",
+      "traducao": "irmão mais velho",
+      "palavra": "哥哥"
+     },
+     {
+      "hanzi": "和",
+      "pinyin": "hé",
+      "traducao": "e (entre palavras); com",
+      "palavra": "和"
+     },
+     {
+      "hanzi": "我",
+      "pinyin": "wǒ",
+      "traducao": "eu",
+      "palavra": "我"
+     },
+     {
+      "hanzi": "。"
+     }
+    ],
+    "traducao": "Na minha família somos quatro: papai, mamãe, meu irmão mais velho e eu.",
+    "falante": {
+     "hanzi": "安娜",
+     "pinyin": "Ānnà"
+    }
+   },
+   {
+    "tokens": [
+     {
+      "hanzi": "你",
+      "pinyin": "nǐ",
+      "traducao": "você",
+      "palavra": "你"
+     },
+     {
+      "hanzi": "哥哥",
+      "pinyin": "gēge",
+      "traducao": "irmão mais velho",
+      "palavra": "哥哥"
+     },
+     {
+      "hanzi": "做",
+      "pinyin": "zuò",
+      "traducao": "fazer",
+      "palavra": "做"
+     },
+     {
+      "hanzi": "什么",
+      "pinyin": "shénme",
+      "traducao": "o quê; que",
+      "palavra": "什么"
+     },
+     {
+      "hanzi": "工作",
+      "pinyin": "gōngzuò",
+      "traducao": "trabalho; trabalhar",
+      "palavra": "工作"
+     },
+     {
+      "hanzi": "？"
+     }
+    ],
+    "traducao": "Em que o seu irmão trabalha?",
+    "falante": {
+     "hanzi": "王明",
+     "pinyin": "Wáng Míng"
+    }
+   },
+   {
+    "tokens": [
+     {
+      "hanzi": "他",
+      "pinyin": "tā",
+      "traducao": "ele",
+      "palavra": "他"
+     },
+     {
+      "hanzi": "是",
+      "pinyin": "shì",
+      "traducao": "ser",
+      "palavra": "是"
+     },
+     {
+      "hanzi": "医生",
+      "pinyin": "yīshēng",
+      "traducao": "médico(a)",
+      "palavra": "医生"
+     },
+     {
+      "hanzi": "，"
+     },
+     {
+      "hanzi": "在",
+      "pinyin": "zài",
+      "traducao": "estar (em); em",
+      "palavra": "在"
+     },
+     {
+      "hanzi": "医院",
+      "pinyin": "yīyuàn",
+      "traducao": "hospital",
+      "palavra": "医院"
+     },
+     {
+      "hanzi": "工作",
+      "pinyin": "gōngzuò",
+      "traducao": "trabalho; trabalhar",
+      "palavra": "工作"
+     },
+     {
+      "hanzi": "。"
+     },
+     {
+      "hanzi": "你",
+      "pinyin": "nǐ",
+      "traducao": "você",
+      "palavra": "你"
+     },
+     {
+      "hanzi": "家",
+      "pinyin": "jiā",
+      "traducao": "casa; família",
+      "palavra": "家"
+     },
+     {
+      "hanzi": "呢",
+      "pinyin": "ne",
+      "traducao": "(partícula: \"e ...?\")",
+      "palavra": "呢"
+     },
+     {
+      "hanzi": "？"
+     }
+    ],
+    "traducao": "Ele é médico, trabalha no hospital. E a sua família?",
+    "falante": {
+     "hanzi": "安娜",
+     "pinyin": "Ānnà"
+    }
+   },
+   {
+    "tokens": [
+     {
+      "hanzi": "我",
+      "pinyin": "wǒ",
+      "traducao": "eu",
+      "palavra": "我"
+     },
+     {
+      "hanzi": "家",
+      "pinyin": "jiā",
+      "traducao": "casa; família",
+      "palavra": "家"
+     },
+     {
+      "hanzi": "有",
+      "pinyin": "yǒu",
+      "traducao": "ter; haver",
+      "palavra": "有"
+     },
+     {
+      "hanzi": "三",
+      "pinyin": "sān",
+      "traducao": "três",
+      "palavra": "三"
+     },
+     {
+      "hanzi": "口",
+      "pinyin": "kǒu",
+      "traducao": "(classificador para membros da família)"
+     },
+     {
+      "hanzi": "人",
+      "pinyin": "rén",
+      "traducao": "pessoa",
+      "palavra": "人"
+     },
+     {
+      "hanzi": "。"
+     },
+     {
+      "hanzi": "我",
+      "pinyin": "wǒ",
+      "traducao": "eu",
+      "palavra": "我"
+     },
+     {
+      "hanzi": "有",
+      "pinyin": "yǒu",
+      "traducao": "ter; haver",
+      "palavra": "有"
+     },
+     {
+      "hanzi": "一个",
+      "pinyin": "yí ge",
+      "traducao": "um(a)"
+     },
+     {
+      "hanzi": "女儿",
+      "pinyin": "nǚ'ér",
+      "traducao": "filha",
+      "palavra": "女儿"
+     },
+     {
+      "hanzi": "。"
+     }
+    ],
+    "traducao": "Na minha família somos três. Eu tenho uma filha.",
+    "falante": {
+     "hanzi": "王明",
+     "pinyin": "Wáng Míng"
+    }
+   },
+   {
+    "tokens": [
+     {
+      "hanzi": "你",
+      "pinyin": "nǐ",
+      "traducao": "você",
+      "palavra": "你"
+     },
+     {
+      "hanzi": "女儿",
+      "pinyin": "nǚ'ér",
+      "traducao": "filha",
+      "palavra": "女儿"
+     },
+     {
+      "hanzi": "几",
+      "pinyin": "jǐ",
+      "traducao": "quantos (poucos); que (número)",
+      "palavra": "几"
+     },
+     {
+      "hanzi": "岁",
+      "pinyin": "suì",
+      "traducao": "anos (de idade)",
+      "palavra": "岁"
+     },
+     {
+      "hanzi": "了",
+      "pinyin": "le",
+      "traducao": "(partícula de ação concluída ou mudança)",
+      "palavra": "了"
+     },
+     {
+      "hanzi": "？"
+     }
+    ],
+    "traducao": "Quantos anos tem a sua filha?",
+    "falante": {
+     "hanzi": "安娜",
+     "pinyin": "Ānnà"
+    }
+   },
+   {
+    "tokens": [
+     {
+      "hanzi": "她",
+      "pinyin": "tā",
+      "traducao": "ela",
+      "palavra": "她"
+     },
+     {
+      "hanzi": "六",
+      "pinyin": "liù",
+      "traducao": "seis",
+      "palavra": "六"
+     },
+     {
+      "hanzi": "岁",
+      "pinyin": "suì",
+      "traducao": "anos (de idade)",
+      "palavra": "岁"
+     },
+     {
+      "hanzi": "了",
+      "pinyin": "le",
+      "traducao": "(partícula de ação concluída ou mudança)",
+      "palavra": "了"
+     },
+     {
+      "hanzi": "，"
+     },
+     {
+      "hanzi": "很",
+      "pinyin": "hěn",
+      "traducao": "muito",
+      "palavra": "很"
+     },
+     {
+      "hanzi": "漂亮",
+      "pinyin": "piàoliang",
+      "traducao": "bonito(a)",
+      "palavra": "漂亮"
+     },
+     {
+      "hanzi": "！"
+     }
+    ],
+    "traducao": "Ela tem seis anos, é muito bonita!",
+    "falante": {
+     "hanzi": "王明",
+     "pinyin": "Wáng Míng"
+    }
+   }
+  ],
+  "perguntas": [
+   {
+    "pergunta": "Quantas pessoas há na família de Ana?",
+    "opcoes": [
+     "Quatro",
+     "Três",
+     "Cinco"
+    ],
+    "correta": 0
+   },
+   {
+    "pergunta": "O irmão de Ana é…",
+    "opcoes": [
+     "Médico",
+     "Professor",
+     "Estudante"
+    ],
+    "correta": 0
+   },
+   {
+    "pergunta": "Quantos anos tem a filha de Wang Ming?",
+    "opcoes": [
+     "Seis",
+     "Dez",
+     "Oito"
+    ],
+    "correta": 0
+   }
+  ]
+ },
+ {
+  "id": "d03",
+  "tipo": "dialogo",
+  "nivel": 1,
+  "titulo": "No restaurante",
+  "tituloHanzi": "在饭店",
+  "resumo": "Pedir comida e bebida.",
+  "linhas": [
+   {
+    "tokens": [
+     {
+      "hanzi": "你们",
+      "pinyin": "nǐmen",
+      "traducao": "vocês"
+     },
+     {
+      "hanzi": "好",
+      "pinyin": "hǎo",
+      "traducao": "bom; bem",
+      "palavra": "好"
+     },
+     {
+      "hanzi": "！"
+     },
+     {
+      "hanzi": "请",
+      "pinyin": "qǐng",
+      "traducao": "por favor; convidar",
+      "palavra": "请"
+     },
+     {
+      "hanzi": "坐",
+      "pinyin": "zuò",
+      "traducao": "sentar; pegar (transporte)",
+      "palavra": "坐"
+     },
+     {
+      "hanzi": "。"
+     },
+     {
+      "hanzi": "你们",
+      "pinyin": "nǐmen",
+      "traducao": "vocês"
+     },
+     {
+      "hanzi": "想",
+      "pinyin": "xiǎng",
+      "traducao": "querer; pensar; sentir saudade",
+      "palavra": "想"
+     },
+     {
+      "hanzi": "吃",
+      "pinyin": "chī",
+      "traducao": "comer",
+      "palavra": "吃"
+     },
+     {
+      "hanzi": "什么",
+      "pinyin": "shénme",
+      "traducao": "o quê; que",
+      "palavra": "什么"
+     },
+     {
+      "hanzi": "？"
+     }
+    ],
+    "traducao": "Olá! Sentem-se, por favor. O que vocês querem comer?",
+    "falante": {
+     "hanzi": "服务员",
+     "pinyin": "fúwùyuán"
+    }
+   },
+   {
+    "tokens": [
+     {
+      "hanzi": "我",
+      "pinyin": "wǒ",
+      "traducao": "eu",
+      "palavra": "我"
+     },
+     {
+      "hanzi": "想",
+      "pinyin": "xiǎng",
+      "traducao": "querer; pensar; sentir saudade",
+      "palavra": "想"
+     },
+     {
+      "hanzi": "吃",
+      "pinyin": "chī",
+      "traducao": "comer",
+      "palavra": "吃"
+     },
+     {
+      "hanzi": "米饭",
+      "pinyin": "mǐfàn",
+      "traducao": "arroz (cozido)",
+      "palavra": "米饭"
+     },
+     {
+      "hanzi": "和",
+      "pinyin": "hé",
+      "traducao": "e (entre palavras); com",
+      "palavra": "和"
+     },
+     {
+      "hanzi": "中国",
+      "pinyin": "Zhōngguó",
+      "traducao": "China",
+      "palavra": "中国"
+     },
+     {
+      "hanzi": "菜",
+      "pinyin": "cài",
+      "traducao": "prato (comida); verdura",
+      "palavra": "菜"
+     },
+     {
+      "hanzi": "。"
+     }
+    ],
+    "traducao": "Quero comer arroz e comida chinesa.",
+    "falante": {
+     "hanzi": "安娜",
+     "pinyin": "Ānnà"
+    }
+   },
+   {
+    "tokens": [
+     {
+      "hanzi": "我",
+      "pinyin": "wǒ",
+      "traducao": "eu",
+      "palavra": "我"
+     },
+     {
+      "hanzi": "也",
+      "pinyin": "yě",
+      "traducao": "também",
+      "palavra": "也"
+     },
+     {
+      "hanzi": "想",
+      "pinyin": "xiǎng",
+      "traducao": "querer; pensar; sentir saudade",
+      "palavra": "想"
+     },
+     {
+      "hanzi": "吃",
+      "pinyin": "chī",
+      "traducao": "comer",
+      "palavra": "吃"
+     },
+     {
+      "hanzi": "米饭",
+      "pinyin": "mǐfàn",
+      "traducao": "arroz (cozido)",
+      "palavra": "米饭"
+     },
+     {
+      "hanzi": "。"
+     },
+     {
+      "hanzi": "我们",
+      "pinyin": "wǒmen",
+      "traducao": "nós",
+      "palavra": "我们"
+     },
+     {
+      "hanzi": "想",
+      "pinyin": "xiǎng",
+      "traducao": "querer; pensar; sentir saudade",
+      "palavra": "想"
+     },
+     {
+      "hanzi": "喝",
+      "pinyin": "hē",
+      "traducao": "beber",
+      "palavra": "喝"
+     },
+     {
+      "hanzi": "茶",
+      "pinyin": "chá",
+      "traducao": "chá",
+      "palavra": "茶"
+     },
+     {
+      "hanzi": "。"
+     }
+    ],
+    "traducao": "Eu também quero arroz. Queremos beber chá.",
+    "falante": {
+     "hanzi": "王明",
+     "pinyin": "Wáng Míng"
+    }
+   },
+   {
+    "tokens": [
+     {
+      "hanzi": "好的",
+      "pinyin": "hǎo de",
+      "traducao": "está bem"
+     },
+     {
+      "hanzi": "。"
+     },
+     {
+      "hanzi": "你们",
+      "pinyin": "nǐmen",
+      "traducao": "vocês"
+     },
+     {
+      "hanzi": "喝",
+      "pinyin": "hē",
+      "traducao": "beber",
+      "palavra": "喝"
+     },
+     {
+      "hanzi": "什么",
+      "pinyin": "shénme",
+      "traducao": "o quê; que",
+      "palavra": "什么"
+     },
+     {
+      "hanzi": "茶",
+      "pinyin": "chá",
+      "traducao": "chá",
+      "palavra": "茶"
+     },
+     {
+      "hanzi": "？"
+     }
+    ],
+    "traducao": "Está bem. Que chá vocês vão beber?",
+    "falante": {
+     "hanzi": "服务员",
+     "pinyin": "fúwùyuán"
+    }
+   },
+   {
+    "tokens": [
+     {
+      "hanzi": "绿茶",
+      "pinyin": "lǜchá",
+      "traducao": "chá verde"
+     },
+     {
+      "hanzi": "，"
+     },
+     {
+      "hanzi": "谢谢",
+      "pinyin": "xièxie",
+      "traducao": "obrigado(a)",
+      "palavra": "谢谢"
+     },
+     {
+      "hanzi": "。"
+     }
+    ],
+    "traducao": "Chá verde, obrigado.",
+    "falante": {
+     "hanzi": "王明",
+     "pinyin": "Wáng Míng"
+    }
+   },
+   {
+    "tokens": [
+     {
+      "hanzi": "这个",
+      "pinyin": "zhège",
+      "traducao": "este"
+     },
+     {
+      "hanzi": "菜",
+      "pinyin": "cài",
+      "traducao": "prato (comida); verdura",
+      "palavra": "菜"
+     },
+     {
+      "hanzi": "很",
+      "pinyin": "hěn",
+      "traducao": "muito",
+      "palavra": "很"
+     },
+     {
+      "hanzi": "好吃",
+      "pinyin": "hǎochī",
+      "traducao": "gostoso",
+      "palavra": "好吃"
+     },
+     {
+      "hanzi": "！"
+     }
+    ],
+    "traducao": "Este prato está muito gostoso!",
+    "falante": {
+     "hanzi": "安娜",
+     "pinyin": "Ānnà"
+    }
+   },
+   {
+    "tokens": [
+     {
+      "hanzi": "服务员",
+      "pinyin": "fúwùyuán",
+      "traducao": "garçom; atendente",
+      "palavra": "服务员"
+     },
+     {
+      "hanzi": "，"
+     },
+     {
+      "hanzi": "多少",
+      "pinyin": "duōshao",
+      "traducao": "quanto(s)",
+      "palavra": "多少"
+     },
+     {
+      "hanzi": "钱",
+      "pinyin": "qián",
+      "traducao": "dinheiro",
+      "palavra": "钱"
+     },
+     {
+      "hanzi": "？"
+     }
+    ],
+    "traducao": "Garçom, quanto é?",
+    "falante": {
+     "hanzi": "王明",
+     "pinyin": "Wáng Míng"
+    }
+   },
+   {
+    "tokens": [
+     {
+      "hanzi": "一百二十",
+      "pinyin": "yìbǎi èrshí",
+      "traducao": "cento e vinte"
+     },
+     {
+      "hanzi": "块",
+      "pinyin": "kuài",
+      "traducao": "yuan (moeda, coloquial); pedaço",
+      "palavra": "块"
+     },
+     {
+      "hanzi": "。"
+     }
+    ],
+    "traducao": "Cento e vinte yuans.",
+    "falante": {
+     "hanzi": "服务员",
+     "pinyin": "fúwùyuán"
+    }
+   }
+  ],
+  "perguntas": [
+   {
+    "pergunta": "O que eles querem beber?",
+    "opcoes": [
+     "Chá",
+     "Café",
+     "Água"
+    ],
+    "correta": 0
+   },
+   {
+    "pergunta": "O que Ana achou do prato?",
+    "opcoes": [
+     "Muito gostoso",
+     "Caro demais",
+     "Frio"
+    ],
+    "correta": 0
+   },
+   {
+    "pergunta": "Quanto custou a refeição?",
+    "opcoes": [
+     "120 yuans",
+     "12 yuans",
+     "200 yuans"
+    ],
+    "correta": 0
+   }
+  ]
+ },
+ {
+  "id": "d04",
+  "tipo": "dialogo",
+  "nivel": 1,
+  "titulo": "Comprando frutas",
+  "tituloHanzi": "多少钱？",
+  "resumo": "Perguntar preço, pechinchar e pagar.",
+  "linhas": [
+   {
+    "tokens": [
+     {
+      "hanzi": "你好",
+      "pinyin": "nǐ hǎo",
+      "traducao": "olá"
+     },
+     {
+      "hanzi": "，"
+     },
+     {
+      "hanzi": "苹果",
+      "pinyin": "píngguǒ",
+      "traducao": "maçã",
+      "palavra": "苹果"
+     },
+     {
+      "hanzi": "多少",
+      "pinyin": "duōshao",
+      "traducao": "quanto(s)",
+      "palavra": "多少"
+     },
+     {
+      "hanzi": "钱",
+      "pinyin": "qián",
+      "traducao": "dinheiro",
+      "palavra": "钱"
+     },
+     {
+      "hanzi": "？"
+     }
+    ],
+    "traducao": "Olá, quanto custa a maçã?",
+    "falante": {
+     "hanzi": "安娜",
+     "pinyin": "Ānnà"
+    }
+   },
+   {
+    "tokens": [
+     {
+      "hanzi": "一个",
+      "pinyin": "yí ge",
+      "traducao": "um(a)"
+     },
+     {
+      "hanzi": "三",
+      "pinyin": "sān",
+      "traducao": "três",
+      "palavra": "三"
+     },
+     {
+      "hanzi": "块",
+      "pinyin": "kuài",
+      "traducao": "yuan (moeda, coloquial); pedaço",
+      "palavra": "块"
+     },
+     {
+      "hanzi": "钱",
+      "pinyin": "qián",
+      "traducao": "dinheiro",
+      "palavra": "钱"
+     },
+     {
+      "hanzi": "。"
+     }
+    ],
+    "traducao": "Três yuans cada.",
+    "falante": {
+     "hanzi": "老板",
+     "pinyin": "lǎobǎn"
+    }
+   },
+   {
+    "tokens": [
+     {
+      "hanzi": "太",
+      "pinyin": "tài",
+      "traducao": "demais; muito",
+      "palavra": "太"
+     },
+     {
+      "hanzi": "贵",
+      "pinyin": "guì",
+      "traducao": "caro",
+      "palavra": "贵"
+     },
+     {
+      "hanzi": "了",
+      "pinyin": "le",
+      "traducao": "(partícula de ação concluída ou mudança)",
+      "palavra": "了"
+     },
+     {
+      "hanzi": "！"
+     },
+     {
+      "hanzi": "两",
+      "pinyin": "liǎng",
+      "traducao": "dois (antes de classificador)",
+      "palavra": "两"
+     },
+     {
+      "hanzi": "块",
+      "pinyin": "kuài",
+      "traducao": "yuan (moeda, coloquial); pedaço",
+      "palavra": "块"
+     },
+     {
+      "hanzi": "，"
+     },
+     {
+      "hanzi": "可以",
+      "pinyin": "kěyǐ",
+      "traducao": "poder (permissão)",
+      "palavra": "可以"
+     },
+     {
+      "hanzi": "吗",
+      "pinyin": "ma",
+      "traducao": "(partícula de pergunta de sim ou não)",
+      "palavra": "吗"
+     },
+     {
+      "hanzi": "？"
+     }
+    ],
+    "traducao": "Caro demais! Dois yuans, pode ser?",
+    "falante": {
+     "hanzi": "安娜",
+     "pinyin": "Ānnà"
+    }
+   },
+   {
+    "tokens": [
+     {
+      "hanzi": "好吧",
+      "pinyin": "hǎo ba",
+      "traducao": "está bem (concordando)"
+     },
+     {
+      "hanzi": "，"
+     },
+     {
+      "hanzi": "两",
+      "pinyin": "liǎng",
+      "traducao": "dois (antes de classificador)",
+      "palavra": "两"
+     },
+     {
+      "hanzi": "块",
+      "pinyin": "kuài",
+      "traducao": "yuan (moeda, coloquial); pedaço",
+      "palavra": "块"
+     },
+     {
+      "hanzi": "五",
+      "pinyin": "wǔ",
+      "traducao": "cinco",
+      "palavra": "五"
+     },
+     {
+      "hanzi": "。"
+     }
+    ],
+    "traducao": "Está bem, dois e cinquenta.",
+    "falante": {
+     "hanzi": "老板",
+     "pinyin": "lǎobǎn"
+    }
+   },
+   {
+    "tokens": [
+     {
+      "hanzi": "好",
+      "pinyin": "hǎo",
+      "traducao": "bom; bem",
+      "palavra": "好"
+     },
+     {
+      "hanzi": "，"
+     },
+     {
+      "hanzi": "我",
+      "pinyin": "wǒ",
+      "traducao": "eu",
+      "palavra": "我"
+     },
+     {
+      "hanzi": "买",
+      "pinyin": "mǎi",
+      "traducao": "comprar",
+      "palavra": "买"
+     },
+     {
+      "hanzi": "五",
+      "pinyin": "wǔ",
+      "traducao": "cinco",
+      "palavra": "五"
+     },
+     {
+      "hanzi": "个",
+      "pinyin": "ge",
+      "traducao": "(classificador geral)",
+      "palavra": "个"
+     },
+     {
+      "hanzi": "。"
+     }
+    ],
+    "traducao": "Ok, vou levar cinco.",
+    "falante": {
+     "hanzi": "安娜",
+     "pinyin": "Ānnà"
+    }
+   },
+   {
+    "tokens": [
+     {
+      "hanzi": "五",
+      "pinyin": "wǔ",
+      "traducao": "cinco",
+      "palavra": "五"
+     },
+     {
+      "hanzi": "个",
+      "pinyin": "ge",
+      "traducao": "(classificador geral)",
+      "palavra": "个"
+     },
+     {
+      "hanzi": "十二",
+      "pinyin": "shí'èr",
+      "traducao": "doze"
+     },
+     {
+      "hanzi": "块",
+      "pinyin": "kuài",
+      "traducao": "yuan (moeda, coloquial); pedaço",
+      "palavra": "块"
+     },
+     {
+      "hanzi": "五",
+      "pinyin": "wǔ",
+      "traducao": "cinco",
+      "palavra": "五"
+     },
+     {
+      "hanzi": "。"
+     },
+     {
+      "hanzi": "你",
+      "pinyin": "nǐ",
+      "traducao": "você",
+      "palavra": "你"
+     },
+     {
+      "hanzi": "还",
+      "pinyin": "hái",
+      "traducao": "ainda; também",
+      "palavra": "还"
+     },
+     {
+      "hanzi": "想",
+      "pinyin": "xiǎng",
+      "traducao": "querer; pensar; sentir saudade",
+      "palavra": "想"
+     },
+     {
+      "hanzi": "买",
+      "pinyin": "mǎi",
+      "traducao": "comprar",
+      "palavra": "买"
+     },
+     {
+      "hanzi": "什么",
+      "pinyin": "shénme",
+      "traducao": "o quê; que",
+      "palavra": "什么"
+     },
+     {
+      "hanzi": "？"
+     }
+    ],
+    "traducao": "Cinco dão doze e cinquenta. O que mais você quer comprar?",
+    "falante": {
+     "hanzi": "老板",
+     "pinyin": "lǎobǎn"
+    }
+   },
+   {
+    "tokens": [
+     {
+      "hanzi": "西瓜",
+      "pinyin": "xīguā",
+      "traducao": "melancia",
+      "palavra": "西瓜"
+     },
+     {
+      "hanzi": "多少",
+      "pinyin": "duōshao",
+      "traducao": "quanto(s)",
+      "palavra": "多少"
+     },
+     {
+      "hanzi": "钱",
+      "pinyin": "qián",
+      "traducao": "dinheiro",
+      "palavra": "钱"
+     },
+     {
+      "hanzi": "？"
+     }
+    ],
+    "traducao": "Quanto custa a melancia?",
+    "falante": {
+     "hanzi": "安娜",
+     "pinyin": "Ānnà"
+    }
+   },
+   {
+    "tokens": [
+     {
+      "hanzi": "西瓜",
+      "pinyin": "xīguā",
+      "traducao": "melancia",
+      "palavra": "西瓜"
+     },
+     {
+      "hanzi": "很",
+      "pinyin": "hěn",
+      "traducao": "muito",
+      "palavra": "很"
+     },
+     {
+      "hanzi": "便宜",
+      "pinyin": "piányi",
+      "traducao": "barato",
+      "palavra": "便宜"
+     },
+     {
+      "hanzi": "，"
+     },
+     {
+      "hanzi": "十",
+      "pinyin": "shí",
+      "traducao": "dez",
+      "palavra": "十"
+     },
+     {
+      "hanzi": "块",
+      "pinyin": "kuài",
+      "traducao": "yuan (moeda, coloquial); pedaço",
+      "palavra": "块"
+     },
+     {
+      "hanzi": "一个",
+      "pinyin": "yí ge",
+      "traducao": "um(a)"
+     },
+     {
+      "hanzi": "。"
+     }
+    ],
+    "traducao": "A melancia é bem barata, dez yuans cada.",
+    "falante": {
+     "hanzi": "老板",
+     "pinyin": "lǎobǎn"
+    }
+   },
+   {
+    "tokens": [
+     {
+      "hanzi": "我",
+      "pinyin": "wǒ",
+      "traducao": "eu",
+      "palavra": "我"
+     },
+     {
+      "hanzi": "要",
+      "pinyin": "yào",
+      "traducao": "querer; precisar; ir (futuro)",
+      "palavra": "要"
+     },
+     {
+      "hanzi": "一个",
+      "pinyin": "yí ge",
+      "traducao": "um(a)"
+     },
+     {
+      "hanzi": "。"
+     },
+     {
+      "hanzi": "一共",
+      "pinyin": "yígòng",
+      "traducao": "no total"
+     },
+     {
+      "hanzi": "多少",
+      "pinyin": "duōshao",
+      "traducao": "quanto(s)",
+      "palavra": "多少"
+     },
+     {
+      "hanzi": "钱",
+      "pinyin": "qián",
+      "traducao": "dinheiro",
+      "palavra": "钱"
+     },
+     {
+      "hanzi": "？"
+     }
+    ],
+    "traducao": "Quero uma. Quanto dá no total?",
+    "falante": {
+     "hanzi": "安娜",
+     "pinyin": "Ānnà"
+    }
+   },
+   {
+    "tokens": [
+     {
+      "hanzi": "二十二",
+      "pinyin": "èrshí'èr",
+      "traducao": "vinte e dois"
+     },
+     {
+      "hanzi": "块",
+      "pinyin": "kuài",
+      "traducao": "yuan (moeda, coloquial); pedaço",
+      "palavra": "块"
+     },
+     {
+      "hanzi": "五",
+      "pinyin": "wǔ",
+      "traducao": "cinco",
+      "palavra": "五"
+     },
+     {
+      "hanzi": "。"
+     }
+    ],
+    "traducao": "Vinte e dois e cinquenta.",
+    "falante": {
+     "hanzi": "老板",
+     "pinyin": "lǎobǎn"
+    }
+   }
+  ],
+  "perguntas": [
+   {
+    "pergunta": "Quanto custava uma maçã no começo?",
+    "opcoes": [
+     "3 yuans",
+     "2 yuans",
+     "5 yuans"
+    ],
+    "correta": 0
+   },
+   {
+    "pergunta": "Quantas maçãs Ana comprou?",
+    "opcoes": [
+     "Cinco",
+     "Duas",
+     "Dez"
+    ],
+    "correta": 0
+   },
+   {
+    "pergunta": "Quanto Ana pagou no total?",
+    "opcoes": [
+     "22,50 yuans",
+     "12,50 yuans",
+     "10 yuans"
+    ],
+    "correta": 0
+   }
+  ]
+ },
+ {
+  "id": "d05",
+  "tipo": "dialogo",
+  "nivel": 1,
+  "titulo": "Que horas são?",
+  "tituloHanzi": "现在几点？",
+  "resumo": "Horas e compromissos.",
+  "linhas": [
+   {
+    "tokens": [
+     {
+      "hanzi": "安娜",
+      "pinyin": "Ānnà",
+      "traducao": "Ana (nome)"
+     },
+     {
+      "hanzi": "，"
+     },
+     {
+      "hanzi": "现在",
+      "pinyin": "xiànzài",
+      "traducao": "agora",
+      "palavra": "现在"
+     },
+     {
+      "hanzi": "几",
+      "pinyin": "jǐ",
+      "traducao": "quantos (poucos); que (número)",
+      "palavra": "几"
+     },
+     {
+      "hanzi": "点",
+      "pinyin": "diǎn",
+      "traducao": "hora (em ponto); ponto",
+      "palavra": "点"
+     },
+     {
+      "hanzi": "？"
+     }
+    ],
+    "traducao": "Ana, que horas são?",
+    "falante": {
+     "hanzi": "王明",
+     "pinyin": "Wáng Míng"
+    }
+   },
+   {
+    "tokens": [
+     {
+      "hanzi": "现在",
+      "pinyin": "xiànzài",
+      "traducao": "agora",
+      "palavra": "现在"
+     },
+     {
+      "hanzi": "八",
+      "pinyin": "bā",
+      "traducao": "oito",
+      "palavra": "八"
+     },
+     {
+      "hanzi": "点",
+      "pinyin": "diǎn",
+      "traducao": "hora (em ponto); ponto",
+      "palavra": "点"
+     },
+     {
+      "hanzi": "十",
+      "pinyin": "shí",
+      "traducao": "dez",
+      "palavra": "十"
+     },
+     {
+      "hanzi": "分",
+      "pinyin": "fēn",
+      "traducao": "minuto(s)"
+     },
+     {
+      "hanzi": "。"
+     }
+    ],
+    "traducao": "Agora são oito e dez.",
+    "falante": {
+     "hanzi": "安娜",
+     "pinyin": "Ānnà"
+    }
+   },
+   {
+    "tokens": [
+     {
+      "hanzi": "我们",
+      "pinyin": "wǒmen",
+      "traducao": "nós",
+      "palavra": "我们"
+     },
+     {
+      "hanzi": "的",
+      "pinyin": "de",
+      "traducao": "(partícula de posse: \"de\")",
+      "palavra": "的"
+     },
+     {
+      "hanzi": "汉语",
+      "pinyin": "Hànyǔ",
+      "traducao": "língua chinesa (mandarim)",
+      "palavra": "汉语"
+     },
+     {
+      "hanzi": "课",
+      "pinyin": "kè",
+      "traducao": "aula; lição",
+      "palavra": "课"
+     },
+     {
+      "hanzi": "几",
+      "pinyin": "jǐ",
+      "traducao": "quantos (poucos); que (número)",
+      "palavra": "几"
+     },
+     {
+      "hanzi": "点",
+      "pinyin": "diǎn",
+      "traducao": "hora (em ponto); ponto",
+      "palavra": "点"
+     },
+     {
+      "hanzi": "开始",
+      "pinyin": "kāishǐ",
+      "traducao": "começar",
+      "palavra": "开始"
+     },
+     {
+      "hanzi": "？"
+     }
+    ],
+    "traducao": "A que horas começa a nossa aula de chinês?",
+    "falante": {
+     "hanzi": "王明",
+     "pinyin": "Wáng Míng"
+    }
+   },
+   {
+    "tokens": [
+     {
+      "hanzi": "九",
+      "pinyin": "jiǔ",
+      "traducao": "nove",
+      "palavra": "九"
+     },
+     {
+      "hanzi": "点",
+      "pinyin": "diǎn",
+      "traducao": "hora (em ponto); ponto",
+      "palavra": "点"
+     },
+     {
+      "hanzi": "。"
+     },
+     {
+      "hanzi": "我们",
+      "pinyin": "wǒmen",
+      "traducao": "nós",
+      "palavra": "我们"
+     },
+     {
+      "hanzi": "还",
+      "pinyin": "hái",
+      "traducao": "ainda; também",
+      "palavra": "还"
+     },
+     {
+      "hanzi": "有",
+      "pinyin": "yǒu",
+      "traducao": "ter; haver",
+      "palavra": "有"
+     },
+     {
+      "hanzi": "五十",
+      "pinyin": "wǔshí",
+      "traducao": "cinquenta"
+     },
+     {
+      "hanzi": "分钟",
+      "pinyin": "fēnzhōng",
+      "traducao": "minuto",
+      "palavra": "分钟"
+     },
+     {
+      "hanzi": "。"
+     }
+    ],
+    "traducao": "Às nove. Ainda temos cinquenta minutos.",
+    "falante": {
+     "hanzi": "安娜",
+     "pinyin": "Ānnà"
+    }
+   },
+   {
+    "tokens": [
+     {
+      "hanzi": "太",
+      "pinyin": "tài",
+      "traducao": "demais; muito",
+      "palavra": "太"
+     },
+     {
+      "hanzi": "好",
+      "pinyin": "hǎo",
+      "traducao": "bom; bem",
+      "palavra": "好"
+     },
+     {
+      "hanzi": "了",
+      "pinyin": "le",
+      "traducao": "(partícula de ação concluída ou mudança)",
+      "palavra": "了"
+     },
+     {
+      "hanzi": "！"
+     },
+     {
+      "hanzi": "我",
+      "pinyin": "wǒ",
+      "traducao": "eu",
+      "palavra": "我"
+     },
+     {
+      "hanzi": "想",
+      "pinyin": "xiǎng",
+      "traducao": "querer; pensar; sentir saudade",
+      "palavra": "想"
+     },
+     {
+      "hanzi": "去",
+      "pinyin": "qù",
+      "traducao": "ir",
+      "palavra": "去"
+     },
+     {
+      "hanzi": "喝",
+      "pinyin": "hē",
+      "traducao": "beber",
+      "palavra": "喝"
+     },
+     {
+      "hanzi": "咖啡",
+      "pinyin": "kāfēi",
+      "traducao": "café",
+      "palavra": "咖啡"
+     },
+     {
+      "hanzi": "。"
+     }
+    ],
+    "traducao": "Que ótimo! Quero ir tomar um café.",
+    "falante": {
+     "hanzi": "王明",
+     "pinyin": "Wáng Míng"
+    }
+   },
+   {
+    "tokens": [
+     {
+      "hanzi": "我",
+      "pinyin": "wǒ",
+      "traducao": "eu",
+      "palavra": "我"
+     },
+     {
+      "hanzi": "和",
+      "pinyin": "hé",
+      "traducao": "e (entre palavras); com",
+      "palavra": "和"
+     },
+     {
+      "hanzi": "你",
+      "pinyin": "nǐ",
+      "traducao": "você",
+      "palavra": "你"
+     },
+     {
+      "hanzi": "一起",
+      "pinyin": "yìqǐ",
+      "traducao": "juntos",
+      "palavra": "一起"
+     },
+     {
+      "hanzi": "去",
+      "pinyin": "qù",
+      "traducao": "ir",
+      "palavra": "去"
+     },
+     {
+      "hanzi": "吧",
+      "pinyin": "ba",
+      "traducao": "(partícula de sugestão: \"vamos...\", \"...né?\")",
+      "palavra": "吧"
+     },
+     {
+      "hanzi": "！"
+     }
+    ],
+    "traducao": "Vou com você!",
+    "falante": {
+     "hanzi": "安娜",
+     "pinyin": "Ānnà"
+    }
+   }
+  ],
+  "perguntas": [
+   {
+    "pergunta": "Que horas são?",
+    "opcoes": [
+     "8h10",
+     "9h00",
+     "8h50"
+    ],
+    "correta": 0
+   },
+   {
+    "pergunta": "A que horas começa a aula?",
+    "opcoes": [
+     "Às 9h",
+     "Às 8h",
+     "Às 10h"
+    ],
+    "correta": 0
+   },
+   {
+    "pergunta": "O que Wang Ming quer fazer?",
+    "opcoes": [
+     "Tomar café",
+     "Dormir",
+     "Ver televisão"
+    ],
+    "correta": 0
+   }
+  ]
+ },
+ {
+  "id": "d06",
+  "tipo": "dialogo",
+  "nivel": 2,
+  "titulo": "Como está o tempo?",
+  "tituloHanzi": "今天天气怎么样？",
+  "resumo": "Clima e planos para o dia.",
+  "linhas": [
+   {
+    "tokens": [
+     {
+      "hanzi": "今天",
+      "pinyin": "jīntiān",
+      "traducao": "hoje",
+      "palavra": "今天"
+     },
+     {
+      "hanzi": "天气",
+      "pinyin": "tiānqì",
+      "traducao": "tempo (clima)",
+      "palavra": "天气"
+     },
+     {
+      "hanzi": "怎么样",
+      "pinyin": "zěnmeyàng",
+      "traducao": "como está?; que tal?",
+      "palavra": "怎么样"
+     },
+     {
+      "hanzi": "？"
+     }
+    ],
+    "traducao": "Como está o tempo hoje?",
+    "falante": {
+     "hanzi": "李月",
+     "pinyin": "Lǐ Yuè"
+    }
+   },
+   {
+    "tokens": [
+     {
+      "hanzi": "今天",
+      "pinyin": "jīntiān",
+      "traducao": "hoje",
+      "palavra": "今天"
+     },
+     {
+      "hanzi": "是",
+      "pinyin": "shì",
+      "traducao": "ser",
+      "palavra": "是"
+     },
+     {
+      "hanzi": "晴天",
+      "pinyin": "qíngtiān",
+      "traducao": "dia ensolarado"
+     },
+     {
+      "hanzi": "，"
+     },
+     {
+      "hanzi": "不",
+      "pinyin": "bù",
+      "traducao": "não",
+      "palavra": "不"
+     },
+     {
+      "hanzi": "冷",
+      "pinyin": "lěng",
+      "traducao": "frio",
+      "palavra": "冷"
+     },
+     {
+      "hanzi": "也",
+      "pinyin": "yě",
+      "traducao": "também",
+      "palavra": "也"
+     },
+     {
+      "hanzi": "不",
+      "pinyin": "bú",
+      "traducao": "não",
+      "palavra": "不"
+     },
+     {
+      "hanzi": "热",
+      "pinyin": "rè",
+      "traducao": "quente",
+      "palavra": "热"
+     },
+     {
+      "hanzi": "。"
+     }
+    ],
+    "traducao": "Hoje está ensolarado, nem frio nem calor.",
+    "falante": {
+     "hanzi": "王明",
+     "pinyin": "Wáng Míng"
+    }
+   },
+   {
+    "tokens": [
+     {
+      "hanzi": "太",
+      "pinyin": "tài",
+      "traducao": "demais; muito",
+      "palavra": "太"
+     },
+     {
+      "hanzi": "好",
+      "pinyin": "hǎo",
+      "traducao": "bom; bem",
+      "palavra": "好"
+     },
+     {
+      "hanzi": "了",
+      "pinyin": "le",
+      "traducao": "(partícula de ação concluída ou mudança)",
+      "palavra": "了"
+     },
+     {
+      "hanzi": "！"
+     },
+     {
+      "hanzi": "我们",
+      "pinyin": "wǒmen",
+      "traducao": "nós",
+      "palavra": "我们"
+     },
+     {
+      "hanzi": "去",
+      "pinyin": "qù",
+      "traducao": "ir",
+      "palavra": "去"
+     },
+     {
+      "hanzi": "跑步",
+      "pinyin": "pǎobù",
+      "traducao": "correr (como exercício)",
+      "palavra": "跑步"
+     },
+     {
+      "hanzi": "吧",
+      "pinyin": "ba",
+      "traducao": "(partícula de sugestão: \"vamos...\", \"...né?\")",
+      "palavra": "吧"
+     },
+     {
+      "hanzi": "！"
+     }
+    ],
+    "traducao": "Que ótimo! Vamos correr!",
+    "falante": {
+     "hanzi": "李月",
+     "pinyin": "Lǐ Yuè"
+    }
+   },
+   {
+    "tokens": [
+     {
+      "hanzi": "好",
+      "pinyin": "hǎo",
+      "traducao": "bom; bem",
+      "palavra": "好"
+     },
+     {
+      "hanzi": "啊",
+      "pinyin": "a",
+      "traducao": "(partícula de ênfase)"
+     },
+     {
+      "hanzi": "！"
+     },
+     {
+      "hanzi": "可是",
+      "pinyin": "kěshì",
+      "traducao": "mas"
+     },
+     {
+      "hanzi": "明天",
+      "pinyin": "míngtiān",
+      "traducao": "amanhã",
+      "palavra": "明天"
+     },
+     {
+      "hanzi": "可能",
+      "pinyin": "kěnéng",
+      "traducao": "talvez; possível",
+      "palavra": "可能"
+     },
+     {
+      "hanzi": "下雨",
+      "pinyin": "xià yǔ",
+      "traducao": "chover",
+      "palavra": "下雨"
+     },
+     {
+      "hanzi": "。"
+     }
+    ],
+    "traducao": "Vamos! Mas amanhã talvez chova.",
+    "falante": {
+     "hanzi": "王明",
+     "pinyin": "Wáng Míng"
+    }
+   },
+   {
+    "tokens": [
+     {
+      "hanzi": "明天",
+      "pinyin": "míngtiān",
+      "traducao": "amanhã",
+      "palavra": "明天"
+     },
+     {
+      "hanzi": "下雨",
+      "pinyin": "xià yǔ",
+      "traducao": "chover",
+      "palavra": "下雨"
+     },
+     {
+      "hanzi": "，"
+     },
+     {
+      "hanzi": "我们",
+      "pinyin": "wǒmen",
+      "traducao": "nós",
+      "palavra": "我们"
+     },
+     {
+      "hanzi": "就",
+      "pinyin": "jiù",
+      "traducao": "já; então; justamente",
+      "palavra": "就"
+     },
+     {
+      "hanzi": "在",
+      "pinyin": "zài",
+      "traducao": "estar (em); em",
+      "palavra": "在"
+     },
+     {
+      "hanzi": "家",
+      "pinyin": "jiā",
+      "traducao": "casa; família",
+      "palavra": "家"
+     },
+     {
+      "hanzi": "看",
+      "pinyin": "kàn",
+      "traducao": "olhar; ver; ler",
+      "palavra": "看"
+     },
+     {
+      "hanzi": "电影",
+      "pinyin": "diànyǐng",
+      "traducao": "filme; cinema",
+      "palavra": "电影"
+     },
+     {
+      "hanzi": "。"
+     }
+    ],
+    "traducao": "Se amanhã chover, a gente vê um filme em casa.",
+    "falante": {
+     "hanzi": "李月",
+     "pinyin": "Lǐ Yuè"
+    }
+   },
+   {
+    "tokens": [
+     {
+      "hanzi": "好",
+      "pinyin": "hǎo",
+      "traducao": "bom; bem",
+      "palavra": "好"
+     },
+     {
+      "hanzi": "主意",
+      "pinyin": "zhǔyi",
+      "traducao": "ideia"
+     },
+     {
+      "hanzi": "！"
+     }
+    ],
+    "traducao": "Boa ideia!",
+    "falante": {
+     "hanzi": "王明",
+     "pinyin": "Wáng Míng"
+    }
+   }
+  ],
+  "perguntas": [
+   {
+    "pergunta": "Como está o tempo hoje?",
+    "opcoes": [
+     "Ensolarado",
+     "Chuvoso",
+     "Nevando"
+    ],
+    "correta": 0
+   },
+   {
+    "pergunta": "O que eles vão fazer hoje?",
+    "opcoes": [
+     "Correr",
+     "Nadar",
+     "Ver um filme"
+    ],
+    "correta": 0
+   },
+   {
+    "pergunta": "Se chover amanhã, eles vão…",
+    "opcoes": [
+     "Ver um filme em casa",
+     "Correr na chuva",
+     "Ir ao restaurante"
+    ],
+    "correta": 0
+   }
+  ]
+ },
+ {
+  "id": "d07",
+  "tipo": "dialogo",
+  "nivel": 2,
+  "titulo": "Onde fica o hospital?",
+  "tituloHanzi": "医院在哪儿？",
+  "resumo": "Pedir e entender direções.",
+  "linhas": [
+   {
+    "tokens": [
+     {
+      "hanzi": "不好意思",
+      "pinyin": "bù hǎoyìsi",
+      "traducao": "com licença"
+     },
+     {
+      "hanzi": "，"
+     },
+     {
+      "hanzi": "请问",
+      "pinyin": "qǐngwèn",
+      "traducao": "por favor, uma pergunta"
+     },
+     {
+      "hanzi": "，"
+     },
+     {
+      "hanzi": "医院",
+      "pinyin": "yīyuàn",
+      "traducao": "hospital",
+      "palavra": "医院"
+     },
+     {
+      "hanzi": "在",
+      "pinyin": "zài",
+      "traducao": "estar (em); em",
+      "palavra": "在"
+     },
+     {
+      "hanzi": "哪儿",
+      "pinyin": "nǎr",
+      "traducao": "onde",
+      "palavra": "哪儿"
+     },
+     {
+      "hanzi": "？"
+     }
+    ],
+    "traducao": "Com licença, por favor, onde fica o hospital?",
+    "falante": {
+     "hanzi": "安娜",
+     "pinyin": "Ānnà"
+    }
+   },
+   {
+    "tokens": [
+     {
+      "hanzi": "医院",
+      "pinyin": "yīyuàn",
+      "traducao": "hospital",
+      "palavra": "医院"
+     },
+     {
+      "hanzi": "？"
+     },
+     {
+      "hanzi": "离",
+      "pinyin": "lí",
+      "traducao": "distar de (longe/perto de)",
+      "palavra": "离"
+     },
+     {
+      "hanzi": "这儿",
+      "pinyin": "zhèr",
+      "traducao": "aqui"
+     },
+     {
+      "hanzi": "不",
+      "pinyin": "bù",
+      "traducao": "não",
+      "palavra": "不"
+     },
+     {
+      "hanzi": "远",
+      "pinyin": "yuǎn",
+      "traducao": "longe",
+      "palavra": "远"
+     },
+     {
+      "hanzi": "。"
+     },
+     {
+      "hanzi": "你",
+      "pinyin": "nǐ",
+      "traducao": "você",
+      "palavra": "你"
+     },
+     {
+      "hanzi": "往",
+      "pinyin": "wǎng",
+      "traducao": "em direção a; para",
+      "palavra": "往"
+     },
+     {
+      "hanzi": "前",
+      "pinyin": "qián",
+      "traducao": "frente"
+     },
+     {
+      "hanzi": "走",
+      "pinyin": "zǒu",
+      "traducao": "andar; ir embora",
+      "palavra": "走"
+     },
+     {
+      "hanzi": "，"
+     },
+     {
+      "hanzi": "在",
+      "pinyin": "zài",
+      "traducao": "estar (em); em",
+      "palavra": "在"
+     },
+     {
+      "hanzi": "右边",
+      "pinyin": "yòubian",
+      "traducao": "direita (lado direito)",
+      "palavra": "右边"
+     },
+     {
+      "hanzi": "。"
+     }
+    ],
+    "traducao": "O hospital? Não é longe daqui. Siga em frente; fica à direita.",
+    "falante": {
+     "hanzi": "路人",
+     "pinyin": "lùrén"
+    }
+   },
+   {
+    "tokens": [
+     {
+      "hanzi": "走路",
+      "pinyin": "zǒulù",
+      "traducao": "ir a pé"
+     },
+     {
+      "hanzi": "要",
+      "pinyin": "yào",
+      "traducao": "querer; precisar; ir (futuro)",
+      "palavra": "要"
+     },
+     {
+      "hanzi": "多",
+      "pinyin": "duō",
+      "traducao": "muito(s)",
+      "palavra": "多"
+     },
+     {
+      "hanzi": "长",
+      "pinyin": "cháng",
+      "traducao": "comprido; longo",
+      "palavra": "长"
+     },
+     {
+      "hanzi": "时间",
+      "pinyin": "shíjiān",
+      "traducao": "tempo; horário",
+      "palavra": "时间"
+     },
+     {
+      "hanzi": "？"
+     }
+    ],
+    "traducao": "Quanto tempo leva a pé?",
+    "falante": {
+     "hanzi": "安娜",
+     "pinyin": "Ānnà"
+    }
+   },
+   {
+    "tokens": [
+     {
+      "hanzi": "大概",
+      "pinyin": "dàgài",
+      "traducao": "mais ou menos"
+     },
+     {
+      "hanzi": "十",
+      "pinyin": "shí",
+      "traducao": "dez",
+      "palavra": "十"
+     },
+     {
+      "hanzi": "分钟",
+      "pinyin": "fēnzhōng",
+      "traducao": "minuto",
+      "palavra": "分钟"
+     },
+     {
+      "hanzi": "。"
+     },
+     {
+      "hanzi": "医院",
+      "pinyin": "yīyuàn",
+      "traducao": "hospital",
+      "palavra": "医院"
+     },
+     {
+      "hanzi": "旁边",
+      "pinyin": "pángbiān",
+      "traducao": "ao lado",
+      "palavra": "旁边"
+     },
+     {
+      "hanzi": "有",
+      "pinyin": "yǒu",
+      "traducao": "ter; haver",
+      "palavra": "有"
+     },
+     {
+      "hanzi": "一个",
+      "pinyin": "yí ge",
+      "traducao": "um(a)"
+     },
+     {
+      "hanzi": "大",
+      "pinyin": "dà",
+      "traducao": "grande",
+      "palavra": "大"
+     },
+     {
+      "hanzi": "商店",
+      "pinyin": "shāngdiàn",
+      "traducao": "loja",
+      "palavra": "商店"
+     },
+     {
+      "hanzi": "。"
+     }
+    ],
+    "traducao": "Uns dez minutos. Ao lado do hospital há uma loja grande.",
+    "falante": {
+     "hanzi": "路人",
+     "pinyin": "lùrén"
+    }
+   },
+   {
+    "tokens": [
+     {
+      "hanzi": "谢谢",
+      "pinyin": "xièxie",
+      "traducao": "obrigado(a)",
+      "palavra": "谢谢"
+     },
+     {
+      "hanzi": "你",
+      "pinyin": "nǐ",
+      "traducao": "você",
+      "palavra": "你"
+     },
+     {
+      "hanzi": "！"
+     }
+    ],
+    "traducao": "Obrigada!",
+    "falante": {
+     "hanzi": "安娜",
+     "pinyin": "Ānnà"
+    }
+   },
+   {
+    "tokens": [
+     {
+      "hanzi": "不客气",
+      "pinyin": "bú kèqi",
+      "traducao": "de nada",
+      "palavra": "不客气"
+     },
+     {
+      "hanzi": "。"
+     }
+    ],
+    "traducao": "De nada.",
+    "falante": {
+     "hanzi": "路人",
+     "pinyin": "lùrén"
+    }
+   }
+  ],
+  "perguntas": [
+   {
+    "pergunta": "O hospital fica…",
+    "opcoes": [
+     "Perto, à direita",
+     "Muito longe",
+     "Ao lado da escola"
+    ],
+    "correta": 0
+   },
+   {
+    "pergunta": "Quanto tempo a pé?",
+    "opcoes": [
+     "Uns 10 minutos",
+     "Uma hora",
+     "Meia hora"
+    ],
+    "correta": 0
+   },
+   {
+    "pergunta": "O que há ao lado do hospital?",
+    "opcoes": [
+     "Uma loja grande",
+     "Um restaurante",
+     "Uma escola"
+    ],
+    "correta": 0
+   }
+  ]
+ },
+ {
+  "id": "d08",
+  "tipo": "dialogo",
+  "nivel": 2,
+  "titulo": "Um telefonema",
+  "tituloHanzi": "打电话",
+  "resumo": "Convidar alguém e marcar hora e lugar.",
+  "linhas": [
+   {
+    "tokens": [
+     {
+      "hanzi": "喂",
+      "pinyin": "wèi",
+      "traducao": "alô (ao telefone)",
+      "palavra": "喂"
+     },
+     {
+      "hanzi": "，"
+     },
+     {
+      "hanzi": "你好",
+      "pinyin": "nǐ hǎo",
+      "traducao": "olá"
+     },
+     {
+      "hanzi": "！"
+     },
+     {
+      "hanzi": "是",
+      "pinyin": "shì",
+      "traducao": "ser",
+      "palavra": "是"
+     },
+     {
+      "hanzi": "李月",
+      "pinyin": "Lǐ Yuè",
+      "traducao": "Li Yue (nome)"
+     },
+     {
+      "hanzi": "吗",
+      "pinyin": "ma",
+      "traducao": "(partícula de pergunta de sim ou não)",
+      "palavra": "吗"
+     },
+     {
+      "hanzi": "？"
+     }
+    ],
+    "traducao": "Alô, olá! É a Li Yue?",
+    "falante": {
+     "hanzi": "王明",
+     "pinyin": "Wáng Míng"
+    }
+   },
+   {
+    "tokens": [
+     {
+      "hanzi": "是",
+      "pinyin": "shì",
+      "traducao": "ser",
+      "palavra": "是"
+     },
+     {
+      "hanzi": "我",
+      "pinyin": "wǒ",
+      "traducao": "eu",
+      "palavra": "我"
+     },
+     {
+      "hanzi": "。"
+     },
+     {
+      "hanzi": "王明",
+      "pinyin": "Wáng Míng",
+      "traducao": "Wang Ming (nome)"
+     },
+     {
+      "hanzi": "，"
+     },
+     {
+      "hanzi": "你好",
+      "pinyin": "nǐ hǎo",
+      "traducao": "olá"
+     },
+     {
+      "hanzi": "！"
+     }
+    ],
+    "traducao": "Sou eu. Olá, Wang Ming!",
+    "falante": {
+     "hanzi": "李月",
+     "pinyin": "Lǐ Yuè"
+    }
+   },
+   {
+    "tokens": [
+     {
+      "hanzi": "你",
+      "pinyin": "nǐ",
+      "traducao": "você",
+      "palavra": "你"
+     },
+     {
+      "hanzi": "明天",
+      "pinyin": "míngtiān",
+      "traducao": "amanhã",
+      "palavra": "明天"
+     },
+     {
+      "hanzi": "晚上",
+      "pinyin": "wǎnshang",
+      "traducao": "noite",
+      "palavra": "晚上"
+     },
+     {
+      "hanzi": "有",
+      "pinyin": "yǒu",
+      "traducao": "ter; haver",
+      "palavra": "有"
+     },
+     {
+      "hanzi": "时间",
+      "pinyin": "shíjiān",
+      "traducao": "tempo; horário",
+      "palavra": "时间"
+     },
+     {
+      "hanzi": "吗",
+      "pinyin": "ma",
+      "traducao": "(partícula de pergunta de sim ou não)",
+      "palavra": "吗"
+     },
+     {
+      "hanzi": "？"
+     }
+    ],
+    "traducao": "Você tem tempo amanhã à noite?",
+    "falante": {
+     "hanzi": "王明",
+     "pinyin": "Wáng Míng"
+    }
+   },
+   {
+    "tokens": [
+     {
+      "hanzi": "有",
+      "pinyin": "yǒu",
+      "traducao": "ter; haver",
+      "palavra": "有"
+     },
+     {
+      "hanzi": "。"
+     },
+     {
+      "hanzi": "什么",
+      "pinyin": "shénme",
+      "traducao": "o quê; que",
+      "palavra": "什么"
+     },
+     {
+      "hanzi": "事",
+      "pinyin": "shì",
+      "traducao": "assunto"
+     },
+     {
+      "hanzi": "？"
+     }
+    ],
+    "traducao": "Tenho. O que foi?",
+    "falante": {
+     "hanzi": "李月",
+     "pinyin": "Lǐ Yuè"
+    }
+   },
+   {
+    "tokens": [
+     {
+      "hanzi": "明天",
+      "pinyin": "míngtiān",
+      "traducao": "amanhã",
+      "palavra": "明天"
+     },
+     {
+      "hanzi": "是",
+      "pinyin": "shì",
+      "traducao": "ser",
+      "palavra": "是"
+     },
+     {
+      "hanzi": "我",
+      "pinyin": "wǒ",
+      "traducao": "eu",
+      "palavra": "我"
+     },
+     {
+      "hanzi": "的",
+      "pinyin": "de",
+      "traducao": "(partícula de posse: \"de\")",
+      "palavra": "的"
+     },
+     {
+      "hanzi": "生日",
+      "pinyin": "shēngrì",
+      "traducao": "aniversário",
+      "palavra": "生日"
+     },
+     {
+      "hanzi": "，"
+     },
+     {
+      "hanzi": "我",
+      "pinyin": "wǒ",
+      "traducao": "eu",
+      "palavra": "我"
+     },
+     {
+      "hanzi": "想",
+      "pinyin": "xiǎng",
+      "traducao": "querer; pensar; sentir saudade",
+      "palavra": "想"
+     },
+     {
+      "hanzi": "请",
+      "pinyin": "qǐng",
+      "traducao": "por favor; convidar",
+      "palavra": "请"
+     },
+     {
+      "hanzi": "你",
+      "pinyin": "nǐ",
+      "traducao": "você",
+      "palavra": "你"
+     },
+     {
+      "hanzi": "吃饭",
+      "pinyin": "chī fàn",
+      "traducao": "comer (uma refeição)"
+     },
+     {
+      "hanzi": "。"
+     }
+    ],
+    "traducao": "Amanhã é meu aniversário, quero te convidar para jantar.",
+    "falante": {
+     "hanzi": "王明",
+     "pinyin": "Wáng Míng"
+    }
+   },
+   {
+    "tokens": [
+     {
+      "hanzi": "太",
+      "pinyin": "tài",
+      "traducao": "demais; muito",
+      "palavra": "太"
+     },
+     {
+      "hanzi": "好",
+      "pinyin": "hǎo",
+      "traducao": "bom; bem",
+      "palavra": "好"
+     },
+     {
+      "hanzi": "了",
+      "pinyin": "le",
+      "traducao": "(partícula de ação concluída ou mudança)",
+      "palavra": "了"
+     },
+     {
+      "hanzi": "！"
+     },
+     {
+      "hanzi": "几",
+      "pinyin": "jǐ",
+      "traducao": "quantos (poucos); que (número)",
+      "palavra": "几"
+     },
+     {
+      "hanzi": "点",
+      "pinyin": "diǎn",
+      "traducao": "hora (em ponto); ponto",
+      "palavra": "点"
+     },
+     {
+      "hanzi": "？"
+     },
+     {
+      "hanzi": "在",
+      "pinyin": "zài",
+      "traducao": "estar (em); em",
+      "palavra": "在"
+     },
+     {
+      "hanzi": "哪儿",
+      "pinyin": "nǎr",
+      "traducao": "onde",
+      "palavra": "哪儿"
+     },
+     {
+      "hanzi": "？"
+     }
+    ],
+    "traducao": "Que ótimo! A que horas? Onde?",
+    "falante": {
+     "hanzi": "李月",
+     "pinyin": "Lǐ Yuè"
+    }
+   },
+   {
+    "tokens": [
+     {
+      "hanzi": "晚上",
+      "pinyin": "wǎnshang",
+      "traducao": "noite",
+      "palavra": "晚上"
+     },
+     {
+      "hanzi": "六",
+      "pinyin": "liù",
+      "traducao": "seis",
+      "palavra": "六"
+     },
+     {
+      "hanzi": "点",
+      "pinyin": "diǎn",
+      "traducao": "hora (em ponto); ponto",
+      "palavra": "点"
+     },
+     {
+      "hanzi": "，"
+     },
+     {
+      "hanzi": "在",
+      "pinyin": "zài",
+      "traducao": "estar (em); em",
+      "palavra": "在"
+     },
+     {
+      "hanzi": "学校",
+      "pinyin": "xuéxiào",
+      "traducao": "escola",
+      "palavra": "学校"
+     },
+     {
+      "hanzi": "前面",
+      "pinyin": "qiánmiàn",
+      "traducao": "frente",
+      "palavra": "前面"
+     },
+     {
+      "hanzi": "的",
+      "pinyin": "de",
+      "traducao": "(partícula de posse: \"de\")",
+      "palavra": "的"
+     },
+     {
+      "hanzi": "饭店",
+      "pinyin": "fàndiàn",
+      "traducao": "restaurante; hotel",
+      "palavra": "饭店"
+     },
+     {
+      "hanzi": "。"
+     }
+    ],
+    "traducao": "Às seis da noite, no restaurante em frente à escola.",
+    "falante": {
+     "hanzi": "王明",
+     "pinyin": "Wáng Míng"
+    }
+   },
+   {
+    "tokens": [
+     {
+      "hanzi": "好",
+      "pinyin": "hǎo",
+      "traducao": "bom; bem",
+      "palavra": "好"
+     },
+     {
+      "hanzi": "，"
+     },
+     {
+      "hanzi": "明天",
+      "pinyin": "míngtiān",
+      "traducao": "amanhã",
+      "palavra": "明天"
+     },
+     {
+      "hanzi": "见",
+      "pinyin": "jiàn",
+      "traducao": "ver; até"
+     },
+     {
+      "hanzi": "！"
+     }
+    ],
+    "traducao": "Combinado, até amanhã!",
+    "falante": {
+     "hanzi": "李月",
+     "pinyin": "Lǐ Yuè"
+    }
+   }
+  ],
+  "perguntas": [
+   {
+    "pergunta": "Por que Wang Ming telefonou?",
+    "opcoes": [
+     "Para convidar Li Yue para jantar",
+     "Para pedir dinheiro",
+     "Para perguntar sobre o tempo"
+    ],
+    "correta": 0
+   },
+   {
+    "pergunta": "A que horas é o jantar?",
+    "opcoes": [
+     "Às 18h",
+     "Às 16h",
+     "Às 20h"
+    ],
+    "correta": 0
+   },
+   {
+    "pergunta": "Onde vai ser?",
+    "opcoes": [
+     "No restaurante em frente à escola",
+     "Na casa de Wang Ming",
+     "No hospital"
+    ],
+    "correta": 0
+   }
+  ]
+ }
+]

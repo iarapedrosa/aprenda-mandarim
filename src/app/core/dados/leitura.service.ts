@@ -1,0 +1,91 @@
+import { Injectable, computed, inject, signal } from '@angular/core';
+import { DadosService } from './dados.service';
+
+/** Uma palavra (ou pontuação) do texto. Pontuação só tem "hanzi". */
+export interface Token {
+  hanzi: string;
+  pinyin?: string;
+  traducao?: string;
+  /** id da palavra no vocabulário, se existir */
+  palavra?: string;
+}
+
+export interface LinhaTexto {
+  falante?: { hanzi: string; pinyin: string };
+  tokens: Token[];
+  traducao: string;
+}
+
+export interface PerguntaTexto {
+  pergunta: string;
+  opcoes: string[];
+  /** índice da opção correta (no arquivo, sempre 0; o site embaralha) */
+  correta: number;
+}
+
+export interface Texto {
+  id: string;
+  tipo: 'dialogo' | 'historia';
+  nivel: number;
+  titulo: string;
+  tituloHanzi: string;
+  resumo: string;
+  nota?: string;
+  linhas: LinhaTexto[];
+  perguntas: PerguntaTexto[];
+}
+
+/** Texto em chinês de uma linha (para a voz e para exercícios). */
+export function hanziDaLinha(linha: LinhaTexto): string {
+  return linha.tokens.map((t) => t.hanzi).join('');
+}
+
+const PONTUACAO: Record<string, string> = { '，': ',', '。': '.', '！': '!', '？': '?', '：': ':', '、': ',', '”': '"', '…': '…' };
+
+/** Pinyin de uma linha, com pontuação ocidental e maiúscula no começo das frases. */
+export function pinyinDaLinha(linha: LinhaTexto): string {
+  let saida = '';
+  let maiuscula = true;
+  let aposAspas = false;
+  for (const t of linha.tokens) {
+    if (t.pinyin) {
+      const p = maiuscula ? t.pinyin.charAt(0).toUpperCase() + t.pinyin.slice(1) : t.pinyin;
+      saida += (saida && !aposAspas ? ' ' : '') + p;
+      maiuscula = false;
+      aposAspas = false;
+    } else if (t.hanzi === '“') {
+      saida += (saida ? ' ' : '') + '"';
+      aposAspas = true;
+      maiuscula = true;
+    } else {
+      saida += PONTUACAO[t.hanzi] ?? t.hanzi;
+      if (/[。！？]/.test(t.hanzi)) maiuscula = true;
+    }
+  }
+  return saida;
+}
+
+/** Diálogos e historinhas de public/data/leitura. */
+@Injectable({ providedIn: 'root' })
+export class LeituraService {
+  private readonly dados = inject(DadosService);
+  readonly textos = signal<Texto[]>([]);
+  readonly carregado = computed(() => this.textos().length > 0);
+  private carregamento: Promise<void> | null = null;
+
+  carregar(): Promise<void> {
+    this.carregamento ??= Promise.all([
+      this.dados.carregar<Texto[]>('leitura/dialogos.json'),
+      this.dados.carregar<Texto[]>('leitura/historias.json'),
+    ])
+      .then(([d, h]) => this.textos.set([...d, ...h]))
+      .catch(() => {
+        this.carregamento = null;
+      });
+    return this.carregamento;
+  }
+
+  porId(id: string): Texto | undefined {
+    return this.textos().find((t) => t.id === id);
+  }
+}
