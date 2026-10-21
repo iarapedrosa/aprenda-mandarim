@@ -121,6 +121,7 @@
               </div>
             }
             @if (c.palavraId) {
+              <app-nota-mnemonica [palavraId]="c.palavraId" />
               <a [routerLink]="['/caracteres/palavra', c.palavraId]" class="pequeno">Ver traços e detalhes</a>
             }
           </div>

@@ -8,6 +8,7 @@ import { Nota, idCartao, novoCartao, revisarSm2 } from '../../core/srs/sm2';
 import { VozService } from '../../core/voz/voz.service';
 import { BotaoAudio } from '../../shared/botao-audio/botao-audio';
 import { PinyinColorido } from '../../shared/pinyin-colorido/pinyin-colorido';
+import { NotaMnemonica } from '../../shared/nota-mnemonica/nota-mnemonica';
 import { Baralho, ConteudoCartao, contar, deFrase, deVocabulario, exportarParaAnki } from './baralhos';
 
 type Frente = 'hanzi' | 'portugues' | 'audio';
@@ -28,7 +29,7 @@ const BOTOES: Botao[] = [
 
 @Component({
   selector: 'app-cartoes',
-  imports: [RouterLink, BotaoAudio, PinyinColorido],
+  imports: [RouterLink, BotaoAudio, PinyinColorido, NotaMnemonica],
   templateUrl: './cartoes.html',
   styleUrl: './cartoes.css',
 })

@@ -4,10 +4,11 @@ import { caracteresDe, VocabularioService } from '../../../core/dados/vocabulari
 import { BotaoAudio } from '../../../shared/botao-audio/botao-audio';
 import { AnimacaoTracos } from '../../../shared/hanzi/animacao-tracos';
 import { PinyinColorido } from '../../../shared/pinyin-colorido/pinyin-colorido';
+import { NotaMnemonica } from '../../../shared/nota-mnemonica/nota-mnemonica';
 
 @Component({
   selector: 'app-palavra',
-  imports: [RouterLink, BotaoAudio, AnimacaoTracos, PinyinColorido],
+  imports: [RouterLink, BotaoAudio, AnimacaoTracos, PinyinColorido, NotaMnemonica],
   template: `
     <section class="pagina">
       <p><a routerLink="/caracteres">← Voltar ao vocabulário</a></p>
@@ -24,6 +25,7 @@ import { PinyinColorido } from '../../../shared/pinyin-colorido/pinyin-colorido'
             <app-botao-audio [texto]="p.hanzi" [rotulo]="p.pinyin" legenda="Ouvir" />
             <app-botao-audio [texto]="p.hanzi" [rotulo]="p.pinyin" legenda="Devagar" velocidade="lenta" />
           </div>
+          <app-nota-mnemonica [palavraId]="p.id" class="nota" />
         </article>
 
         @if (p.exemplo; as ex) {
@@ -98,6 +100,9 @@ import { PinyinColorido } from '../../../shared/pinyin-colorido/pinyin-colorido'
     }
     .centro {
       justify-content: center;
+    }
+    .nota {
+      margin-top: 12px;
     }
     .frase-hanzi {
       font-size: 1.6rem;

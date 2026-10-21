@@ -4,12 +4,13 @@ import { VozService } from '../../../core/voz/voz.service';
 import { BotaoAudio } from '../../../shared/botao-audio/botao-audio';
 import { AnimacaoTracos } from '../../../shared/hanzi/animacao-tracos';
 import { PinyinColorido } from '../../../shared/pinyin-colorido/pinyin-colorido';
+import { NotaMnemonica } from '../../../shared/nota-mnemonica/nota-mnemonica';
 import { ItemApresentar, ResultadoItem } from '../sessao.model';
 
 /** Apresenta uma palavra nova: caracteres, pinyin, áudio, tradução, traços e exemplo. */
 @Component({
   selector: 'app-ex-apresentar',
-  imports: [BotaoAudio, AnimacaoTracos, PinyinColorido],
+  imports: [BotaoAudio, AnimacaoTracos, PinyinColorido, NotaMnemonica],
   template: `
     <p class="etiqueta novo">Palavra nova · HSK {{ item().palavra.nivel }}</p>
     <div class="topo">
@@ -38,6 +39,8 @@ import { ItemApresentar, ResultadoItem } from '../sessao.model';
       </div>
     }
 
+    <app-nota-mnemonica [palavraId]="item().palavra.id" class="nota" />
+
     <button type="button" class="botao botao-primario botao-bloco" (click)="concluir.emit({ acertou: true, informativo: true })">
       Próxima
     </button>
@@ -63,7 +66,10 @@ import { ItemApresentar, ResultadoItem } from '../sessao.model';
       margin: 16px 0;
     }
     .exemplo {
-      margin-bottom: 16px;
+      margin-bottom: 12px;
+    }
+    .nota {
+      margin-bottom: 12px;
     }
     .exemplo p {
       margin: 0 0 4px;
