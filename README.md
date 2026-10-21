@@ -19,7 +19,7 @@ e também para quem fala inglês: dá para escolher **português → mandarim** 
 - 🔬 **O método e a ciência**: por que o site funciona assim, com as referências dos estudos (recordação ativa, espaçamento, treino de tons com várias vozes, gestos, cobertura de leitura…).
 - 🧭 **Recursos**: o que usar fora do site em cada fase (livros graduados, apps, vídeos) e quando começar a conversar.
 - 🃏 **Cartões (estilo Anki)**: flashcards com Errei/Difícil/Bom/Fácil e prévia do próximo intervalo, mais exportação dos baralhos para o app do Anki.
-- 💬 **Frase do dia** e **palavra do dia** na página inicial.
+- 🏠 **Página inicial**: apresenta o site, deixa ouvir os 4 tons na hora e pergunta **"O que você quer aprender hoje?"**, com atalhos por objetivo (pronunciar, ler, ouvir, falar, escrever, números…), além da **frase do dia** e da **palavra do dia**.
 - 🌐 **Português ou inglês**: o botão **PT/EN** no topo troca o site inteiro (interface, traduções, gramática comparada ao inglês e armadilhas de pronúncia para falantes de inglês). A escolha fica salva; na primeira visita, segue o idioma do navegador.
 - 📱 Funciona offline no próprio navegador (depois do primeiro acesso), pode ser adicionado à tela de início, tema claro/escuro, menu inferior e menu lateral pensados para o celular, progresso salvo no navegador com backup em JSON.
 
@@ -46,15 +46,15 @@ O treino diário apresenta o conteúdo aos poucos:
 2. **Palavras e caracteres**: liberadas **no dia seguinte** às 2 primeiras lições de pinyin. Cada palavra nova é apresentada (áudio, traços, exemplo) e depois entra na revisão espaçada. Os caracteres das palavras aprendidas ganham prática de escrita a partir do dia seguinte.
 3. **Frases**: depois de **30 palavras estudadas**, o treino passa a incluir ditado, leitura e fala com frases.
 
-Já sabe pinyin? Na página inicial, use **"Já sei pinyin — pular para o vocabulário"**.
+Já sabe pinyin? Em **Treino** (`/hoje`), use **"Já sei pinyin — pular para o vocabulário"**.
 
 ### Primeiros passos
 
-Na página inicial, **Como usar o site** explica o caminho e dá dicas, e **Meu plano** pede para você decidir quando e onde vai estudar (decidir isso de antemão aumenta muito a chance de cumprir).
+Em **Treino** (`/hoje`), **Como usar o site** explica o caminho e dá dicas, e **Meu plano** pede para você decidir quando e onde vai estudar (decidir isso de antemão aumenta muito a chance de cumprir).
 
 ### O treino de hoje
 
-Toque em **Começar treino** na página inicial. A sessão segue esta ordem:
+Abra **Treino** no menu (ou "Começar o treino guiado" na página inicial) e toque em **Começar treino**. A sessão segue esta ordem:
 
 1. aquecimento de tons;
 2. lições de pinyin pendentes;

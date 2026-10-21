@@ -2,7 +2,8 @@ import { grupoDaUrl } from './navegacao';
 
 describe('navegação: grupo ativo', () => {
   it.each([
-    ['/', 'hoje'],
+    ['/', 'inicio'],
+    ['/hoje', 'hoje'],
     ['/treino', 'hoje'],
     ['/pinyin/tons', 'aprender'],
     ['/caracteres/palavra/你好', 'aprender'],

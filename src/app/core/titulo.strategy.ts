@@ -32,6 +32,7 @@ const TITULOS_EN: Record<string, string> = {
   'Recursos para estudar': 'Study resources',
   'O método e a ciência': 'The method and the science',
   Contato: 'Contact',
+  Início: 'Home',
 };
 
 /** "Título da página · Aprenda Mandarim" (ou "· Learn Mandarin" em inglês). */

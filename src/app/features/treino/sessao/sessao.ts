@@ -35,7 +35,7 @@ const SILABAS_AQUECIMENTO = ['ma', 'ba', 'yi', 'shi', 'wu', 'tang', 'qi', 'tu', 
         <p class="info">{{ i.t('Preparando o treino de hoje…', 'Preparing today’s training…') }}</p>
       } @else if (!terminou()) {
         <div class="barra-topo">
-          <a routerLink="/" class="botao botao-texto botao-icone" [attr.aria-label]="i.t('Sair do treino', 'Leave the training')">✕</a>
+          <a routerLink="/hoje" class="botao botao-texto botao-icone" [attr.aria-label]="i.t('Sair do treino', 'Leave the training')">✕</a>
           <div
             class="barra-progresso"
             role="progressbar"
@@ -111,7 +111,7 @@ const SILABAS_AQUECIMENTO = ['ma', 'ba', 'yi', 'shi', 'wu', 'tang', 'qi', 'tu', 
             <p class="info">{{ m }}</p>
           }
           <div class="linha centro">
-            <a routerLink="/" class="botao botao-primario">{{ i.t('Voltar ao início', 'Back to home') }}</a>
+            <a routerLink="/hoje" class="botao botao-primario">{{ i.t('Voltar', 'Back') }}</a>
             @if (plano()?.etapa !== 'pinyin') {
               <button type="button" class="botao" (click)="maisPalavras()">{{ i.t('+5 palavras novas', '+5 new words') }}</button>
             }

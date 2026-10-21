@@ -13,7 +13,7 @@ import { IdiomaService } from '../../core/i18n/idioma.service';
         <h1>{{ i.t('Praticar', 'Practice') }}</h1>
         <p class="subtitulo">
           {{ i.t('Treine cada habilidade livremente. Para o treino completo do dia, use o', 'Practice each skill freely. For the full daily workout, use') }}
-          <a routerLink="/">{{ i.t('Treino de hoje', 'Today’s training') }}</a>.
+          <a routerLink="/hoje">{{ i.t('Treino de hoje', 'Today’s training') }}</a>.
         </p>
       </header>
       <app-lista-destinos [destinos]="praticar" />

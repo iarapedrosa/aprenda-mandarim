@@ -247,7 +247,7 @@ export class MetodoPagina {
       noSiteEn: 'Today’s training mixes tones, words, writing, listening, sentences, numbers and grammar in the same session.',
       pesquisa: 'Intercalar itens e tipos de tarefa (em vez de treinar um bloco de cada vez) ajuda a perceber diferenças e a generalizar.',
       noSite: 'O Treino de hoje mistura tons, palavras, escrita, escuta, frases, números e gramática na mesma sessão.',
-      link: { rota: '/', rotulo: 'Ir para o Treino de hoje' , rotuloEn: 'Go to Today’s training' },
+      link: { rota: '/hoje', rotulo: 'Ir para o Treino de hoje' , rotuloEn: 'Go to Today’s training' },
       refs: [R.kornell2008, R.dunlosky2013],
     },
     {
@@ -362,7 +362,7 @@ export class MetodoPagina {
       pesquisa:
         'Decidir de antemão quando e onde fazer algo ("intenção de implementação") aumenta muito a chance de cumprir. E um hábito leva tempo para ficar automático: num estudo, a mediana foi de 66 dias, com grande variação entre pessoas.',
       noSite: 'O "Meu plano" na página inicial, a sequência de dias e um treino curto o bastante para caber em qualquer dia.',
-      link: { rota: '/', rotulo: 'Definir meu plano' , rotuloEn: 'Set my plan' },
+      link: { rota: '/hoje', rotulo: 'Definir meu plano' , rotuloEn: 'Set my plan' },
       refs: [R.gollwitzer1999, R.lally2010],
     },
   ];

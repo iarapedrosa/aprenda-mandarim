@@ -10,7 +10,7 @@
     <nav class="nav-topo" [attr.aria-label]="i.t('Menu principal', 'Main menu')">
       <ul>
         <li>
-          <a routerLink="/" [class.ativo]="grupo() === 'hoje'" [attr.aria-current]="grupo() === 'hoje' ? 'page' : null">{{ i.t('Hoje', 'Today') }}</a>
+          <a routerLink="/hoje" [class.ativo]="grupo() === 'hoje'" [attr.aria-current]="grupo() === 'hoje' ? 'page' : null">{{ i.t('Treino', 'Training') }}</a>
         </li>
         <li class="com-submenu">
           <button
@@ -130,7 +130,11 @@
       <button type="button" class="botao-topo" (click)="fecharMenu()" [attr.aria-label]="i.t('Fechar o menu', 'Close the menu')">✕</button>
     </div>
     <nav [attr.aria-label]="i.t('Todas as seções', 'All sections')">
-      <a routerLink="/" class="item-painel destaque-painel">
+      <a routerLink="/" class="item-painel">
+        <span class="icone-menu" lang="zh-CN" aria-hidden="true">家</span>
+        <span><strong>{{ i.t('Início', 'Home') }}</strong><small>{{ i.t('O que é o site e o que estudar hoje.', 'What the site is and what to study today.') }}</small></span>
+      </a>
+      <a routerLink="/hoje" class="item-painel destaque-painel">
         <span class="icone-menu" lang="zh-CN" aria-hidden="true">今</span>
         <span><strong>{{ i.t('Treino de hoje', 'Today’s training') }}</strong><small>{{ i.t('15–20 min que misturam tudo, no momento certo.', '15–20 min that mix everything, at the right time.') }}</small></span>
       </a>
@@ -211,7 +215,7 @@
 
 <nav class="nav-celular" [attr.aria-label]="i.t('Navegação principal', 'Main navigation')" [hidden]="emTreino()">
   @for (aba of abas; track aba.rota) {
-    <a [routerLink]="aba.rota" [class.ativo]="grupo() === aba.grupo" [attr.aria-current]="grupo() === aba.grupo ? 'page' : null">
+    <a [routerLink]="aba.rota" [class.ativo]="abaAtiva(aba)" [attr.aria-current]="abaAtiva(aba) ? 'page' : null">
       <span class="nav-icone" lang="zh-CN" aria-hidden="true">{{ aba.icone }}</span>
       <span class="nav-rotulo">{{ i.tr(aba, 'rotulo') }}</span>
     </a>

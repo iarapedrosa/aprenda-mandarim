@@ -2,7 +2,7 @@
  * Mapa do site: fonte única para o menu do topo, a barra inferior, o menu completo (☰)
  * e as páginas "Aprender" e "Praticar".
  */
-export type Grupo = 'hoje' | 'aprender' | 'praticar' | 'cartoes' | 'progresso' | 'sobre';
+export type Grupo = 'inicio' | 'hoje' | 'aprender' | 'praticar' | 'cartoes' | 'progresso' | 'sobre';
 
 export interface Destino {
   rota: string;
@@ -39,7 +39,8 @@ export const SOBRE: Destino[] = [
 /** Grupo (aba ativa do menu) de uma URL. */
 export function grupoDaUrl(url: string): Grupo {
   const caminho = url.split(/[?#]/)[0];
-  if (caminho === '/' || caminho === '' || caminho.startsWith('/treino')) return 'hoje';
+  if (caminho === '/' || caminho === '') return 'inicio';
+  if (caminho.startsWith('/hoje') || caminho.startsWith('/treino')) return 'hoje';
   if (caminho.startsWith('/pinyin/treino')) return 'praticar';
   if (caminho.startsWith('/cartoes')) return 'cartoes';
   if (caminho.startsWith('/progresso')) return 'progresso';

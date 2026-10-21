@@ -1,13 +1,10 @@
 import { Component, computed, inject, signal } from '@angular/core';
 import { RouterLink } from '@angular/router';
-import { FrasesService, palavraDoDia } from '../../core/dados/frases.service';
+import { FrasesService } from '../../core/dados/frases.service';
 import { GramaticaService } from '../../core/dados/gramatica.service';
 import { VocabularioService } from '../../core/dados/vocabulario.service';
 import { ProgressoService } from '../../core/progresso/progresso.service';
-import { PinyinColorido } from '../../shared/pinyin-colorido/pinyin-colorido';
 import { LICOES_PINYIN } from './curriculo';
-import { FraseDoDiaCartao } from './do-dia/frase-do-dia';
-import { PalavraDoDiaCartao } from './do-dia/palavra-do-dia';
 import { ComoUsar } from './do-dia/como-usar';
 import { MeuPlano } from './do-dia/meu-plano';
 import { PALAVRAS_PARA_LIBERAR_FRASES, etapaAtual, gerarSessao } from './gerador-sessao';
@@ -15,7 +12,7 @@ import { IdiomaService } from '../../core/i18n/idioma.service';
 
 @Component({
   selector: 'app-treino',
-  imports: [RouterLink, FraseDoDiaCartao, PalavraDoDiaCartao, PinyinColorido, ComoUsar, MeuPlano],
+  imports: [RouterLink, ComoUsar, MeuPlano],
   template: `
     <section class="pagina">
       <header class="saudacao">
@@ -94,36 +91,10 @@ import { IdiomaService } from '../../core/i18n/idioma.service';
       </div>
 
       <div class="coluna lateral">
-        @if (fraseDoDia(); as f) {
-          <app-frase-do-dia [frase]="f" />
-        }
-        @if (palavra(); as p) {
-          <app-palavra-do-dia [palavra]="p" />
-        }
-
-
+        <app-como-usar [destaque]="iniciante()" />
       </div>
       </div>
 
-      <div class="extras">
-      <app-como-usar [destaque]="iniciante()" />
-
-      @if (anteriores().length) {
-        <details class="cartao anteriores">
-          <summary>{{ i.t('Frases dos dias anteriores', 'Phrases from previous days') }}</summary>
-          <ul>
-            @for (a of anteriores(); track a.data) {
-              <li>
-                <span class="data suave pequeno">{{ formatarData(a.data) }}</span>
-                <span lang="zh-CN" class="hanzi-anterior">{{ a.frase.hanzi }}</span>
-                <app-pinyin [texto]="a.frase.pinyin" />
-                <span class="suave">— {{ i.tr(a.frase, 'traducao') }}</span>
-              </li>
-            }
-          </ul>
-        </details>
-      }
-      </div>
     </section>
   `,
   styles: `
@@ -223,14 +194,6 @@ import { IdiomaService } from '../../core/i18n/idioma.service';
       gap: 16px;
       margin-top: 12px;
     }
-    .extras {
-      display: grid;
-      gap: 16px;
-      margin-top: 16px;
-    }
-    .extras > * {
-      margin: 0;
-    }
     .coluna {
       display: flex;
       flex-direction: column;
@@ -240,52 +203,9 @@ import { IdiomaService } from '../../core/i18n/idioma.service';
     .coluna > * {
       margin: 0;
     }
-    @media (min-width: 1000px) {
-      /* as duas colunas terminam na mesma altura: o cartão principal de cada uma estica */
-      .painel {
-        grid-template-columns: minmax(0, 3fr) minmax(0, 2fr);
-        gap: 24px;
-      }
-      .lateral > app-frase-do-dia,
-      .lateral > app-palavra-do-dia {
-        flex: 1;
-      }
-      /* se o cartão esticar, o espaço extra se divide entre os blocos (sem um buraco só) */
-      .principal > .chamada {
-        flex: 1;
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between;
-      }
-      /* "como usar" e "frases anteriores": cada um abre sem esticar o outro */
-      .extras {
-        grid-template-columns: minmax(0, 3fr) minmax(0, 2fr);
-        align-items: start;
-        gap: 24px;
-      }
-    }
-    .anteriores summary {
-      cursor: pointer;
-      font-weight: 700;
-    }
-    .anteriores ul {
-      list-style: none;
-      padding: 0;
-      margin: 8px 0 0;
-      display: grid;
-      gap: 8px;
-    }
-    .anteriores li {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 4px 8px;
-      align-items: baseline;
-    }
-    .data {
-      min-width: 4.5em;
-    }
-    .hanzi-anterior {
-      font-size: 1.15rem;
+    /* página com um foco só: uma coluna centralizada */
+    .pagina {
+      max-width: 820px;
     }
   `,
 })
@@ -306,13 +226,6 @@ export class TreinoPagina {
   );
   protected readonly etapa = computed(() => etapaAtual(this.progresso.estado(), this.progresso.hoje()));
   protected readonly licoesFeitas = computed(() => this.progresso.licoesConcluidas().size);
-  protected readonly fraseDoDia = computed(() =>
-    this.frases.carregado() ? this.frases.fraseDoDia(this.progresso.hoje()) : null,
-  );
-  protected readonly anteriores = computed(() =>
-    this.frases.carregado() ? this.frases.anteriores(this.progresso.hoje(), 7) : [],
-  );
-  protected readonly palavra = computed(() => palavraDoDia(this.vocabulario.palavras(), this.progresso.hoje()));
 
   /** Prévia do treino (mesmo cálculo da sessão, sem as partes aleatórias importarem). */
   private readonly plano = computed(() => {
@@ -348,10 +261,5 @@ export class TreinoPagina {
   protected pularPinyin(): void {
     for (const l of LICOES_PINYIN) this.progresso.concluirLicaoPinyin(l.id);
     this.confirmarPulo.set(false);
-  }
-
-  protected formatarData(data: string): string {
-    const [, m, d] = data.split('-');
-    return this.i.ingles() ? `${m}/${d}` : `${d}/${m}`;
   }
 }

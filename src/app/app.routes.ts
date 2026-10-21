@@ -4,6 +4,11 @@ import { Routes } from '@angular/router';
 export const routes: Routes = [
   {
     path: '',
+    pathMatch: 'full',
+    loadChildren: () => import('./features/inicio/inicio.routes').then((m) => m.INICIO_ROTAS),
+  },
+  {
+    path: '',
     loadChildren: () => import('./features/treino/treino.routes').then((m) => m.TREINO_ROTAS),
   },
   {

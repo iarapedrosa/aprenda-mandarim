@@ -25,7 +25,7 @@ describe('App', () => {
     const rotulos = Array.from(html.querySelectorAll('.nav-celular .nav-rotulo')).map((e) =>
       e.textContent?.trim(),
     );
-    expect(rotulos).toEqual(['Hoje', 'Aprender', 'Praticar', 'Cartões', 'Progresso']);
+    expect(rotulos).toEqual(['Início', 'Treino', 'Aprender', 'Praticar', 'Progresso']);
   });
 
   it('mostra a navegação principal em inglês', async () => {
@@ -34,6 +34,6 @@ describe('App', () => {
     await fixture.whenStable();
     const html = fixture.nativeElement as HTMLElement;
     const rotulos = Array.from(html.querySelectorAll('.nav-celular .nav-rotulo')).map((e) => e.textContent?.trim());
-    expect(rotulos).toEqual(['Today', 'Learn', 'Practice', 'Cards', 'Progress']);
+    expect(rotulos).toEqual(['Home', 'Training', 'Learn', 'Practice', 'Progress']);
   });
 });

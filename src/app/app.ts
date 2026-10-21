@@ -35,10 +35,10 @@ export class App {
 
   /** Abas da barra inferior (celular). */
   protected readonly abas: AbaPrincipal[] = [
-    { grupo: 'hoje', rota: '/', rotulo: 'Hoje', rotuloEn: 'Today', icone: '今' },
+    { grupo: 'inicio', rota: '/', rotulo: 'Início', rotuloEn: 'Home', icone: '家' },
+    { grupo: 'hoje', rota: '/hoje', rotulo: 'Treino', rotuloEn: 'Training', icone: '今' },
     { grupo: 'aprender', rota: '/aprender', rotulo: 'Aprender', rotuloEn: 'Learn', icone: '学' },
     { grupo: 'praticar', rota: '/praticar', rotulo: 'Praticar', rotuloEn: 'Practice', icone: '练' },
-    { grupo: 'cartoes', rota: '/cartoes', rotulo: 'Cartões', rotuloEn: 'Cards', icone: '卡' },
     { grupo: 'progresso', rota: '/progresso', rotulo: 'Progresso', rotuloEn: 'Progress', icone: '进' },
   ];
 
@@ -54,6 +54,11 @@ export class App {
   protected readonly menuAberto = signal(false);
   private readonly botaoMenu = viewChild<ElementRef<HTMLButtonElement>>('botaoMenu');
   private readonly painel = viewChild<ElementRef<HTMLElement>>('painel');
+
+  /** aba da barra inferior acesa (Cartões não tem aba própria: acende "Praticar") */
+  protected abaAtiva(aba: AbaPrincipal): boolean {
+    return this.grupo() === aba.grupo || (aba.grupo === 'praticar' && this.grupo() === 'cartoes');
+  }
 
   constructor() {
     this.router.events.pipe(filter((e) => e instanceof NavigationEnd)).subscribe((e) => {
