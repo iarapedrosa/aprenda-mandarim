@@ -23,6 +23,8 @@ import { IdiomaService } from '../../core/i18n/idioma.service';
         <h1>{{ saudacao() }} <span lang="zh-CN" class="ni-hao">你好！</span></h1>
       </header>
 
+      <div class="painel">
+      <div class="coluna principal">
       <section class="cartao chamada" aria-labelledby="titulo-treino">
         <div class="chips" role="list" [attr.aria-label]="i.t('Seu dia', 'Your day')">
           <span class="chip" role="listitem" [title]="i.t('Sequência de dias', 'Day streak')">🔥 <strong>{{ progresso.sequencia() }}</strong> {{ progresso.sequencia() === 1 ? i.t('dia', 'day') : i.t('dias', 'days') }}</span>
@@ -94,14 +96,18 @@ import { IdiomaService } from '../../core/i18n/idioma.service';
         }
       </section>
 
-      <div class="do-dia">
+      @if (!iniciante()) {
+        <app-como-usar />
+      }
+      </div>
+
+      <div class="coluna lateral">
         @if (fraseDoDia(); as f) {
           <app-frase-do-dia [frase]="f" />
         }
         @if (palavra(); as p) {
           <app-palavra-do-dia [palavra]="p" />
         }
-      </div>
 
       @if (anteriores().length) {
         <details class="cartao anteriores">
@@ -119,9 +125,8 @@ import { IdiomaService } from '../../core/i18n/idioma.service';
         </details>
       }
 
-      @if (!iniciante()) {
-        <app-como-usar />
-      }
+      </div>
+      </div>
 
       <nav class="atalhos" [attr.aria-label]="i.t('Ir para', 'Go to')">
         @for (m of atalhos; track m.rota) {
@@ -211,14 +216,31 @@ import { IdiomaService } from '../../core/i18n/idioma.service';
     .pulo .linha {
       margin-top: 8px;
     }
-    .do-dia {
+    .painel {
       display: grid;
-      gap: 12px;
-      grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr));
+      gap: 16px;
       margin-top: 12px;
     }
-    .anteriores {
-      margin-top: 12px;
+    .coluna {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      min-width: 0;
+    }
+    .coluna > * {
+      display: block;
+      margin: 0;
+    }
+    @media (min-width: 1000px) {
+      .painel {
+        grid-template-columns: minmax(0, 3fr) minmax(0, 2fr);
+        align-items: start;
+        gap: 24px;
+      }
+      .lateral {
+        position: sticky;
+        top: 80px;
+      }
     }
     .anteriores summary {
       cursor: pointer;
@@ -243,14 +265,11 @@ import { IdiomaService } from '../../core/i18n/idioma.service';
     .hanzi-anterior {
       font-size: 1.15rem;
     }
-    .chamada {
-      margin-top: 12px;
-    }
     .atalhos {
       display: grid;
       grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
       gap: 8px;
-      margin-top: 16px;
+      margin-top: 24px;
     }
     .atalho {
       display: flex;

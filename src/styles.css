@@ -41,7 +41,7 @@
   --raio-p: 10px;
   --sombra: 0 1px 2px rgb(0 0 0 / 6%), 0 4px 14px rgb(0 0 0 / 6%);
   --altura-nav: 64px;
-  --largura-max: 960px;
+  --largura-max: 1200px;
 }
 
 :root[data-tema='escuro'] {
@@ -192,7 +192,14 @@ a {
   margin-bottom: 16px;
 }
 
+@media (min-width: 900px) {
+  .pagina {
+    padding: 24px 32px 48px;
+  }
+}
+
 .subtitulo {
+  max-width: 75ch;
   color: var(--cor-texto-suave);
   margin-top: -0.25em;
 }

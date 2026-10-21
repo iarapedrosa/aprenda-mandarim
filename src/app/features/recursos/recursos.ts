@@ -55,6 +55,7 @@ interface Fase {
         </p>
       </section>
 
+      <div class="fases">
       @for (f of fases; track f.titulo) {
         <section class="cartao fase">
           <h2>{{ i.tr(f, 'titulo') }}</h2>
@@ -71,6 +72,7 @@ interface Fase {
           </ul>
         </section>
       }
+      </div>
 
       <section class="cartao conversa">
         <h2>{{ i.t('Quando e como começar a conversar', 'When and how to start talking') }}</h2>
@@ -130,6 +132,20 @@ interface Fase {
     </section>
   `,
   styles: `
+    @media (min-width: 1000px) {
+      .fases {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 16px;
+        align-items: start;
+      }
+      .fases > .cartao {
+        margin: 0;
+      }
+    }
+    .fases {
+      margin: 16px 0;
+    }
     h2 {
       margin-bottom: 4px;
     }

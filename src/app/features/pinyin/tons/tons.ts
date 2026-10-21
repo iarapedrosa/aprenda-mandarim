@@ -146,8 +146,11 @@ import { IdiomaService } from '../../../core/i18n/idioma.service';
     .tons {
       display: grid;
       gap: 12px;
-      grid-template-columns: repeat(auto-fill, minmax(min(100%, 250px), 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(min(100%, 190px), 1fr));
       margin-bottom: 16px;
+    }
+    .tons > .cartao {
+      margin: 0;
     }
     .tom {
       display: flex;

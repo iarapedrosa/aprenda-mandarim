@@ -56,6 +56,7 @@ const R = {
         </p>
       </header>
 
+      <div class="principios">
       @for (p of principios; track p.titulo; let idx = $index) {
         <article class="cartao principio">
           <h2><span class="numero" aria-hidden="true">{{ idx + 1 }}</span> {{ i.tr(p, 'titulo') }}</h2>
@@ -75,6 +76,7 @@ const R = {
           </ul>
         </article>
       }
+      </div>
 
       @if (i.ingles()) {
         <article class="cartao">
@@ -165,6 +167,20 @@ const R = {
     </section>
   `,
   styles: `
+    @media (min-width: 1000px) {
+      .principios {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 16px;
+        align-items: start;
+      }
+      .principios > .cartao {
+        margin: 0;
+      }
+    }
+    .principios {
+      margin-bottom: 16px;
+    }
     .principio h2 {
       display: flex;
       gap: 10px;
