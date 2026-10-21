@@ -1,0 +1,147 @@
+<section class="pagina">
+  @if (!estudando()) {
+    <header>
+      <h1>Cartões <span class="suave pequeno">(estilo Anki)</span></h1>
+      <p class="subtitulo">
+        Flashcards com repetição espaçada: veja a frente, tente lembrar, vire e diga como foi. Os cartões são os
+        mesmos do Treino de hoje — o que você revisar aqui conta lá também.
+      </p>
+    </header>
+
+    <section class="cartao destaque-vencidos">
+      <div>
+        <h2>Revisões de hoje</h2>
+        <p class="suave">{{ totalVencidos() }} cartão(ões) para revisar em todos os baralhos.</p>
+      </div>
+      <button type="button" class="botao botao-primario" [disabled]="totalVencidos() === 0" (click)="estudar('vencidos')">
+        Revisar agora
+      </button>
+    </section>
+
+    <section class="cartao opcoes-estudo" aria-labelledby="titulo-opcoes">
+      <h2 id="titulo-opcoes" class="visualmente-oculto">Opções</h2>
+      <fieldset>
+        <legend>Frente do cartão</legend>
+        <label><input type="radio" name="frente" value="hanzi" [checked]="frente() === 'hanzi'" (change)="frente.set('hanzi')" /> Caracteres → significado</label>
+        <label><input type="radio" name="frente" value="portugues" [checked]="frente() === 'portugues'" (change)="frente.set('portugues')" /> Português → caracteres</label>
+        <label><input type="radio" name="frente" value="audio" [checked]="frente() === 'audio'" (change)="frente.set('audio')" /> Só áudio → significado</label>
+      </fieldset>
+      <label class="novos">
+        Cartões novos por sessão
+        <select class="campo" [value]="novosPorSessao()" (change)="novosPorSessao.set(+$any($event.target).value)">
+          @for (n of [0, 5, 10, 20, 30]; track n) {
+            <option [value]="n" [selected]="n === novosPorSessao()">{{ n }}</option>
+          }
+        </select>
+      </label>
+    </section>
+
+    <h2>Baralhos</h2>
+    <ul class="baralhos">
+      @for (b of baralhos(); track b.id) {
+        @if (contagens().get(b.id); as c) {
+          <li class="cartao baralho">
+            <div class="info-baralho">
+              <strong>{{ b.nome }}</strong>
+              <span class="suave pequeno">{{ b.descricao }}</span>
+              <span class="numeros-baralho">
+                <span class="novo" title="Novos">{{ c.novos }} novos</span>
+                <span class="vencido" title="Para revisar hoje">{{ c.vencidos }} p/ revisar</span>
+                <span class="aprendido" title="Já estudados">{{ c.aprendidos }} estudados</span>
+              </span>
+            </div>
+            <div class="acoes-baralho">
+              <button type="button" class="botao botao-primario" (click)="estudar(b.id)" [disabled]="!b.itens.length">Estudar</button>
+              <button type="button" class="botao botao-texto pequeno" (click)="exportar(b)" [disabled]="!b.itens.length">
+                ⬇ Exportar p/ Anki
+              </button>
+            </div>
+          </li>
+        }
+      }
+    </ul>
+
+    <details class="cartao ajuda">
+      <summary>Como usar no app do Anki</summary>
+      <ol>
+        <li>Toque em <strong>Exportar p/ Anki</strong> no baralho desejado (baixa um arquivo .txt).</li>
+        <li>No Anki (computador), vá em <strong>Arquivo › Importar</strong> e escolha o arquivo.</li>
+        <li>Tipo de nota: <strong>Básico</strong>. O baralho "Aprenda Mandarim::…" é criado automaticamente.</li>
+        <li>Depois é só sincronizar com o AnkiMobile/AnkiDroid.</li>
+      </ol>
+      <p class="suave pequeno">O progresso do Anki e o deste site são independentes.</p>
+    </details>
+  } @else {
+    <div class="barra-estudo">
+      <button type="button" class="botao botao-texto botao-icone" (click)="sair()" aria-label="Voltar aos baralhos">✕</button>
+      <strong>{{ nomeEstudo() }}</strong>
+      <span class="suave pequeno">{{ feitos() }} feitos · {{ fila().length }} restantes</span>
+    </div>
+
+    @if (atual(); as c) {
+      <article class="cartao flashcard" [class.virado]="virado()" aria-live="polite">
+        <div class="frente">
+          @switch (frente()) {
+            @case ('portugues') {
+              <p class="texto-frente">{{ c.traducao }}</p>
+            }
+            @case ('audio') {
+              <app-botao-audio [texto]="c.hanzi" legenda="Ouvir de novo" rotulo="o cartão" />
+              <app-botao-audio [texto]="c.hanzi" legenda="Devagar" rotulo="o cartão" velocidade="lenta" />
+            }
+            @default {
+              <p class="hanzi-frente" lang="zh-CN">{{ c.hanzi }}</p>
+            }
+          }
+        </div>
+
+        @if (!virado()) {
+          <button type="button" class="botao botao-primario botao-bloco" (click)="virar()">
+            Mostrar resposta <span class="suave pequeno">(espaço)</span>
+          </button>
+        } @else {
+          <hr />
+          <div class="verso">
+            @if (frente() !== 'hanzi') {
+              <p class="hanzi-verso" lang="zh-CN">{{ c.hanzi }}</p>
+            }
+            <p class="pinyin-verso"><app-pinyin [texto]="c.pinyin" /></p>
+            @if (frente() !== 'portugues') {
+              <p class="traducao-verso">{{ c.traducao }}</p>
+            }
+            @if (c.extra) {
+              <p class="suave pequeno">{{ c.extra }}</p>
+            }
+            <app-botao-audio [texto]="c.hanzi" [rotulo]="c.pinyin" legenda="Ouvir" />
+            @if (c.exemplo; as ex) {
+              <div class="info exemplo">
+                <span lang="zh-CN">{{ ex.hanzi }}</span>
+                <app-pinyin [texto]="ex.pinyin" />
+                <span class="suave">{{ ex.traducao }}</span>
+              </div>
+            }
+            @if (c.palavraId) {
+              <a [routerLink]="['/caracteres/palavra', c.palavraId]" class="pequeno">Ver traços e detalhes</a>
+            }
+          </div>
+          <div class="botoes-nota" role="group" aria-label="Como foi?">
+            @for (b of botoes; track b.nota) {
+              <button type="button" [class]="'nota ' + b.classe" (click)="avaliar(b.nota)">
+                <span class="intervalo">{{ previsoes().get(b.nota) }}</span>
+                <strong>{{ b.rotulo }}</strong>
+                <span class="tecla" aria-hidden="true">{{ b.tecla }}</span>
+              </button>
+            }
+          </div>
+        }
+      </article>
+    } @else {
+      <article class="cartao fim">
+        <p class="festa" aria-hidden="true">🎉</p>
+        <h2>Baralho concluído por hoje!</h2>
+        <p>Você revisou {{ feitos() }} cartão(ões). Volte amanhã para as próximas revisões.</p>
+        <button type="button" class="botao botao-primario" (click)="sair()">Voltar aos baralhos</button>
+      </article>
+    }
+  }
+</section>
