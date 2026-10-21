@@ -96,14 +96,29 @@ export class VozService {
   falar(texto: string, opcoes: { velocidade?: Velocidade } = {}): Promise<void> {
     const sintese = this.sintese;
     if (!sintese || !texto.trim()) return Promise.resolve();
-    sintese.cancel();
-    return this.tentarFalar(sintese, texto, opcoes.velocidade ?? this.velocidade(), this.escolherVoz(), true);
+    // encerra a fala anterior (alguns navegadores nem avisam que ela foi cancelada)
+    this.encerrarAnterior?.();
+    const velocidade = opcoes.velocidade ?? this.velocidade();
+    const voz = this.escolherVoz();
+    if (sintese.speaking || sintese.pending) {
+      // Safari descarta uma fala pedida no mesmo instante de um cancel(): espera um pouco
+      sintese.cancel();
+      return new Promise((resolve) =>
+        setTimeout(() => void this.tentarFalar(sintese, texto, velocidade, voz, true).then(resolve), 80),
+      );
+    }
+    return this.tentarFalar(sintese, texto, velocidade, voz, true);
   }
 
   /**
    * Uma tentativa de fala. Se a voz falhar (ex.: voz online bloqueada pela rede da empresa),
    * marca a voz como problemática e tenta de novo uma vez com outra voz chinesa.
    */
+  /** termina a promessa da fala em andamento quando outra começa */
+  private encerrarAnterior: (() => void) | null = null;
+  /** fala atual (os temporizadores de uma fala antiga não podem mexer na nova) */
+  private falaAtual: SpeechSynthesisUtterance | null = null;
+
   private tentarFalar(
     sintese: SpeechSynthesis,
     texto: string,
@@ -122,9 +137,15 @@ export class VozService {
       const terminar = () => {
         if (terminou) return;
         terminou = true;
-        this.falando.set(false);
+        if (this.falaAtual === fala) {
+          this.falaAtual = null;
+          this.encerrarAnterior = null;
+          this.falando.set(false);
+        }
         resolve();
       };
+      this.falaAtual = fala;
+      this.encerrarAnterior = terminar;
       fala.onstart = () => {
         comecou = true;
         this.problema.set(null);
@@ -144,10 +165,11 @@ export class VozService {
         terminar();
       };
       this.falando.set(true);
+      sintese.resume(); // destrava navegadores que ficam "pausados" depois de um cancel()
       sintese.speak(fala);
       // Se nada começar em alguns segundos, o áudio provavelmente não vai tocar.
       setTimeout(() => {
-        if (!comecou && !terminou) {
+        if (!comecou && !terminou && this.falaAtual === fala) {
           this.problema.set({ erro: 'sem-resposta', voz: voz?.name ?? null, quando: Date.now() });
           sintese.cancel();
           terminar();
@@ -177,6 +199,7 @@ export class VozService {
   }
 
   parar(): void {
+    this.encerrarAnterior?.();
     this.sintese?.cancel();
     this.falando.set(false);
   }
