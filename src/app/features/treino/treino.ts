@@ -306,6 +306,7 @@ export class TreinoPagina {
     { rota: '/gramatica', icone: '语', nome: 'Gramática' },
     { rota: '/numeros', icone: '数', nome: 'Números' },
     { rota: '/cartoes', icone: '卡', nome: 'Cartões' },
+    { rota: '/recursos', icone: '书', nome: 'Recursos' },
   ];
 
   constructor() {

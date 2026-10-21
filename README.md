@@ -11,6 +11,8 @@ Toda a interface, as explicações e as traduções estão em português.
 - 👂 **Escuta**: ditado de palavras e frases (pinyin com números ou acentos, ou escolha dos caracteres).
 - 🗣️ **Fala**: shadowing e trava-línguas com reconhecimento de voz.
 - 🔢 **Números**: regras explicadas (十, 百, 千, 万, 零, 两 × 二), conversor (digite um número e ouça em chinês) e prática de números, preços, horas, anos e telefones.
+- 📐 **Gramática**: 12 mini-lições (ordem da frase, 的, classificadores, 了, 比…) que entram no treino aos poucos, e o exercício **Monte a frase**.
+- 🧭 **Recursos**: o que usar fora do site em cada fase (livros graduados, apps, vídeos) e quando começar a conversar.
 - 🃏 **Cartões (estilo Anki)**: flashcards com Errei/Difícil/Bom/Fácil e prévia do próximo intervalo, mais exportação dos baralhos para o app do Anki.
 - 💬 **Frase do dia** e **palavra do dia** na página inicial.
 - 📱 PWA instalável, funciona offline, tema claro/escuro, progresso salvo no navegador com backup em JSON.
@@ -51,9 +53,18 @@ Toque em **Começar treino** na página inicial. A sessão segue esta ordem:
 5. escrita de caracteres;
 6. exercícios com frases.
 
-O treino também traz dois números para ouvir e reconhecer, e a faixa aumenta conforme você aprende. O que você errar volta no fim da sessão como reforço. Teclado no computador: `1`–`4` respondem, `Enter` continua e `R` repete o áudio.
+O treino também traz:
 
-**Meta diária**: em **Progresso › Meta diária** você escolhe quantas palavras novas e quantas revisões quer por dia (padrão: 10 e 20).
+- um **par de tons** no aquecimento (palavras de 2 sílabas, como 老师 = 3º + 1º);
+- dois números para ouvir e reconhecer, com faixa que aumenta conforme você aprende;
+- uma **lição de gramática** por dia, quando o vocabulário já permite;
+- **Monte a frase** com exemplos de palavras que você já estudou;
+- o exercício **Teclado chinês** (pinyin sem tons → escolher o caractere, inclusive homófonos). O que você errar volta no fim da sessão como reforço. Teclado no computador: `1`–`4` respondem, `Enter` continua e `R` repete o áudio.
+
+**Meta diária**: em **Progresso › Meta diária** você escolhe quantas palavras novas e quantas revisões quer por dia (padrão: 6 e 20) e quanto de **escrita à mão** entra no treino (leve, normal ou desligada).
+
+- **Acúmulo de revisões**: se as revisões atrasarem, o limite do dia sobe (até o dobro da meta) e entram menos palavras novas até normalizar. Regra prática: cada palavra nova por dia vira ~10 revisões diárias.
+- **Vozes**: se o aparelho tiver mais de uma voz de mandarim, o site alterna entre elas (ouvir vozes diferentes ajuda a perceber os tons).
 
 ### Cartões (estilo Anki)
 
@@ -193,6 +204,7 @@ Todo o conteúdo fica em `public/data` e é carregado como JSON. Não é preciso
 | `public/data/leitura/dialogos.json` e `historias.json` | textos de leitura: linhas com palavras (`tokens`), tradução e perguntas (a opção correta é a de índice `correta`; o site embaralha) |
 | `public/data/fala/trava-linguas.json` | trava-línguas |
 | `public/data/radicais.json` | radicais com significado, dica e exemplos |
+| `public/data/gramatica.json` | mini-lições de gramática (`minPalavras` define quando entram no treino) |
 | `public/data/pinyin/silabas.json` | caractere usado para "tocar" cada sílaba e tom (gerado por `node scripts/gerar-silabas.mjs`) |
 
 Depois de editar, rode `npm run dados:validar`.
@@ -225,6 +237,8 @@ Depois de editar, rode `npm run dados:validar`.
 │       ├── treino/           # Treino de hoje + gerador da sessão + exercícios
 │       ├── pinyin/ · caracteres/ · escrita/ · leitura/ · escuta/ · fala/
 │       ├── cartoes/          # flashcards estilo Anki + exportação para o Anki
+│       ├── gramatica/        # mini-lições de gramática e "Monte a frase"
+│       ├── recursos/         # recursos externos por fase e dicas de conversa
 │       ├── numeros/          # aprender, conversor e prática de números
 │       ├── praticar/         # atalhos (celular)
 │       └── progresso/        # estatísticas, calendário, metas, backup
