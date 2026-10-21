@@ -42,7 +42,8 @@ const SILABAS_AQUECIMENTO = ['ma', 'ba', 'yi', 'shi', 'wu', 'tang', 'qi', 'tu', 
           <span class="contador suave pequeno">{{ indice() + 1 }}/{{ fila().length }}</span>
         </div>
 
-        @if (atual(); as item) {
+        <!-- @for com track por id garante um componente novo a cada exercício -->
+        @for (item of atual() ? [atual()!] : []; track item.id) {
           @if (item.reforco) {
             <p class="etiqueta reforco">Revendo o que você errou</p>
           }
