@@ -37,6 +37,10 @@ const TEXTOS_NIVEL = {
     />
     @if (resultado(); as r) {
       <button type="button" class="botao botao-primario botao-bloco continuar" (click)="emitir(r)">Continuar</button>
+    } @else {
+      <button type="button" class="botao botao-texto botao-bloco continuar" (click)="pular()">
+        Pular (agora não dá para escrever)
+      </button>
     }
   `,
   styleUrl: './exercicios.css',
@@ -70,6 +74,11 @@ export class ExEscrever {
 
   protected aoConcluir(r: ResultadoEscrita): void {
     if (!this.resultado()) this.resultado.set(r);
+  }
+
+  /** Pular não conta como erro: o caractere continua pendente para a próxima vez. */
+  protected pular(): void {
+    this.concluir.emit({ acertou: true, informativo: true });
   }
 
   protected emitir(r: ResultadoEscrita): void {
