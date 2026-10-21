@@ -29,6 +29,7 @@ type Estado = 'editando' | 'enviando' | 'enviado' | 'erro';
         </p>
       </header>
 
+      <div class="layout">
       @if (estado() === 'enviado') {
         <section class="cartao sucesso-envio" role="status">
           <h2>✅ {{ i.t('Mensagem enviada!', 'Message sent!') }}</h2>
@@ -37,8 +38,9 @@ type Estado = 'editando' | 'enviando' | 'enviado' | 'erro';
         </section>
       } @else {
         <form class="cartao formulario" (submit)="$event.preventDefault(); enviar()">
+          <div class="dupla">
           <label>
-            {{ i.t('Seu nome', 'Your name') }} <span class="suave pequeno">{{ i.t('(opcional)', '(optional)') }}</span>
+            <span>{{ i.t('Seu nome', 'Your name') }} <span class="suave pequeno">{{ i.t('(opcional)', '(optional)') }}</span></span>
             <input class="campo" name="nome" autocomplete="name" maxlength="100" [ngModel]="nome()" (ngModelChange)="nome.set($event)" />
           </label>
           <label>
@@ -55,6 +57,7 @@ type Estado = 'editando' | 'enviando' | 'enviado' | 'erro';
               [placeholder]="i.t('para eu poder responder', 'so I can reply')"
             />
           </label>
+          </div>
           <label>
             {{ i.t('Mensagem', 'Message') }}
             <textarea
@@ -86,14 +89,57 @@ type Estado = 'editando' | 'enviando' | 'enviado' | 'erro';
           </p>
         </form>
       }
+
+      <aside class="cartao dicas">
+        <h2>{{ i.t('Sobre o que escrever', 'What to write about') }}</h2>
+        <ul>
+          <li>🈶 {{ i.t('Uma tradução, um pinyin ou um tom que parece errado — diga a palavra ou a página.', 'A translation, pinyin or tone that looks wrong — tell me the word or page.') }}</li>
+          <li>💡 {{ i.t('Ideias para o site ou algo que ficou confuso.', 'Ideas for the site or something that was confusing.') }}</li>
+          <li>📚 {{ i.t('Um livro, app ou vídeo que te ajudou.', 'A book, app or video that helped you.') }}</li>
+          <li>🐞 {{ i.t('Algo que não funcionou: conte o aparelho e o navegador.', 'Something that didn’t work: tell me the device and browser.') }}</li>
+        </ul>
+        <p class="suave pequeno">{{ i.t('Respondo assim que puder. 谢谢！', 'I’ll reply as soon as I can. 谢谢！') }}</p>
+      </aside>
+      </div>
     </section>
   `,
   styles: `
+    .layout {
+      display: grid;
+      gap: 16px;
+      align-items: start;
+    }
+    @media (min-width: 900px) {
+      .layout {
+        grid-template-columns: minmax(0, 2fr) minmax(0, 1fr);
+        gap: 24px;
+      }
+    }
+    .layout > .cartao {
+      margin: 0;
+    }
     .formulario {
       display: flex;
       flex-direction: column;
       gap: 14px;
-      max-width: 640px;
+    }
+    .dupla {
+      display: grid;
+      gap: 14px;
+      grid-template-columns: repeat(auto-fit, minmax(min(100%, 220px), 1fr));
+    }
+    .dicas h2 {
+      font-size: 1.05rem;
+    }
+    .dicas ul {
+      list-style: none;
+      padding: 0;
+      margin: 0 0 12px;
+      display: grid;
+      gap: 10px;
+    }
+    .dicas p {
+      margin: 0;
     }
     label {
       display: flex;
@@ -118,7 +164,6 @@ type Estado = 'editando' | 'enviando' | 'enviado' | 'erro';
       margin: 0;
     }
     .sucesso-envio {
-      max-width: 640px;
       display: flex;
       flex-direction: column;
       gap: 10px;
