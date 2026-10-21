@@ -32,9 +32,14 @@ export interface AtividadeDia {
   segundos: number;
 }
 
+/** Quanto de escrita à mão entra no treino diário. */
+export type ModoEscrita = 'normal' | 'leve' | 'desligada';
+
 export interface Metas {
   novasPorDia: number;
   revisoesPorDia: number;
+  /** escrita à mão no treino (padrão: leve) */
+  escrita?: ModoEscrita;
   /** a pessoa mudou as metas (senão, acompanhamos o padrão recomendado) */
   personalizadas?: boolean;
 }
@@ -43,7 +48,7 @@ export interface Metas {
  * Regra prática: cada palavra nova por dia gera ~10 revisões diárias depois de algumas semanas.
  * 6 novas/dia cabe num treino de 15–20 minutos.
  */
-export const METAS_PADRAO: Metas = { novasPorDia: 6, revisoesPorDia: 20 };
+export const METAS_PADRAO: Metas = { novasPorDia: 6, revisoesPorDia: 20, escrita: 'leve' };
 /** padrão antigo, migrado automaticamente se a pessoa nunca mexeu nas metas */
 export const METAS_PADRAO_ANTIGO: Metas = { novasPorDia: 10, revisoesPorDia: 20 };
 export const LIMITES_METAS = {

@@ -20,6 +20,7 @@ import {
   METAS_PADRAO,
   METAS_PADRAO_ANTIGO,
   Metas,
+  ModoEscrita,
   Modulo,
   Placar,
 } from './progresso.model';
@@ -162,6 +163,10 @@ export class ProgressoService {
     );
   }
 
+  definirModoEscrita(modo: ModoEscrita): void {
+    this.estado.update((e) => ({ ...e, metas: { ...e.metas, escrita: modo } }));
+  }
+
   concluirLicaoGramatica(id: string): void {
     this.estado.update((e) =>
       e.licoesGramatica[id] ? e : { ...e, licoesGramatica: { ...e.licoesGramatica, [id]: hoje() } },
@@ -178,6 +183,7 @@ export class ProgressoService {
     this.estado.update((e) => ({
       ...e,
       metas: {
+        ...e.metas,
         personalizadas: true,
         novasPorDia: limitar(metas.novasPorDia ?? e.metas.novasPorDia, LIMITES_METAS.novasPorDia),
         revisoesPorDia: limitar(metas.revisoesPorDia ?? e.metas.revisoesPorDia, LIMITES_METAS.revisoesPorDia),

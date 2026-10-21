@@ -97,9 +97,13 @@ describe('treino diário: metas', () => {
 
   it('introduz a escrita de caracteres de palavras aprendidas antes', () => {
     const cartoes = { 'palavra:p0': cartaoRevisado('p0', { vencimento: '2026-11-01' }) };
-    const plano = gerarSessao(contexto({ licoesPinyin, cartoes, metas: { novasPorDia: 0, revisoesPorDia: 10 } }));
+    const plano = gerarSessao(contexto({ licoesPinyin, cartoes, metas: { novasPorDia: 0, revisoesPorDia: 10, escrita: 'normal' } }));
     const escrita = plano.itens.filter((i) => i.tipo === 'escrever');
     expect(escrita.map((i) => (i.tipo === 'escrever' ? i.caractere.hanzi : ''))).toEqual(['一', '人']);
+    const leve = gerarSessao(contexto({ licoesPinyin, cartoes, metas: { novasPorDia: 0, revisoesPorDia: 10, escrita: 'leve' } }));
+    expect(leve.itens.filter((i) => i.tipo === 'escrever')).toHaveLength(1);
+    const sem = gerarSessao(contexto({ licoesPinyin, cartoes, metas: { novasPorDia: 0, revisoesPorDia: 10, escrita: 'desligada' } }));
+    expect(sem.itens.filter((i) => i.tipo === 'escrever')).toHaveLength(0);
   });
 });
 

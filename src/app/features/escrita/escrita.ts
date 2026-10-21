@@ -8,6 +8,9 @@ import { VozService } from '../../core/voz/voz.service';
 import { BotaoAudio } from '../../shared/botao-audio/botao-audio';
 import { NivelEscrita, QuizEscrita, ResultadoEscrita } from '../../shared/hanzi/quiz-escrita';
 import { PinyinColorido } from '../../shared/pinyin-colorido/pinyin-colorido';
+import { ExTeclado } from '../treino/exercicios/ex-teclado';
+import { ItemTeclado, ResultadoItem } from '../treino/sessao.model';
+import { sortear } from '../../core/util/aleatorio';
 
 const NIVEIS: { id: NivelEscrita; nome: string; descricao: string }[] = [
   { id: 'contorno', nome: '1. Com contorno', descricao: 'Decalque o caractere cinza.' },
@@ -17,7 +20,7 @@ const NIVEIS: { id: NivelEscrita; nome: string; descricao: string }[] = [
 
 @Component({
   selector: 'app-escrita',
-  imports: [FormsModule, RouterLink, QuizEscrita, PinyinColorido, BotaoAudio],
+  imports: [FormsModule, RouterLink, QuizEscrita, PinyinColorido, BotaoAudio, ExTeclado],
   template: `
     <section class="pagina">
       <header>
@@ -27,6 +30,22 @@ const NIVEIS: { id: NivelEscrita; nome: string; descricao: string }[] = [
         </p>
       </header>
 
+      <div class="abas" role="tablist" aria-label="Forma de escrever">
+        <button type="button" role="tab" [class.ativa]="forma() === 'mao'" [attr.aria-selected]="forma() === 'mao'" (click)="forma.set('mao')">✍️ À mão</button>
+        <button type="button" role="tab" [class.ativa]="forma() === 'teclado'" [attr.aria-selected]="forma() === 'teclado'" (click)="forma.set('teclado'); proximoTeclado()">⌨️ Teclado chinês</button>
+      </div>
+
+      @if (forma() === 'teclado') {
+        <section class="cartao" aria-live="polite">
+          <p class="suave pequeno">
+            É assim que se escreve em chinês no dia a dia: digite o pinyin sem tons e escolha o caractere. Acertos:
+            {{ tecladoAcertos() }} de {{ tecladoTotal() }}.
+          </p>
+          @for (item of itemTeclado() ? [itemTeclado()!] : []; track item.id) {
+            <app-ex-teclado [item]="item" (concluir)="registrarTeclado($event)" />
+          }
+        </section>
+      } @else {
       <div class="niveis" role="radiogroup" aria-label="Nível">
         @for (n of niveis; track n.id) {
           <label class="nivel">
@@ -103,6 +122,8 @@ const NIVEIS: { id: NivelEscrita; nome: string; descricao: string }[] = [
             <button type="button" class="botao" (click)="novaEscolha()">Escolher outros</button>
           </div>
         </section>
+      }
+
       }
 
       <p class="suave pequeno rodape">
@@ -234,6 +255,27 @@ export class EscritaPagina {
   protected readonly atual = computed(() => this.fila()[this.indice()] ?? null);
   protected readonly resultadoAtual = computed(() => this.resultados()[this.indice()] ?? null);
   protected readonly revelado = computed(() => this.nivel() === 'memoria' && !!this.resultadoAtual());
+
+  protected readonly forma = signal<'mao' | 'teclado'>('mao');
+  protected readonly itemTeclado = signal<ItemTeclado | null>(null);
+  protected readonly tecladoAcertos = signal(0);
+  protected readonly tecladoTotal = signal(0);
+  private contadorTeclado = 0;
+
+  protected proximoTeclado(): void {
+    const estudadas = new Set(this.progresso.palavrasEstudadas().map((c) => c.ref));
+    const palavras = this.vocabulario.palavras().filter((p) => !p.hanzi.includes('…'));
+    const conhecidas = palavras.filter((p) => estudadas.has(p.id));
+    const fonte = conhecidas.length >= 5 ? conhecidas : palavras.filter((p) => p.nivel === 1);
+    if (fonte.length) this.itemTeclado.set({ id: `tec-${++this.contadorTeclado}`, tipo: 'teclado', palavra: sortear(fonte) });
+  }
+
+  protected registrarTeclado(r: ResultadoItem): void {
+    this.tecladoTotal.update((n) => n + 1);
+    if (r.acertou) this.tecladoAcertos.update((n) => n + 1);
+    this.progresso.registrarResposta('escrita', r.acertou);
+    this.proximoTeclado();
+  }
 
   protected readonly tamanho = Math.min(300, (typeof window !== 'undefined' ? window.innerWidth : 360) - 72);
 

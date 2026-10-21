@@ -52,7 +52,12 @@ export const LICOES_PARA_LIBERAR_PALAVRAS = 2;
 /** Palavras estudadas para liberar frases (ditado, shadowing, leitura) no treino. */
 export const PALAVRAS_PARA_LIBERAR_FRASES = 30;
 const MAX_LICOES_POR_DIA = 2;
-const MAX_ESCRITA_NOVA = 3;
+/** Escrita à mão por modo: caracteres novos e revisões por sessão. */
+const ESCRITA = {
+  normal: { novos: 3, revisoes: Infinity },
+  leve: { novos: 1, revisoes: 3 },
+  desligada: { novos: 0, revisoes: 0 },
+} as const;
 
 /**
  * O vocabulário entra a partir do dia seguinte ao das primeiras lições de pinyin
@@ -77,7 +82,7 @@ const novoId = (prefixo: string) => `${prefixo}-${Date.now().toString(36)}-${++c
 // Exercícios de palavra
 // ---------------------------------------------------------------------------
 
-type TipoExercicioPalavra = 'reconhecer' | 'audio-hanzi' | 'significado-hanzi' | 'tons-palavra' | 'digitar-pinyin';
+type TipoExercicioPalavra = 'reconhecer' | 'audio-hanzi' | 'significado-hanzi' | 'tons-palavra' | 'digitar-pinyin' | 'teclado';
 
 function podeTreinarTons(p: Palavra): boolean {
   if (p.hanzi.includes('…')) return false;
@@ -89,10 +94,15 @@ function tiposPorMaturidade(cartao: CartaoSrs | undefined, p: Palavra): TipoExer
   const rep = cartao?.repeticoes ?? 0;
   const tons = podeTreinarTons(p);
   if (rep <= 1) return ['reconhecer', 'audio-hanzi'];
-  if (rep <= 3) return tons ? ['significado-hanzi', 'audio-hanzi', 'tons-palavra'] : ['significado-hanzi', 'audio-hanzi'];
+  const teclado = p.hanzi.includes('…') ? [] : (['teclado'] as const);
+  if (rep <= 3) {
+    return tons
+      ? ['significado-hanzi', 'audio-hanzi', 'tons-palavra', ...teclado]
+      : ['significado-hanzi', 'audio-hanzi', ...teclado];
+  }
   return p.hanzi.includes('…')
     ? ['significado-hanzi', 'audio-hanzi']
-    : ['digitar-pinyin', 'significado-hanzi', ...(tons ? (['tons-palavra'] as const) : [])];
+    : ['digitar-pinyin', 'significado-hanzi', 'teclado', ...(tons ? (['tons-palavra'] as const) : [])];
 }
 
 function distratores(p: Palavra, todas: Palavra[]): Palavra[] {
@@ -195,6 +205,8 @@ export function exercicioDePalavra(
         resposta,
       };
     }
+    case 'teclado':
+      return { id: novoId('tec'), tipo: 'teclado', palavra: p, cartao: ref };
     case 'digitar-pinyin':
       return {
         id: novoId('pin'),
@@ -305,6 +317,7 @@ const MINUTOS: Record<ItemSessao['tipo'], number> = {
   apresentar: 0.6,
   'digitar-pinyin': 0.6,
   montar: 0.7,
+  teclado: 0.5,
   escrever: 0.8,
   falar: 1,
 };
@@ -361,10 +374,13 @@ export function gerarSessao(ctx: ContextoSessao, opcoes: { extraNovas?: number }
     // com atraso, o limite cresce até o dobro da meta, para o acúmulo baixar
     const limiteRevisoes = Math.max(0, acumulo.limiteRevisoes - (atividade?.revisoes ?? 0));
     aviso = acumulo.aviso;
+    const escrita = ESCRITA[estado.metas.escrita ?? 'leve'];
+    let revisoesEscrita = 0;
     const revisoes: ItemSessao[] = [];
     for (const c of cartoesVencidos(Object.values(estado.cartoes), hoje)) {
       if (revisoes.length >= limiteRevisoes) break;
       if (c.ultimaRevisao === hoje) continue;
+      if (c.tipo === 'escrita' && revisoesEscrita++ >= escrita.revisoes) continue;
       if (c.tipo === 'palavra' && porId.has(c.ref)) {
         revisoes.push(exercicioDePalavra(porId.get(c.ref)!, c, palavras));
       } else if (c.tipo === 'escrita') {
@@ -406,11 +422,11 @@ export function gerarSessao(ctx: ContextoSessao, opcoes: { extraNovas?: number }
     );
     const caracteresNovos: string[] = [];
     for (const c of Object.values(estado.cartoes)) {
-      if (caracteresNovos.length >= MAX_ESCRITA_NOVA) break;
+      if (caracteresNovos.length >= escrita.novos) break;
       if (c.tipo !== 'palavra' || c.revisoes === 0 || c.criadoEm >= hoje) continue;
       const p = porId.get(c.ref);
       for (const ch of p ? caracteresDe(p.hanzi) : []) {
-        if (!comEscrita.has(ch) && !caracteresNovos.includes(ch) && caracteresNovos.length < MAX_ESCRITA_NOVA) {
+        if (!comEscrita.has(ch) && !caracteresNovos.includes(ch) && caracteresNovos.length < escrita.novos) {
           caracteresNovos.push(ch);
         }
       }

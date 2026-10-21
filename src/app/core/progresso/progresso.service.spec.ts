@@ -32,7 +32,7 @@ describe('ProgressoService', () => {
 
   it('limita as metas a valores válidos', () => {
     servico.definirMetas({ novasPorDia: 999, revisoesPorDia: -3 });
-    expect(servico.metas()).toEqual({ personalizadas: true, novasPorDia: 30, revisoesPorDia: 5 });
+    expect(servico.metas()).toEqual({ personalizadas: true, novasPorDia: 30, revisoesPorDia: 5, escrita: 'leve' });
   });
 
   it('exporta e importa um backup', () => {

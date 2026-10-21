@@ -277,3 +277,10 @@ section.cartao {
   margin-top: 3px;
   accent-color: var(--cor-primaria);
 }
+
+.modo-escrita {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-bottom: 10px;
+}

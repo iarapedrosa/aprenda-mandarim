@@ -82,6 +82,12 @@ export interface ItemEscrever extends ItemBase {
   nivel: NivelEscrita;
 }
 
+/** Digitar como no teclado chinês: pinyin sem tons → escolher o caractere. */
+export interface ItemTeclado extends ItemBase {
+  tipo: 'teclado';
+  palavra: Palavra;
+}
+
 export interface ItemMontar extends ItemBase {
   tipo: 'montar';
   frase: Frase;
@@ -102,6 +108,7 @@ export type ItemSessao =
   | ItemDigitarPinyin
   | ItemEscrever
   | ItemMontar
+  | ItemTeclado
   | ItemFalar;
 
 /** Resultado que cada exercício devolve à sessão. */

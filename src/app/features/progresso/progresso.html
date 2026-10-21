@@ -139,6 +139,14 @@
         />
       </label>
     </div>
+    <label class="modo-escrita">
+      Escrita à mão no treino
+      <select class="campo" [ngModel]="progresso.metas().escrita ?? 'leve'" (ngModelChange)="progresso.definirModoEscrita($event)">
+        <option value="leve">Leve — 1 caractere novo e até 3 revisões por dia (recomendado)</option>
+        <option value="normal">Normal — até 3 novos e todas as revisões</option>
+        <option value="desligada">Desligada — só digitar (teclado chinês)</option>
+      </select>
+    </label>
     <p class="suave pequeno">
       Regra prática: cada palavra nova por dia vira cerca de 10 revisões diárias depois de algumas semanas. Para 15–20 minutos, 5 a 7 novas por dia é o ideal. Se as revisões acumularem, o treino aumenta o limite (até o dobro) e reduz as palavras novas até normalizar.
     </p>
