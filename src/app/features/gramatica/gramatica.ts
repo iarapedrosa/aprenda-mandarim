@@ -1,11 +1,16 @@
-import { Component, computed, inject } from '@angular/core';
+import { Component, computed, inject, signal } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { GramaticaService } from '../../core/dados/gramatica.service';
+import { VocabularioService } from '../../core/dados/vocabulario.service';
 import { ProgressoService } from '../../core/progresso/progresso.service';
+import { sortear } from '../../core/util/aleatorio';
+import { ExMontar } from '../treino/exercicios/ex-montar';
+import { dicionarioDe, itemMontar } from '../treino/gerador-sessao';
+import { ItemMontar, ResultadoItem } from '../treino/sessao.model';
 
 @Component({
   selector: 'app-gramatica',
-  imports: [RouterLink],
+  imports: [RouterLink, ExMontar],
   template: `
     <section class="pagina">
       <header>
@@ -39,6 +44,21 @@ import { ProgressoService } from '../../core/progresso/progresso.service';
           }
         </ol>
       }
+
+      <section class="cartao montar" aria-live="polite">
+        <h2>Monte frases</h2>
+        <p class="suave pequeno">
+          Coloque as palavras na ordem certa. As frases vêm dos exemplos das palavras que você já estudou (ou do HSK 1).
+          Acertos: {{ acertos() }} de {{ total() }}.
+        </p>
+        @if (!montarIniciado()) {
+          <button type="button" class="botao botao-primario" (click)="proximaFrase()" [disabled]="!vocabulario.carregado()">Começar</button>
+        } @else {
+          @for (item of montar() ? [montar()!] : []; track item.id) {
+            <app-ex-montar [item]="item" (concluir)="registrarMontar($event)" />
+          }
+        }
+      </section>
     </section>
   `,
   styles: `
@@ -81,6 +101,9 @@ import { ProgressoService } from '../../core/progresso/progresso.service';
       flex-direction: column;
       flex: 1;
     }
+    .montar {
+      margin-top: 16px;
+    }
     .feito {
       color: var(--cor-sucesso);
       font-weight: 700;
@@ -94,7 +117,37 @@ export class GramaticaPagina {
   protected readonly concluidas = computed(() => this.progresso.estado().licoesGramatica ?? {});
   protected readonly estudadas = computed(() => this.progresso.palavrasEstudadas().length);
 
+  protected readonly vocabulario = inject(VocabularioService);
+  protected readonly montar = signal<ItemMontar | null>(null);
+  protected readonly montarIniciado = signal(false);
+  protected readonly acertos = signal(0);
+  protected readonly total = signal(0);
+
   constructor() {
     void this.gramatica.carregar();
+    void this.vocabulario.carregar();
+  }
+
+  protected proximaFrase(): void {
+    const estudadas = new Set(this.progresso.palavrasEstudadas().map((c) => c.ref));
+    const palavras = this.vocabulario.palavras().filter((p) => p.exemplo);
+    const conhecidas = palavras.filter((p) => estudadas.has(p.id));
+    const fonte = conhecidas.length >= 5 ? conhecidas : palavras.filter((p) => p.nivel === 1);
+    const dicionario = dicionarioDe(this.vocabulario.palavras());
+    for (let t = 0; t < 20; t++) {
+      const item = itemMontar(sortear(fonte).exemplo!, dicionario);
+      if (item && item.tipo === 'montar') {
+        this.montar.set(item);
+        break;
+      }
+    }
+    this.montarIniciado.set(true);
+  }
+
+  protected registrarMontar(r: ResultadoItem): void {
+    this.total.update((n) => n + 1);
+    if (r.acertou) this.acertos.update((n) => n + 1);
+    this.progresso.registrarResposta('gramatica', r.acertou);
+    this.proximaFrase();
   }
 }

@@ -82,6 +82,13 @@ export interface ItemEscrever extends ItemBase {
   nivel: NivelEscrita;
 }
 
+export interface ItemMontar extends ItemBase {
+  tipo: 'montar';
+  frase: Frase;
+  /** palavras na ordem certa */
+  pedacos: string[];
+}
+
 export interface ItemFalar extends ItemBase {
   tipo: 'falar';
   frase: Frase;
@@ -94,6 +101,7 @@ export type ItemSessao =
   | ItemApresentar
   | ItemDigitarPinyin
   | ItemEscrever
+  | ItemMontar
   | ItemFalar;
 
 /** Resultado que cada exercício devolve à sessão. */

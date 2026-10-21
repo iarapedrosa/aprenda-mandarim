@@ -10,6 +10,7 @@ import { numero } from '../../core/numeros/numeros';
 import { palavrasPorPar, sortearPar } from '../../core/pinyin/pares-tons';
 import { LICOES_PINYIN, LicaoPinyin, exerciciosDaLicao, itemParDeTons, itemTom } from './curriculo';
 import { itensDaLicaoGramatica } from './gramatica-itens';
+import { segmentarFrase } from '../../core/dados/segmentar';
 import { ItemEscolha, ItemSessao } from './sessao.model';
 
 export interface FraseComId extends Frase {
@@ -281,6 +282,18 @@ export function acumuloDeRevisoes(
   return { limiteRevisoes, fatorNovas: 1 };
 }
 
+/** Palavras do vocabulário (para separar frases em pedaços). */
+export function dicionarioDe(palavras: Palavra[]): Set<string> {
+  return new Set(palavras.filter((p) => !p.hanzi.includes('…')).map((p) => p.hanzi));
+}
+
+/** "Monte a frase" com o exemplo de uma palavra (só frases de 3 a 8 pedaços). */
+export function itemMontar(frase: Frase, dicionario: Set<string>): ItemSessao | null {
+  const pedacos = segmentarFrase(frase.hanzi, dicionario);
+  if (pedacos.length < 3 || pedacos.length > 8) return null;
+  return { id: novoId('mon'), tipo: 'montar', frase, pedacos };
+}
+
 // ---------------------------------------------------------------------------
 // Sessão
 // ---------------------------------------------------------------------------
@@ -291,6 +304,7 @@ const MINUTOS: Record<ItemSessao['tipo'], number> = {
   escolha: 0.35,
   apresentar: 0.6,
   'digitar-pinyin': 0.6,
+  montar: 0.7,
   escrever: 0.8,
   falar: 1,
 };
@@ -412,6 +426,25 @@ export function gerarSessao(ctx: ContextoSessao, opcoes: { extraNovas?: number }
     }
     resumo.escrita = caracteresNovos.length;
 
+    // 5b. Monte a frase: exemplos de palavras já estudadas (frases > palavras soltas)
+    const comExemplo = Object.values(estado.cartoes)
+      .filter((c) => c.tipo === 'palavra' && c.revisoes > 0 && porId.get(c.ref)?.exemplo)
+      .map((c) => porId.get(c.ref)!);
+    if (comExemplo.length >= 5) {
+      const dicionario = dicionarioDe(palavras);
+      const quantidade = etapa === 'frases' ? 2 : 1;
+      let adicionadas = 0;
+      for (const p of embaralhar(comExemplo)) {
+        if (adicionadas >= quantidade) break;
+        const item = itemMontar(p.exemplo!, dicionario);
+        if (item) {
+          itens.push(item);
+          adicionadas++;
+        }
+      }
+      resumo.frases += adicionadas;
+    }
+
     // 6. Números: ouvir e reconhecer (as faixas crescem com o vocabulário estudado)
     const estudadas = Object.values(estado.cartoes).filter((c) => c.tipo === 'palavra' && c.revisoes > 0).length;
     const maximo = estudadas < 30 ? 10 : estudadas < 80 ? 99 : 999;
@@ -424,7 +457,7 @@ export function gerarSessao(ctx: ContextoSessao, opcoes: { extraNovas?: number }
         .map((c) => porId.get(c.ref)!);
       const deFrase = ctx.itensDeFrase(conhecidas);
       itens.push(...deFrase);
-      resumo.frases = deFrase.length;
+      resumo.frases += deFrase.length;
     }
   }
 

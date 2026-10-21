@@ -17,6 +17,7 @@ import { ExEscolha } from '../exercicios/ex-escolha';
 import { ExEscrever } from '../exercicios/ex-escrever';
 import { ExFalar } from '../exercicios/ex-falar';
 import { ExGramatica } from '../exercicios/ex-gramatica';
+import { ExMontar } from '../exercicios/ex-montar';
 import { ExLicao } from '../exercicios/ex-licao';
 import { ItensDeFraseService } from '../itens-de-frase.service';
 
@@ -24,7 +25,7 @@ const SILABAS_AQUECIMENTO = ['ma', 'ba', 'yi', 'shi', 'wu', 'tang', 'qi', 'tu', 
 
 @Component({
   selector: 'app-sessao',
-  imports: [RouterLink, ControleVoz, ExEscolha, ExLicao, ExApresentar, ExDigitarPinyin, ExEscrever, ExFalar, ExGramatica],
+  imports: [RouterLink, ControleVoz, ExEscolha, ExLicao, ExApresentar, ExDigitarPinyin, ExEscrever, ExFalar, ExGramatica, ExMontar],
   template: `
     <section class="pagina">
       @if (carregando()) {
@@ -69,6 +70,9 @@ const SILABAS_AQUECIMENTO = ['ma', 'ba', 'yi', 'shi', 'wu', 'tang', 'qi', 'tu', 
               }
               @case ('gramatica') {
                 <app-ex-gramatica [item]="item" (concluir)="registrar(item, $event)" />
+              }
+              @case ('montar') {
+                <app-ex-montar [item]="item" (concluir)="registrar(item, $event)" />
               }
               @case ('falar') {
                 <app-ex-falar [item]="item" (concluir)="registrar(item, $event)" />
@@ -224,7 +228,7 @@ export class SessaoPagina {
     if (!r.informativo) {
       this.respondidas.update((n) => n + 1);
       if (r.acertou) this.acertos.update((n) => n + 1);
-      const modulo = 'modulo' in item ? item.modulo : item.tipo === 'escrever' ? 'escrita' : item.tipo === 'falar' ? 'fala' : 'caracteres';
+      const modulo = 'modulo' in item ? item.modulo : item.tipo === 'escrever' ? 'escrita' : item.tipo === 'falar' ? 'fala' : item.tipo === 'montar' ? 'gramatica' : 'caracteres';
       const tons = item.tipo === 'escolha' ? item.tons : undefined;
       this.progresso.registrarResposta(modulo, r.acertou, tons);
 
