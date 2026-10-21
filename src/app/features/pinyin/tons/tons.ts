@@ -37,6 +37,21 @@ import { TONS } from '../dados-pinyin';
       }
     </div>
 
+    <section class="cartao">
+      <h2>✋ Use as mãos</h2>
+      <p>
+        Desenhar a curva do tom no ar com a mão enquanto ouve e repete ajuda a aprender os tons e as palavras — um
+        experimento com 106 iniciantes mostrou ganho tanto observando quanto fazendo os gestos (Baills et al., 2019).
+      </p>
+      <ul class="gestos">
+        <li><strong class="tom-1">1º</strong> mão reta, parada no alto, da esquerda para a direita</li>
+        <li><strong class="tom-2">2º</strong> mão subindo na diagonal, como quem pergunta</li>
+        <li><strong class="tom-3">3º</strong> mão desce até embaixo e volta a subir (um "✓")</li>
+        <li><strong class="tom-4">4º</strong> mão cai rápido de cima para baixo, firme</li>
+        <li><strong class="tom-5">neutro</strong> um toquinho leve e curto, sem curva</li>
+      </ul>
+    </section>
+
     <section class="cartao destaque">
       <h2>Ouça a diferença</h2>
       <p>Uma frase famosa para treinar: “A mamãe xinga o cavalo?”</p>
@@ -170,6 +185,12 @@ import { TONS } from '../dados-pinyin';
     }
     .frase .hanzi {
       font-size: 2rem;
+    }
+    .gestos {
+      padding-left: 18px;
+    }
+    .gestos li {
+      margin-bottom: 4px;
     }
     .proximos {
       margin-top: 16px;

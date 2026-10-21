@@ -84,3 +84,16 @@
   flex-basis: 100%;
   color: var(--cor-texto);
 }
+
+.gesto {
+  flex-basis: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px;
+  color: var(--cor-texto);
+}
+
+.mini-gesto {
+  width: 64px;
+}

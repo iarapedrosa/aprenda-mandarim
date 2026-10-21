@@ -1,13 +1,15 @@
-import { Component, HostListener, OnInit, inject, input, output, signal } from '@angular/core';
+import { Component, HostListener, OnInit, computed, inject, input, output, signal } from '@angular/core';
 import { VozService } from '../../../core/voz/voz.service';
 import { BotaoAudio } from '../../../shared/botao-audio/botao-audio';
+import { DiagramaTom } from '../../../shared/diagrama-tom/diagrama-tom';
+import { Tom } from '../../../core/pinyin/pinyin';
 import { PinyinColorido } from '../../../shared/pinyin-colorido/pinyin-colorido';
 import { ItemEscolha, ResultadoItem } from '../sessao.model';
 
 /** Exercício de múltipla escolha (significado, áudio, tons…). */
 @Component({
   selector: 'app-ex-escolha',
-  imports: [BotaoAudio, PinyinColorido],
+  imports: [BotaoAudio, PinyinColorido, DiagramaTom],
   template: `
     <p class="enunciado">{{ item().enunciado }}</p>
 
@@ -67,6 +69,14 @@ import { ItemEscolha, ResultadoItem } from '../sessao.model';
         @if (item().explicacao) {
           <span class="explicacao">{{ item().explicacao }}</span>
         }
+        @if (tonsCorretos().length) {
+          <span class="gesto">
+            @for (t of tonsCorretos(); track $index) {
+              <app-diagrama-tom [tom]="t" [class]="'tom-' + t" class="mini-gesto" />
+            }
+            <span class="pequeno">✋ Ouça de novo e desenhe a curva no ar com a mão enquanto repete.</span>
+          </span>
+        }
       </div>
       <button type="button" class="botao botao-primario botao-bloco" (click)="continuar()" #botaoContinuar>
         Continuar
@@ -81,6 +91,10 @@ export class ExEscolha implements OnInit {
   readonly concluir = output<ResultadoItem>();
 
   protected readonly escolha = signal<string | null>(null);
+  /** Curvas dos tons certos, para o gesto (Baills et al., 2019). */
+  protected readonly tonsCorretos = computed<Tom[]>(() =>
+    this.item().modulo === 'tons' ? ((this.item().tons ?? []).filter((t) => t >= 1 && t <= 5) as Tom[]) : [],
+  );
   protected readonly acertou = signal(false);
 
   ngOnInit(): void {
@@ -98,7 +112,7 @@ export class ExEscolha implements OnInit {
   }
 
   protected continuar(): void {
-    this.concluir.emit({ acertou: this.acertou() });
+    this.concluir.emit({ acertou: this.acertou(), escolha: this.escolha() ?? undefined });
   }
 
   @HostListener('document:keydown', ['$event'])
