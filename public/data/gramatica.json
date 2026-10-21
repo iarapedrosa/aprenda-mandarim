@@ -13,17 +13,20 @@
    {
     "hanzi": "我喝茶。",
     "pinyin": "Wǒ hē chá.",
-    "traducao": "Eu bebo chá."
+    "traducao": "Eu bebo chá.",
+    "traducaoEn": "I drink tea."
    },
    {
     "hanzi": "她是老师。",
     "pinyin": "Tā shì lǎoshī.",
-    "traducao": "Ela é professora."
+    "traducao": "Ela é professora.",
+    "traducaoEn": "She is a teacher."
    },
    {
     "hanzi": "我很高兴。",
     "pinyin": "Wǒ hěn gāoxìng.",
-    "traducao": "Estou muito feliz."
+    "traducao": "Estou muito feliz.",
+    "traducaoEn": "I'm very happy."
    }
   ],
   "exercicios": [
@@ -36,7 +39,9 @@
      "有"
     ],
     "correta": 0,
-    "explicacao": "是 liga \"eu\" a um substantivo (estudante)."
+    "explicacao": "是 liga \"eu\" a um substantivo (estudante).",
+    "perguntaEn": "Complete: \"I am a student.\"",
+    "explicacaoEn": "是 links \"I\" to a noun (student)."
    },
    {
     "pergunta": "Como se diz \"Ela é bonita\"?",
@@ -46,7 +51,9 @@
      "漂亮她是。"
     ],
     "correta": 0,
-    "explicacao": "Com adjetivo, use 很 (e não 是)."
+    "explicacao": "Com adjetivo, use 很 (e não 是).",
+    "perguntaEn": "How do you say \"She is pretty\"?",
+    "explicacaoEn": "With adjectives, use 很 (not 是)."
    },
    {
     "pergunta": "Qual frase está na ordem certa? (\"Eu como arroz\")",
@@ -56,8 +63,17 @@
      "吃我米饭。"
     ],
     "correta": 0,
-    "explicacao": "Sujeito + verbo + objeto, como no português."
+    "explicacao": "Sujeito + verbo + objeto, como no português.",
+    "perguntaEn": "Which sentence has the right order? (\"I eat rice\")",
+    "explicacaoEn": "Subject + verb + object, just like English."
    }
+  ],
+  "tituloEn": "Sentence order",
+  "estruturaEn": "Subject + Verb + Object",
+  "explicacaoEn": [
+   "Just like English: 我爱你 = I love you.",
+   "Verbs never change: 我是, 你是, 他是 — no conjugation for person or tense!",
+   "是 (shì) links two nouns (\"to be\"). With adjectives you DON'T use 是: say 我很好, not 我是好. The 很 often just fills that slot."
   ]
  },
  {
@@ -74,17 +90,20 @@
    {
     "hanzi": "你是学生吗？",
     "pinyin": "Nǐ shì xuésheng ma?",
-    "traducao": "Você é estudante?"
+    "traducao": "Você é estudante?",
+    "traducaoEn": "Are you a student?"
    },
    {
     "hanzi": "他是谁？",
     "pinyin": "Tā shì shéi?",
-    "traducao": "Quem é ele?"
+    "traducao": "Quem é ele?",
+    "traducaoEn": "Who is he?"
    },
    {
     "hanzi": "你去哪儿？",
     "pinyin": "Nǐ qù nǎr?",
-    "traducao": "Aonde você vai?"
+    "traducao": "Aonde você vai?",
+    "traducaoEn": "Where are you going?"
    }
   ],
   "exercicios": [
@@ -96,7 +115,9 @@
      "你吗喝茶？"
     ],
     "correta": 0,
-    "explicacao": "吗 vai no fim da frase."
+    "explicacao": "吗 vai no fim da frase.",
+    "perguntaEn": "Turn it into a question: 你喝茶。",
+    "explicacaoEn": "吗 goes at the end of the sentence."
    },
    {
     "pergunta": "Como se pergunta \"O que você come?\"",
@@ -106,7 +127,9 @@
      "你吃什么吗？"
     ],
     "correta": 0,
-    "explicacao": "什么 fica no lugar do objeto, e não se usa 吗 junto."
+    "explicacao": "什么 fica no lugar do objeto, e não se usa 吗 junto.",
+    "perguntaEn": "How do you ask \"What do you eat?\"",
+    "explicacaoEn": "什么 stays in the object position, and you don't add 吗."
    },
    {
     "pergunta": "Complete: \"Quem é ele?\"",
@@ -117,8 +140,17 @@
      "呢"
     ],
     "correta": 0,
-    "explicacao": "谁 = quem."
+    "explicacao": "谁 = quem.",
+    "perguntaEn": "Complete: \"Who is he?\"",
+    "explicacaoEn": "谁 = who."
    }
+  ],
+  "tituloEn": "Questions: 吗 and question words",
+  "estruturaEn": "Statement + 吗？ · or: question word in the answer's place",
+  "explicacaoEn": [
+   "For yes/no questions, add 吗 to the end of a statement: 你是老师。→ 你是老师吗？ No word-order change, no \"do\".",
+   "With 什么 (what), 谁 (who), 哪儿 (where) and 几 (how many), the word order does NOT change: the question word sits where the answer would go. 你叫什么？— 我叫安娜。",
+   "Don't use 吗 together with these question words."
   ]
  },
  {
@@ -135,17 +167,20 @@
    {
     "hanzi": "我不是老师。",
     "pinyin": "Wǒ bú shì lǎoshī.",
-    "traducao": "Eu não sou professor(a)."
+    "traducao": "Eu não sou professor(a).",
+    "traducaoEn": "I'm not a teacher."
    },
    {
     "hanzi": "我没有猫。",
     "pinyin": "Wǒ méiyǒu māo.",
-    "traducao": "Eu não tenho gato."
+    "traducao": "Eu não tenho gato.",
+    "traducaoEn": "I don't have a cat."
    },
    {
     "hanzi": "他昨天没来。",
     "pinyin": "Tā zuótiān méi lái.",
-    "traducao": "Ele não veio ontem."
+    "traducao": "Ele não veio ontem.",
+    "traducaoEn": "He didn't come yesterday."
    }
   ],
   "exercicios": [
@@ -157,7 +192,9 @@
      "不"
     ],
     "correta": 0,
-    "explicacao": "有 só se nega com 没."
+    "explicacao": "有 só se nega com 没.",
+    "perguntaEn": "\"I don't have money.\"",
+    "explicacaoEn": "有 can only be negated with 没."
    },
    {
     "pergunta": "\"Eu não bebo café\" (hábito).",
@@ -167,7 +204,9 @@
      "没"
     ],
     "correta": 0,
-    "explicacao": "Hábito ou presente: 不."
+    "explicacao": "Hábito ou presente: 不.",
+    "perguntaEn": "\"I don't drink coffee\" (habit).",
+    "explicacaoEn": "Habits or present: 不."
    },
    {
     "pergunta": "\"Ontem eu não fui.\"",
@@ -177,8 +216,17 @@
      "不"
     ],
     "correta": 0,
-    "explicacao": "Ação que não aconteceu no passado: 没."
+    "explicacao": "Ação que não aconteceu no passado: 没.",
+    "perguntaEn": "\"I didn't go yesterday.\"",
+    "explicacaoEn": "An action that didn't happen in the past: 没."
    }
+  ],
+  "tituloEn": "Negation: 不 and 没",
+  "estruturaEn": "不 + verb (present, future, habits) · 没 + verb (past) · 没有 (not have)",
+  "explicacaoEn": [
+   "不 (bù) negates the present, the future, habits and the verb 是: 我不吃肉 (I don't eat meat).",
+   "没 (méi) negates things that didn't happen, and it's the only negation for 有: 我没有钱, 我昨天没去.",
+   "Remember: 不 becomes bú before a 4th tone (不是 bú shì)."
   ]
  },
  {
@@ -195,17 +243,20 @@
    {
     "hanzi": "这是我的书。",
     "pinyin": "Zhè shì wǒ de shū.",
-    "traducao": "Este é o meu livro."
+    "traducao": "Este é o meu livro.",
+    "traducaoEn": "This is my book."
    },
    {
     "hanzi": "她是我妈妈。",
     "pinyin": "Tā shì wǒ māma.",
-    "traducao": "Ela é minha mãe."
+    "traducao": "Ela é minha mãe.",
+    "traducaoEn": "She is my mom."
    },
    {
     "hanzi": "我喜欢红色的衣服。",
     "pinyin": "Wǒ xǐhuan hóngsè de yīfu.",
-    "traducao": "Eu gosto de roupa vermelha."
+    "traducao": "Eu gosto de roupa vermelha.",
+    "traducaoEn": "I like red clothes."
    }
   ],
   "exercicios": [
@@ -217,7 +268,9 @@
      "的老师手机"
     ],
     "correta": 0,
-    "explicacao": "O dono vem primeiro: 老师的手机."
+    "explicacao": "O dono vem primeiro: 老师的手机.",
+    "perguntaEn": "How do you say \"the teacher's phone\"?",
+    "explicacaoEn": "The owner comes first: 老师的手机."
    },
    {
     "pergunta": "Complete: \"Este é o meu copo.\"",
@@ -228,7 +281,9 @@
      "很"
     ],
     "correta": 0,
-    "explicacao": "我的 = meu."
+    "explicacao": "我的 = meu.",
+    "perguntaEn": "Complete: \"This is my cup.\"",
+    "explicacaoEn": "我的 = my."
    },
    {
     "pergunta": "Qual é a forma mais natural para \"meu pai\"?",
@@ -238,8 +293,17 @@
      "我是爸爸"
     ],
     "correta": 0,
-    "explicacao": "Com família, o 的 costuma cair: 我爸爸."
+    "explicacao": "Com família, o 的 costuma cair: 我爸爸.",
+    "perguntaEn": "What's the most natural way to say \"my dad\"?",
+    "explicacaoEn": "With family, 的 is usually dropped: 我爸爸."
    }
+  ],
+  "tituloEn": "的: possession and description",
+  "estruturaEn": "Owner + 的 + thing · Description + 的 + noun",
+  "explicacaoEn": [
+   "的 (de) works like English \"'s\": 我的书 = my book; 老师的书 = the teacher's book.",
+   "It also links a description to a noun — and the description always comes first: 漂亮的衣服 (pretty clothes), 妈妈做的菜 (the food that Mom makes).",
+   "With family and close people, 的 is often dropped: 我妈妈, 我朋友."
   ]
  },
  {
@@ -256,17 +320,20 @@
    {
     "hanzi": "我有一个哥哥。",
     "pinyin": "Wǒ yǒu yí ge gēge.",
-    "traducao": "Eu tenho um irmão mais velho."
+    "traducao": "Eu tenho um irmão mais velho.",
+    "traducaoEn": "I have an older brother."
    },
    {
     "hanzi": "我买了三本书。",
     "pinyin": "Wǒ mǎi le sān běn shū.",
-    "traducao": "Comprei três livros."
+    "traducao": "Comprei três livros.",
+    "traducaoEn": "I bought three books."
    },
    {
     "hanzi": "我要两杯茶。",
     "pinyin": "Wǒ yào liǎng bēi chá.",
-    "traducao": "Quero duas xícaras de chá."
+    "traducao": "Quero duas xícaras de chá.",
+    "traducaoEn": "I want two cups of tea."
    }
   ],
   "exercicios": [
@@ -279,7 +346,9 @@
      "口"
     ],
     "correta": 0,
-    "explicacao": "本 é o classificador de livros."
+    "explicacao": "本 é o classificador de livros.",
+    "perguntaEn": "Complete: \"three books\"",
+    "explicacaoEn": "本 is the measure word for books."
    },
    {
     "pergunta": "Como se diz \"duas pessoas\"?",
@@ -289,7 +358,9 @@
      "两人个"
     ],
     "correta": 0,
-    "explicacao": "Antes de classificador, 2 é 两."
+    "explicacao": "Antes de classificador, 2 é 两.",
+    "perguntaEn": "How do you say \"two people\"?",
+    "explicacaoEn": "Before a measure word, 2 is 两."
    },
    {
     "pergunta": "Complete: \"uma roupa\"",
@@ -300,8 +371,17 @@
      "杯"
     ],
     "correta": 0,
-    "explicacao": "件 é usado para roupas."
+    "explicacao": "件 é usado para roupas.",
+    "perguntaEn": "Complete: \"a piece of clothing\"",
+    "explicacaoEn": "件 is used for clothes."
    }
+  ],
+  "tituloEn": "Measure words (个, 本, 杯…)",
+  "estruturaEn": "Number + measure word + noun",
+  "explicacaoEn": [
+   "Between a number and a noun there is always a measure word, like \"a cup of\", \"a piece of\" — but for everything: 一个人 (one person), 三本书 (three books).",
+   "个 (ge) is the most common and works when you don't know the right one. Others: 本 books, 杯 cups and glasses, 件 clothes and matters, 口 family members, 块 money.",
+   "For \"two\" before a measure word, use 两: 两个人, never 二个人."
   ]
  },
  {
@@ -318,17 +398,20 @@
    {
     "hanzi": "我明天去北京。",
     "pinyin": "Wǒ míngtiān qù Běijīng.",
-    "traducao": "Amanhã vou para Pequim."
+    "traducao": "Amanhã vou para Pequim.",
+    "traducaoEn": "I'm going to Beijing tomorrow."
    },
    {
     "hanzi": "他在医院工作。",
     "pinyin": "Tā zài yīyuàn gōngzuò.",
-    "traducao": "Ele trabalha no hospital."
+    "traducao": "Ele trabalha no hospital.",
+    "traducaoEn": "He works at the hospital."
    },
    {
     "hanzi": "我们中午在饭店吃饭。",
     "pinyin": "Wǒmen zhōngwǔ zài fàndiàn chī fàn.",
-    "traducao": "Ao meio-dia comemos no restaurante."
+    "traducao": "Ao meio-dia comemos no restaurante.",
+    "traducaoEn": "At noon we eat at a restaurant."
    }
   ],
   "exercicios": [
@@ -340,7 +423,9 @@
      "工作我在医院。"
     ],
     "correta": 0,
-    "explicacao": "O lugar (在医院) vem antes do verbo."
+    "explicacao": "O lugar (在医院) vem antes do verbo.",
+    "perguntaEn": "Which is correct? (\"I work at the hospital\")",
+    "explicacaoEn": "The place (在医院) comes before the verb."
    },
    {
     "pergunta": "Qual está certa? (\"Amanhã eu vou à escola\")",
@@ -350,7 +435,9 @@
      "去学校我明天。"
     ],
     "correta": 0,
-    "explicacao": "O tempo (明天) vem antes do verbo, nunca no fim."
+    "explicacao": "O tempo (明天) vem antes do verbo, nunca no fim.",
+    "perguntaEn": "Which is correct? (\"I'm going to school tomorrow\")",
+    "explicacaoEn": "The time (明天) comes before the verb, never at the end."
    },
    {
     "pergunta": "Qual está certa? (\"Ela estuda chinês em casa\")",
@@ -360,8 +447,17 @@
      "她学习在家汉语。"
     ],
     "correta": 0,
-    "explicacao": "Sujeito + lugar + verbo + objeto."
+    "explicacao": "Sujeito + lugar + verbo + objeto.",
+    "perguntaEn": "Which is correct? (\"She studies Chinese at home\")",
+    "explicacaoEn": "Subject + place + verb + object."
    }
+  ],
+  "tituloEn": "Time and place come before the verb",
+  "estruturaEn": "Subject + Time + Place + Verb + Object",
+  "explicacaoEn": [
+   "In Chinese, WHEN and WHERE come before the action: 我明天在家学习 = \"I tomorrow at home study\".",
+   "Time can also start the sentence (明天我在家学习), but it never goes at the end like in English (\"I study at home tomorrow\").",
+   "Think of it as: first the setting (when, where), then the action."
   ]
  },
  {
@@ -378,17 +474,20 @@
    {
     "hanzi": "妈妈在家。",
     "pinyin": "Māma zài jiā.",
-    "traducao": "A mamãe está em casa."
+    "traducao": "A mamãe está em casa.",
+    "traducaoEn": "Mom is at home."
    },
    {
     "hanzi": "我在看书。",
     "pinyin": "Wǒ zài kàn shū.",
-    "traducao": "Estou lendo."
+    "traducao": "Estou lendo.",
+    "traducaoEn": "I'm reading."
    },
    {
     "hanzi": "他正在打电话呢。",
     "pinyin": "Tā zhèngzài dǎ diànhuà ne.",
-    "traducao": "Ele está ao telefone agora."
+    "traducao": "Ele está ao telefone agora.",
+    "traducaoEn": "He's on the phone right now."
    }
   ],
   "exercicios": [
@@ -401,7 +500,9 @@
      "有"
     ],
     "correta": 0,
-    "explicacao": "在 = estar em (algum lugar)."
+    "explicacao": "在 = estar em (algum lugar).",
+    "perguntaEn": "Complete: \"Where are you?\"",
+    "explicacaoEn": "在 = to be at (a place)."
    },
    {
     "pergunta": "Como se diz \"Estou estudando\"?",
@@ -411,7 +512,9 @@
      "我是学习。"
     ],
     "correta": 0,
-    "explicacao": "在 + verbo = ação em andamento."
+    "explicacao": "在 + verbo = ação em andamento.",
+    "perguntaEn": "How do you say \"I'm studying\"?",
+    "explicacaoEn": "在 + verb = ongoing action."
    },
    {
     "pergunta": "Complete: \"Ele está dormindo.\"",
@@ -422,8 +525,17 @@
      "了"
     ],
     "correta": 0,
-    "explicacao": "在 + verbo (+ 呢) = está fazendo agora."
+    "explicacao": "在 + verbo (+ 呢) = está fazendo agora.",
+    "perguntaEn": "Complete: \"He is sleeping.\"",
+    "explicacaoEn": "在 + verb (+ 呢) = doing it right now."
    }
+  ],
+  "tituloEn": "在: location and ongoing actions",
+  "estruturaEn": "在 + place · 在 + place + verb · 在/正在 + verb (+ 呢)",
+  "explicacaoEn": [
+   "在 + place = to be at/in: 我在家 (I'm at home). No extra \"to be\" needed.",
+   "Before another verb, 在 + place says where the action happens: 我在学校吃饭.",
+   "在 (or 正在) + verb = an action happening right now, like English \"-ing\": 我在吃饭 (I'm eating). 呢 often comes at the end."
   ]
  },
  {
@@ -440,17 +552,20 @@
    {
     "hanzi": "我吃了米饭。",
     "pinyin": "Wǒ chī le mǐfàn.",
-    "traducao": "Eu comi arroz."
+    "traducao": "Eu comi arroz.",
+    "traducaoEn": "I ate rice."
    },
    {
     "hanzi": "下雨了！",
     "pinyin": "Xià yǔ le!",
-    "traducao": "Começou a chover!"
+    "traducao": "Começou a chover!",
+    "traducaoEn": "It started raining!"
    },
    {
     "hanzi": "他没来。",
     "pinyin": "Tā méi lái.",
-    "traducao": "Ele não veio."
+    "traducao": "Ele não veio.",
+    "traducaoEn": "He didn't come."
    }
   ],
   "exercicios": [
@@ -462,7 +577,9 @@
      "我买一本了书。"
     ],
     "correta": 0,
-    "explicacao": "了 vem logo depois do verbo."
+    "explicacao": "了 vem logo depois do verbo.",
+    "perguntaEn": "How do you say \"I bought a book\"?",
+    "explicacaoEn": "了 comes right after the verb."
    },
    {
     "pergunta": "Negue: 我去了。(Eu fui.)",
@@ -472,7 +589,9 @@
      "我没去了。"
     ],
     "correta": 0,
-    "explicacao": "No passado nega-se com 没, sem 了."
+    "explicacao": "No passado nega-se com 没, sem 了.",
+    "perguntaEn": "Negate: 我去了。(I went.)",
+    "explicacaoEn": "In the past, negate with 没, without 了."
    },
    {
     "pergunta": "\"Fiquei cansada!\"",
@@ -483,8 +602,17 @@
      "吗"
     ],
     "correta": 0,
-    "explicacao": "了 no fim = mudança de estado."
+    "explicacao": "了 no fim = mudança de estado.",
+    "perguntaEn": "\"I'm tired now!\"",
+    "explicacaoEn": "了 at the end = change of state."
    }
+  ],
+  "tituloEn": "了: completed actions and change",
+  "estruturaEn": "Verb + 了 (completed) · Sentence + 了 (change)",
+  "explicacaoEn": [
+   "了 right after a verb marks a completed action: 我买了一本书 (I bought a book). It's not exactly \"past tense\" — it's \"done\".",
+   "了 at the end of a sentence marks a change of situation: 下雨了 (it started raining), 我饿了 (I'm hungry now).",
+   "To negate a completed action, use 没 and drop 了: 我没买."
   ]
  },
  {
@@ -501,17 +629,20 @@
    {
     "hanzi": "我想去中国。",
     "pinyin": "Wǒ xiǎng qù Zhōngguó.",
-    "traducao": "Quero ir à China."
+    "traducao": "Quero ir à China.",
+    "traducaoEn": "I want to go to China."
    },
    {
     "hanzi": "你会游泳吗？",
     "pinyin": "Nǐ huì yóuyǒng ma?",
-    "traducao": "Você sabe nadar?"
+    "traducao": "Você sabe nadar?",
+    "traducaoEn": "Can you swim?"
    },
    {
     "hanzi": "我可以坐这儿吗？",
     "pinyin": "Wǒ kěyǐ zuò zhèr ma?",
-    "traducao": "Posso sentar aqui?"
+    "traducao": "Posso sentar aqui?",
+    "traducaoEn": "May I sit here?"
    }
   ],
   "exercicios": [
@@ -524,7 +655,9 @@
      "想"
     ],
     "correta": 0,
-    "explicacao": "Habilidade aprendida: 会."
+    "explicacao": "Habilidade aprendida: 会.",
+    "perguntaEn": "\"I can speak Chinese\" (learned).",
+    "explicacaoEn": "A learned skill: 会."
    },
    {
     "pergunta": "\"Posso entrar?\" (pedindo permissão)",
@@ -535,7 +668,9 @@
      "想"
     ],
     "correta": 0,
-    "explicacao": "Permissão: 可以."
+    "explicacao": "Permissão: 可以.",
+    "perguntaEn": "\"May I come in?\" (asking permission)",
+    "explicacaoEn": "Permission: 可以."
    },
    {
     "pergunta": "\"Hoje eu não consigo ir.\"",
@@ -546,8 +681,17 @@
      "要"
     ],
     "correta": 0,
-    "explicacao": "Ter condições de fazer: 能."
+    "explicacao": "Ter condições de fazer: 能.",
+    "perguntaEn": "\"I can't make it today.\"",
+    "explicacaoEn": "Being able to (circumstances): 能."
    }
+  ],
+  "tituloEn": "Modal verbs: 想, 要, 会, 能, 可以",
+  "estruturaEn": "Subject + modal + verb",
+  "explicacaoEn": [
+   "想 (xiǎng) = would like to: 我想喝茶. 要 (yào) = want (firmly), need, or \"going to\": 我要一杯咖啡.",
+   "会 (huì) = know how to (a learned skill): 我会说汉语. 能 (néng) = be able to, have the conditions to: 我今天不能来.",
+   "可以 (kěyǐ) = may, be allowed to: 我可以进来吗？ English \"can\" splits into three verbs here!"
   ]
  },
  {
@@ -564,17 +708,20 @@
    {
     "hanzi": "今天比昨天冷。",
     "pinyin": "Jīntiān bǐ zuótiān lěng.",
-    "traducao": "Hoje está mais frio que ontem."
+    "traducao": "Hoje está mais frio que ontem.",
+    "traducaoEn": "Today is colder than yesterday."
    },
    {
     "hanzi": "哥哥比我高。",
     "pinyin": "Gēge bǐ wǒ gāo.",
-    "traducao": "Meu irmão é mais alto que eu."
+    "traducao": "Meu irmão é mais alto que eu.",
+    "traducaoEn": "My older brother is taller than me."
    },
    {
     "hanzi": "他比我大三岁。",
     "pinyin": "Tā bǐ wǒ dà sān suì.",
-    "traducao": "Ele é três anos mais velho que eu."
+    "traducao": "Ele é três anos mais velho que eu.",
+    "traducaoEn": "He is three years older than me."
    }
   ],
   "exercicios": [
@@ -586,7 +733,9 @@
      "比茶咖啡便宜。"
     ],
     "correta": 0,
-    "explicacao": "Depois de 比 não vem 很."
+    "explicacao": "Depois de 比 não vem 很.",
+    "perguntaEn": "\"Tea is cheaper than coffee.\"",
+    "explicacaoEn": "After 比 you don't use 很."
    },
    {
     "pergunta": "\"Ele é dois anos mais novo que eu.\"",
@@ -596,7 +745,9 @@
      "他小比我两岁。"
     ],
     "correta": 0,
-    "explicacao": "A diferença vai no fim."
+    "explicacao": "A diferença vai no fim.",
+    "perguntaEn": "\"He is two years younger than me.\"",
+    "explicacaoEn": "The difference goes at the end."
    },
    {
     "pergunta": "Qual frase está ERRADA?",
@@ -606,8 +757,17 @@
      "他比我忙多了。"
     ],
     "correta": 0,
-    "explicacao": "Depois de 比 não se usa 很."
+    "explicacao": "Depois de 比 não se usa 很.",
+    "perguntaEn": "Which sentence is WRONG?",
+    "explicacaoEn": "After 比 you don't use 很."
    }
+  ],
+  "tituloEn": "Comparisons with 比",
+  "estruturaEn": "A + 比 + B + adjective (+ difference)",
+  "explicacaoEn": [
+   "A 比 B + adjective = A is more … than B: 他比我高 (he is taller than me). No \"more\" and no \"-er\" needed.",
+   "Don't use 很 or 非常 after 比 (never 他比我很高). For \"much more\", add 多了 at the end: 他比我高多了.",
+   "The difference goes at the end: 他比我大三岁 (he is three years older than me)."
   ]
  },
  {
@@ -624,17 +784,20 @@
    {
     "hanzi": "我去过中国。",
     "pinyin": "Wǒ qù guo Zhōngguó.",
-    "traducao": "Já fui à China."
+    "traducao": "Já fui à China.",
+    "traducaoEn": "I've been to China."
    },
    {
     "hanzi": "你吃过羊肉吗？",
     "pinyin": "Nǐ chī guo yángròu ma?",
-    "traducao": "Você já comeu carne de carneiro?"
+    "traducao": "Você já comeu carne de carneiro?",
+    "traducaoEn": "Have you ever eaten lamb?"
    },
    {
     "hanzi": "我没看过这个电影。",
     "pinyin": "Wǒ méi kàn guo zhège diànyǐng.",
-    "traducao": "Nunca vi este filme."
+    "traducao": "Nunca vi este filme.",
+    "traducaoEn": "I've never seen this movie."
    }
   ],
   "exercicios": [
@@ -647,7 +810,9 @@
      "吗"
     ],
     "correta": 0,
-    "explicacao": "过 marca a experiência."
+    "explicacao": "过 marca a experiência.",
+    "perguntaEn": "\"I've been to Beijing.\" (experience)",
+    "explicacaoEn": "过 marks the experience."
    },
    {
     "pergunta": "\"Nunca nadei.\"",
@@ -657,7 +822,9 @@
      "我没游泳过了。"
     ],
     "correta": 0,
-    "explicacao": "没 + verbo + 过 (游泳 se separa: 游过泳)."
+    "explicacao": "没 + verbo + 过 (游泳 se separa: 游过泳).",
+    "perguntaEn": "\"I've never swum.\"",
+    "explicacaoEn": "没 + verb + 过 (游泳 splits: 游过泳)."
    },
    {
     "pergunta": "\"Você já leu este livro?\"",
@@ -667,8 +834,17 @@
      "你过看这本书吗？"
     ],
     "correta": 0,
-    "explicacao": "过 vem logo depois do verbo."
+    "explicacao": "过 vem logo depois do verbo.",
+    "perguntaEn": "\"Have you ever read this book?\"",
+    "explicacaoEn": "过 comes right after the verb."
    }
+  ],
+  "tituloEn": "过: experiences",
+  "estruturaEn": "Verb + 过 · 没 + verb + 过",
+  "explicacaoEn": [
+   "Verb + 过 (guo) = to have done something at some point in your life, like English \"have ever\": 我去过北京 (I've been to Beijing).",
+   "To negate: 没 + verb + 过: 我没吃过鱼 (I've never eaten fish).",
+   "Common question: 你……过……吗？ (Have you ever…?)"
   ]
  },
  {
@@ -685,17 +861,20 @@
    {
     "hanzi": "他跑得很快。",
     "pinyin": "Tā pǎo de hěn kuài.",
-    "traducao": "Ele corre muito rápido."
+    "traducao": "Ele corre muito rápido.",
+    "traducaoEn": "He runs very fast."
    },
    {
     "hanzi": "你说得对。",
     "pinyin": "Nǐ shuō de duì.",
-    "traducao": "Você tem razão."
+    "traducao": "Você tem razão.",
+    "traducaoEn": "You're right."
    },
    {
     "hanzi": "她唱歌唱得很好。",
     "pinyin": "Tā chàng gē chàng de hěn hǎo.",
-    "traducao": "Ela canta muito bem."
+    "traducao": "Ela canta muito bem.",
+    "traducaoEn": "She sings very well."
    }
   ],
   "exercicios": [
@@ -708,7 +887,9 @@
      "了"
     ],
     "correta": 0,
-    "explicacao": "Verbo + 得 + como."
+    "explicacao": "Verbo + 得 + como.",
+    "perguntaEn": "\"He runs very fast.\"",
+    "explicacaoEn": "Verb + 得 + how."
    },
    {
     "pergunta": "Qual está certa? (\"Ela fala chinês muito bem\")",
@@ -718,7 +899,9 @@
      "她说得汉语很好。"
     ],
     "correta": 0,
-    "explicacao": "Com objeto, repete-se o verbo antes de 得."
+    "explicacao": "Com objeto, repete-se o verbo antes de 得.",
+    "perguntaEn": "Which is correct? (\"She speaks Chinese very well\")",
+    "explicacaoEn": "With an object, repeat the verb before 得."
    },
    {
     "pergunta": "Complete: \"meu livro\"",
@@ -729,8 +912,17 @@
      "地"
     ],
     "correta": 0,
-    "explicacao": "Posse: 的."
+    "explicacao": "Posse: 的.",
+    "perguntaEn": "Complete: \"my book\"",
+    "explicacaoEn": "Possession: 的."
    }
+  ],
+  "tituloEn": "得: how an action is done",
+  "estruturaEn": "Verb + 得 + description",
+  "explicacaoEn": [
+   "Verb + 得 + description = how the action is done, like English adverbs: 她说得很好 (she speaks well).",
+   "With an object, the verb is repeated: 她说汉语说得很好 — or the first verb is dropped: 她汉语说得很好.",
+   "Don't mix them up: 的 (possession/describing nouns), 得 (after verbs) and 地 (before verbs, \"-ly\"). All three are pronounced \"de\"."
   ]
  }
 ]

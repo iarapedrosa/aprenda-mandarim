@@ -24,7 +24,8 @@
      {
       "hanzi": "小明",
       "pinyin": "Xiǎomíng",
-      "traducao": "Xiaoming (nome)"
+      "traducao": "Xiaoming (nome)",
+      "traducaoEn": "Xiaoming (name)"
      },
      {
       "hanzi": "，"
@@ -51,7 +52,8 @@
       "hanzi": "。"
      }
     ],
-    "traducao": "Eu me chamo Xiaoming, sou estudante."
+    "traducao": "Eu me chamo Xiaoming, sou estudante.",
+    "traducaoEn": "My name is Xiaoming, I'm a student."
    },
    {
     "tokens": [
@@ -64,7 +66,8 @@
      {
       "hanzi": "每天",
       "pinyin": "měitiān",
-      "traducao": "todo dia"
+      "traducao": "todo dia",
+      "traducaoEn": "every day"
      },
      {
       "hanzi": "六",
@@ -108,13 +111,15 @@
      {
       "hanzi": "早饭",
       "pinyin": "zǎofàn",
-      "traducao": "café da manhã"
+      "traducao": "café da manhã",
+      "traducaoEn": "breakfast"
      },
      {
       "hanzi": "。"
      }
     ],
-    "traducao": "Todo dia eu me levanto às seis e tomo café da manhã às sete."
+    "traducao": "Todo dia eu me levanto às seis e tomo café da manhã às sete.",
+    "traducaoEn": "Every day I get up at six and have breakfast at seven."
    },
    {
     "tokens": [
@@ -152,7 +157,8 @@
       "hanzi": "。"
      }
     ],
-    "traducao": "Vou de ônibus para a escola."
+    "traducao": "Vou de ônibus para a escola.",
+    "traducaoEn": "I take the bus to school."
    },
    {
     "tokens": [
@@ -183,7 +189,8 @@
      {
       "hanzi": "节",
       "pinyin": "jié",
-      "traducao": "(classificador de aulas)"
+      "traducao": "(classificador de aulas)",
+      "traducaoEn": "(measure word for class periods)"
      },
      {
       "hanzi": "课",
@@ -228,7 +235,8 @@
       "hanzi": "。"
      }
     ],
-    "traducao": "De manhã temos quatro aulas. A que eu mais gosto é a de chinês."
+    "traducao": "De manhã temos quatro aulas. A que eu mais gosto é a de chinês.",
+    "traducaoEn": "In the morning we have four classes. My favorite is Chinese."
    },
    {
     "tokens": [
@@ -259,7 +267,8 @@
      {
       "hanzi": "们",
       "pinyin": "men",
-      "traducao": "(plural de pessoas)"
+      "traducao": "(plural de pessoas)",
+      "traducaoEn": "(plural for people)"
      },
      {
       "hanzi": "一起",
@@ -270,13 +279,15 @@
      {
       "hanzi": "吃饭",
       "pinyin": "chī fàn",
-      "traducao": "comer (uma refeição)"
+      "traducao": "comer (uma refeição)",
+      "traducaoEn": "to eat (a meal)"
      },
      {
       "hanzi": "。"
      }
     ],
-    "traducao": "Ao meio-dia almoço com os colegas."
+    "traducao": "Ao meio-dia almoço com os colegas.",
+    "traducaoEn": "At noon I have lunch with my classmates."
    },
    {
     "tokens": [
@@ -308,7 +319,8 @@
       "hanzi": "。"
      }
     ],
-    "traducao": "À tarde vou jogar basquete."
+    "traducao": "À tarde vou jogar basquete.",
+    "traducaoEn": "In the afternoon I go play basketball."
    },
    {
     "tokens": [
@@ -367,7 +379,8 @@
       "hanzi": "。"
      }
     ],
-    "traducao": "À noite estudo em casa e vejo um pouco de televisão."
+    "traducao": "À noite estudo em casa e vejo um pouco de televisão.",
+    "traducaoEn": "In the evening I study at home and watch a little TV."
    },
    {
     "tokens": [
@@ -411,7 +424,8 @@
       "hanzi": "。"
      }
     ],
-    "traducao": "Às dez eu já vou dormir."
+    "traducao": "Às dez eu já vou dormir.",
+    "traducaoEn": "At ten I'm already in bed."
    }
   ],
   "perguntas": [
@@ -422,7 +436,13 @@
      "De táxi",
      "A pé"
     ],
-    "correta": 0
+    "correta": 0,
+    "perguntaEn": "How does Xiaoming get to school?",
+    "opcoesEn": [
+     "By bus",
+     "By taxi",
+     "On foot"
+    ]
    },
    {
     "pergunta": "De qual aula ele mais gosta?",
@@ -431,7 +451,13 @@
      "Matemática",
      "Inglês"
     ],
-    "correta": 0
+    "correta": 0,
+    "perguntaEn": "Which class does he like most?",
+    "opcoesEn": [
+     "Chinese",
+     "Math",
+     "English"
+    ]
    },
    {
     "pergunta": "A que horas ele vai dormir?",
@@ -440,9 +466,17 @@
      "Às 21h",
      "Às 23h"
     ],
-    "correta": 0
+    "correta": 0,
+    "perguntaEn": "What time does he go to bed?",
+    "opcoesEn": [
+     "At 10 p.m.",
+     "At 9 p.m.",
+     "At 11 p.m."
+    ]
    }
-  ]
+  ],
+  "tituloEn": "My day",
+  "resumoEn": "A student's routine, from morning to night."
  },
  {
   "id": "h02",
@@ -481,7 +515,8 @@
      {
       "hanzi": "只",
       "pinyin": "zhī",
-      "traducao": "(classificador de animais)"
+      "traducao": "(classificador de animais)",
+      "traducaoEn": "(measure word for animals)"
      },
      {
       "hanzi": "小",
@@ -510,7 +545,8 @@
      {
       "hanzi": "只",
       "pinyin": "zhī",
-      "traducao": "(classificador de animais)"
+      "traducao": "(classificador de animais)",
+      "traducaoEn": "(measure word for animals)"
      },
      {
       "hanzi": "小",
@@ -528,7 +564,8 @@
       "hanzi": "。"
      }
     ],
-    "traducao": "Na minha casa há um gatinho e um cachorrinho."
+    "traducao": "Na minha casa há um gatinho e um cachorrinho.",
+    "traducaoEn": "At my home there is a kitten and a puppy."
    },
    {
     "tokens": [
@@ -553,7 +590,8 @@
      {
       "hanzi": "白色",
       "pinyin": "báisè",
-      "traducao": "branco"
+      "traducao": "branco",
+      "traducaoEn": "white"
      },
      {
       "hanzi": "的",
@@ -585,7 +623,8 @@
      {
       "hanzi": "黑色",
       "pinyin": "hēisè",
-      "traducao": "preto"
+      "traducao": "preto",
+      "traducaoEn": "black"
      },
      {
       "hanzi": "的",
@@ -597,7 +636,8 @@
       "hanzi": "。"
      }
     ],
-    "traducao": "O gatinho é branco, o cachorrinho é preto."
+    "traducao": "O gatinho é branco, o cachorrinho é preto.",
+    "traducaoEn": "The kitten is white, the puppy is black."
    },
    {
     "tokens": [
@@ -656,7 +696,8 @@
       "hanzi": "。"
      }
     ],
-    "traducao": "O gatinho gosta de dormir, o cachorrinho gosta de brincar."
+    "traducao": "O gatinho gosta de dormir, o cachorrinho gosta de brincar.",
+    "traducaoEn": "The kitten likes to sleep, the puppy likes to play."
    },
    {
     "tokens": [
@@ -675,7 +716,8 @@
      {
       "hanzi": "天",
       "pinyin": "tiān",
-      "traducao": "dia"
+      "traducao": "dia",
+      "traducaoEn": "day"
      },
      {
       "hanzi": "，"
@@ -695,7 +737,8 @@
      {
       "hanzi": "找不到",
       "pinyin": "zhǎo bu dào",
-      "traducao": "não conseguir achar"
+      "traducao": "não conseguir achar",
+      "traducaoEn": "can't find"
      },
      {
       "hanzi": "小",
@@ -719,7 +762,8 @@
       "hanzi": "。"
      }
     ],
-    "traducao": "Um dia, o cachorrinho não conseguia achar o gatinho."
+    "traducao": "Um dia, o cachorrinho não conseguia achar o gatinho.",
+    "traducaoEn": "One day, the puppy couldn't find the kitten."
    },
    {
     "tokens": [
@@ -805,14 +849,16 @@
       "hanzi": "”"
      }
     ],
-    "traducao": "Ele procurou por muito tempo: \"Gatinho, onde você está?\""
+    "traducao": "Ele procurou por muito tempo: \"Gatinho, onde você está?\"",
+    "traducaoEn": "He looked for a long time: \"Kitten, where are you?\""
    },
    {
     "tokens": [
      {
       "hanzi": "最后",
       "pinyin": "zuìhòu",
-      "traducao": "no fim"
+      "traducao": "no fim",
+      "traducaoEn": "in the end"
      },
      {
       "hanzi": "，"
@@ -868,7 +914,8 @@
      {
       "hanzi": "床",
       "pinyin": "chuáng",
-      "traducao": "cama"
+      "traducao": "cama",
+      "traducaoEn": "bed"
      },
      {
       "hanzi": "上",
@@ -886,7 +933,8 @@
       "hanzi": "！"
      }
     ],
-    "traducao": "No fim, o cachorrinho viu o gatinho dormindo na minha cama!"
+    "traducao": "No fim, o cachorrinho viu o gatinho dormindo na minha cama!",
+    "traducaoEn": "In the end, the puppy saw the kitten sleeping on my bed!"
    }
   ],
   "perguntas": [
@@ -897,7 +945,13 @@
      "Preto",
      "Amarelo"
     ],
-    "correta": 0
+    "correta": 0,
+    "perguntaEn": "What color is the kitten?",
+    "opcoesEn": [
+     "White",
+     "Black",
+     "Yellow"
+    ]
    },
    {
     "pergunta": "O que o cachorrinho gosta de fazer?",
@@ -906,7 +960,13 @@
      "Dormir",
      "Comer"
     ],
-    "correta": 0
+    "correta": 0,
+    "perguntaEn": "What does the puppy like to do?",
+    "opcoesEn": [
+     "Play",
+     "Sleep",
+     "Eat"
+    ]
    },
    {
     "pergunta": "Onde estava o gatinho?",
@@ -915,9 +975,17 @@
      "Embaixo da mesa",
      "Na rua"
     ],
-    "correta": 0
+    "correta": 0,
+    "perguntaEn": "Where was the kitten?",
+    "opcoesEn": [
+     "Sleeping on the bed",
+     "Under the table",
+     "On the street"
+    ]
    }
-  ]
+  ],
+  "tituloEn": "The kitten and the puppy",
+  "resumoEn": "Two very different pets… and a hiding place."
  },
  {
   "id": "h03",
@@ -971,35 +1039,41 @@
      {
       "hanzi": "晴天",
       "pinyin": "qíngtiān",
-      "traducao": "dia ensolarado"
+      "traducao": "dia ensolarado",
+      "traducaoEn": "sunny day"
      },
      {
       "hanzi": "。"
      }
     ],
-    "traducao": "Hoje de manhã o tempo estava ótimo, fazia sol."
+    "traducao": "Hoje de manhã o tempo estava ótimo, fazia sol.",
+    "traducaoEn": "This morning the weather was great; it was sunny."
    },
    {
     "tokens": [
      {
       "hanzi": "丽丽",
       "pinyin": "Lìli",
-      "traducao": "Lili (nome)"
+      "traducao": "Lili (nome)",
+      "traducaoEn": "Lili (name)"
      },
      {
       "hanzi": "没",
       "pinyin": "méi",
-      "traducao": "não (no passado)"
+      "traducao": "não (no passado)",
+      "traducaoEn": "not (past)"
      },
      {
       "hanzi": "带",
       "pinyin": "dài",
-      "traducao": "levar consigo"
+      "traducao": "levar consigo",
+      "traducaoEn": "to bring along"
      },
      {
       "hanzi": "伞",
       "pinyin": "sǎn",
-      "traducao": "guarda-chuva"
+      "traducao": "guarda-chuva",
+      "traducaoEn": "umbrella"
      },
      {
       "hanzi": "就",
@@ -1029,7 +1103,8 @@
       "hanzi": "。"
      }
     ],
-    "traducao": "Lili foi para a escola sem levar guarda-chuva."
+    "traducao": "Lili foi para a escola sem levar guarda-chuva.",
+    "traducaoEn": "Lili went to school without taking an umbrella."
    },
    {
     "tokens": [
@@ -1045,7 +1120,8 @@
      {
       "hanzi": "天",
       "pinyin": "tiān",
-      "traducao": "céu"
+      "traducao": "céu",
+      "traducaoEn": "sky"
      },
      {
       "hanzi": "阴",
@@ -1078,14 +1154,16 @@
       "hanzi": "。"
      }
     ],
-    "traducao": "À tarde o céu fechou e começou a chover."
+    "traducao": "À tarde o céu fechou e começou a chover.",
+    "traducaoEn": "In the afternoon the sky clouded over and it started to rain."
    },
    {
     "tokens": [
      {
       "hanzi": "丽丽",
       "pinyin": "Lìli",
-      "traducao": "Lili (nome)"
+      "traducao": "Lili (nome)",
+      "traducaoEn": "Lili (name)"
      },
      {
       "hanzi": "很",
@@ -1096,7 +1174,8 @@
      {
       "hanzi": "着急",
       "pinyin": "zháojí",
-      "traducao": "aflito(a)"
+      "traducao": "aflito(a)",
+      "traducaoEn": "worried; anxious"
      },
      {
       "hanzi": "："
@@ -1141,14 +1220,16 @@
       "hanzi": "”"
      }
     ],
-    "traducao": "Lili ficou aflita: \"Como eu vou voltar para casa?\""
+    "traducao": "Lili ficou aflita: \"Como eu vou voltar para casa?\"",
+    "traducaoEn": "Lili got worried: \"How am I going to get home?\""
    },
    {
     "tokens": [
      {
       "hanzi": "这时候",
       "pinyin": "zhè shíhou",
-      "traducao": "nesse momento"
+      "traducao": "nesse momento",
+      "traducaoEn": "at that moment"
      },
      {
       "hanzi": "，"
@@ -1174,7 +1255,8 @@
      {
       "hanzi": "大卫",
       "pinyin": "Dàwèi",
-      "traducao": "David (nome)"
+      "traducao": "David (nome)",
+      "traducaoEn": "David (name)"
      },
      {
       "hanzi": "说",
@@ -1197,7 +1279,8 @@
      {
       "hanzi": "担心",
       "pinyin": "dānxīn",
-      "traducao": "preocupar-se"
+      "traducao": "preocupar-se",
+      "traducaoEn": "to worry"
      },
      {
       "hanzi": "，"
@@ -1217,7 +1300,8 @@
      {
       "hanzi": "伞",
       "pinyin": "sǎn",
-      "traducao": "guarda-chuva"
+      "traducao": "guarda-chuva",
+      "traducaoEn": "umbrella"
      },
      {
       "hanzi": "。"
@@ -1253,14 +1337,16 @@
       "hanzi": "”"
      }
     ],
-    "traducao": "Nesse momento, o colega dela, David, disse: \"Não se preocupe, eu tenho guarda-chuva. Vamos juntos!\""
+    "traducao": "Nesse momento, o colega dela, David, disse: \"Não se preocupe, eu tenho guarda-chuva. Vamos juntos!\"",
+    "traducaoEn": "At that moment, her classmate David said: \"Don't worry, I have an umbrella. Let's walk together!\""
    },
    {
     "tokens": [
      {
       "hanzi": "丽丽",
       "pinyin": "Lìli",
-      "traducao": "Lili (nome)"
+      "traducao": "Lili (nome)",
+      "traducaoEn": "Lili (name)"
      },
      {
       "hanzi": "笑",
@@ -1298,7 +1384,8 @@
      {
       "hanzi": "大卫",
       "pinyin": "Dàwèi",
-      "traducao": "David (nome)"
+      "traducao": "David (nome)",
+      "traducaoEn": "David (name)"
      },
      {
       "hanzi": "！"
@@ -1307,7 +1394,8 @@
       "hanzi": "”"
      }
     ],
-    "traducao": "Lili sorriu: \"Obrigada, David!\""
+    "traducao": "Lili sorriu: \"Obrigada, David!\"",
+    "traducaoEn": "Lili smiled: \"Thank you, David!\""
    }
   ],
   "perguntas": [
@@ -1318,7 +1406,13 @@
      "Chuvoso",
      "Nublado"
     ],
-    "correta": 0
+    "correta": 0,
+    "perguntaEn": "What was the weather like in the morning?",
+    "opcoesEn": [
+     "Sunny",
+     "Rainy",
+     "Cloudy"
+    ]
    },
    {
     "pergunta": "Qual era o problema de Lili?",
@@ -1327,7 +1421,13 @@
      "Perdeu o ônibus",
      "Ficou doente"
     ],
-    "correta": 0
+    "correta": 0,
+    "perguntaEn": "What was Lili's problem?",
+    "opcoesEn": [
+     "She had no umbrella",
+     "She missed the bus",
+     "She got sick"
+    ]
    },
    {
     "pergunta": "Quem ajudou Lili?",
@@ -1336,9 +1436,17 @@
      "A mãe dela",
      "A professora"
     ],
-    "correta": 0
+    "correta": 0,
+    "perguntaEn": "Who helped Lili?",
+    "opcoesEn": [
+     "Her classmate David",
+     "Her mom",
+     "The teacher"
+    ]
    }
-  ]
+  ],
+  "tituloEn": "It started raining",
+  "resumoEn": "Lili forgot her umbrella…"
  },
  {
   "id": "h04",
@@ -1417,7 +1525,8 @@
       "hanzi": "。"
      }
     ],
-    "traducao": "Hoje é 10 de maio, aniversário da mamãe."
+    "traducao": "Hoje é 10 de maio, aniversário da mamãe.",
+    "traducaoEn": "Today is May 10th, Mom's birthday."
    },
    {
     "tokens": [
@@ -1460,18 +1569,21 @@
      {
       "hanzi": "一个",
       "pinyin": "yí ge",
-      "traducao": "um(a)"
+      "traducao": "um(a)",
+      "traducaoEn": "a; one"
      },
      {
       "hanzi": "礼物",
       "pinyin": "lǐwù",
-      "traducao": "presente"
+      "traducao": "presente",
+      "traducaoEn": "gift"
      },
      {
       "hanzi": "。"
      }
     ],
-    "traducao": "Papai e eu queremos dar um presente para a mamãe."
+    "traducao": "Papai e eu queremos dar um presente para a mamãe.",
+    "traducaoEn": "Dad and I want to give Mom a present."
    },
    {
     "tokens": [
@@ -1520,7 +1632,8 @@
      {
       "hanzi": "红色",
       "pinyin": "hóngsè",
-      "traducao": "vermelho"
+      "traducao": "vermelho",
+      "traducaoEn": "red"
      },
      {
       "hanzi": "的",
@@ -1538,7 +1651,8 @@
       "hanzi": "。"
      }
     ],
-    "traducao": "Fomos à loja e compramos uma roupa vermelha."
+    "traducao": "Fomos à loja e compramos uma roupa vermelha.",
+    "traducaoEn": "We went to a store and bought a red piece of clothing."
    },
    {
     "tokens": [
@@ -1563,13 +1677,15 @@
      {
       "hanzi": "红色",
       "pinyin": "hóngsè",
-      "traducao": "vermelho"
+      "traducao": "vermelho",
+      "traducaoEn": "red"
      },
      {
       "hanzi": "。"
      }
     ],
-    "traducao": "A cor preferida da mamãe é vermelho."
+    "traducao": "A cor preferida da mamãe é vermelho.",
+    "traducaoEn": "Mom's favorite color is red."
    },
    {
     "tokens": [
@@ -1603,13 +1719,15 @@
      {
       "hanzi": "吃饭",
       "pinyin": "chī fàn",
-      "traducao": "comer (uma refeição)"
+      "traducao": "comer (uma refeição)",
+      "traducaoEn": "to eat (a meal)"
      },
      {
       "hanzi": "。"
      }
     ],
-    "traducao": "À noite jantamos num restaurante."
+    "traducao": "À noite jantamos num restaurante.",
+    "traducaoEn": "In the evening, we had dinner at a restaurant."
    },
    {
     "tokens": [
@@ -1671,7 +1789,8 @@
       "hanzi": "”"
      }
     ],
-    "traducao": "Eu e o papai dissemos: \"Mamãe, feliz aniversário!\""
+    "traducao": "Eu e o papai dissemos: \"Mamãe, feliz aniversário!\"",
+    "traducaoEn": "Dad and I said: \"Mom, happy birthday!\""
    },
    {
     "tokens": [
@@ -1684,12 +1803,14 @@
      {
       "hanzi": "看到",
       "pinyin": "kàndào",
-      "traducao": "ver"
+      "traducao": "ver",
+      "traducaoEn": "to see"
      },
      {
       "hanzi": "礼物",
       "pinyin": "lǐwù",
-      "traducao": "presente"
+      "traducao": "presente",
+      "traducaoEn": "gift"
      },
      {
       "hanzi": "，"
@@ -1710,7 +1831,8 @@
       "hanzi": "。"
      }
     ],
-    "traducao": "Quando viu o presente, a mamãe ficou muito feliz."
+    "traducao": "Quando viu o presente, a mamãe ficou muito feliz.",
+    "traducaoEn": "When she saw the present, Mom was very happy."
    }
   ],
   "perguntas": [
@@ -1721,7 +1843,13 @@
      "Do pai",
      "Do narrador"
     ],
-    "correta": 0
+    "correta": 0,
+    "perguntaEn": "Whose birthday is it?",
+    "opcoesEn": [
+     "Mom's",
+     "Dad's",
+     "The narrator's"
+    ]
    },
    {
     "pergunta": "Que presente eles compraram?",
@@ -1730,7 +1858,13 @@
      "Um livro",
      "Um relógio"
     ],
-    "correta": 0
+    "correta": 0,
+    "perguntaEn": "What present did they buy?",
+    "opcoesEn": [
+     "Red clothing",
+     "A book",
+     "A watch"
+    ]
    },
    {
     "pergunta": "Qual é a cor preferida da mãe?",
@@ -1739,9 +1873,17 @@
      "Branco",
      "Preto"
     ],
-    "correta": 0
+    "correta": 0,
+    "perguntaEn": "What is Mom's favorite color?",
+    "opcoesEn": [
+     "Red",
+     "White",
+     "Black"
+    ]
    }
-  ]
+  ],
+  "tituloEn": "Mom's birthday",
+  "resumoEn": "A special gift."
  },
  {
   "id": "h05",
@@ -1777,7 +1919,8 @@
      {
       "hanzi": "小明",
       "pinyin": "Xiǎomíng",
-      "traducao": "Xiaoming (nome)"
+      "traducao": "Xiaoming (nome)",
+      "traducaoEn": "Xiaoming (name)"
      },
      {
       "hanzi": "和",
@@ -1819,14 +1962,16 @@
       "hanzi": "。"
      }
     ],
-    "traducao": "Em julho do ano passado, Xiaoming e os pais viajaram para Pequim."
+    "traducao": "Em julho do ano passado, Xiaoming e os pais viajaram para Pequim.",
+    "traducaoEn": "Last July, Xiaoming and his parents traveled to Beijing."
    },
    {
     "tokens": [
      {
       "hanzi": "他们",
       "pinyin": "tāmen",
-      "traducao": "eles"
+      "traducao": "eles",
+      "traducaoEn": "they"
      },
      {
       "hanzi": "坐",
@@ -1889,7 +2034,8 @@
       "hanzi": "。"
      }
     ],
-    "traducao": "Foram de avião e chegaram em apenas duas horas."
+    "traducao": "Foram de avião e chegaram em apenas duas horas.",
+    "traducaoEn": "They went by plane and got there in just two hours."
    },
    {
     "tokens": [
@@ -1942,14 +2088,16 @@
       "hanzi": "。"
      }
     ],
-    "traducao": "Pequim é muito grande e tem muita gente."
+    "traducao": "Pequim é muito grande e tem muita gente.",
+    "traducaoEn": "Beijing is very big, and there are lots of people."
    },
    {
     "tokens": [
      {
       "hanzi": "他们",
       "pinyin": "tāmen",
-      "traducao": "eles"
+      "traducao": "eles",
+      "traducaoEn": "they"
      },
      {
       "hanzi": "去",
@@ -1978,7 +2126,8 @@
      {
       "hanzi": "地方",
       "pinyin": "dìfang",
-      "traducao": "lugar"
+      "traducao": "lugar",
+      "traducaoEn": "place"
      },
      {
       "hanzi": "，"
@@ -2004,20 +2153,23 @@
      {
       "hanzi": "烤鸭",
       "pinyin": "kǎoyā",
-      "traducao": "pato laqueado"
+      "traducao": "pato laqueado",
+      "traducaoEn": "roast duck"
      },
      {
       "hanzi": "。"
      }
     ],
-    "traducao": "Eles foram a muitos lugares e comeram pato laqueado de Pequim."
+    "traducao": "Eles foram a muitos lugares e comeram pato laqueado de Pequim.",
+    "traducaoEn": "They went to many places and ate Peking duck."
    },
    {
     "tokens": [
      {
       "hanzi": "小明",
       "pinyin": "Xiǎomíng",
-      "traducao": "Xiaoming (nome)"
+      "traducao": "Xiaoming (nome)",
+      "traducaoEn": "Xiaoming (name)"
      },
      {
       "hanzi": "觉得",
@@ -2028,7 +2180,8 @@
      {
       "hanzi": "烤鸭",
       "pinyin": "kǎoyā",
-      "traducao": "pato laqueado"
+      "traducao": "pato laqueado",
+      "traducaoEn": "roast duck"
      },
      {
       "hanzi": "非常",
@@ -2046,7 +2199,8 @@
       "hanzi": "。"
      }
     ],
-    "traducao": "Xiaoming achou o pato laqueado delicioso."
+    "traducao": "Xiaoming achou o pato laqueado delicioso.",
+    "traducaoEn": "Xiaoming thought the roast duck was delicious."
    },
    {
     "tokens": [
@@ -2065,7 +2219,8 @@
      {
       "hanzi": "夏天",
       "pinyin": "xiàtiān",
-      "traducao": "verão"
+      "traducao": "verão",
+      "traducaoEn": "summer"
      },
      {
       "hanzi": "很",
@@ -2085,12 +2240,14 @@
      {
       "hanzi": "可是",
       "pinyin": "kěshì",
-      "traducao": "mas"
+      "traducao": "mas",
+      "traducaoEn": "but"
      },
      {
       "hanzi": "小明",
       "pinyin": "Xiǎomíng",
-      "traducao": "Xiaoming (nome)"
+      "traducao": "Xiaoming (nome)",
+      "traducaoEn": "Xiaoming (name)"
      },
      {
       "hanzi": "玩",
@@ -2113,13 +2270,15 @@
      {
       "hanzi": "开心",
       "pinyin": "kāixīn",
-      "traducao": "contente"
+      "traducao": "contente",
+      "traducaoEn": "happy; cheerful"
      },
      {
       "hanzi": "。"
      }
     ],
-    "traducao": "O verão em Pequim é muito quente, mas Xiaoming se divertiu muito."
+    "traducao": "O verão em Pequim é muito quente, mas Xiaoming se divertiu muito.",
+    "traducaoEn": "Summer in Beijing is very hot, but Xiaoming had a great time."
    },
    {
     "tokens": [
@@ -2144,7 +2303,8 @@
      {
       "hanzi": "明年",
       "pinyin": "míngnián",
-      "traducao": "ano que vem"
+      "traducao": "ano que vem",
+      "traducaoEn": "next year"
      },
      {
       "hanzi": "我",
@@ -2183,7 +2343,8 @@
       "hanzi": "”"
      }
     ],
-    "traducao": "Ele disse: \"Ano que vem quero ir a Pequim de novo!\""
+    "traducao": "Ele disse: \"Ano que vem quero ir a Pequim de novo!\"",
+    "traducaoEn": "He said: \"Next year I want to go to Beijing again!\""
    }
   ],
   "perguntas": [
@@ -2194,7 +2355,13 @@
      "Em maio deste ano",
      "Em dezembro"
     ],
-    "correta": 0
+    "correta": 0,
+    "perguntaEn": "When did they travel?",
+    "opcoesEn": [
+     "Last July",
+     "This May",
+     "In December"
+    ]
    },
    {
     "pergunta": "Como eles viajaram?",
@@ -2203,7 +2370,13 @@
      "De trem",
      "De ônibus"
     ],
-    "correta": 0
+    "correta": 0,
+    "perguntaEn": "How did they travel?",
+    "opcoesEn": [
+     "By plane",
+     "By train",
+     "By bus"
+    ]
    },
    {
     "pergunta": "O que Xiaoming achou do pato laqueado?",
@@ -2212,9 +2385,17 @@
      "Caro",
      "Apimentado"
     ],
-    "correta": 0
+    "correta": 0,
+    "perguntaEn": "What did Xiaoming think of the roast duck?",
+    "opcoesEn": [
+     "Delicious",
+     "Expensive",
+     "Spicy"
+    ]
    }
-  ]
+  ],
+  "tituloEn": "Xiaoming goes to Beijing",
+  "resumoEn": "A vacation trip."
  },
  {
   "id": "h06",
@@ -2235,12 +2416,14 @@
      {
       "hanzi": "久",
       "pinyin": "jiǔ",
-      "traducao": "muito tempo"
+      "traducao": "muito tempo",
+      "traducaoEn": "a long time"
      },
      {
       "hanzi": "以前",
       "pinyin": "yǐqián",
-      "traducao": "antes; atrás"
+      "traducao": "antes; atrás",
+      "traducaoEn": "before; ago"
      },
      {
       "hanzi": "，"
@@ -2254,18 +2437,21 @@
      {
       "hanzi": "一个",
       "pinyin": "yí ge",
-      "traducao": "um(a)"
+      "traducao": "um(a)",
+      "traducaoEn": "a; one"
      },
      {
       "hanzi": "农民",
       "pinyin": "nóngmín",
-      "traducao": "camponês"
+      "traducao": "camponês",
+      "traducaoEn": "farmer"
      },
      {
       "hanzi": "。"
      }
     ],
-    "traducao": "Há muito tempo, havia um camponês."
+    "traducao": "Há muito tempo, havia um camponês.",
+    "traducaoEn": "A long time ago, there was a farmer."
    },
    {
     "tokens": [
@@ -2284,7 +2470,8 @@
      {
       "hanzi": "天",
       "pinyin": "tiān",
-      "traducao": "dia"
+      "traducao": "dia",
+      "traducaoEn": "day"
      },
      {
       "hanzi": "，"
@@ -2304,7 +2491,8 @@
      {
       "hanzi": "地",
       "pinyin": "dì",
-      "traducao": "campo"
+      "traducao": "campo",
+      "traducaoEn": "field"
      },
      {
       "hanzi": "里",
@@ -2322,7 +2510,8 @@
       "hanzi": "。"
      }
     ],
-    "traducao": "Um dia, ele estava trabalhando no campo."
+    "traducao": "Um dia, ele estava trabalhando no campo.",
+    "traducaoEn": "One day, he was working in his field."
    },
    {
     "tokens": [
@@ -2335,22 +2524,26 @@
      {
       "hanzi": "只",
       "pinyin": "zhī",
-      "traducao": "(classificador de animais)"
+      "traducao": "(classificador de animais)",
+      "traducaoEn": "(measure word for animals)"
      },
      {
       "hanzi": "兔子",
       "pinyin": "tùzi",
-      "traducao": "coelho"
+      "traducao": "coelho",
+      "traducaoEn": "rabbit"
      },
      {
       "hanzi": "跑",
       "pinyin": "pǎo",
-      "traducao": "correr"
+      "traducao": "correr",
+      "traducaoEn": "to run"
      },
      {
       "hanzi": "过来",
       "pinyin": "guòlai",
-      "traducao": "(vir em direção a)"
+      "traducao": "(vir em direção a)",
+      "traducaoEn": "(come towards)"
      },
      {
       "hanzi": "，"
@@ -2358,7 +2551,8 @@
      {
       "hanzi": "撞",
       "pinyin": "zhuàng",
-      "traducao": "bater"
+      "traducao": "bater",
+      "traducaoEn": "to bump into"
      },
      {
       "hanzi": "到",
@@ -2369,7 +2563,8 @@
      {
       "hanzi": "树",
       "pinyin": "shù",
-      "traducao": "árvore"
+      "traducao": "árvore",
+      "traducaoEn": "tree"
      },
      {
       "hanzi": "上",
@@ -2383,7 +2578,8 @@
      {
       "hanzi": "死",
       "pinyin": "sǐ",
-      "traducao": "morrer"
+      "traducao": "morrer",
+      "traducaoEn": "to die"
      },
      {
       "hanzi": "了",
@@ -2395,14 +2591,16 @@
       "hanzi": "。"
      }
     ],
-    "traducao": "Um coelho veio correndo, bateu numa árvore e morreu."
+    "traducao": "Um coelho veio correndo, bateu numa árvore e morreu.",
+    "traducaoEn": "A rabbit came running, crashed into a tree and died."
    },
    {
     "tokens": [
      {
       "hanzi": "农民",
       "pinyin": "nóngmín",
-      "traducao": "camponês"
+      "traducao": "camponês",
+      "traducaoEn": "farmer"
      },
      {
       "hanzi": "很",
@@ -2452,7 +2650,8 @@
      {
       "hanzi": "不用",
       "pinyin": "bú yòng",
-      "traducao": "não precisar"
+      "traducao": "não precisar",
+      "traducaoEn": "don't need to"
      },
      {
       "hanzi": "工作",
@@ -2473,7 +2672,8 @@
       "hanzi": "”"
      }
     ],
-    "traducao": "O camponês ficou muito feliz: \"Que ótimo! Não preciso mais trabalhar!\""
+    "traducao": "O camponês ficou muito feliz: \"Que ótimo! Não preciso mais trabalhar!\"",
+    "traducaoEn": "The farmer was very happy: \"Great! I don't need to work anymore!\""
    },
    {
     "tokens": [
@@ -2486,7 +2686,8 @@
      {
       "hanzi": "那天",
       "pinyin": "nà tiān",
-      "traducao": "aquele dia"
+      "traducao": "aquele dia",
+      "traducaoEn": "that day"
      },
      {
       "hanzi": "开始",
@@ -2506,7 +2707,8 @@
      {
       "hanzi": "每天",
       "pinyin": "měitiān",
-      "traducao": "todo dia"
+      "traducao": "todo dia",
+      "traducaoEn": "every day"
      },
      {
       "hanzi": "坐",
@@ -2523,7 +2725,8 @@
      {
       "hanzi": "树",
       "pinyin": "shù",
-      "traducao": "árvore"
+      "traducao": "árvore",
+      "traducaoEn": "tree"
      },
      {
       "hanzi": "旁边",
@@ -2540,20 +2743,23 @@
      {
       "hanzi": "兔子",
       "pinyin": "tùzi",
-      "traducao": "coelho"
+      "traducao": "coelho",
+      "traducaoEn": "rabbit"
      },
      {
       "hanzi": "。"
      }
     ],
-    "traducao": "A partir daquele dia, ele se sentava todo dia ao lado da árvore esperando coelhos."
+    "traducao": "A partir daquele dia, ele se sentava todo dia ao lado da árvore esperando coelhos.",
+    "traducaoEn": "From that day on, he sat next to the tree every day waiting for rabbits."
    },
    {
     "tokens": [
      {
       "hanzi": "可是",
       "pinyin": "kěshì",
-      "traducao": "mas"
+      "traducao": "mas",
+      "traducaoEn": "but"
      },
      {
       "hanzi": "，"
@@ -2579,7 +2785,8 @@
      {
       "hanzi": "兔子",
       "pinyin": "tùzi",
-      "traducao": "coelho"
+      "traducao": "coelho",
+      "traducaoEn": "rabbit"
      },
      {
       "hanzi": "来",
@@ -2597,7 +2804,8 @@
       "hanzi": "。"
      }
     ],
-    "traducao": "Mas nunca mais apareceu coelho nenhum."
+    "traducao": "Mas nunca mais apareceu coelho nenhum.",
+    "traducaoEn": "But no rabbit ever came again."
    },
    {
     "tokens": [
@@ -2616,7 +2824,8 @@
      {
       "hanzi": "地",
       "pinyin": "dì",
-      "traducao": "campo"
+      "traducao": "campo",
+      "traducaoEn": "field"
      },
      {
       "hanzi": "里",
@@ -2652,7 +2861,8 @@
       "hanzi": "。"
      }
     ],
-    "traducao": "E no campo dele também não havia mais verduras."
+    "traducao": "E no campo dele também não havia mais verduras.",
+    "traducaoEn": "And there were no more vegetables in his field."
    }
   ],
   "perguntas": [
@@ -2663,7 +2873,13 @@
      "Fugiu para a floresta",
      "Comeu as verduras"
     ],
-    "correta": 0
+    "correta": 0,
+    "perguntaEn": "What happened to the rabbit?",
+    "opcoesEn": [
+     "It crashed into a tree",
+     "It ran into the forest",
+     "It ate the vegetables"
+    ]
    },
    {
     "pergunta": "O que o camponês fez depois?",
@@ -2672,7 +2888,13 @@
      "Trabalhou ainda mais",
      "Foi para a cidade"
     ],
-    "correta": 0
+    "correta": 0,
+    "perguntaEn": "What did the farmer do afterwards?",
+    "opcoesEn": [
+     "Waited next to the tree",
+     "Worked even harder",
+     "Went to the city"
+    ]
    },
    {
     "pergunta": "Qual é a moral da história?",
@@ -2681,9 +2903,18 @@
      "Coelhos são rápidos",
      "Árvores são perigosas"
     ],
-    "correta": 0
+    "correta": 0,
+    "perguntaEn": "What is the moral of the story?",
+    "opcoesEn": [
+     "Don't wait for luck without working",
+     "Rabbits are fast",
+     "Trees are dangerous"
+    ]
    }
   ],
-  "nota": "守株待兔 (shǒu zhū dài tù) virou um provérbio: ficar esperando a sorte em vez de se esforçar."
+  "nota": "守株待兔 (shǒu zhū dài tù) virou um provérbio: ficar esperando a sorte em vez de se esforçar.",
+  "tituloEn": "Waiting for rabbits",
+  "resumoEn": "An ancient Chinese fable (成语).",
+  "notaEn": "守株待兔 (shǒu zhū dài tù) became a proverb: waiting for luck instead of working for it."
  }
 ]

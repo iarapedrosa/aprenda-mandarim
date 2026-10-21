@@ -1,6 +1,18 @@
 {
   "niveis": [
-    { "id": "hsk1", "nome": "HSK 1", "arquivo": "hsk1.json", "descricao": "150 palavras do dia a dia: cumprimentos, números, família, comida e tempo." },
-    { "id": "hsk2", "nome": "HSK 2", "arquivo": "hsk2.json", "descricao": "Mais 150 palavras: rotina, compras, clima, esportes e direções." }
+    {
+      "id": "hsk1",
+      "nome": "HSK 1",
+      "arquivo": "hsk1.json",
+      "descricao": "150 palavras do dia a dia: cumprimentos, números, família, comida e tempo.",
+      "descricaoEn": "150 everyday words: greetings, numbers, family, food and time."
+    },
+    {
+      "id": "hsk2",
+      "nome": "HSK 2",
+      "arquivo": "hsk2.json",
+      "descricao": "Mais 150 palavras: rotina, compras, clima, esportes e direções.",
+      "descricaoEn": "150 more words: routine, shopping, weather, sports and directions."
+    }
   ]
 }

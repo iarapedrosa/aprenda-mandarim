@@ -3,7 +3,8 @@
  * Confere os dados de public/data:
  *   - vocabulário: campos obrigatórios e ids repetidos;
  *   - em todo objeto com "hanzi" e "pinyin" (palavras, exemplos, frases do dia, textos):
- *     número de sílabas = número de caracteres, e letras/tons comparados com o pinyin-pro.
+ *     número de sílabas = número de caracteres, e letras/tons comparados com o pinyin-pro;
+ *   - versão em inglês: todo campo traduzível (traducao, titulo, dica…) tem o par "En".
  *
  * Diferenças de tom neutro e de sandhi (一, 不) são aceitas. O resto é listado para revisão
  * humana — o pinyin-pro também erra em caracteres com mais de uma leitura.
@@ -186,6 +187,30 @@ const pastaData = join(raiz, 'public/data');
 for (const arquivo of listar(pastaData)) {
   percorrer(JSON.parse(readFileSync(arquivo, 'utf8')), arquivo.slice(pastaData.length + 1));
 }
+
+// 3) Inglês: todo campo de tradução em português precisa do par "En" (versão em inglês do site)
+const CAMPOS_TRADUZIDOS = ['traducao', 'titulo', 'resumo', 'significado', 'dica', 'pergunta', 'explicacao', 'estrutura', 'foco', 'descricao', 'nota'];
+let semIngles = 0;
+function conferirIngles(valor, rotulo) {
+  if (Array.isArray(valor)) return valor.forEach((v) => conferirIngles(v, rotulo));
+  if (!valor || typeof valor !== 'object') return;
+  for (const campo of CAMPOS_TRADUZIDOS) {
+    if (campo in valor && !(`${campo}En` in valor)) {
+      semIngles++;
+      if (semIngles <= 20) problemas.push(`${rotulo}: "${valor.hanzi ?? valor.id ?? valor.forma ?? ''}" sem "${campo}En"`);
+    }
+  }
+  for (const v of Object.values(valor)) if (typeof v === 'object') conferirIngles(v, rotulo);
+}
+for (const arquivo of listar(pastaData)) {
+  const rotulo = arquivo.slice(pastaData.length + 1);
+  // traduções de tokens só são exigidas quando não há palavra do vocabulário ligada
+  const dados = JSON.parse(readFileSync(arquivo, 'utf8'), (k, v) =>
+    v && typeof v === 'object' && !Array.isArray(v) && v.palavra && v.pinyin ? { ...v, traducaoEn: '' } : v,
+  );
+  conferirIngles(dados, rotulo);
+}
+if (semIngles > 20) problemas.push(`… e mais ${semIngles - 20} campo(s) sem inglês.`);
 
 console.log(`[validar] ${palavras} palavras no vocabulário; ${pares} trechos com pinyin conferidos.`);
 if (problemas.length) {
