@@ -1,7 +1,11 @@
 # 学中文 · Aprenda Mandarim
 
-Site para aprender mandarim **do zero** e **praticar todos os dias**, feito para quem fala português do Brasil.
-Toda a interface, as explicações e as traduções estão em português.
+Site para aprender mandarim **do zero** e **praticar todos os dias**, feito para quem fala português do Brasil —
+e também para quem fala inglês: dá para escolher **português → mandarim** ou **English → Mandarin**.
+
+> **English:** a free, offline-capable site to learn Mandarin from scratch with a daily spaced-repetition workout.
+> Tap **PT/EN** at the top (or open the menu ☰ → *Idioma · Language*) to switch the whole site — interface,
+> translations, grammar notes and pronunciation tips for English speakers — to English.
 
 - 🗓️ **Treino de hoje**: sessão diária de ~15–20 minutos que mistura todos os módulos, com repetição espaçada (SM-2).
 - 🔊 **Pinyin e tons**: tabela de iniciais e finais com áudio, curvas dos tons, armadilhas para brasileiros, treino de tons, pares mínimos e sandhi.
@@ -16,7 +20,8 @@ Toda a interface, as explicações e as traduções estão em português.
 - 🧭 **Recursos**: o que usar fora do site em cada fase (livros graduados, apps, vídeos) e quando começar a conversar.
 - 🃏 **Cartões (estilo Anki)**: flashcards com Errei/Difícil/Bom/Fácil e prévia do próximo intervalo, mais exportação dos baralhos para o app do Anki.
 - 💬 **Frase do dia** e **palavra do dia** na página inicial.
-- 📱 PWA instalável, funciona offline, tema claro/escuro, progresso salvo no navegador com backup em JSON.
+- 🌐 **Português ou inglês**: o botão **PT/EN** no topo troca o site inteiro (interface, traduções, gramática comparada ao inglês e armadilhas de pronúncia para falantes de inglês). A escolha fica salva; na primeira visita, segue o idioma do navegador.
+- 📱 PWA instalável, funciona offline, tema claro/escuro, menu inferior e menu lateral pensados para o celular, progresso salvo no navegador com backup em JSON.
 
 ## Sumário
 
@@ -179,12 +184,14 @@ Todo o conteúdo fica em `public/data` e é carregado como JSON. Não é preciso
        "hanzi": "旅行",
        "pinyin": "lǚxíng",
        "traducao": "viajar; viagem",
+       "traducaoEn": "to travel; trip",
        "classe": "verbo",
        "nivel": 3,
        "exemplo": {
          "hanzi": "我喜欢去中国旅行。",
          "pinyin": "Wǒ xǐhuan qù Zhōngguó lǚxíng.",
-         "traducao": "Eu gosto de viajar pela China."
+         "traducao": "Eu gosto de viajar pela China.",
+         "traducaoEn": "I like traveling in China."
        }
      }
    ]
@@ -194,6 +201,7 @@ Todo o conteúdo fica em `public/data` e é carregado como JSON. Não é preciso
    - Escreva o pinyin com acentos. Palavras de várias sílabas vão juntas (`lǚxíng`) e usam apóstrofo quando a sílaba seguinte começa com a/o/e (`nǚ'ér`). O tom neutro fica sem acento (`xièxie`).
    - Para 一 e 不, siga o costume dos livros e escreva o tom já mudado: `yìqǐ`, `bú kèqi`.
    - O `exemplo` é opcional, mas recomendado: ele aparece na página da palavra, no treino e no ditado.
+   - Todo texto traduzido tem o par em inglês com o sufixo `En` (`traducao` → `traducaoEn`, `dica` → `dicaEn`…). É ele que aparece quando o site está em inglês.
 
 2. Registre o arquivo em `public/data/vocabulario/index.json`:
 
@@ -216,7 +224,12 @@ Todo o conteúdo fica em `public/data` e é carregado como JSON. Não é preciso
 | `public/data/gramatica.json` | mini-lições de gramática (`minPalavras` define quando entram no treino) |
 | `public/data/pinyin/silabas.json` | caractere usado para "tocar" cada sílaba e tom (gerado por `node scripts/gerar-silabas.mjs`) |
 
-Depois de editar, rode `npm run dados:validar`.
+Depois de editar, rode `npm run dados:validar` — ele também avisa se faltar algum campo `…En` (versão em inglês).
+
+### Textos da interface (português e inglês)
+
+Os textos ficam no próprio componente, lado a lado: `{{ i.t('Ouvir', 'Listen') }}`, onde `i` é o `IdiomaService`
+(`src/app/core/i18n`). Para campos de dados, `i.tr(objeto, 'traducao')` usa `traducaoEn` quando o site está em inglês.
 
 ---
 
