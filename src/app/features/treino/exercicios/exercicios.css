@@ -1,0 +1,86 @@
+:host {
+  display: block;
+}
+
+.enunciado {
+  font-weight: 700;
+  font-size: 1.05rem;
+  color: var(--cor-texto-suave);
+  text-align: center;
+  margin-bottom: 8px;
+}
+
+.pergunta {
+  text-align: center;
+  margin-bottom: 16px;
+}
+
+.pergunta p {
+  margin: 0 0 6px;
+}
+
+.hanzi-pergunta {
+  font-family: var(--fonte-hanzi);
+  font-size: clamp(2.6rem, 14vw, 4.2rem);
+  line-height: 1.15;
+}
+
+.pinyin-pergunta {
+  font-size: 1.3rem;
+}
+
+.texto-pergunta {
+  font-size: 1.3rem;
+  font-weight: 600;
+}
+
+.centro {
+  justify-content: center;
+}
+
+.opcoes {
+  margin-bottom: 14px;
+}
+
+.opcao {
+  position: relative;
+}
+
+.atalho {
+  position: absolute;
+  top: 4px;
+  left: 8px;
+  font-size: 0.7rem;
+  color: var(--cor-texto-suave);
+}
+
+.hanzi-opcao {
+  font-family: var(--fonte-hanzi);
+  font-size: 1.8rem;
+}
+
+.retorno {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px 10px;
+  align-items: center;
+  margin-bottom: 12px;
+}
+
+.resposta {
+  display: inline-flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  align-items: center;
+  color: var(--cor-texto);
+}
+
+.hanzi-resposta {
+  font-family: var(--fonte-hanzi);
+  font-size: 1.5rem;
+}
+
+.explicacao {
+  flex-basis: 100%;
+  color: var(--cor-texto);
+}

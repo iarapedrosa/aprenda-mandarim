@@ -1,0 +1,57 @@
+:host {
+  display: block;
+}
+
+.do-dia {
+  height: 100%;
+}
+
+.do-dia p {
+  margin: 0 0 6px;
+}
+
+.rotulo {
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--cor-primaria);
+}
+
+.hanzi-frase {
+  font-family: var(--fonte-hanzi);
+  font-size: 2rem;
+  line-height: 1.3;
+}
+
+.pinyin-frase {
+  font-size: 1.1rem;
+}
+
+.traducao {
+  font-weight: 600;
+  font-size: 1.05rem;
+}
+
+.nota {
+  color: var(--cor-texto-suave);
+  font-size: 0.92rem;
+}
+
+.palavra {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+}
+
+.hanzi-palavra {
+  font-family: var(--fonte-hanzi);
+  font-size: 3rem;
+  line-height: 1.1;
+  color: var(--cor-texto);
+  text-decoration: none;
+}
+
+.exemplo {
+  font-size: 0.95rem;
+}

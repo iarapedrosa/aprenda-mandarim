@@ -55,7 +55,7 @@
   <router-outlet />
 </main>
 
-<nav class="nav-celular" aria-label="Navegação principal">
+<nav class="nav-celular" aria-label="Navegação principal" [hidden]="emTreino()">
   @for (item of navegacao; track item.rota) {
     @if (!item.soDesktop) {
       <a

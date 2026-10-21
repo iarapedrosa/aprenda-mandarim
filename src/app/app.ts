@@ -1,5 +1,5 @@
 import { Component, inject, signal } from '@angular/core';
-import { RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
+import { NavigationEnd, Router, RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
 import { SwUpdate } from '@angular/service-worker';
 import { filter } from 'rxjs';
 import { TemaService } from './core/tema/tema.service';
@@ -24,7 +24,10 @@ interface ItemNavegacao {
 export class App {
   protected readonly tema = inject(TemaService);
   private readonly sw = inject(SwUpdate);
+  private readonly router = inject(Router);
   protected readonly atualizacaoDisponivel = signal(false);
+  /** durante o treino a barra inferior some, para dar foco */
+  protected readonly emTreino = signal(false);
 
   protected readonly navegacao: ItemNavegacao[] = [
     { rota: '/', rotulo: 'Hoje', icone: '今', exato: true },
@@ -39,6 +42,9 @@ export class App {
   ];
 
   constructor() {
+    this.router.events
+      .pipe(filter((e) => e instanceof NavigationEnd))
+      .subscribe((e) => this.emTreino.set((e as NavigationEnd).urlAfterRedirects.startsWith('/treino')));
     if (this.sw.isEnabled) {
       this.sw.versionUpdates
         .pipe(filter((e) => e.type === 'VERSION_READY'))
