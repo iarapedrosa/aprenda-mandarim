@@ -57,7 +57,7 @@ O treino também traz dois números para ouvir e reconhecer, e a faixa aumenta c
 
 ### Cartões (estilo Anki)
 
-Em **Praticar › Cartões** você revisa como no Anki:
+Abra **Cartões** no menu (no celular, em **Praticar › Cartões**). Você revisa como no Anki:
 
 - **Revisar agora** traz os cartões vencidos de todos os baralhos (HSK 1, HSK 2 e Frases do dia).
 - **Estudar** em um baralho junta as revisões dele com cartões novos (você escolhe quantos por sessão).
@@ -67,7 +67,7 @@ Em **Praticar › Cartões** você revisa como no Anki:
 
 ### Números
 
-Em **Praticar › Números**:
+Abra **Números** no menu (no celular, em **Praticar › Números**):
 
 - **Aprender**: regras com áudio — 11–19, dezenas, 百, 千, 万 (o chinês conta de 10 mil em 10 mil!), 零 no meio, 两 × 二, sandhi de 一, dinheiro (块/毛), horas (点/分/半), datas e telefones (1 = 幺).
 - **Conversor**: digite um número, preço, hora, telefone ou ano para ver os caracteres e o pinyin e ouvir.
