@@ -32,6 +32,10 @@ export const routes: Routes = [
     loadChildren: () => import('./features/fala/fala.routes').then((m) => m.FALA_ROTAS),
   },
   {
+    path: 'metodo',
+    loadChildren: () => import('./features/metodo/metodo.routes').then((m) => m.METODO_ROTAS),
+  },
+  {
     path: 'recursos',
     loadChildren: () => import('./features/recursos/recursos.routes').then((m) => m.RECURSOS_ROTAS),
   },

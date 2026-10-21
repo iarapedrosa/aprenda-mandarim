@@ -73,6 +73,7 @@ export class PraticarPagina {
     { rota: '/fala', icone: '说', nome: 'Fala', descricao: 'Shadowing e trava-línguas com reconhecimento de voz.' },
     { rota: '/pinyin/treino', icone: '声', nome: 'Treino de tons', descricao: 'Identifique os tons e pares mínimos.' },
     { rota: '/caracteres/radicais', icone: '部', nome: 'Radicais', descricao: 'As peças que formam os caracteres.' },
+    { rota: '/metodo', icone: '研', nome: 'O método e a ciência', descricao: 'Por que o site funciona assim — com as referências científicas.' },
     { rota: '/recursos', icone: '书', nome: 'Recursos para estudar', descricao: 'Livros, apps, vídeos e conversa — o que usar fora do site.' },
   ];
 }
