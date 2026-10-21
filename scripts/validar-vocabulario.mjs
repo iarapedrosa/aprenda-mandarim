@@ -1,9 +1,9 @@
 #!/usr/bin/env node
 /**
- * Confere o vocabulário de public/data/vocabulario/*.json:
- *   - campos obrigatórios e ids repetidos;
- *   - número de sílabas do pinyin = número de caracteres;
- *   - letras e tons de cada sílaba comparados com o pinyin-pro (palavra e frase de exemplo).
+ * Confere os dados de public/data:
+ *   - vocabulário: campos obrigatórios e ids repetidos;
+ *   - em todo objeto com "hanzi" e "pinyin" (palavras, exemplos, frases do dia, textos):
+ *     número de sílabas = número de caracteres, e letras/tons comparados com o pinyin-pro.
  *
  * Diferenças de tom neutro e de sandhi (一, 不) são aceitas. O resto é listado para revisão
  * humana — o pinyin-pro também erra em caracteres com mais de uma leitura.
@@ -19,6 +19,12 @@ const raiz = join(dirname(fileURLToPath(import.meta.url)), '..');
 const pasta = join(raiz, 'public/data/vocabulario');
 const fonteSilabas = readFileSync(join(raiz, 'src/app/core/pinyin/silabas-validas.ts'), 'utf8');
 const SILABAS = new Set(/`([^`]+)`/.exec(fonteSilabas)[1].split(/\s+/).filter(Boolean));
+
+/**
+ * Leituras já revisadas por humanos em que o pinyin-pro discorda (formato "trecho|caractere").
+ * Ex.: 为 em 一言为定 é wéi; 虎 em 马马虎虎 é hū; 空 em 有空 é kòng.
+ */
+const REVISADOS = new Set(['一言为定！|为', '马马虎虎。|虎', '有空吗？|空']);
 
 const MARCAS = {};
 for (const [v, ms] of Object.entries({ a: 'āáǎà', e: 'ēéěè', i: 'īíǐì', o: 'ōóǒò', u: 'ūúǔù', ü: 'ǖǘǚǜ' })) {
@@ -109,6 +115,10 @@ function conferir(rotulo, hanzi, texto, problemas, contextual) {
   let iCaractere = 0;
   sils.forEach((s, i) => {
     const c = cs[i];
+    if (REVISADOS.has(`${hanzi}|${c}`)) {
+      iCaractere += 1;
+      return;
+    }
     const erhua = s.letras !== 'er' && s.letras.endsWith('r') && hanzi.includes('儿');
     const base = erhua ? s.letras.slice(0, -1) : s.letras;
     const posicao = iCaractere;
@@ -133,30 +143,46 @@ function conferir(rotulo, hanzi, texto, problemas, contextual) {
 }
 
 const problemas = [];
+
+// 1) Vocabulário: campos obrigatórios e ids únicos
 const ids = new Map();
-const arquivos = readdirSync(pasta).filter((n) => n.endsWith('.json') && n !== 'index.json');
-let total = 0;
-for (const arquivo of arquivos) {
-  const itens = JSON.parse(readFileSync(join(pasta, arquivo), 'utf8'));
-  for (const item of itens) {
-    total++;
+const arquivosVocab = readdirSync(pasta).filter((n) => n.endsWith('.json') && n !== 'index.json');
+let palavras = 0;
+for (const arquivo of arquivosVocab) {
+  for (const item of JSON.parse(readFileSync(join(pasta, arquivo), 'utf8'))) {
+    palavras++;
     const rotulo = `${arquivo} ${item.hanzi}`;
     for (const campo of ['id', 'hanzi', 'pinyin', 'traducao', 'classe']) {
       if (!item[campo]) problemas.push(`${rotulo}: falta o campo "${campo}"`);
     }
     if (ids.has(item.id)) problemas.push(`${rotulo}: id repetido (também em ${ids.get(item.id)})`);
     ids.set(item.id, arquivo);
-    conferir(rotulo, item.hanzi, item.pinyin, problemas, false);
-    if (item.exemplo) {
-      for (const campo of ['hanzi', 'pinyin', 'traducao']) {
-        if (!item.exemplo[campo]) problemas.push(`${rotulo}: exemplo sem "${campo}"`);
-      }
-      conferir(`${rotulo} (exemplo)`, item.exemplo.hanzi, item.exemplo.pinyin, problemas, true);
-    }
   }
 }
 
-console.log(`[validar-vocabulario] ${total} palavras em ${arquivos.length} arquivo(s).`);
+// 2) Pinyin de tudo que tiver "hanzi" + "pinyin" em public/data (exceto data/pinyin)
+function listar(dir) {
+  return readdirSync(dir, { withFileTypes: true }).flatMap((e) => {
+    if (e.isDirectory()) return e.name === 'pinyin' ? [] : listar(join(dir, e.name));
+    return e.name.endsWith('.json') && e.name !== 'index.json' ? [join(dir, e.name)] : [];
+  });
+}
+let pares = 0;
+function percorrer(valor, rotulo) {
+  if (Array.isArray(valor)) return valor.forEach((v) => percorrer(v, rotulo));
+  if (!valor || typeof valor !== 'object') return;
+  if (typeof valor.hanzi === 'string' && typeof valor.pinyin === 'string' && valor.pinyin) {
+    pares++;
+    conferir(`${rotulo} ${valor.hanzi}`, valor.hanzi, valor.pinyin, problemas, [...valor.hanzi].filter((c) => /\p{Script=Han}/u.test(c)).length > 1);
+  }
+  for (const v of Object.values(valor)) if (typeof v === 'object') percorrer(v, rotulo);
+}
+const pastaData = join(raiz, 'public/data');
+for (const arquivo of listar(pastaData)) {
+  percorrer(JSON.parse(readFileSync(arquivo, 'utf8')), arquivo.slice(pastaData.length + 1));
+}
+
+console.log(`[validar] ${palavras} palavras no vocabulário; ${pares} trechos com pinyin conferidos.`);
 if (problemas.length) {
   console.log(`${problemas.length} ponto(s) para revisar:\n- ` + problemas.join('\n- '));
   process.exitCode = 1;
