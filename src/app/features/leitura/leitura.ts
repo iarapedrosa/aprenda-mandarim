@@ -2,6 +2,7 @@ import { Component, computed, inject, signal } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { LeituraService, coberturaDoTexto, rotuloCobertura } from '../../core/dados/leitura.service';
 import { ProgressoService } from '../../core/progresso/progresso.service';
+import { IdiomaService } from '../../core/i18n/idioma.service';
 
 @Component({
   selector: 'app-leitura',
@@ -9,26 +10,30 @@ import { ProgressoService } from '../../core/progresso/progresso.service';
   template: `
     <section class="pagina">
       <header>
-        <h1>Leitura</h1>
+        <h1>{{ i.t('Leitura', 'Reading') }}</h1>
         <p class="subtitulo">
-          Diálogos do dia a dia e historinhas curtas, do mais fácil ao mais difícil. Toque nas palavras para ver o
-          significado e ouvir.
+          {{ i.t('Diálogos do dia a dia e historinhas curtas, do mais fácil ao mais difícil. Toque nas palavras para ver o significado e ouvir.', 'Everyday dialogues and short stories, from easiest to hardest. Tap words to see the meaning and listen.') }}
         </p>
       </header>
 
-      <div class="abas" role="tablist" aria-label="Tipo de texto">
-        <button type="button" role="tab" [class.ativa]="tipo() === 'dialogo'" [attr.aria-selected]="tipo() === 'dialogo'" (click)="tipo.set('dialogo')">Diálogos</button>
-        <button type="button" role="tab" [class.ativa]="tipo() === 'historia'" [attr.aria-selected]="tipo() === 'historia'" (click)="tipo.set('historia')">Historinhas</button>
+      <div class="abas" role="tablist" [attr.aria-label]="i.t('Tipo de texto', 'Text type')">
+        <button type="button" role="tab" [class.ativa]="tipo() === 'dialogo'" [attr.aria-selected]="tipo() === 'dialogo'" (click)="tipo.set('dialogo')">{{ i.t('Diálogos', 'Dialogues') }}</button>
+        <button type="button" role="tab" [class.ativa]="tipo() === 'historia'" [attr.aria-selected]="tipo() === 'historia'" (click)="tipo.set('historia')">{{ i.t('Historinhas', 'Stories') }}</button>
       </div>
 
       @if (mostrarCobertura()) {
         <p class="suave pequeno">
-          A porcentagem mostra quantas palavras de cada texto você já estudou. O ideal para ler com prazer é conhecer
-          quase todas (~98%, segundo Hu &amp; Nation, 2000) — textos "ideais" rendem mais aprendizado com menos esforço.
+          @if (i.ingles()) {
+            The percentage shows how many words in each text you have already studied. To read with pleasure you should know
+            almost all of them (~98%, per Hu &amp; Nation, 2000) — "ideal" texts give more learning for less effort.
+          } @else {
+            A porcentagem mostra quantas palavras de cada texto você já estudou. O ideal para ler com prazer é conhecer
+            quase todas (~98%, segundo Hu &amp; Nation, 2000) — textos "ideais" rendem mais aprendizado com menos esforço.
+          }
         </p>
       }
       @if (!leitura.carregado()) {
-        <p class="info">Carregando textos…</p>
+        <p class="info">{{ i.t('Carregando textos…', 'Loading texts…') }}</p>
       } @else {
         <ul class="textos">
           @for (t of lista(); track t.id; let idx = $index) {
@@ -37,20 +42,20 @@ import { ProgressoService } from '../../core/progresso/progresso.service';
                 <span class="numero" aria-hidden="true">{{ idx + 1 }}</span>
                 <span class="corpo">
                   <span class="titulo-hanzi" lang="zh-CN">{{ t.tituloHanzi }}</span>
-                  <strong>{{ t.titulo }}</strong>
-                  <span class="suave pequeno">{{ t.resumo }}</span>
+                  <strong>{{ i.tr(t, 'titulo') }}</strong>
+                  <span class="suave pequeno">{{ i.tr(t, 'resumo') }}</span>
                 </span>
                 <span class="lado">
                   <span class="etiqueta">HSK {{ t.nivel }}</span>
                   @if (mostrarCobertura()) {
                     @if (cobertura(t.id); as cob) {
-                      <span [class]="'cobertura ' + cob.classe" [title]="'Você já estudou ' + cob.pct + '% das palavras'">
-                        {{ cob.pct }}% · {{ cob.texto }}
+                      <span [class]="'cobertura ' + cob.classe" [title]="i.t('Você já estudou ', 'You have studied ') + cob.pct + i.t('% das palavras', '% of the words')">
+                        {{ cob.pct }}% · {{ i.tr(cob, 'texto') }}
                       </span>
                     }
                   }
                   @if (concluidos()[t.id]; as c) {
-                    <span class="feito" [attr.aria-label]="'Concluído: ' + c.acertos + ' de ' + c.total">✓ {{ c.acertos }}/{{ c.total }}</span>
+                    <span class="feito" [attr.aria-label]="i.t('Concluído: ', 'Completed: ') + c.acertos + i.t(' de ', ' of ') + c.total">✓ {{ c.acertos }}/{{ c.total }}</span>
                   }
                 </span>
               </a>
@@ -127,6 +132,7 @@ import { ProgressoService } from '../../core/progresso/progresso.service';
   `,
 })
 export class LeituraPagina {
+  protected readonly i = inject(IdiomaService);
   protected readonly leitura = inject(LeituraService);
   private readonly progresso = inject(ProgressoService);
   protected readonly tipo = signal<'dialogo' | 'historia'>('dialogo');

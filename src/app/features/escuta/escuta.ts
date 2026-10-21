@@ -10,6 +10,7 @@ import { ControleVoz } from '../../shared/controle-voz/controle-voz';
 import { ExDigitarPinyin } from '../treino/exercicios/ex-digitar-pinyin';
 import { ExEscolha } from '../treino/exercicios/ex-escolha';
 import { ItemDigitarPinyin, ItemEscolha, ResultadoItem } from '../treino/sessao.model';
+import { IdiomaService } from '../../core/i18n/idioma.service';
 
 type Conteudo = 'palavras' | 'frases';
 type Resposta = 'pinyin' | 'caracteres';
@@ -27,31 +28,36 @@ let contador = 0;
   template: `
     <section class="pagina">
       <header>
-        <h1>Escuta</h1>
+        <h1>{{ i.t('Escuta', 'Listening') }}</h1>
         <p class="subtitulo">
-          Ditado: ouça e escreva em pinyin (com números, <code>ni3 hao3</code>, ou acentos, <code>nǐ hǎo</code>) ou
-          escolha os caracteres certos.
+          @if (i.ingles()) {
+            Dictation: listen and type in pinyin (with numbers, <code>ni3 hao3</code>, or tone marks, <code>nǐ hǎo</code>) or
+            pick the right characters.
+          } @else {
+            Ditado: ouça e escreva em pinyin (com números, <code>ni3 hao3</code>, ou acentos, <code>nǐ hǎo</code>) ou
+            escolha os caracteres certos.
+          }
         </p>
       </header>
 
       <form class="cartao config" (submit)="$event.preventDefault()">
         <fieldset>
-          <legend>O que ouvir</legend>
-          <label><input type="radio" name="conteudo" value="palavras" [ngModel]="conteudo()" (ngModelChange)="mudar('conteudo', $event)" /> Palavras</label>
-          <label><input type="radio" name="conteudo" value="frases" [ngModel]="conteudo()" (ngModelChange)="mudar('conteudo', $event)" /> Frases</label>
+          <legend>{{ i.t('O que ouvir', 'What to listen to') }}</legend>
+          <label><input type="radio" name="conteudo" value="palavras" [ngModel]="conteudo()" (ngModelChange)="mudar('conteudo', $event)" /> {{ i.t('Palavras', 'Words') }}</label>
+          <label><input type="radio" name="conteudo" value="frases" [ngModel]="conteudo()" (ngModelChange)="mudar('conteudo', $event)" /> {{ i.t('Frases', 'Sentences') }}</label>
         </fieldset>
         <fieldset>
-          <legend>Como responder</legend>
-          <label><input type="radio" name="resposta" value="pinyin" [ngModel]="resposta()" (ngModelChange)="mudar('resposta', $event)" /> Digitar pinyin</label>
-          <label><input type="radio" name="resposta" value="caracteres" [ngModel]="resposta()" (ngModelChange)="mudar('resposta', $event)" /> Escolher caracteres</label>
+          <legend>{{ i.t('Como responder', 'How to answer') }}</legend>
+          <label><input type="radio" name="resposta" value="pinyin" [ngModel]="resposta()" (ngModelChange)="mudar('resposta', $event)" /> {{ i.t('Digitar pinyin', 'Type pinyin') }}</label>
+          <label><input type="radio" name="resposta" value="caracteres" [ngModel]="resposta()" (ngModelChange)="mudar('resposta', $event)" /> {{ i.t('Escolher caracteres', 'Pick characters') }}</label>
         </fieldset>
         <label class="fonte">
-          Vocabulário
+          {{ i.t('Vocabulário', 'Vocabulary') }}
           <select class="campo" name="fonte" [ngModel]="fonte()" (ngModelChange)="mudar('fonte', $event)">
-            <option value="estudadas">Palavras que já estudei ({{ estudadas().length }})</option>
+            <option value="estudadas">{{ i.t('Palavras que já estudei', 'Words I’ve studied') }} ({{ estudadas().length }})</option>
             <option value="hsk1">HSK 1</option>
             <option value="hsk2">HSK 2</option>
-            <option value="todas">HSK 1 e 2</option>
+            <option value="todas">{{ i.t('HSK 1 e 2', 'HSK 1 and 2') }}</option>
           </select>
         </label>
       </form>
@@ -59,14 +65,14 @@ let contador = 0;
       <app-controle-voz class="voz" />
 
       <section class="cartao rodada" aria-live="polite">
-        <p class="placar">Acertos: <strong>{{ acertos() }}</strong> de {{ total() }}</p>
+        <p class="placar">{{ i.t('Acertos:', 'Score:') }} <strong>{{ acertos() }}</strong> {{ i.t('de', 'of') }} {{ total() }}</p>
         @if (!iniciado()) {
-          <p>Use fones de ouvido se puder. O áudio toca assim que a rodada começa; você pode repetir e diminuir a velocidade.</p>
+          <p>{{ i.t('Use fones de ouvido se puder. O áudio toca assim que a rodada começa; você pode repetir e diminuir a velocidade.', 'Use headphones if you can. The audio plays as soon as the round starts; you can replay it and slow it down.') }}</p>
           <button type="button" class="botao botao-primario botao-bloco" (click)="comecar()" [disabled]="!pronto()">
-            {{ pronto() ? 'Começar ditado' : 'Carregando…' }}
+            {{ pronto() ? i.t('Começar ditado', 'Start dictation') : i.t('Carregando…', 'Loading…') }}
           </button>
           @if (fonte() === 'estudadas' && pronto() && estudadas().length < 4) {
-            <p class="aviso pequeno">Você ainda tem poucas palavras estudadas; vamos usar o HSK 1.</p>
+            <p class="aviso pequeno">{{ i.t('Você ainda tem poucas palavras estudadas; vamos usar o HSK 1.', 'You have studied only a few words so far; we’ll use HSK 1.') }}</p>
           }
         } @else {
           <!-- @for com track por id recria o exercício a cada rodada -->
@@ -132,6 +138,7 @@ let contador = 0;
   `,
 })
 export class EscutaPagina {
+  protected readonly i = inject(IdiomaService);
   private readonly vocabulario = inject(VocabularioService);
   private readonly frases = inject(FrasesService);
   private readonly progresso = inject(ProgressoService);
@@ -170,13 +177,13 @@ export class EscutaPagina {
     if (this.conteudo() === 'palavras') {
       return this.palavras()
         .filter((p) => !p.hanzi.includes('…'))
-        .map((p) => ({ chave: p.id, hanzi: p.hanzi, pinyin: p.pinyin, traducao: p.traducao }));
+        .map((p) => ({ chave: p.id, hanzi: p.hanzi, pinyin: p.pinyin, traducao: p.traducao, traducaoEn: p.traducaoEn }));
     }
     const exemplos = this.palavras()
       .filter((p) => p.exemplo)
       .map((p) => ({ chave: `ex:${p.id}`, ...p.exemplo! }));
     const doDia =
-      this.fonte() === 'hsk2' ? [] : this.frases.frases().map((f) => ({ chave: f.id, hanzi: f.hanzi, pinyin: f.pinyin, traducao: f.traducao }));
+      this.fonte() === 'hsk2' ? [] : this.frases.frases().map((f) => ({ chave: f.id, hanzi: f.hanzi, pinyin: f.pinyin, traducao: f.traducao, traducaoEn: f.traducaoEn }));
     return [...exemplos, ...doDia];
   });
 
@@ -211,9 +218,11 @@ export class EscutaPagina {
         tipo: 'digitar-pinyin',
         modulo: 'escuta',
         enunciado: 'Ouça e escreva em pinyin',
+        enunciadoEn: 'Listen and type the pinyin',
         hanzi: alvo.hanzi,
         pinyin: alvo.pinyin,
         traducao: alvo.traducao,
+        traducaoEn: alvo.traducaoEn,
         soAudio: true,
       });
     } else {
@@ -223,11 +232,12 @@ export class EscutaPagina {
         tipo: 'escolha',
         modulo: 'escuta',
         enunciado: 'Ouça e escolha o que foi dito',
+        enunciadoEn: 'Listen and choose what was said',
         pergunta: { audio: alvo.hanzi },
         opcoes: opcoes.map((o) => ({ valor: o.chave, rotulo: o.hanzi, hanzi: true })),
         correta: alvo.chave,
         tons: analisarPinyin(alvo.pinyin).map((s) => s.tom),
-        resposta: { hanzi: alvo.hanzi, pinyin: alvo.pinyin, traducao: alvo.traducao },
+        resposta: { hanzi: alvo.hanzi, pinyin: alvo.pinyin, traducao: alvo.traducao, traducaoEn: alvo.traducaoEn },
       });
     }
   }

@@ -2,6 +2,7 @@ import { Component, inject, signal } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { VocabularioService } from '../../../core/dados/vocabulario.service';
 import { AnimacaoTracos } from '../../../shared/hanzi/animacao-tracos';
+import { IdiomaService } from '../../../core/i18n/idioma.service';
 
 @Component({
   selector: 'app-radicais',
@@ -9,28 +10,34 @@ import { AnimacaoTracos } from '../../../shared/hanzi/animacao-tracos';
   template: `
     <section class="pagina">
       <header>
-        <h1>Radicais</h1>
+        <h1>{{ i.t('Radicais', 'Radicals') }}</h1>
         <p class="subtitulo">
-          Radicais são as "peças" que formam os caracteres e costumam dar uma pista do significado.
-          Conhecer os mais comuns ajuda muito a memorizar.
+          {{ i.t('Radicais são as "peças" que formam os caracteres e costumam dar uma pista do significado. Conhecer os mais comuns ajuda muito a memorizar.', 'Radicals are the "building blocks" of characters and often hint at the meaning. Knowing the common ones helps a lot with memorizing.') }}
         </p>
       </header>
 
-      <nav class="abas" aria-label="Seções de caracteres">
-        <a routerLink="/caracteres">Vocabulário</a>
-        <a routerLink="/caracteres/radicais" class="ativa" aria-current="page">Radicais</a>
-        <a routerLink="/escrita">Praticar escrita</a>
+      <nav class="abas" [attr.aria-label]="i.t('Seções de caracteres', 'Character sections')">
+        <a routerLink="/caracteres">{{ i.t('Vocabulário', 'Vocabulary') }}</a>
+        <a routerLink="/caracteres/radicais" class="ativa" aria-current="page">{{ i.t('Radicais', 'Radicals') }}</a>
+        <a routerLink="/escrita">{{ i.t('Praticar escrita', 'Practice writing') }}</a>
       </nav>
 
       <p class="info pequeno">
-        Exemplo: <span lang="zh-CN">氵</span> (água) + <span lang="zh-CN">先</span> = <span lang="zh-CN">洗</span>
-        (lavar). Muitos caracteres juntam um radical de <strong>significado</strong> com uma parte que dá
-        o <strong>som</strong>: <span lang="zh-CN">妈</span> = <span lang="zh-CN">女</span> (mulher) +
-        <span lang="zh-CN">马</span> (som "ma").
+        @if (i.ingles()) {
+          Example: <span lang="zh-CN">氵</span> (water) + <span lang="zh-CN">先</span> = <span lang="zh-CN">洗</span>
+          (to wash). Many characters combine a <strong>meaning</strong> radical with a part that gives
+          the <strong>sound</strong>: <span lang="zh-CN">妈</span> = <span lang="zh-CN">女</span> (woman) +
+          <span lang="zh-CN">马</span> (sound "ma").
+        } @else {
+          Exemplo: <span lang="zh-CN">氵</span> (água) + <span lang="zh-CN">先</span> = <span lang="zh-CN">洗</span>
+          (lavar). Muitos caracteres juntam um radical de <strong>significado</strong> com uma parte que dá
+          o <strong>som</strong>: <span lang="zh-CN">妈</span> = <span lang="zh-CN">女</span> (mulher) +
+          <span lang="zh-CN">马</span> (som "ma").
+        }
       </p>
 
       @if (!vocabulario.carregado()) {
-        <p class="info">Carregando…</p>
+        <p class="info">{{ i.t('Carregando…', 'Loading…') }}</p>
       } @else {
         <ul class="radicais">
           @for (r of vocabulario.radicais(); track r.forma) {
@@ -43,11 +50,11 @@ import { AnimacaoTracos } from '../../../shared/hanzi/animacao-tracos';
               >
                 <span class="forma" lang="zh-CN">{{ r.forma }}</span>
                 <span class="textos">
-                  <strong>{{ r.significado }}</strong>
+                  <strong>{{ i.tr(r, 'significado') }}</strong>
                   <span class="suave pequeno">
                     {{ r.pinyin }}
                     @if (r.completo !== r.forma) {
-                      · forma completa <span lang="zh-CN">{{ r.completo }}</span>
+                      · {{ i.t('forma completa', 'full form') }} <span lang="zh-CN">{{ r.completo }}</span>
                     }
                   </span>
                 </span>
@@ -56,13 +63,13 @@ import { AnimacaoTracos } from '../../../shared/hanzi/animacao-tracos';
               @if (aberto() === r.forma) {
                 <div class="detalhes">
                   <app-animacao-tracos [caractere]="r.forma" [tamanho]="140" [autoAnimar]="true" />
-                  <p>{{ r.dica }}</p>
+                  <p>{{ i.tr(r, 'dica') }}</p>
                 </div>
               }
               <p class="exemplos">
                 @for (c of r.exemplos; track c) {
                   @if (palavraDe(c); as p) {
-                    <a [routerLink]="['/caracteres/palavra', p.id]" lang="zh-CN" [title]="p.pinyin + ' — ' + p.traducao">{{ c }}</a>
+                    <a [routerLink]="['/caracteres/palavra', p.id]" lang="zh-CN" [title]="p.pinyin + ' — ' + i.tr(p, 'traducao')">{{ c }}</a>
                   } @else {
                     <span lang="zh-CN">{{ c }}</span>
                   }
@@ -134,6 +141,7 @@ import { AnimacaoTracos } from '../../../shared/hanzi/animacao-tracos';
   `,
 })
 export class RadicaisPagina {
+  protected readonly i = inject(IdiomaService);
   protected readonly vocabulario = inject(VocabularioService);
   protected readonly aberto = signal<string | null>(null);
 

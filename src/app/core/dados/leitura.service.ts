@@ -86,10 +86,10 @@ export function coberturaDoTexto(texto: Texto, conhecidas: ReadonlySet<string>):
   return Math.round((sabidas / palavras.length) * 100);
 }
 
-export function rotuloCobertura(pct: number): { texto: string; classe: 'ideal' | 'desafio' | 'dificil' } {
-  if (pct >= 95) return { texto: 'ideal para ler', classe: 'ideal' };
-  if (pct >= 85) return { texto: 'bom desafio', classe: 'desafio' };
-  return { texto: 'difícil por enquanto', classe: 'dificil' };
+export function rotuloCobertura(pct: number): { texto: string; textoEn: string; classe: 'ideal' | 'desafio' | 'dificil' } {
+  if (pct >= 95) return { texto: 'ideal para ler', textoEn: 'ideal to read', classe: 'ideal' };
+  if (pct >= 85) return { texto: 'bom desafio', textoEn: 'good challenge', classe: 'desafio' };
+  return { texto: 'difícil por enquanto', textoEn: 'hard for now', classe: 'dificil' };
 }
 
 /** Diálogos e historinhas de public/data/leitura. */

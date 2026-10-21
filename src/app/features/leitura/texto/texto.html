@@ -1,13 +1,13 @@
 <section class="pagina">
-  <p><a routerLink="/leitura">← Todos os textos</a></p>
+  <p><a routerLink="/leitura">← {{ i.t('Todos os textos', 'All texts') }}</a></p>
 
   @if (!carregado()) {
-    <p class="info">Carregando…</p>
+    <p class="info">{{ i.t('Carregando…', 'Loading…') }}</p>
   } @else if (texto(); as t) {
     <header>
-      <p class="etiqueta">{{ t.tipo === 'dialogo' ? 'Diálogo' : 'Historinha' }} · HSK {{ t.nivel }}</p>
-      <h1><span lang="zh-CN" class="titulo-hanzi">{{ t.tituloHanzi }}</span> {{ t.titulo }}</h1>
-      <p class="subtitulo">{{ t.resumo }}</p>
+      <p class="etiqueta">{{ t.tipo === 'dialogo' ? i.t('Diálogo', 'Dialogue') : i.t('Historinha', 'Story') }} · HSK {{ t.nivel }}</p>
+      <h1><span lang="zh-CN" class="titulo-hanzi">{{ t.tituloHanzi }}</span> {{ i.tr(t, 'titulo') }}</h1>
+      <p class="subtitulo">{{ i.tr(t, 'resumo') }}</p>
     </header>
 
     <div class="controles">
@@ -17,10 +17,10 @@
       </label>
       <label class="interruptor">
         <input type="checkbox" [checked]="mostrarTraducao()" (change)="mostrarTraducao.set($any($event.target).checked)" />
-        Tradução
+        {{ i.t('Tradução', 'Translation') }}
       </label>
       <button type="button" class="botao botao-primario" (click)="narrar()">
-        {{ narrando() ? '■ Parar' : '▶ Ouvir tudo' }}
+        {{ narrando() ? i.t('■ Parar', '■ Stop') : i.t('▶ Ouvir tudo', '▶ Play all') }}
       </button>
     </div>
     <app-controle-voz class="voz" />
@@ -40,7 +40,7 @@
                     class="palavra"
                     [class.selecionada]="selecionado() === tk"
                     (click)="tocarToken(tk)"
-                    [attr.aria-label]="tk.hanzi + ', ' + tk.pinyin + ': ' + tk.traducao"
+                    [attr.aria-label]="tk.hanzi + ', ' + tk.pinyin + ': ' + i.tr(tk, 'traducao')"
                   >
                     <ruby>{{ tk.hanzi }}@if (mostrarPinyin()) {<rt>{{ tk.pinyin }}</rt>}</ruby>
                   </button>
@@ -50,43 +50,43 @@
               }
             </p>
             @if (mostrarTraducao()) {
-              <p class="traducao">{{ linha.traducao }}</p>
+              <p class="traducao">{{ i.tr(linha, 'traducao') }}</p>
             }
           </div>
-          <button type="button" class="ouvir-linha" (click)="tocarLinha(idx)" [attr.aria-label]="'Ouvir a linha ' + (idx + 1)">🔊</button>
+          <button type="button" class="ouvir-linha" (click)="tocarLinha(idx)" [attr.aria-label]="i.t('Ouvir a linha ', 'Play line ') + (idx + 1)">🔊</button>
         </div>
       }
       @if (t.nota) {
-        <p class="info nota">💡 {{ t.nota }}</p>
+        <p class="info nota">💡 {{ i.tr(t, 'nota') }}</p>
       }
     </article>
 
     @if (selecionado(); as s) {
-      <aside class="painel-palavra" aria-live="polite" aria-label="Palavra selecionada">
+      <aside class="painel-palavra" aria-live="polite" [attr.aria-label]="i.t('Palavra selecionada', 'Selected word')">
         <span class="hanzi-sel" lang="zh-CN">{{ s.hanzi }}</span>
         <span class="info-sel">
           <app-pinyin [texto]="s.pinyin!" />
-          <span>{{ s.traducao }}</span>
+          <span>{{ i.tr(s, 'traducao') }}</span>
         </span>
         <app-botao-audio [texto]="s.hanzi" [rotulo]="s.pinyin!" [compacto]="true" />
         @if (s.palavra) {
           @if (naRevisao(s)) {
-            <span class="etiqueta">✓ revisão</span>
+            <span class="etiqueta">✓ {{ i.t('revisão', 'in review') }}</span>
           } @else {
-            <button type="button" class="botao botao-texto pequeno" (click)="adicionarRevisao(s)">+ revisar</button>
+            <button type="button" class="botao botao-texto pequeno" (click)="adicionarRevisao(s)">+ {{ i.t('revisar', 'review') }}</button>
           }
-          <a [routerLink]="['/caracteres/palavra', s.palavra]" class="pequeno">ver</a>
+          <a [routerLink]="['/caracteres/palavra', s.palavra]" class="pequeno">{{ i.t('ver', 'view') }}</a>
         }
-        <button type="button" class="fechar" (click)="selecionado.set(null)" aria-label="Fechar">✕</button>
+        <button type="button" class="fechar" (click)="selecionado.set(null)" [attr.aria-label]="i.t('Fechar', 'Close')">✕</button>
       </aside>
     }
 
     @if (perguntas().length) {
       <section class="cartao perguntas" aria-labelledby="titulo-perguntas">
-        <h2 id="titulo-perguntas">Você entendeu?</h2>
+        <h2 id="titulo-perguntas">{{ i.t('Você entendeu?', 'Did you understand?') }}</h2>
         @for (p of perguntas(); track $index; let idx = $index) {
           <fieldset class="pergunta">
-            <legend>{{ idx + 1 }}. {{ p.pergunta }}</legend>
+            <legend>{{ idx + 1 }}. {{ i.tr(p, 'pergunta') }}</legend>
             @for (o of p.opcoes; track o.texto; let j = $index) {
               <label
                 class="opcao-resposta"
@@ -100,27 +100,27 @@
                   [disabled]="verificado()"
                   (change)="responder(idx, j)"
                 />
-                {{ o.texto }}
+                {{ i.tr(o, 'texto') }}
               </label>
             }
           </fieldset>
         }
         @if (!verificado()) {
           <button type="button" class="botao botao-primario" [disabled]="!todasRespondidas()" (click)="verificar()">
-            Verificar respostas
+            {{ i.t('Verificar respostas', 'Check answers') }}
           </button>
         } @else {
           <p [class]="acertos() === perguntas().length ? 'sucesso' : 'info'" role="status">
-            Você acertou {{ acertos() }} de {{ perguntas().length }}.
-            {{ acertos() === perguntas().length ? 'Excelente! 太棒了！' : 'Releia o texto com a tradução ligada e tente de novo outro dia.' }}
+            {{ i.t('Você acertou', 'You got') }} {{ acertos() }} {{ i.t('de', 'of') }} {{ perguntas().length }}{{ i.t('.', ' right.') }}
+            {{ acertos() === perguntas().length ? i.t('Excelente! 太棒了！', 'Excellent! 太棒了！') : i.t('Releia o texto com a tradução ligada e tente de novo outro dia.', 'Reread the text with translation on and try again another day.') }}
           </p>
           @if (proximo(); as n) {
-            <a class="botao botao-primario" [routerLink]="['/leitura', n.id]">Próximo: {{ n.titulo }} →</a>
+            <a class="botao botao-primario" [routerLink]="['/leitura', n.id]">{{ i.t('Próximo:', 'Next:') }} {{ i.tr(n, 'titulo') }} →</a>
           }
         }
       </section>
     }
   } @else {
-    <p class="erro">Texto não encontrado.</p>
+    <p class="erro">{{ i.t('Texto não encontrado.', 'Text not found.') }}</p>
   }
 </section>

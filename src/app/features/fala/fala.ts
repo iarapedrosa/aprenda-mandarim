@@ -11,10 +11,12 @@ import { ReconhecimentoService } from '../../core/voz/reconhecimento.service';
 import { ControleVoz } from '../../shared/controle-voz/controle-voz';
 import { ExFalar } from '../treino/exercicios/ex-falar';
 import { ItemFalar, ResultadoItem } from '../treino/sessao.model';
+import { IdiomaService } from '../../core/i18n/idioma.service';
 
 interface TravaLinguas extends Frase {
   id: string;
   foco: string;
+  focoEn?: string;
 }
 
 type Fonte = 'frases-do-dia' | 'exemplos' | 'dialogos';
@@ -26,61 +28,64 @@ let contador = 0;
   template: `
     <section class="pagina">
       <header>
-        <h1>Fala</h1>
+        <h1>{{ i.t('Fala', 'Speaking') }}</h1>
         <p class="subtitulo">
-          <strong>Shadowing</strong>: ouça a frase, repita imitando a melodia e veja o que o reconhecimento de voz
-          entendeu.
+          @if (i.ingles()) {
+            <strong>Shadowing</strong>: listen to the sentence, repeat it copying the melody and see what speech
+            recognition understood.
+          } @else {
+            <strong>Shadowing</strong>: ouça a frase, repita imitando a melodia e veja o que o reconhecimento de voz
+            entendeu.
+          }
         </p>
       </header>
 
       @if (!reconhecimento.suportado) {
         <p class="aviso">
-          Seu navegador não tem reconhecimento de voz (use Chrome, Edge ou Safari no iPhone para a correção automática).
-          Você ainda pode praticar: ouça, repita em voz alta e avalie você mesmo.
+          {{ i.t('Seu navegador não tem reconhecimento de voz (use Chrome, Edge ou Safari no iPhone para a correção automática). Você ainda pode praticar: ouça, repita em voz alta e avalie você mesmo.', 'Your browser has no speech recognition (use Chrome, Edge or Safari on iPhone for automatic checking). You can still practice: listen, repeat out loud and rate yourself.') }}
         </p>
       }
 
-      <div class="abas" role="tablist" aria-label="Tipo de prática">
+      <div class="abas" role="tablist" [attr.aria-label]="i.t('Tipo de prática', 'Practice type')">
         <button type="button" role="tab" [class.ativa]="aba() === 'shadowing'" [attr.aria-selected]="aba() === 'shadowing'" (click)="aba.set('shadowing')">Shadowing</button>
-        <button type="button" role="tab" [class.ativa]="aba() === 'trava'" [attr.aria-selected]="aba() === 'trava'" (click)="aba.set('trava')">Trava-línguas</button>
+        <button type="button" role="tab" [class.ativa]="aba() === 'trava'" [attr.aria-selected]="aba() === 'trava'" (click)="aba.set('trava')">{{ i.t('Trava-línguas', 'Tongue twisters') }}</button>
       </div>
 
       <app-controle-voz class="voz" />
 
       @if (aba() === 'shadowing') {
         <label class="fonte">
-          Praticar com
+          {{ i.t('Praticar com', 'Practice with') }}
           <select class="campo" [ngModel]="fonte()" (ngModelChange)="fonte.set($event); proxima()">
-            <option value="frases-do-dia">Frases do dia (expressões úteis)</option>
-            <option value="exemplos">Exemplos do vocabulário</option>
-            <option value="dialogos">Falas dos diálogos</option>
+            <option value="frases-do-dia">{{ i.t('Frases do dia (expressões úteis)', 'Daily phrases (useful expressions)') }}</option>
+            <option value="exemplos">{{ i.t('Exemplos do vocabulário', 'Vocabulary examples') }}</option>
+            <option value="dialogos">{{ i.t('Falas dos diálogos', 'Lines from dialogues') }}</option>
           </select>
         </label>
         <section class="cartao" aria-live="polite">
-          <p class="placar suave">Frases praticadas: {{ total() }} · boas: {{ boas() }}</p>
+          <p class="placar suave">{{ i.t('Frases praticadas:', 'Sentences practiced:') }} {{ total() }} · {{ i.t('boas:', 'good:') }} {{ boas() }}</p>
           @for (item of atual() ? [atual()!] : []; track item.id) {
             <app-ex-falar [item]="item" (concluir)="registrar($event)" />
           } @empty {
-            <p class="info">Carregando frases…</p>
+            <p class="info">{{ i.t('Carregando frases…', 'Loading sentences…') }}</p>
           }
         </section>
       } @else {
         <p>
-          Trava-línguas (<span lang="zh-CN">绕口令</span>, ràokǒulìng) são ótimos para treinar sons parecidos. Comece
-          na velocidade lenta!
+          {{ i.t('Trava-línguas', 'Tongue twisters') }} (<span lang="zh-CN">绕口令</span>, ràokǒulìng) {{ i.t('são ótimos para treinar sons parecidos. Comece na velocidade lenta!', 'are great for practicing similar sounds. Start at slow speed!') }}
         </p>
         <div class="travas">
           @for (t of travas(); track t.id) {
             <button type="button" class="trava" [class.ativa]="travaAtual()?.frase?.hanzi === t.hanzi" (click)="escolherTrava(t)">
               <span lang="zh-CN" class="hanzi-trava">{{ t.hanzi }}</span>
-              <span class="suave pequeno">Treina: {{ t.foco }}</span>
+              <span class="suave pequeno">{{ i.t('Treina:', 'Practices:') }} {{ i.tr(t, 'foco') }}</span>
             </button>
           }
         </div>
         @if (travaAtual(); as item) {
           <section class="cartao pratica-trava" aria-live="polite">
-            @for (i of [item]; track i.id) {
-              <app-ex-falar [item]="i" (concluir)="registrarTrava($event)" />
+            @for (it of [item]; track it.id) {
+              <app-ex-falar [item]="it" (concluir)="registrarTrava($event)" />
             }
           </section>
         }
@@ -128,6 +133,7 @@ let contador = 0;
   `,
 })
 export class FalaPagina {
+  protected readonly i = inject(IdiomaService);
   protected readonly reconhecimento = inject(ReconhecimentoService);
   private readonly dados = inject(DadosService);
   private readonly frases = inject(FrasesService);
@@ -155,7 +161,7 @@ export class FalaPagina {
         return this.leitura
           .textos()
           .filter((t) => t.tipo === 'dialogo')
-          .flatMap((t) => t.linhas.map((l) => ({ hanzi: hanziDaLinha(l), pinyin: pinyinDaLinha(l), traducao: l.traducao })));
+          .flatMap((t) => t.linhas.map((l) => ({ hanzi: hanziDaLinha(l), pinyin: pinyinDaLinha(l), traducao: l.traducao, traducaoEn: l.traducaoEn })));
       default:
         return this.frases.frases();
     }

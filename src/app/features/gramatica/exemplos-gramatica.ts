@@ -1,7 +1,8 @@
-import { Component, input } from '@angular/core';
+import { Component, input, inject } from '@angular/core';
 import { Frase } from '../../core/dados/modelos';
 import { BotaoAudio } from '../../shared/botao-audio/botao-audio';
 import { PinyinColorido } from '../../shared/pinyin-colorido/pinyin-colorido';
+import { IdiomaService } from '../../core/i18n/idioma.service';
 
 /** Lista de frases de exemplo com pinyin, tradução e áudio. */
 @Component({
@@ -15,7 +16,7 @@ import { PinyinColorido } from '../../shared/pinyin-colorido/pinyin-colorido';
           <div>
             <p class="hanzi" lang="zh-CN">{{ e.hanzi }}</p>
             <p><app-pinyin [texto]="e.pinyin" /></p>
-            <p class="suave">{{ e.traducao }}</p>
+            <p class="suave">{{ i.tr(e, 'traducao') }}</p>
           </div>
         </li>
       }
@@ -46,5 +47,6 @@ import { PinyinColorido } from '../../shared/pinyin-colorido/pinyin-colorido';
   `,
 })
 export class ExemplosGramatica {
+  protected readonly i = inject(IdiomaService);
   readonly exemplos = input.required<Frase[]>();
 }

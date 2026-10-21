@@ -7,6 +7,7 @@ import { sortear } from '../../core/util/aleatorio';
 import { ExMontar } from '../treino/exercicios/ex-montar';
 import { dicionarioDe, itemMontar } from '../treino/gerador-sessao';
 import { ItemMontar, ResultadoItem } from '../treino/sessao.model';
+import { IdiomaService } from '../../core/i18n/idioma.service';
 
 @Component({
   selector: 'app-gramatica',
@@ -14,16 +15,14 @@ import { ItemMontar, ResultadoItem } from '../treino/sessao.model';
   template: `
     <section class="pagina">
       <header>
-        <h1>Gramática <span lang="zh-CN" class="hanzi-titulo">语法</span></h1>
+        <h1>{{ i.t('Gramática', 'Grammar') }} <span lang="zh-CN" class="hanzi-titulo">语法</span></h1>
         <p class="subtitulo">
-          A gramática do mandarim é enxuta: sem conjugação, sem plural, sem gênero. Mas a ordem das palavras e algumas
-          partículas fazem toda a diferença. As lições entram no treino diário conforme você aprende palavras — e você
-          pode estudá-las aqui quando quiser.
+          {{ i.t('A gramática do mandarim é enxuta: sem conjugação, sem plural, sem gênero. Mas a ordem das palavras e algumas partículas fazem toda a diferença. As lições entram no treino diário conforme você aprende palavras — e você pode estudá-las aqui quando quiser.', 'Mandarin grammar is lean: no conjugation, no plural, no gender. But word order and a few particles make all the difference. Lessons join your daily training as you learn words — and you can study them here any time.') }}
         </p>
       </header>
 
       @if (!gramatica.carregado()) {
-        <p class="info">Carregando…</p>
+        <p class="info">{{ i.t('Carregando…', 'Loading…') }}</p>
       } @else {
         <ol class="licoes">
           @for (l of gramatica.licoes(); track l.id; let idx = $index) {
@@ -31,13 +30,13 @@ import { ItemMontar, ResultadoItem } from '../treino/sessao.model';
               <a class="cartao licao" [routerLink]="['/gramatica', l.id]">
                 <span class="numero" aria-hidden="true">{{ idx + 1 }}</span>
                 <span class="corpo">
-                  <strong>{{ l.titulo }}</strong>
-                  <span class="suave pequeno">{{ l.estrutura }}</span>
+                  <strong>{{ i.tr(l, 'titulo') }}</strong>
+                  <span class="suave pequeno">{{ i.tr(l, 'estrutura') }}</span>
                 </span>
                 @if (concluidas()[l.id]) {
-                  <span class="feito" aria-label="Concluída">✓</span>
+                  <span class="feito" [attr.aria-label]="i.t('Concluída', 'Completed')">✓</span>
                 } @else if (l.minPalavras > estudadas()) {
-                  <span class="etiqueta" title="Entra no treino diário a partir dessa quantidade de palavras">{{ l.minPalavras }} palavras</span>
+                  <span class="etiqueta" [title]="i.t('Entra no treino diário a partir dessa quantidade de palavras', 'Joins daily training once you know this many words')">{{ l.minPalavras }} {{ i.t('palavras', 'words') }}</span>
                 }
               </a>
             </li>
@@ -46,13 +45,12 @@ import { ItemMontar, ResultadoItem } from '../treino/sessao.model';
       }
 
       <section class="cartao montar" aria-live="polite">
-        <h2>Monte frases</h2>
+        <h2>{{ i.t('Monte frases', 'Build sentences') }}</h2>
         <p class="suave pequeno">
-          Coloque as palavras na ordem certa. As frases vêm dos exemplos das palavras que você já estudou (ou do HSK 1).
-          Acertos: {{ acertos() }} de {{ total() }}.
+          {{ i.t('Coloque as palavras na ordem certa. As frases vêm dos exemplos das palavras que você já estudou (ou do HSK 1). Acertos:', 'Put the words in the right order. Sentences come from examples of words you have studied (or HSK 1). Score:') }} {{ acertos() }} {{ i.t('de', 'of') }} {{ total() }}.
         </p>
         @if (!montarIniciado()) {
-          <button type="button" class="botao botao-primario" (click)="proximaFrase()" [disabled]="!vocabulario.carregado()">Começar</button>
+          <button type="button" class="botao botao-primario" (click)="proximaFrase()" [disabled]="!vocabulario.carregado()">{{ i.t('Começar', 'Start') }}</button>
         } @else {
           @for (item of montar() ? [montar()!] : []; track item.id) {
             <app-ex-montar [item]="item" (concluir)="registrarMontar($event)" />
@@ -112,6 +110,7 @@ import { ItemMontar, ResultadoItem } from '../treino/sessao.model';
   `,
 })
 export class GramaticaPagina {
+  protected readonly i = inject(IdiomaService);
   protected readonly gramatica = inject(GramaticaService);
   private readonly progresso = inject(ProgressoService);
   protected readonly concluidas = computed(() => this.progresso.estado().licoesGramatica ?? {});

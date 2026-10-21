@@ -3,6 +3,7 @@ import { RouterLink } from '@angular/router';
 import { VocabularioService } from '../../core/dados/vocabulario.service';
 import { combinaBusca } from '../../core/util/texto';
 import { PinyinColorido } from '../../shared/pinyin-colorido/pinyin-colorido';
+import { IdiomaService } from '../../core/i18n/idioma.service';
 
 @Component({
   selector: 'app-caracteres',
@@ -10,32 +11,32 @@ import { PinyinColorido } from '../../shared/pinyin-colorido/pinyin-colorido';
   template: `
     <section class="pagina">
       <header>
-        <h1>Caracteres</h1>
+        <h1>{{ i.t('Caracteres', 'Characters') }}</h1>
         <p class="subtitulo">
-          Vocabulário do HSK 1 e 2 com pinyin, tradução, exemplo e ordem dos traços.
+          {{ i.t('Vocabulário do HSK 1 e 2 com pinyin, tradução, exemplo e ordem dos traços.', 'HSK 1 and 2 vocabulary with pinyin, translation, example and stroke order.') }}
         </p>
       </header>
 
-      <nav class="abas" aria-label="Seções de caracteres">
-        <a routerLink="/caracteres" class="ativa" aria-current="page">Vocabulário</a>
-        <a routerLink="/caracteres/radicais">Radicais</a>
-        <a routerLink="/escrita">Praticar escrita</a>
+      <nav class="abas" [attr.aria-label]="i.t('Seções de caracteres', 'Character sections')">
+        <a routerLink="/caracteres" class="ativa" aria-current="page">{{ i.t('Vocabulário', 'Vocabulary') }}</a>
+        <a routerLink="/caracteres/radicais">{{ i.t('Radicais', 'Radicals') }}</a>
+        <a routerLink="/escrita">{{ i.t('Praticar escrita', 'Practice writing') }}</a>
       </nav>
 
       <div class="filtros">
         <label class="busca">
-          <span class="visualmente-oculto">Buscar</span>
+          <span class="visualmente-oculto">{{ i.t('Buscar', 'Search') }}</span>
           <input
             class="campo"
             type="search"
-            placeholder="Buscar: 你好, ni hao, olá…"
+            [placeholder]="i.t('Buscar: 你好, ni hao, olá…', 'Search: 你好, ni hao, hello…')"
             [value]="busca()"
             (input)="busca.set($any($event.target).value)"
           />
         </label>
-        <div class="niveis" role="radiogroup" aria-label="Nível">
+        <div class="niveis" role="radiogroup" [attr.aria-label]="i.t('Nível', 'Level')">
           <button type="button" role="radio" [attr.aria-checked]="nivel() === 0" [class.ativo]="nivel() === 0" (click)="nivel.set(0)">
-            Todos
+            {{ i.t('Todos', 'All') }}
           </button>
           @for (n of vocabulario.niveis(); track n.id; let idx = $index) {
             <button
@@ -54,9 +55,9 @@ import { PinyinColorido } from '../../shared/pinyin-colorido/pinyin-colorido';
       @if (vocabulario.erro(); as erro) {
         <p class="erro">{{ erro }}</p>
       } @else if (!vocabulario.carregado()) {
-        <p class="info">Carregando vocabulário…</p>
+        <p class="info">{{ i.t('Carregando vocabulário…', 'Loading vocabulary…') }}</p>
       } @else {
-        <p class="suave pequeno" aria-live="polite">{{ filtradas().length }} palavra(s)</p>
+        <p class="suave pequeno" aria-live="polite">{{ filtradas().length }} {{ i.t('palavra(s)', 'word(s)') }}</p>
         <ul class="lista">
           @for (p of filtradas(); track p.id) {
             <li>
@@ -64,13 +65,13 @@ import { PinyinColorido } from '../../shared/pinyin-colorido/pinyin-colorido';
                 <span class="hanzi" lang="zh-CN">{{ p.hanzi }}</span>
                 <span class="textos">
                   <app-pinyin [texto]="p.pinyin" />
-                  <span class="traducao">{{ p.traducao }}</span>
+                  <span class="traducao">{{ i.tr(p, 'traducao') }}</span>
                 </span>
                 <span class="etiqueta">HSK {{ p.nivel }}</span>
               </a>
             </li>
           } @empty {
-            <li class="info">Nenhuma palavra encontrada.</li>
+            <li class="info">{{ i.t('Nenhuma palavra encontrada.', 'No words found.') }}</li>
           }
         </ul>
       }
@@ -146,6 +147,7 @@ import { PinyinColorido } from '../../shared/pinyin-colorido/pinyin-colorido';
   `,
 })
 export class CaracteresPagina {
+  protected readonly i = inject(IdiomaService);
   protected readonly vocabulario = inject(VocabularioService);
   protected readonly busca = signal('');
   protected readonly nivel = signal(0);
@@ -155,7 +157,7 @@ export class CaracteresPagina {
     const busca = this.busca();
     return this.vocabulario
       .palavras()
-      .filter((p) => (nivel === 0 || p.nivel === nivel) && combinaBusca(busca, p.hanzi, p.pinyin, p.traducao));
+      .filter((p) => (nivel === 0 || p.nivel === nivel) && combinaBusca(busca, p.hanzi, p.pinyin, p.traducao, p.traducaoEn ?? ''));
   });
 
   constructor() {

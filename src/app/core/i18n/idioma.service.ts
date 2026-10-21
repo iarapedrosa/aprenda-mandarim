@@ -1,5 +1,6 @@
 import { DOCUMENT, Injectable, computed, effect, inject, signal } from '@angular/core';
 import { ArmazenamentoService } from '../armazenamento/armazenamento.service';
+import { CLASSES_EN } from './classes';
 
 /** Idioma da interface: português ↔ mandarim ou inglês ↔ mandarim. */
 export type Idioma = 'pt' | 'en';
@@ -58,6 +59,11 @@ export class IdiomaService {
     const registro = obj as Record<string, unknown>;
     if (this.idioma() === 'en' && Array.isArray(registro[`${campo}En`])) return registro[`${campo}En`] as string[];
     return Array.isArray(registro[campo]) ? (registro[campo] as string[]) : [];
+  }
+
+  /** Classe gramatical ("verbo") no idioma atual. */
+  classe(c: string): string {
+    return this.ingles() ? (CLASSES_EN[c] ?? c) : c;
   }
 
   alternar(): void {

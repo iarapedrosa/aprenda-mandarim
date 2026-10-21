@@ -11,11 +11,12 @@ import { PinyinColorido } from '../../shared/pinyin-colorido/pinyin-colorido';
 import { ExTeclado } from '../treino/exercicios/ex-teclado';
 import { ItemTeclado, ResultadoItem } from '../treino/sessao.model';
 import { sortear } from '../../core/util/aleatorio';
+import { IdiomaService } from '../../core/i18n/idioma.service';
 
-const NIVEIS: { id: NivelEscrita; nome: string; descricao: string }[] = [
-  { id: 'contorno', nome: '1. Com contorno', descricao: 'Decalque o caractere cinza.' },
-  { id: 'sem-contorno', nome: '2. Sem contorno', descricao: 'Veja o modelo e escreva no quadro vazio.' },
-  { id: 'memoria', nome: '3. De memória', descricao: 'Só pinyin e tradução: escreva de cabeça.' },
+const NIVEIS: { id: NivelEscrita; nome: string; descricao: string; nomeEn: string; descricaoEn: string }[] = [
+  { id: 'contorno', nome: '1. Com contorno', descricao: 'Decalque o caractere cinza.', nomeEn: '1. With outline', descricaoEn: 'Trace over the gray character.' },
+  { id: 'sem-contorno', nome: '2. Sem contorno', descricao: 'Veja o modelo e escreva no quadro vazio.', nomeEn: '2. No outline', descricaoEn: 'Look at the model and write in the empty box.' },
+  { id: 'memoria', nome: '3. De memória', descricao: 'Só pinyin e tradução: escreva de cabeça.', nomeEn: '3. From memory', descricaoEn: 'Only pinyin and meaning: write it from memory.' },
 ];
 
 @Component({
@@ -24,58 +25,58 @@ const NIVEIS: { id: NivelEscrita; nome: string; descricao: string }[] = [
   template: `
     <section class="pagina">
       <header>
-        <h1>Escrita</h1>
+        <h1>{{ i.t('Escrita', 'Writing') }}</h1>
         <p class="subtitulo">
-          Desenhe com o dedo ou o mouse. Cada traço é corrigido na hora — ordem e direção contam!
+          {{ i.t('Desenhe com o dedo ou o mouse. Cada traço é corrigido na hora — ordem e direção contam!', 'Draw with your finger or mouse. Each stroke is checked right away — order and direction count!') }}
         </p>
       </header>
 
-      <div class="abas" role="tablist" aria-label="Forma de escrever">
-        <button type="button" role="tab" [class.ativa]="forma() === 'mao'" [attr.aria-selected]="forma() === 'mao'" (click)="forma.set('mao')">✍️ À mão</button>
-        <button type="button" role="tab" [class.ativa]="forma() === 'teclado'" [attr.aria-selected]="forma() === 'teclado'" (click)="forma.set('teclado'); proximoTeclado()">⌨️ Teclado chinês</button>
+      <div class="abas" role="tablist" [attr.aria-label]="i.t('Forma de escrever', 'Writing mode')">
+        <button type="button" role="tab" [class.ativa]="forma() === 'mao'" [attr.aria-selected]="forma() === 'mao'" (click)="forma.set('mao')">✍️ {{ i.t('À mão', 'By hand') }}</button>
+        <button type="button" role="tab" [class.ativa]="forma() === 'teclado'" [attr.aria-selected]="forma() === 'teclado'" (click)="forma.set('teclado'); proximoTeclado()">⌨️ {{ i.t('Teclado chinês', 'Chinese keyboard') }}</button>
       </div>
 
       @if (forma() === 'teclado') {
         <section class="cartao" aria-live="polite">
           <p class="suave pequeno">
-            É assim que se escreve em chinês no dia a dia: digite o pinyin sem tons e escolha o caractere. Acertos:
-            {{ tecladoAcertos() }} de {{ tecladoTotal() }}.
+            {{ i.t('É assim que se escreve em chinês no dia a dia: digite o pinyin sem tons e escolha o caractere. Acertos:', 'This is how people write Chinese every day: type pinyin without tones and pick the character. Score:') }}
+            {{ tecladoAcertos() }} {{ i.t('de', 'of') }} {{ tecladoTotal() }}.
           </p>
           @for (item of itemTeclado() ? [itemTeclado()!] : []; track item.id) {
             <app-ex-teclado [item]="item" (concluir)="registrarTeclado($event)" />
           }
         </section>
       } @else {
-      <div class="niveis" role="radiogroup" aria-label="Nível">
+      <div class="niveis" role="radiogroup" [attr.aria-label]="i.t('Nível', 'Level')">
         @for (n of niveis; track n.id) {
           <label class="nivel">
             <input type="radio" name="nivel" [value]="n.id" [ngModel]="nivel()" (ngModelChange)="nivel.set($event)" />
-            <span><strong>{{ n.nome }}</strong><br /><small>{{ n.descricao }}</small></span>
+            <span><strong>{{ i.tr(n, 'nome') }}</strong><br /><small>{{ i.tr(n, 'descricao') }}</small></span>
           </label>
         }
       </div>
 
       @if (!vocabulario.carregado()) {
-        <p class="info">Carregando…</p>
+        <p class="info">{{ i.t('Carregando…', 'Loading…') }}</p>
       } @else if (fila().length === 0) {
         <section class="cartao">
-          <h2>O que vamos praticar?</h2>
+          <h2>{{ i.t('O que vamos praticar?', 'What shall we practice?') }}</h2>
           <div class="escolhas">
             @for (n of vocabulario.niveis(); track n.id; let idx = $index) {
-              <button type="button" class="botao" (click)="sortear(idx + 1)">5 caracteres do {{ n.nome }}</button>
+              <button type="button" class="botao" (click)="sortear(idx + 1)">{{ i.t('5 caracteres do', '5 characters from') }} {{ n.nome }}</button>
             }
           </div>
           <form class="proprios" (submit)="$event.preventDefault(); usarTexto(textoProprio())">
-            <label for="texto-proprio">Ou digite/cole os caracteres:</label>
+            <label for="texto-proprio">{{ i.t('Ou digite/cole os caracteres:', 'Or type/paste characters:') }}</label>
             <div class="linha">
-              <input id="texto-proprio" class="campo" lang="zh-CN" [ngModel]="textoProprio()" (ngModelChange)="textoProprio.set($event)" name="texto" placeholder="ex.: 你好" />
-              <button type="submit" class="botao botao-primario">Praticar</button>
+              <input id="texto-proprio" class="campo" lang="zh-CN" [ngModel]="textoProprio()" (ngModelChange)="textoProprio.set($event)" name="texto" [placeholder]="i.t('ex.: 你好', 'e.g. 你好')" />
+              <button type="submit" class="botao botao-primario">{{ i.t('Praticar', 'Practice') }}</button>
             </div>
           </form>
         </section>
       } @else if (atual(); as c) {
         <section class="cartao pratica">
-          <p class="progresso-fila suave">Caractere {{ indice() + 1 }} de {{ fila().length }}</p>
+          <p class="progresso-fila suave">{{ i.t('Caractere', 'Character') }} {{ indice() + 1 }} {{ i.t('de', 'of') }} {{ fila().length }}</p>
           <div class="enunciado">
             @if (nivel() === 'sem-contorno' || revelado()) {
               <span class="modelo" lang="zh-CN">{{ c.hanzi }}</span>
@@ -84,7 +85,7 @@ const NIVEIS: { id: NivelEscrita; nome: string; descricao: string }[] = [
               @if (c.pinyin) {
                 <p class="pinyin-enunciado"><app-pinyin [texto]="c.pinyin" /></p>
               }
-              <p class="suave">{{ c.traducao || 'Escreva o caractere' }}</p>
+              <p class="suave">{{ i.tr(c, 'traducao') || i.t('Escreva o caractere', 'Write the character') }}</p>
             </div>
             <app-botao-audio [texto]="c.hanzi" [rotulo]="c.pinyin" />
           </div>
@@ -98,28 +99,28 @@ const NIVEIS: { id: NivelEscrita; nome: string; descricao: string }[] = [
 
           @if (resultadoAtual()) {
             <button type="button" class="botao botao-primario botao-bloco proximo" (click)="proximo()">
-              {{ indice() + 1 < fila().length ? 'Próximo caractere' : 'Ver resultado' }}
+              {{ indice() + 1 < fila().length ? i.t('Próximo caractere', 'Next character') : i.t('Ver resultado', 'See result') }}
             </button>
           }
         </section>
       } @else {
         <section class="cartao">
-          <h2>Resultado</h2>
+          <h2>{{ i.t('Resultado', 'Result') }}</h2>
           <ul class="resultados">
             @for (r of resultados(); track $index) {
               <li>
                 <span lang="zh-CN" class="hanzi">{{ r.caractere }}</span>
                 @if (r.erros === 0 && !r.ajuda) {
-                  <span class="sucesso">perfeito</span>
+                  <span class="sucesso">{{ i.t('perfeito', 'perfect') }}</span>
                 } @else {
-                  <span class="aviso">{{ r.erros }} erro(s){{ r.ajuda ? ' + dica' : '' }}</span>
+                  <span class="aviso">{{ r.erros }} {{ i.t('erro(s)', 'mistake(s)') }}{{ r.ajuda ? i.t(' + dica', ' + hint') : '' }}</span>
                 }
               </li>
             }
           </ul>
           <div class="linha">
-            <button type="button" class="botao botao-primario" (click)="repetir()">Praticar de novo</button>
-            <button type="button" class="botao" (click)="novaEscolha()">Escolher outros</button>
+            <button type="button" class="botao botao-primario" (click)="repetir()">{{ i.t('Praticar de novo', 'Practice again') }}</button>
+            <button type="button" class="botao" (click)="novaEscolha()">{{ i.t('Escolher outros', 'Pick others') }}</button>
           </div>
         </section>
       }
@@ -127,8 +128,8 @@ const NIVEIS: { id: NivelEscrita; nome: string; descricao: string }[] = [
       }
 
       <p class="suave pequeno rodape">
-        Dica: comece pelo nível 1 e só avance quando acertar sem dicas.
-        <a routerLink="/caracteres">Ver todo o vocabulário</a>
+        {{ i.t('Dica: comece pelo nível 1 e só avance quando acertar sem dicas.', 'Tip: start at level 1 and only move up when you get it right without hints.') }}
+        <a routerLink="/caracteres">{{ i.t('Ver todo o vocabulário', 'See all vocabulary') }}</a>
       </p>
     </section>
   `,
@@ -239,6 +240,7 @@ const NIVEIS: { id: NivelEscrita; nome: string; descricao: string }[] = [
   `,
 })
 export class EscritaPagina {
+  protected readonly i = inject(IdiomaService);
   protected readonly vocabulario = inject(VocabularioService);
   private readonly progresso = inject(ProgressoService);
   private readonly voz = inject(VozService);
@@ -316,7 +318,7 @@ export class EscritaPagina {
   }
 
   protected proximo(): void {
-    this.indice.update((i) => i + 1);
+    this.indice.update((n) => n + 1);
   }
 
   protected repetir(): void {

@@ -8,10 +8,12 @@ import { VozService } from '../../../core/voz/voz.service';
 import { BotaoAudio } from '../../../shared/botao-audio/botao-audio';
 import { ControleVoz } from '../../../shared/controle-voz/controle-voz';
 import { PinyinColorido } from '../../../shared/pinyin-colorido/pinyin-colorido';
+import { IdiomaService } from '../../../core/i18n/idioma.service';
 
 interface PerguntaEmbaralhada {
   pergunta: string;
-  opcoes: { texto: string; correta: boolean }[];
+  perguntaEn?: string;
+  opcoes: { texto: string; textoEn?: string; correta: boolean }[];
 }
 
 @Component({
@@ -21,6 +23,7 @@ interface PerguntaEmbaralhada {
   styleUrl: './texto.css',
 })
 export class TextoPagina {
+  protected readonly i = inject(IdiomaService);
   private readonly leitura = inject(LeituraService);
   private readonly progresso = inject(ProgressoService);
   private readonly armazenamento = inject(ArmazenamentoService);
@@ -60,7 +63,8 @@ export class TextoPagina {
       this.verificado.set(false);
       const perguntas = (t?.perguntas ?? []).map((p) => ({
         pergunta: p.pergunta,
-        opcoes: embaralhar(p.opcoes.map((texto, i) => ({ texto, correta: i === p.correta }))),
+        perguntaEn: p.perguntaEn,
+        opcoes: embaralhar(p.opcoes.map((texto, i) => ({ texto, textoEn: p.opcoesEn?.[i], correta: i === p.correta }))),
       }));
       this.perguntas.set(perguntas);
       this.respostas.set(perguntas.map(() => null));
