@@ -32,6 +32,10 @@ export class VozService {
   readonly velocidade = signal<Velocidade>(this.armazenamento.ler<Velocidade>('velocidade-voz', 'normal'));
   readonly nomeVozEscolhida = signal<string | null>(this.armazenamento.ler<string | null>('voz', null));
   readonly falando = signal(false);
+  /** Último problema ao tocar áudio (para avisar a pessoa em vez de ficar em silêncio). */
+  readonly problema = signal<{ erro: string; voz: string | null; quando: number } | null>(null);
+  /** Vozes que falharam nesta sessão (ex.: vozes online bloqueadas pela rede). */
+  private readonly vozesComFalha = signal<Set<string>>(new Set());
   /** alternar entre as vozes de mandarim do aparelho (treino com várias vozes) */
   readonly variarVozes = signal(this.armazenamento.ler('variar-vozes', true));
 
@@ -52,13 +56,15 @@ export class VozService {
 
   readonly voz = computed<SpeechSynthesisVoice | null>(() => {
     const nome = this.nomeVozEscolhida();
-    const lista = this.vozesChinesas();
+    const falhas = this.vozesComFalha();
+    const lista = this.vozesChinesas().filter((v) => !falhas.has(v.name));
     return lista.find((v) => v.name === nome) ?? lista[0] ?? null;
   });
 
   /** Vozes de mandarim da China continental (as usadas na variação). */
   readonly vozesMandarim = computed(() =>
     this.vozesChinesas().filter((v) => {
+      if (this.vozesComFalha().has(v.name)) return false;
       const lang = v.lang.replace('_', '-').toLowerCase();
       return (lang === 'zh-cn' || lang.startsWith('cmn')) && !/hk|yue|cantonese|粤/i.test(v.name);
     }),
@@ -68,7 +74,7 @@ export class VozService {
   readonly podeVariar = computed(() => this.vozesMandarim().length > 1);
 
   /** true quando o navegador fala, mas não tem voz chinesa instalada. */
-  readonly semVozChinesa = computed(() => this.suportado && this.vozes().length > 0 && !this.voz());
+  readonly semVozChinesa = computed(() => this.suportado && this.vozes().length > 0 && this.vozesChinesas().length === 0);
 
   constructor() {
     if (this.sintese) {
@@ -91,24 +97,74 @@ export class VozService {
     const sintese = this.sintese;
     if (!sintese || !texto.trim()) return Promise.resolve();
     sintese.cancel();
+    return this.tentarFalar(sintese, texto, opcoes.velocidade ?? this.velocidade(), this.escolherVoz(), true);
+  }
+
+  /**
+   * Uma tentativa de fala. Se a voz falhar (ex.: voz online bloqueada pela rede da empresa),
+   * marca a voz como problemática e tenta de novo uma vez com outra voz chinesa.
+   */
+  private tentarFalar(
+    sintese: SpeechSynthesis,
+    texto: string,
+    velocidade: Velocidade,
+    voz: SpeechSynthesisVoice | null,
+    podeRepetir: boolean,
+  ): Promise<void> {
     return new Promise((resolve) => {
       const fala = new SpeechSynthesisUtterance(texto);
       fala.lang = 'zh-CN';
-      const voz = this.escolherVoz();
       if (voz) fala.voice = voz;
-      fala.rate = TAXAS[opcoes.velocidade ?? this.velocidade()];
+      fala.rate = TAXAS[velocidade];
       fala.pitch = 1;
+      let terminou = false;
+      let comecou = false;
       const terminar = () => {
+        if (terminou) return;
+        terminou = true;
         this.falando.set(false);
         resolve();
       };
+      fala.onstart = () => {
+        comecou = true;
+        this.problema.set(null);
+      };
       fala.onend = terminar;
-      fala.onerror = terminar;
+      fala.onerror = (e) => {
+        // cancelar/interromper (outra fala começou) não é problema
+        if (e.error === 'canceled' || e.error === 'interrupted') return terminar();
+        if (voz) this.vozesComFalha.update((s) => new Set(s).add(voz.name));
+        const outra = this.escolherVoz();
+        if (podeRepetir && !terminou && outra && outra.name !== voz?.name) {
+          terminou = true;
+          void this.tentarFalar(sintese, texto, velocidade, outra, false).then(resolve);
+          return;
+        }
+        this.problema.set({ erro: e.error, voz: voz?.name ?? null, quando: Date.now() });
+        terminar();
+      };
       this.falando.set(true);
       sintese.speak(fala);
+      // Se nada começar em alguns segundos, o áudio provavelmente não vai tocar.
+      setTimeout(() => {
+        if (!comecou && !terminou) {
+          this.problema.set({ erro: 'sem-resposta', voz: voz?.name ?? null, quando: Date.now() });
+          sintese.cancel();
+          terminar();
+        }
+      }, 6000);
       // Proteção: alguns navegadores não disparam onend.
-      setTimeout(terminar, 1500 + texto.length * 700);
+      setTimeout(terminar, 6000 + texto.length * 700);
     });
+  }
+
+  /** Descrição das vozes disponíveis (para o diagnóstico em Progresso). */
+  diagnostico(): { total: number; chinesas: { nome: string; lang: string; local: boolean; falhou: boolean }[] } {
+    const falhas = this.vozesComFalha();
+    return {
+      total: this.vozes().length,
+      chinesas: this.vozesChinesas().map((v) => ({ nome: v.name, lang: v.lang, local: v.localService, falhou: falhas.has(v.name) })),
+    };
   }
 
   /** Uma voz por fala: sorteada entre as vozes de mandarim, se a variação estiver ligada. */

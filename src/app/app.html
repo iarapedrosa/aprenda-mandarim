@@ -176,6 +176,21 @@
   </div>
 }
 
+@if (voz.problema() && grupo() !== 'progresso') {
+  <div class="faixa-audio" role="alert">
+    <span>
+      🔇 <strong>{{ i.t('O áudio não tocou.', 'The audio didn’t play.') }}</strong>
+      @if (voz.semVozChinesa()) {
+        {{ i.t('Este computador não tem voz em chinês instalada.', 'This computer has no Chinese voice installed.') }}
+      } @else {
+        {{ i.t('A voz em chinês pode estar bloqueada pela rede (comum em computadores de empresa) ou o som está sem saída.', 'The Chinese voice may be blocked by the network (common on work computers) or there is no sound output.') }}
+      }
+      <a routerLink="/progresso" fragment="voz">{{ i.t('Ver diagnóstico', 'See diagnostics') }}</a>
+    </span>
+    <button type="button" class="botao botao-texto botao-icone" (click)="voz.problema.set(null)" [attr.aria-label]="i.t('Fechar aviso', 'Close notice')">✕</button>
+  </div>
+}
+
 <main id="conteudo" tabindex="-1">
   <router-outlet />
 </main>

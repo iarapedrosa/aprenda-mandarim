@@ -5,6 +5,7 @@ import { filter } from 'rxjs';
 import { APRENDER, Grupo, PRATICAR, SOBRE, grupoDaUrl } from './core/navegacao';
 import { TemaService } from './core/tema/tema.service';
 import { IdiomaService } from './core/i18n/idioma.service';
+import { VozService } from './core/voz/voz.service';
 
 interface AbaPrincipal {
   grupo: Grupo;
@@ -23,6 +24,7 @@ interface AbaPrincipal {
 export class App {
   protected readonly i = inject(IdiomaService);
   protected readonly tema = inject(TemaService);
+  protected readonly voz = inject(VozService);
   private readonly sw = inject(SwUpdate);
   private readonly router = inject(Router);
   private readonly documento = inject(DOCUMENT);

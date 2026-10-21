@@ -228,6 +228,38 @@
     @if (voz.semVozChinesa()) {
       <p class="aviso pequeno">{{ i.t('Nenhuma voz em chinês encontrada neste aparelho. Veja como instalar na seção', 'No Chinese voice found on this device. See how to install one in the') }} <a routerLink="/pinyin/tons">Pinyin</a>{{ i.t('.', ' section.') }}</p>
     }
+    <details class="diagnostico" id="voz" [open]="abrirDiagnostico">
+      <summary>{{ i.t('Diagnóstico do áudio', 'Audio diagnostics') }}</summary>
+      @if (!voz.suportado) {
+        <p class="erro pequeno">{{ i.t('Este navegador não tem síntese de voz.', 'This browser has no speech synthesis.') }}</p>
+      } @else {
+        @let d = voz.diagnostico();
+        <p class="pequeno">
+          {{ i.t('Vozes no navegador:', 'Voices in the browser:') }} <strong>{{ d.total }}</strong> ·
+          {{ i.t('em chinês:', 'Chinese:') }} <strong>{{ d.chinesas.length }}</strong>
+        </p>
+        @if (d.chinesas.length) {
+          <ul class="lista-vozes pequeno">
+            @for (v of d.chinesas; track v.nome) {
+              <li>
+                {{ v.nome }} <span class="suave">({{ v.lang }} · {{ v.local ? i.t('instalada', 'installed') : i.t('online', 'online') }})</span>
+                @if (v.falhou) { <span class="erro-inline">— {{ i.t('falhou', 'failed') }}</span> }
+              </li>
+            }
+          </ul>
+        }
+        @if (voz.problema(); as p) {
+          <p class="pequeno">{{ i.t('Último erro:', 'Last error:') }} <code>{{ p.erro }}</code>{{ p.voz ? ' (' + p.voz + ')' : '' }}</p>
+        }
+        <p class="suave pequeno">{{ i.t('O que costuma resolver:', 'What usually fixes it:') }}</p>
+        <ul class="suave pequeno">
+          <li>{{ i.t('Vozes "online" (como "Google 普通话") precisam de internet e podem ser bloqueadas na rede da empresa. Uma voz "instalada" funciona sempre.', '"Online" voices (like "Google 普通话") need internet and may be blocked on a work network. An "installed" voice always works.') }}</li>
+          <li>{{ i.t('Windows: Configurações › Hora e idioma › Fala › Adicionar vozes › Chinês (simplificado). Pode exigir permissão de administrador.', 'Windows: Settings › Time & language › Speech › Add voices › Chinese (Simplified). May require admin rights.') }}</li>
+          <li>{{ i.t('Teste também no Microsoft Edge, que traz vozes chinesas próprias.', 'Also try Microsoft Edge, which ships its own Chinese voices.') }}</li>
+          <li>{{ i.t('Confira se o som do computador está ligado e com saída (fone/caixa).', 'Check that the computer’s sound is on and has an output (headphones/speakers).') }}</li>
+        </ul>
+      }
+    </details>
   </section>
 
   <section class="cartao" aria-labelledby="titulo-backup">

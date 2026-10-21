@@ -1,6 +1,6 @@
 import { Component, computed, inject, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { RouterLink } from '@angular/router';
+import { ActivatedRoute, RouterLink } from '@angular/router';
 import { taxa } from '../../core/progresso/estatisticas';
 import { confusoesFrequentes } from '../../core/progresso/tons-dificeis';
 import { LIMITES_METAS, Modulo, NOMES_MODULOS, NOMES_MODULOS_EN } from '../../core/progresso/progresso.model';
@@ -193,6 +193,9 @@ export class ProgressoPagina {
   private erro(msg: string): string {
     return this.i.t(msg, ERROS_EN[msg] ?? msg);
   }
+
+  /** abre o diagnóstico de áudio quando a página é aberta pelo aviso ("#voz") */
+  protected readonly abrirDiagnostico = inject(ActivatedRoute).snapshot.fragment === 'voz';
 
   protected testarVoz(): void {
     void this.voz.falar('你好，欢迎学习中文！');
