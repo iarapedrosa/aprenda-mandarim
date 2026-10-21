@@ -128,3 +128,27 @@ describe('treino diário: acúmulo de revisões', () => {
     expect(plano.aviso).toBeTruthy();
   });
 });
+
+describe('treino diário: gramática', () => {
+  const licoesPinyin = Object.fromEntries(LICOES_PINYIN.map((l) => [l.id, ONTEM]));
+  const licao = (id: string, minPalavras: number) => ({
+    id,
+    titulo: id,
+    minPalavras,
+    estrutura: '',
+    explicacao: [],
+    exemplos: [],
+    exercicios: [{ pergunta: '?', opcoes: ['a', 'b'], correta: 0, explicacao: '' }],
+  });
+
+  it('inclui a próxima lição liberada pelo vocabulário, uma por dia', () => {
+    const cartoes = Object.fromEntries(palavras.slice(0, 5).map((p) => [`palavra:${p.id}`, cartaoRevisado(p.id, { vencimento: '2026-11-01' })]));
+    const ctx = { ...contexto({ licoesPinyin, cartoes }), gramatica: [licao('g01', 3), licao('g02', 8)] };
+    const plano = gerarSessao(ctx);
+    expect(plano.itens.filter((i) => i.tipo === 'gramatica').map((i) => i.licao)).toEqual(['gramatica:g01']);
+    expect(plano.resumo.gramatica).toBe(1);
+
+    const feitaHoje = { ...contexto({ licoesPinyin, cartoes, licoesGramatica: { g01: HOJE } }), gramatica: ctx.gramatica };
+    expect(gerarSessao(feitaHoje).resumo.gramatica).toBe(0);
+  });
+});

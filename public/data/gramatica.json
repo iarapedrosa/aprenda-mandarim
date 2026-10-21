@@ -1,0 +1,736 @@
+[
+ {
+  "id": "g01",
+  "titulo": "A ordem da frase",
+  "minPalavras": 3,
+  "estrutura": "Sujeito + Verbo + Objeto",
+  "explicacao": [
+   "Como no português: 我爱你 = eu amo você.",
+   "Os verbos não mudam nunca: 我是, 你是, 他是 — sem conjugação de pessoa nem de tempo!",
+   "是 (shì) liga dois substantivos (\"ser\"). Com adjetivos NÃO se usa 是: diz-se 我很好, e não 我是好."
+  ],
+  "exemplos": [
+   {
+    "hanzi": "我喝茶。",
+    "pinyin": "Wǒ hē chá.",
+    "traducao": "Eu bebo chá."
+   },
+   {
+    "hanzi": "她是老师。",
+    "pinyin": "Tā shì lǎoshī.",
+    "traducao": "Ela é professora."
+   },
+   {
+    "hanzi": "我很高兴。",
+    "pinyin": "Wǒ hěn gāoxìng.",
+    "traducao": "Estou muito feliz."
+   }
+  ],
+  "exercicios": [
+   {
+    "pergunta": "Complete: \"Eu sou estudante.\"",
+    "frase": "我___学生。",
+    "opcoes": [
+     "是",
+     "很",
+     "有"
+    ],
+    "correta": 0,
+    "explicacao": "是 liga \"eu\" a um substantivo (estudante)."
+   },
+   {
+    "pergunta": "Como se diz \"Ela é bonita\"?",
+    "opcoes": [
+     "她很漂亮。",
+     "她是漂亮。",
+     "漂亮她是。"
+    ],
+    "correta": 0,
+    "explicacao": "Com adjetivo, use 很 (e não 是)."
+   },
+   {
+    "pergunta": "Qual frase está na ordem certa? (\"Eu como arroz\")",
+    "opcoes": [
+     "我吃米饭。",
+     "米饭我吃。",
+     "吃我米饭。"
+    ],
+    "correta": 0,
+    "explicacao": "Sujeito + verbo + objeto, como no português."
+   }
+  ]
+ },
+ {
+  "id": "g02",
+  "titulo": "Perguntas: 吗 e palavras interrogativas",
+  "minPalavras": 8,
+  "estrutura": "Frase + 吗？ · ou: palavra interrogativa no lugar da resposta",
+  "explicacao": [
+   "Para perguntas de sim ou não, acrescente 吗 no fim da frase: 你是老师。→ 你是老师吗？",
+   "Com 什么 (o quê), 谁 (quem), 哪儿 (onde) e 几 (quantos), a ordem NÃO muda: a palavra fica onde ficaria a resposta. 你叫什么？— 我叫安娜。",
+   "Não use 吗 junto com essas palavras interrogativas."
+  ],
+  "exemplos": [
+   {
+    "hanzi": "你是学生吗？",
+    "pinyin": "Nǐ shì xuésheng ma?",
+    "traducao": "Você é estudante?"
+   },
+   {
+    "hanzi": "他是谁？",
+    "pinyin": "Tā shì shéi?",
+    "traducao": "Quem é ele?"
+   },
+   {
+    "hanzi": "你去哪儿？",
+    "pinyin": "Nǐ qù nǎr?",
+    "traducao": "Aonde você vai?"
+   }
+  ],
+  "exercicios": [
+   {
+    "pergunta": "Transforme em pergunta: 你喝茶。",
+    "opcoes": [
+     "你喝茶吗？",
+     "吗你喝茶？",
+     "你吗喝茶？"
+    ],
+    "correta": 0,
+    "explicacao": "吗 vai no fim da frase."
+   },
+   {
+    "pergunta": "Como se pergunta \"O que você come?\"",
+    "opcoes": [
+     "你吃什么？",
+     "什么你吃？",
+     "你吃什么吗？"
+    ],
+    "correta": 0,
+    "explicacao": "什么 fica no lugar do objeto, e não se usa 吗 junto."
+   },
+   {
+    "pergunta": "Complete: \"Quem é ele?\"",
+    "frase": "他是___？",
+    "opcoes": [
+     "谁",
+     "吗",
+     "呢"
+    ],
+    "correta": 0,
+    "explicacao": "谁 = quem."
+   }
+  ]
+ },
+ {
+  "id": "g03",
+  "titulo": "Negação: 不 e 没",
+  "minPalavras": 12,
+  "estrutura": "不 + verbo (presente, futuro, hábito) · 没 + verbo (passado) · 没有 (não ter)",
+  "explicacao": [
+   "不 (bù) nega o presente, o futuro, hábitos e o verbo 是: 我不吃肉 (não como carne).",
+   "没 (méi) nega o que não aconteceu e é a única negação de 有: 我没有钱, 我昨天没去.",
+   "Lembre: 不 vira bú antes de 4º tom (不是 bú shì)."
+  ],
+  "exemplos": [
+   {
+    "hanzi": "我不是老师。",
+    "pinyin": "Wǒ bú shì lǎoshī.",
+    "traducao": "Eu não sou professor(a)."
+   },
+   {
+    "hanzi": "我没有猫。",
+    "pinyin": "Wǒ méiyǒu māo.",
+    "traducao": "Eu não tenho gato."
+   },
+   {
+    "hanzi": "他昨天没来。",
+    "pinyin": "Tā zuótiān méi lái.",
+    "traducao": "Ele não veio ontem."
+   }
+  ],
+  "exercicios": [
+   {
+    "pergunta": "\"Eu não tenho dinheiro.\"",
+    "frase": "我___有钱。",
+    "opcoes": [
+     "没",
+     "不"
+    ],
+    "correta": 0,
+    "explicacao": "有 só se nega com 没."
+   },
+   {
+    "pergunta": "\"Eu não bebo café\" (hábito).",
+    "frase": "我___喝咖啡。",
+    "opcoes": [
+     "不",
+     "没"
+    ],
+    "correta": 0,
+    "explicacao": "Hábito ou presente: 不."
+   },
+   {
+    "pergunta": "\"Ontem eu não fui.\"",
+    "frase": "我昨天___去。",
+    "opcoes": [
+     "没",
+     "不"
+    ],
+    "correta": 0,
+    "explicacao": "Ação que não aconteceu no passado: 没."
+   }
+  ]
+ },
+ {
+  "id": "g04",
+  "titulo": "的: posse e descrição",
+  "minPalavras": 16,
+  "estrutura": "Dono + 的 + coisa · Descrição + 的 + substantivo",
+  "explicacao": [
+   "的 (de) funciona como o nosso \"de\", mas na ordem inversa: 我的书 = meu livro (o livro de mim).",
+   "Também liga uma descrição ao substantivo: 漂亮的衣服 (roupa bonita), 妈妈做的菜 (a comida que a mamãe faz).",
+   "Com família e pessoas próximas, o 的 costuma cair: 我妈妈, 我朋友."
+  ],
+  "exemplos": [
+   {
+    "hanzi": "这是我的书。",
+    "pinyin": "Zhè shì wǒ de shū.",
+    "traducao": "Este é o meu livro."
+   },
+   {
+    "hanzi": "她是我妈妈。",
+    "pinyin": "Tā shì wǒ māma.",
+    "traducao": "Ela é minha mãe."
+   },
+   {
+    "hanzi": "我喜欢红色的衣服。",
+    "pinyin": "Wǒ xǐhuan hóngsè de yīfu.",
+    "traducao": "Eu gosto de roupa vermelha."
+   }
+  ],
+  "exercicios": [
+   {
+    "pergunta": "Como se diz \"o celular do professor\"?",
+    "opcoes": [
+     "老师的手机",
+     "手机的老师",
+     "的老师手机"
+    ],
+    "correta": 0,
+    "explicacao": "O dono vem primeiro: 老师的手机."
+   },
+   {
+    "pergunta": "Complete: \"Este é o meu copo.\"",
+    "frase": "这是我___杯子。",
+    "opcoes": [
+     "的",
+     "是",
+     "很"
+    ],
+    "correta": 0,
+    "explicacao": "我的 = meu."
+   },
+   {
+    "pergunta": "Qual é a forma mais natural para \"meu pai\"?",
+    "opcoes": [
+     "我爸爸",
+     "爸爸我",
+     "我是爸爸"
+    ],
+    "correta": 0,
+    "explicacao": "Com família, o 的 costuma cair: 我爸爸."
+   }
+  ]
+ },
+ {
+  "id": "g05",
+  "titulo": "Classificadores (个, 本, 杯…)",
+  "minPalavras": 20,
+  "estrutura": "Número + classificador + substantivo",
+  "explicacao": [
+   "Entre o número e o substantivo vem sempre um classificador: 一个人 (uma pessoa), 三本书 (três livros).",
+   "个 (ge) é o mais comum e quebra o galho quando você não sabe o certo. Outros: 本 livros, 杯 copos e xícaras, 件 roupas e assuntos, 口 pessoas da família, 块 dinheiro.",
+   "Para \"dois\" antes de classificador use 两: 两个人, nunca 二个人."
+  ],
+  "exemplos": [
+   {
+    "hanzi": "我有一个哥哥。",
+    "pinyin": "Wǒ yǒu yí ge gēge.",
+    "traducao": "Eu tenho um irmão mais velho."
+   },
+   {
+    "hanzi": "我买了三本书。",
+    "pinyin": "Wǒ mǎi le sān běn shū.",
+    "traducao": "Comprei três livros."
+   },
+   {
+    "hanzi": "我要两杯茶。",
+    "pinyin": "Wǒ yào liǎng bēi chá.",
+    "traducao": "Quero duas xícaras de chá."
+   }
+  ],
+  "exercicios": [
+   {
+    "pergunta": "Complete: \"três livros\"",
+    "frase": "三___书",
+    "opcoes": [
+     "本",
+     "杯",
+     "口"
+    ],
+    "correta": 0,
+    "explicacao": "本 é o classificador de livros."
+   },
+   {
+    "pergunta": "Como se diz \"duas pessoas\"?",
+    "opcoes": [
+     "两个人",
+     "二个人",
+     "两人个"
+    ],
+    "correta": 0,
+    "explicacao": "Antes de classificador, 2 é 两."
+   },
+   {
+    "pergunta": "Complete: \"uma roupa\"",
+    "frase": "一___衣服",
+    "opcoes": [
+     "件",
+     "本",
+     "杯"
+    ],
+    "correta": 0,
+    "explicacao": "件 é usado para roupas."
+   }
+  ]
+ },
+ {
+  "id": "g06",
+  "titulo": "Tempo e lugar vêm antes do verbo",
+  "minPalavras": 25,
+  "estrutura": "Sujeito + Tempo + Lugar + Verbo + Objeto",
+  "explicacao": [
+   "Em chinês, QUANDO e ONDE vêm antes da ação: 我明天在家学习 = \"eu amanhã em casa estudo\".",
+   "O tempo também pode abrir a frase (明天我在家学习), mas nunca vai para o fim, como fazemos em português.",
+   "Pense assim: primeiro o cenário (quando, onde), depois a ação."
+  ],
+  "exemplos": [
+   {
+    "hanzi": "我明天去北京。",
+    "pinyin": "Wǒ míngtiān qù Běijīng.",
+    "traducao": "Amanhã vou para Pequim."
+   },
+   {
+    "hanzi": "他在医院工作。",
+    "pinyin": "Tā zài yīyuàn gōngzuò.",
+    "traducao": "Ele trabalha no hospital."
+   },
+   {
+    "hanzi": "我们中午在饭店吃饭。",
+    "pinyin": "Wǒmen zhōngwǔ zài fàndiàn chī fàn.",
+    "traducao": "Ao meio-dia comemos no restaurante."
+   }
+  ],
+  "exercicios": [
+   {
+    "pergunta": "Qual está certa? (\"Eu trabalho no hospital\")",
+    "opcoes": [
+     "我在医院工作。",
+     "我工作在医院。",
+     "工作我在医院。"
+    ],
+    "correta": 0,
+    "explicacao": "O lugar (在医院) vem antes do verbo."
+   },
+   {
+    "pergunta": "Qual está certa? (\"Amanhã eu vou à escola\")",
+    "opcoes": [
+     "我明天去学校。",
+     "我去学校明天。",
+     "去学校我明天。"
+    ],
+    "correta": 0,
+    "explicacao": "O tempo (明天) vem antes do verbo, nunca no fim."
+   },
+   {
+    "pergunta": "Qual está certa? (\"Ela estuda chinês em casa\")",
+    "opcoes": [
+     "她在家学习汉语。",
+     "她学习汉语在家。",
+     "她学习在家汉语。"
+    ],
+    "correta": 0,
+    "explicacao": "Sujeito + lugar + verbo + objeto."
+   }
+  ]
+ },
+ {
+  "id": "g07",
+  "titulo": "在: lugar e ação em andamento",
+  "minPalavras": 30,
+  "estrutura": "在 + lugar · 在 + lugar + verbo · 在/正在 + verbo (+ 呢)",
+  "explicacao": [
+   "在 + lugar = estar em: 我在家 (estou em casa).",
+   "Antes de outro verbo, 在 + lugar diz onde a ação acontece: 我在学校吃饭.",
+   "在 (ou 正在) + verbo = ação acontecendo agora, como o nosso gerúndio: 我在吃饭 (estou comendo). Muitas vezes vem 呢 no fim."
+  ],
+  "exemplos": [
+   {
+    "hanzi": "妈妈在家。",
+    "pinyin": "Māma zài jiā.",
+    "traducao": "A mamãe está em casa."
+   },
+   {
+    "hanzi": "我在看书。",
+    "pinyin": "Wǒ zài kàn shū.",
+    "traducao": "Estou lendo."
+   },
+   {
+    "hanzi": "他正在打电话呢。",
+    "pinyin": "Tā zhèngzài dǎ diànhuà ne.",
+    "traducao": "Ele está ao telefone agora."
+   }
+  ],
+  "exercicios": [
+   {
+    "pergunta": "Complete: \"Onde você está?\"",
+    "frase": "你___哪儿？",
+    "opcoes": [
+     "在",
+     "是",
+     "有"
+    ],
+    "correta": 0,
+    "explicacao": "在 = estar em (algum lugar)."
+   },
+   {
+    "pergunta": "Como se diz \"Estou estudando\"?",
+    "opcoes": [
+     "我在学习。",
+     "我学习在。",
+     "我是学习。"
+    ],
+    "correta": 0,
+    "explicacao": "在 + verbo = ação em andamento."
+   },
+   {
+    "pergunta": "Complete: \"Ele está dormindo.\"",
+    "frase": "他___睡觉呢。",
+    "opcoes": [
+     "在",
+     "是",
+     "了"
+    ],
+    "correta": 0,
+    "explicacao": "在 + verbo (+ 呢) = está fazendo agora."
+   }
+  ]
+ },
+ {
+  "id": "g08",
+  "titulo": "了: ação concluída e mudança",
+  "minPalavras": 40,
+  "estrutura": "Verbo + 了 (concluído) · Frase + 了 (mudança)",
+  "explicacao": [
+   "了 logo depois do verbo indica ação concluída: 我买了一本书 (comprei um livro).",
+   "了 no fim da frase indica mudança de situação: 下雨了 (começou a chover), 我饿了 (fiquei com fome).",
+   "Para negar algo concluído, use 没 e tire o 了: 我没买."
+  ],
+  "exemplos": [
+   {
+    "hanzi": "我吃了米饭。",
+    "pinyin": "Wǒ chī le mǐfàn.",
+    "traducao": "Eu comi arroz."
+   },
+   {
+    "hanzi": "下雨了！",
+    "pinyin": "Xià yǔ le!",
+    "traducao": "Começou a chover!"
+   },
+   {
+    "hanzi": "他没来。",
+    "pinyin": "Tā méi lái.",
+    "traducao": "Ele não veio."
+   }
+  ],
+  "exercicios": [
+   {
+    "pergunta": "Como se diz \"Comprei um livro\"?",
+    "opcoes": [
+     "我买了一本书。",
+     "我了买一本书。",
+     "我买一本了书。"
+    ],
+    "correta": 0,
+    "explicacao": "了 vem logo depois do verbo."
+   },
+   {
+    "pergunta": "Negue: 我去了。(Eu fui.)",
+    "opcoes": [
+     "我没去。",
+     "我不去了。",
+     "我没去了。"
+    ],
+    "correta": 0,
+    "explicacao": "No passado nega-se com 没, sem 了."
+   },
+   {
+    "pergunta": "\"Fiquei cansada!\"",
+    "frase": "我累___！",
+    "opcoes": [
+     "了",
+     "的",
+     "吗"
+    ],
+    "correta": 0,
+    "explicacao": "了 no fim = mudança de estado."
+   }
+  ]
+ },
+ {
+  "id": "g09",
+  "titulo": "Verbos modais: 想, 要, 会, 能, 可以",
+  "minPalavras": 50,
+  "estrutura": "Sujeito + modal + verbo",
+  "explicacao": [
+   "想 (xiǎng) = ter vontade: 我想喝茶. 要 (yào) = querer com firmeza, precisar, ou \"ir fazer\": 我要一杯咖啡.",
+   "会 (huì) = saber fazer algo aprendido: 我会说汉语. 能 (néng) = conseguir, ter condições: 我今天不能来.",
+   "可以 (kěyǐ) = poder, ter permissão: 我可以进来吗？"
+  ],
+  "exemplos": [
+   {
+    "hanzi": "我想去中国。",
+    "pinyin": "Wǒ xiǎng qù Zhōngguó.",
+    "traducao": "Quero ir à China."
+   },
+   {
+    "hanzi": "你会游泳吗？",
+    "pinyin": "Nǐ huì yóuyǒng ma?",
+    "traducao": "Você sabe nadar?"
+   },
+   {
+    "hanzi": "我可以坐这儿吗？",
+    "pinyin": "Wǒ kěyǐ zuò zhèr ma?",
+    "traducao": "Posso sentar aqui?"
+   }
+  ],
+  "exercicios": [
+   {
+    "pergunta": "\"Eu sei falar chinês\" (aprendi).",
+    "frase": "我___说汉语。",
+    "opcoes": [
+     "会",
+     "能",
+     "想"
+    ],
+    "correta": 0,
+    "explicacao": "Habilidade aprendida: 会."
+   },
+   {
+    "pergunta": "\"Posso entrar?\" (pedindo permissão)",
+    "frase": "我___进来吗？",
+    "opcoes": [
+     "可以",
+     "会",
+     "想"
+    ],
+    "correta": 0,
+    "explicacao": "Permissão: 可以."
+   },
+   {
+    "pergunta": "\"Hoje eu não consigo ir.\"",
+    "frase": "我今天不___去。",
+    "opcoes": [
+     "能",
+     "会",
+     "要"
+    ],
+    "correta": 0,
+    "explicacao": "Ter condições de fazer: 能."
+   }
+  ]
+ },
+ {
+  "id": "g10",
+  "titulo": "Comparação com 比",
+  "minPalavras": 70,
+  "estrutura": "A + 比 + B + adjetivo (+ diferença)",
+  "explicacao": [
+   "A 比 B + adjetivo = A é mais … que B: 他比我高 (ele é mais alto que eu).",
+   "Não use 很 nem 非常 depois de 比 (nunca 他比我很高). Para \"muito mais\", ponha 多了 no fim: 他比我高多了.",
+   "A diferença vai no fim: 他比我大三岁 (ele é três anos mais velho que eu)."
+  ],
+  "exemplos": [
+   {
+    "hanzi": "今天比昨天冷。",
+    "pinyin": "Jīntiān bǐ zuótiān lěng.",
+    "traducao": "Hoje está mais frio que ontem."
+   },
+   {
+    "hanzi": "哥哥比我高。",
+    "pinyin": "Gēge bǐ wǒ gāo.",
+    "traducao": "Meu irmão é mais alto que eu."
+   },
+   {
+    "hanzi": "他比我大三岁。",
+    "pinyin": "Tā bǐ wǒ dà sān suì.",
+    "traducao": "Ele é três anos mais velho que eu."
+   }
+  ],
+  "exercicios": [
+   {
+    "pergunta": "\"O chá é mais barato que o café.\"",
+    "opcoes": [
+     "茶比咖啡便宜。",
+     "茶比咖啡很便宜。",
+     "比茶咖啡便宜。"
+    ],
+    "correta": 0,
+    "explicacao": "Depois de 比 não vem 很."
+   },
+   {
+    "pergunta": "\"Ele é dois anos mais novo que eu.\"",
+    "opcoes": [
+     "他比我小两岁。",
+     "他比我两岁小。",
+     "他小比我两岁。"
+    ],
+    "correta": 0,
+    "explicacao": "A diferença vai no fim."
+   },
+   {
+    "pergunta": "Qual frase está ERRADA?",
+    "opcoes": [
+     "他比我很忙。",
+     "他比我忙。",
+     "他比我忙多了。"
+    ],
+    "correta": 0,
+    "explicacao": "Depois de 比 não se usa 很."
+   }
+  ]
+ },
+ {
+  "id": "g11",
+  "titulo": "过: experiências",
+  "minPalavras": 90,
+  "estrutura": "Verbo + 过 · 没 + verbo + 过",
+  "explicacao": [
+   "Verbo + 过 (guo) = já ter feito algo alguma vez na vida: 我去过北京 (já fui a Pequim).",
+   "Para negar: 没 + verbo + 过: 我没吃过鱼 (nunca comi peixe).",
+   "Pergunta comum: 你……过……吗？ (Você já…?)"
+  ],
+  "exemplos": [
+   {
+    "hanzi": "我去过中国。",
+    "pinyin": "Wǒ qù guo Zhōngguó.",
+    "traducao": "Já fui à China."
+   },
+   {
+    "hanzi": "你吃过羊肉吗？",
+    "pinyin": "Nǐ chī guo yángròu ma?",
+    "traducao": "Você já comeu carne de carneiro?"
+   },
+   {
+    "hanzi": "我没看过这个电影。",
+    "pinyin": "Wǒ méi kàn guo zhège diànyǐng.",
+    "traducao": "Nunca vi este filme."
+   }
+  ],
+  "exercicios": [
+   {
+    "pergunta": "\"Já estive em Pequim.\" (experiência)",
+    "frase": "我去___北京。",
+    "opcoes": [
+     "过",
+     "着",
+     "吗"
+    ],
+    "correta": 0,
+    "explicacao": "过 marca a experiência."
+   },
+   {
+    "pergunta": "\"Nunca nadei.\"",
+    "opcoes": [
+     "我没游过泳。",
+     "我不游过泳。",
+     "我没游泳过了。"
+    ],
+    "correta": 0,
+    "explicacao": "没 + verbo + 过 (游泳 se separa: 游过泳)."
+   },
+   {
+    "pergunta": "\"Você já leu este livro?\"",
+    "opcoes": [
+     "你看过这本书吗？",
+     "你看这本书过吗？",
+     "你过看这本书吗？"
+    ],
+    "correta": 0,
+    "explicacao": "过 vem logo depois do verbo."
+   }
+  ]
+ },
+ {
+  "id": "g12",
+  "titulo": "得: como a ação é feita",
+  "minPalavras": 110,
+  "estrutura": "Verbo + 得 + descrição",
+  "explicacao": [
+   "Verbo + 得 + descrição = como a ação é feita: 她说得很好 (ela fala bem).",
+   "Com objeto, repete-se o verbo: 她说汉语说得很好 — ou se tira o primeiro: 她汉语说得很好.",
+   "Não confunda: 的 (posse/descrição de substantivo), 得 (depois de verbo) e 地 (antes de verbo, \"de modo…\"). Os três se pronunciam \"de\"."
+  ],
+  "exemplos": [
+   {
+    "hanzi": "他跑得很快。",
+    "pinyin": "Tā pǎo de hěn kuài.",
+    "traducao": "Ele corre muito rápido."
+   },
+   {
+    "hanzi": "你说得对。",
+    "pinyin": "Nǐ shuō de duì.",
+    "traducao": "Você tem razão."
+   },
+   {
+    "hanzi": "她唱歌唱得很好。",
+    "pinyin": "Tā chàng gē chàng de hěn hǎo.",
+    "traducao": "Ela canta muito bem."
+   }
+  ],
+  "exercicios": [
+   {
+    "pergunta": "\"Ele corre muito rápido.\"",
+    "frase": "他跑___很快。",
+    "opcoes": [
+     "得",
+     "的",
+     "了"
+    ],
+    "correta": 0,
+    "explicacao": "Verbo + 得 + como."
+   },
+   {
+    "pergunta": "Qual está certa? (\"Ela fala chinês muito bem\")",
+    "opcoes": [
+     "她说汉语说得很好。",
+     "她说汉语得很好。",
+     "她说得汉语很好。"
+    ],
+    "correta": 0,
+    "explicacao": "Com objeto, repete-se o verbo antes de 得."
+   },
+   {
+    "pergunta": "Complete: \"meu livro\"",
+    "frase": "我___书",
+    "opcoes": [
+     "的",
+     "得",
+     "地"
+    ],
+    "correta": 0,
+    "explicacao": "Posse: 的."
+   }
+  ]
+ }
+]

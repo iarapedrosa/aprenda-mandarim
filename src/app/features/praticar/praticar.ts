@@ -65,6 +65,7 @@ import { RouterLink } from '@angular/router';
 export class PraticarPagina {
   protected readonly modulos = [
     { rota: '/cartoes', icone: '卡', nome: 'Cartões (estilo Anki)', descricao: 'Flashcards com repetição espaçada e exportação para o Anki.' },
+    { rota: '/gramatica', icone: '语', nome: 'Gramática', descricao: 'Mini-lições: ordem da frase, 的, 了, classificadores…' },
     { rota: '/numeros', icone: '数', nome: 'Números', descricao: 'Contar, preços, horas, datas e telefones com áudio.' },
     { rota: '/escrita', icone: '写', nome: 'Escrita', descricao: 'Desenhe os caracteres traço a traço.' },
     { rota: '/leitura', icone: '读', nome: 'Leitura', descricao: 'Diálogos e historinhas com pinyin e tradução.' },

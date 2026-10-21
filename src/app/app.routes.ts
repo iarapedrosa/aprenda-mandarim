@@ -32,6 +32,10 @@ export const routes: Routes = [
     loadChildren: () => import('./features/fala/fala.routes').then((m) => m.FALA_ROTAS),
   },
   {
+    path: 'gramatica',
+    loadChildren: () => import('./features/gramatica/gramatica.routes').then((m) => m.GRAMATICA_ROTAS),
+  },
+  {
     path: 'cartoes',
     loadChildren: () => import('./features/cartoes/cartoes.routes').then((m) => m.CARTOES_ROTAS),
   },

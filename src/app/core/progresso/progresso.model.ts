@@ -1,7 +1,7 @@
 import { CartaoSrs } from '../srs/sm2';
 import { DataISO } from '../util/datas';
 
-export type Modulo = 'tons' | 'pinyin' | 'caracteres' | 'escrita' | 'leitura' | 'escuta' | 'fala' | 'numeros';
+export type Modulo = 'tons' | 'pinyin' | 'caracteres' | 'escrita' | 'leitura' | 'escuta' | 'fala' | 'numeros' | 'gramatica';
 
 export const NOMES_MODULOS: Record<Modulo, string> = {
   tons: 'Tons',
@@ -12,6 +12,7 @@ export const NOMES_MODULOS: Record<Modulo, string> = {
   escuta: 'Escuta',
   fala: 'Fala',
   numeros: 'Números',
+  gramatica: 'Gramática',
 };
 
 export interface Placar {
@@ -63,6 +64,8 @@ export interface EstadoProgresso {
   cartoes: Record<string, CartaoSrs>;
   /** lições de pinyin concluídas (id → data) */
   licoesPinyin: Record<string, DataISO>;
+  /** lições de gramática concluídas (id → data) */
+  licoesGramatica: Record<string, DataISO>;
   /** textos de leitura concluídos (id → resultado) */
   textos: Record<string, { data: DataISO; acertos: number; total: number }>;
 }

@@ -38,6 +38,7 @@ function estadoInicial(): EstadoProgresso {
     porTom: {},
     cartoes: {},
     licoesPinyin: {},
+    licoesGramatica: {},
     textos: {},
   };
 }
@@ -75,6 +76,7 @@ export function normalizarEstado(bruto: Partial<EstadoProgresso>): EstadoProgres
     metas: metasNormalizadas(bruto.metas),
     atividade,
     licoesPinyin: licoes,
+    licoesGramatica: bruto.licoesGramatica ?? {},
     cartoes: bruto.cartoes ?? {},
     textos: bruto.textos ?? {},
     porModulo: bruto.porModulo ?? {},
@@ -157,6 +159,12 @@ export class ProgressoService {
   concluirLicaoPinyin(id: string): void {
     this.estado.update((e) =>
       e.licoesPinyin[id] ? e : { ...e, licoesPinyin: { ...e.licoesPinyin, [id]: hoje() } },
+    );
+  }
+
+  concluirLicaoGramatica(id: string): void {
+    this.estado.update((e) =>
+      e.licoesGramatica[id] ? e : { ...e, licoesGramatica: { ...e.licoesGramatica, [id]: hoje() } },
     );
   }
 

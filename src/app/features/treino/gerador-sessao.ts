@@ -1,3 +1,4 @@
+import { LicaoGramatica } from '../../core/dados/gramatica.service';
 import { Frase, Palavra } from '../../core/dados/modelos';
 import { InfoCaractere, caracteresDe } from '../../core/dados/vocabulario.service';
 import { analisarPinyin, silabaComAcento, Tom } from '../../core/pinyin/pinyin';
@@ -8,6 +9,7 @@ import { DataISO } from '../../core/util/datas';
 import { numero } from '../../core/numeros/numeros';
 import { palavrasPorPar, sortearPar } from '../../core/pinyin/pares-tons';
 import { LICOES_PINYIN, LicaoPinyin, exerciciosDaLicao, itemParDeTons, itemTom } from './curriculo';
+import { itensDaLicaoGramatica } from './gramatica-itens';
 import { ItemEscolha, ItemSessao } from './sessao.model';
 
 export interface FraseComId extends Frase {
@@ -28,6 +30,8 @@ export interface ContextoSessao {
   frases: FraseComId[];
   infoCaractere: (c: string) => InfoCaractere;
   silabasAquecimento: SilabaAquecimento[];
+  /** mini-lições de gramática (entram aos poucos, conforme o vocabulário) */
+  gramatica?: LicaoGramatica[];
   /** itens de frase (ditado/shadowing/leitura) gerados por outros módulos */
   itensDeFrase?: (palavrasConhecidas: Palavra[]) => ItemSessao[];
 }
@@ -39,7 +43,7 @@ export interface PlanoSessao {
   itens: ItemSessao[];
   /** aviso sobre revisões acumuladas, para mostrar na página inicial */
   aviso?: string;
-  resumo: { licoes: number; revisoes: number; novas: number; escrita: number; frases: number; minutos: number };
+  resumo: { licoes: number; gramatica: number; revisoes: number; novas: number; escrita: number; frases: number; minutos: number };
 }
 
 /** Quantas lições de pinyin precisam estar prontas para liberar o vocabulário. */
@@ -283,6 +287,7 @@ export function acumuloDeRevisoes(
 
 const MINUTOS: Record<ItemSessao['tipo'], number> = {
   licao: 1,
+  gramatica: 1.5,
   escolha: 0.35,
   apresentar: 0.6,
   'digitar-pinyin': 0.6,
@@ -299,7 +304,7 @@ export function gerarSessao(ctx: ContextoSessao, opcoes: { extraNovas?: number }
   const etapa = etapaAtual(estado, hoje);
   const atividade = estado.atividade[hoje];
   const itens: ItemSessao[] = [];
-  const resumo = { licoes: 0, revisoes: 0, novas: 0, escrita: 0, frases: 0, minutos: 0 };
+  const resumo = { licoes: 0, gramatica: 0, revisoes: 0, novas: 0, escrita: 0, frases: 0, minutos: 0 };
   let aviso: string | undefined;
 
   // 1. Aquecimento de tons: duas sílabas soltas + um par de tons (palavra de 2 sílabas)
@@ -322,6 +327,18 @@ export function gerarSessao(ctx: ContextoSessao, opcoes: { extraNovas?: number }
   if (etapa !== 'pinyin') {
     const porId = new Map(palavras.map((p) => [p.id, p]));
     const frasesPorId = new Map(ctx.frases.map((f) => [f.id, f]));
+
+    // 2b. Gramática: no máximo uma lição nova por dia, quando houver vocabulário para ela
+    const estudadasAgora = Object.values(estado.cartoes).filter((c) => c.tipo === 'palavra' && c.revisoes > 0).length;
+    const gramaticaHoje = Object.values(estado.licoesGramatica ?? {}).some((d) => d === hoje);
+    const proximaGramatica = (ctx.gramatica ?? []).find(
+      (l) => !estado.licoesGramatica?.[l.id] && l.minPalavras <= estudadasAgora,
+    );
+    if (proximaGramatica && !gramaticaHoje) {
+      itens.push({ id: novoId('gram'), tipo: 'gramatica', dados: proximaGramatica, licao: `gramatica:${proximaGramatica.id}` });
+      itens.push(...itensDaLicaoGramatica(proximaGramatica));
+      resumo.gramatica = 1;
+    }
 
     // 3. Revisões vencidas
     const meta = estado.metas.revisoesPorDia;

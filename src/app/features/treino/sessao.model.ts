@@ -3,6 +3,7 @@ import { InfoCaractere } from '../../core/dados/vocabulario.service';
 import { Modulo } from '../../core/progresso/progresso.model';
 import { TipoCartao } from '../../core/srs/sm2';
 import { NivelEscrita } from '../../shared/hanzi/quiz-escrita';
+import type { LicaoGramatica } from '../../core/dados/gramatica.service';
 import type { LicaoPinyin } from './curriculo';
 
 /** Cartão de repetição espaçada ligado a um exercício. */
@@ -16,7 +17,7 @@ interface ItemBase {
   /** item repetido no fim da sessão porque a pessoa errou */
   reforco?: boolean;
   cartao?: RefCartao;
-  /** id da lição de pinyin a que o item pertence */
+  /** lição a que o item pertence (pinyin: "tons"; gramática: "gramatica:g01") */
   licao?: string;
 }
 
@@ -54,6 +55,11 @@ export interface ItemLicao extends ItemBase {
   dados: LicaoPinyin;
 }
 
+export interface ItemGramatica extends ItemBase {
+  tipo: 'gramatica';
+  dados: LicaoGramatica;
+}
+
 export interface ItemApresentar extends ItemBase {
   tipo: 'apresentar';
   palavra: Palavra;
@@ -84,6 +90,7 @@ export interface ItemFalar extends ItemBase {
 export type ItemSessao =
   | ItemEscolha
   | ItemLicao
+  | ItemGramatica
   | ItemApresentar
   | ItemDigitarPinyin
   | ItemEscrever

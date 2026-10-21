@@ -1,6 +1,7 @@
 import { Component, DestroyRef, computed, inject, signal } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { FrasesService } from '../../../core/dados/frases.service';
+import { GramaticaService } from '../../../core/dados/gramatica.service';
 import { VocabularioService } from '../../../core/dados/vocabulario.service';
 import { semTom } from '../../../core/pinyin/pinyin';
 import { SilabasService } from '../../../core/pinyin/silabas.service';
@@ -15,6 +16,7 @@ import { ExDigitarPinyin } from '../exercicios/ex-digitar-pinyin';
 import { ExEscolha } from '../exercicios/ex-escolha';
 import { ExEscrever } from '../exercicios/ex-escrever';
 import { ExFalar } from '../exercicios/ex-falar';
+import { ExGramatica } from '../exercicios/ex-gramatica';
 import { ExLicao } from '../exercicios/ex-licao';
 import { ItensDeFraseService } from '../itens-de-frase.service';
 
@@ -22,7 +24,7 @@ const SILABAS_AQUECIMENTO = ['ma', 'ba', 'yi', 'shi', 'wu', 'tang', 'qi', 'tu', 
 
 @Component({
   selector: 'app-sessao',
-  imports: [RouterLink, ControleVoz, ExEscolha, ExLicao, ExApresentar, ExDigitarPinyin, ExEscrever, ExFalar],
+  imports: [RouterLink, ControleVoz, ExEscolha, ExLicao, ExApresentar, ExDigitarPinyin, ExEscrever, ExFalar, ExGramatica],
   template: `
     <section class="pagina">
       @if (carregando()) {
@@ -64,6 +66,9 @@ const SILABAS_AQUECIMENTO = ['ma', 'ba', 'yi', 'shi', 'wu', 'tang', 'qi', 'tu', 
               }
               @case ('escrever') {
                 <app-ex-escrever [item]="item" (concluir)="registrar(item, $event)" />
+              }
+              @case ('gramatica') {
+                <app-ex-gramatica [item]="item" (concluir)="registrar(item, $event)" />
               }
               @case ('falar') {
                 <app-ex-falar [item]="item" (concluir)="registrar(item, $event)" />
@@ -161,6 +166,7 @@ export class SessaoPagina {
   private readonly frases = inject(FrasesService);
   private readonly silabas = inject(SilabasService);
   private readonly itensDeFrase = inject(ItensDeFraseService);
+  private readonly gramatica = inject(GramaticaService);
 
   protected readonly carregando = signal(true);
   protected readonly plano = signal<PlanoSessao | null>(null);
@@ -187,7 +193,7 @@ export class SessaoPagina {
 
   private async preparar(extraNovas = 0): Promise<void> {
     this.carregando.set(true);
-    await Promise.all([this.vocabulario.carregar(), this.frases.carregar(), this.silabas.carregar(), this.itensDeFrase.carregar()]);
+    await Promise.all([this.vocabulario.carregar(), this.frases.carregar(), this.silabas.carregar(), this.itensDeFrase.carregar(), this.gramatica.carregar()]);
     const aquecimento: SilabaAquecimento[] = SILABAS_AQUECIMENTO.flatMap((s) =>
       this.silabas
         .tons(s)
@@ -204,6 +210,7 @@ export class SessaoPagina {
         infoCaractere: (c) => this.vocabulario.infoCaractere(c),
         silabasAquecimento: aquecimento,
         itensDeFrase: (conhecidas) => this.itensDeFrase.gerar(conhecidas),
+        gramatica: this.gramatica.licoes(),
       },
       { extraNovas },
     );
@@ -256,11 +263,14 @@ export class SessaoPagina {
     const p = this.placarLicoes.get(id);
     if (!p) return;
     if (p.total === 0 || p.acertos / p.total >= 0.5) {
-      this.progresso.concluirLicaoPinyin(id);
+      if (id.startsWith('gramatica:')) this.progresso.concluirLicaoGramatica(id.slice('gramatica:'.length));
+      else this.progresso.concluirLicaoPinyin(id);
     } else {
       this.mensagensLicoes.update((m) => [
         ...m,
-        'Uma lição de pinyin ficou para amanhã (menos de 50% de acertos). Sem problema — repetir faz parte!',
+        id.startsWith('gramatica:')
+          ? 'A lição de gramática fica para outro dia (menos de 50% de acertos). Releia em Praticar › Gramática!'
+          : 'Uma lição de pinyin ficou para amanhã (menos de 50% de acertos). Sem problema — repetir faz parte!',
       ]);
     }
   }

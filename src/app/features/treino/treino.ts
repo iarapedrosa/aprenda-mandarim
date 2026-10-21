@@ -1,6 +1,7 @@
 import { Component, computed, inject, signal } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { FrasesService, palavraDoDia } from '../../core/dados/frases.service';
+import { GramaticaService } from '../../core/dados/gramatica.service';
 import { VocabularioService } from '../../core/dados/vocabulario.service';
 import { ProgressoService } from '../../core/progresso/progresso.service';
 import { PinyinColorido } from '../../shared/pinyin-colorido/pinyin-colorido';
@@ -46,6 +47,7 @@ import { PALAVRAS_PARA_LIBERAR_FRASES, etapaAtual, gerarSessao } from './gerador
             <p class="suave">
               ≈ {{ r.minutos }} min ·
               @if (r.licoes) { {{ r.licoes }} {{ r.licoes === 1 ? 'lição' : 'lições' }} de pinyin · }
+              @if (r.gramatica) { 1 lição de gramática · }
               @if (r.revisoes) { {{ r.revisoes }} revisões · }
               @if (r.novas) { {{ r.novas }} palavras novas · }
               @if (r.escrita) { {{ r.escrita }} caracteres para escrever · }
@@ -262,6 +264,7 @@ export class TreinoPagina {
   protected readonly progresso = inject(ProgressoService);
   private readonly vocabulario = inject(VocabularioService);
   private readonly frases = inject(FrasesService);
+  private readonly gramatica = inject(GramaticaService);
 
   protected readonly totalLicoes = LICOES_PINYIN.length;
   protected readonly palavrasParaFrases = PALAVRAS_PARA_LIBERAR_FRASES;
@@ -285,6 +288,7 @@ export class TreinoPagina {
       estado: this.progresso.estado(),
       palavras: this.vocabulario.palavras(),
       frases: this.frases.frases(),
+      gramatica: this.gramatica.licoes(),
       infoCaractere: (c) => ({ hanzi: c, pinyin: '', traducao: '' }),
       silabasAquecimento: [{ hanzi: '妈', pinyin: 'mā', letras: 'ma' }],
     });
@@ -299,6 +303,7 @@ export class TreinoPagina {
     { rota: '/leitura', icone: '读', nome: 'Leitura' },
     { rota: '/escuta', icone: '听', nome: 'Escuta' },
     { rota: '/fala', icone: '说', nome: 'Fala' },
+    { rota: '/gramatica', icone: '语', nome: 'Gramática' },
     { rota: '/numeros', icone: '数', nome: 'Números' },
     { rota: '/cartoes', icone: '卡', nome: 'Cartões' },
   ];
@@ -306,6 +311,7 @@ export class TreinoPagina {
   constructor() {
     void this.vocabulario.carregar();
     void this.frases.carregar();
+    void this.gramatica.carregar();
   }
 
   protected saudacao(): string {
