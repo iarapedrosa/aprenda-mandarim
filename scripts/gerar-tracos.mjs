@@ -2,7 +2,7 @@
 /**
  * Gera os dados de traços (ordem e forma) usados pelo hanzi-writer, para funcionar offline.
  *
- * Lê todos os JSON em public/data/, junta os caracteres chineses encontrados e copia
+ * Lê os JSON em public/data/ (exceto public/data/pinyin), junta os caracteres chineses encontrados e copia
  * os arquivos correspondentes do pacote `hanzi-writer-data` para public/hanzi/<codigo>.json
  * (ex.: 你 → public/hanzi/4f60.json).
  *
@@ -22,10 +22,14 @@ const pastaOrigem = dirname(require.resolve('hanzi-writer-data/package.json'));
 // Ideogramas CJK (bloco principal + extensão A) e radicais/componentes (⺀-⻳, ㇀-㇣)
 const REGEX_HANZI = /[㐀-䶿一-鿿⺀-⻳]/gu;
 
+// public/data/pinyin só serve para tocar sílabas: não precisa de traços.
+const PASTAS_IGNORADAS = new Set(['pinyin']);
+
 function listarJson(pasta) {
   if (!existsSync(pasta)) return [];
   return readdirSync(pasta).flatMap((nome) => {
     const caminho = join(pasta, nome);
+    if (PASTAS_IGNORADAS.has(nome)) return [];
     if (statSync(caminho).isDirectory()) return listarJson(caminho);
     return nome.endsWith('.json') ? [caminho] : [];
   });
