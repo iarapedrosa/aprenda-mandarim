@@ -2,6 +2,8 @@ import { Component, HostListener, computed, inject, signal } from '@angular/core
 import { FormsModule } from '@angular/forms';
 import { Tom, silabaComAcento, tomDaSilaba } from '../../../core/pinyin/pinyin';
 import { SilabasService } from '../../../core/pinyin/silabas.service';
+import { VocabularioService } from '../../../core/dados/vocabulario.service';
+import { alternativasDePar, chavePar, observacaoPar, palavrasPorPar, sortearPar } from '../../../core/pinyin/pares-tons';
 import { ProgressoService } from '../../../core/progresso/progresso.service';
 import { embaralhar, sortear } from '../../../core/util/aleatorio';
 import { VozService } from '../../../core/voz/voz.service';
@@ -9,19 +11,22 @@ import { DiagramaTom } from '../../../shared/diagrama-tom/diagrama-tom';
 import { PinyinColorido } from '../../../shared/pinyin-colorido/pinyin-colorido';
 import { ExemploSom, GrupoPares, PARES_SONS, PARES_TONS } from '../dados-pinyin';
 
-type Modo = 'tom' | 'pares-tons' | 'pares-sons';
+type Modo = 'tom' | 'combinacoes' | 'pares-tons' | 'pares-sons';
 
 interface Opcao {
   rotulo: string;
   valor: string;
   tom?: Tom;
+  /** ex.: "3º + 1º" */
+  nome?: string;
 }
 
 interface Rodada {
   alvo: ExemploSom;
   opcoes: Opcao[];
   correta: string;
-  tom: Tom;
+  tons: number[];
+  nota?: string;
 }
 
 /** Sílabas comuns e fáceis de ouvir para quem está começando. */
@@ -35,6 +40,10 @@ const SILABAS_INICIANTE = ['ma', 'ba', 'yi', 'shi', 'wu', 'tang', 'qi', 'tu', 'y
       <label class="modo">
         <input type="radio" name="modo" value="tom" [ngModel]="modo()" (ngModelChange)="mudarModo($event)" />
         <span><strong>Qual é o tom?</strong><br /><small>Ouça uma sílaba e diga o tom</small></span>
+      </label>
+      <label class="modo">
+        <input type="radio" name="modo" value="combinacoes" [ngModel]="modo()" (ngModelChange)="mudarModo($event)" />
+        <span><strong>Pares de tons</strong><br /><small>Palavras de 2 sílabas: 老师 = 3º + 1º</small></span>
       </label>
       <label class="modo">
         <input type="radio" name="modo" value="pares-tons" [ngModel]="modo()" (ngModelChange)="mudarModo($event)" />
@@ -51,6 +60,10 @@ const SILABAS_INICIANTE = ['ma', 'ba', 'yi', 'shi', 'wu', 'tang', 'qi', 'tu', 'y
         <input type="checkbox" [ngModel]="todasSilabas()" (ngModelChange)="todasSilabas.set($event); nova()" />
         Usar todas as sílabas (mais difícil)
       </label>
+    } @else if (modo() === 'combinacoes') {
+      <p class="suave pequeno">
+        Na fala, os tons quase sempre vêm em pares. São 20 combinações (4 tons × 4 tons + neutro), sorteadas por igual.
+      </p>
     } @else {
       <label class="grupo-pares">
         <span>Grupo:</span>
@@ -95,6 +108,9 @@ const SILABAS_INICIANTE = ['ma', 'ba', 'yi', 'shi', 'wu', 'tang', 'qi', 'tu', 'y
                 <app-diagrama-tom [tom]="o.tom" [class]="'tom-' + o.tom" class="mini" />
               }
               <app-pinyin [texto]="o.rotulo" />
+              @if (o.nome) {
+                <span class="nome-par">{{ o.nome }}</span>
+              }
             </button>
           }
         </div>
@@ -106,6 +122,9 @@ const SILABAS_INICIANTE = ['ma', 'ba', 'yi', 'shi', 'wu', 'tang', 'qi', 'tu', 'y
             <app-pinyin [texto]="r.alvo.pinyin" />
             @if (r.alvo.traducao) {
               <span>({{ r.alvo.traducao }})</span>
+            }
+            @if (r.nota) {
+              <span class="nota-par">{{ r.nota }}</span>
             }
           </div>
           <button type="button" class="botao botao-primario botao-bloco" (click)="nova(true)">
@@ -119,10 +138,18 @@ const SILABAS_INICIANTE = ['ma', 'ba', 'yi', 'shi', 'wu', 'tang', 'qi', 'tu', 'y
     </section>
   `,
   styles: `
+    .nome-par {
+      font-size: 0.75rem;
+      color: var(--cor-texto-suave);
+    }
+    .nota-par {
+      flex-basis: 100%;
+      color: var(--cor-texto);
+    }
     .modos {
       display: grid;
       gap: 8px;
-      grid-template-columns: repeat(3, 1fr);
+      grid-template-columns: repeat(4, 1fr);
       margin-bottom: 12px;
     }
     .modo {
@@ -201,6 +228,9 @@ const SILABAS_INICIANTE = ['ma', 'ba', 'yi', 'shi', 'wu', 'tang', 'qi', 'tu', 'y
       margin: 10px 0 0;
     }
     @media (max-width: 599px) {
+      .modos {
+        grid-template-columns: repeat(2, 1fr);
+      }
       .modo {
         flex-direction: column;
         align-items: center;
@@ -220,6 +250,8 @@ const SILABAS_INICIANTE = ['ma', 'ba', 'yi', 'shi', 'wu', 'tang', 'qi', 'tu', 'y
 })
 export class TreinoTonsPagina {
   private readonly silabas = inject(SilabasService);
+  private readonly vocabulario = inject(VocabularioService);
+  private readonly pares = computed(() => palavrasPorPar(this.vocabulario.palavras()));
   private readonly voz = inject(VozService);
   private readonly progresso = inject(ProgressoService);
 
@@ -239,7 +271,7 @@ export class TreinoTonsPagina {
   );
 
   constructor() {
-    void this.silabas.carregar().then(() => this.nova());
+    void Promise.all([this.silabas.carregar(), this.vocabulario.carregar()]).then(() => this.nova());
   }
 
   protected mudarModo(modo: Modo): void {
@@ -255,7 +287,8 @@ export class TreinoTonsPagina {
 
   protected nova(tocar = false): void {
     this.escolha.set(null);
-    const r = this.modo() === 'tom' ? this.rodadaDeTom() : this.rodadaDePares();
+    const r =
+      this.modo() === 'tom' ? this.rodadaDeTom() : this.modo() === 'combinacoes' ? this.rodadaDeCombinacao() : this.rodadaDePares();
     this.rodada.set(r);
     if (tocar && r) void this.tocar();
   }
@@ -273,7 +306,7 @@ export class TreinoTonsPagina {
     this.total.update((n) => n + 1);
     this.acertos.update((n) => n + (acertou ? 1 : 0));
     this.sequencia.update((n) => (acertou ? n + 1 : 0));
-    this.progresso.registrarResposta(this.modo() === 'pares-sons' ? 'pinyin' : 'tons', acertou, r.tom);
+    this.progresso.registrarResposta(this.modo() === 'pares-sons' ? 'pinyin' : 'tons', acertou, r.tons);
   }
 
   private rodadaDeTom(): Rodada | null {
@@ -293,7 +326,19 @@ export class TreinoTonsPagina {
         tom: t,
       })),
       correta: String(alvo.tom),
-      tom: alvo.tom,
+      tons: [alvo.tom],
+    };
+  }
+
+  private rodadaDeCombinacao(): Rodada | null {
+    const p = sortearPar(this.pares());
+    if (!p) return null;
+    return {
+      alvo: { hanzi: p.hanzi, pinyin: p.pinyin, traducao: p.traducao },
+      opcoes: alternativasDePar(p),
+      correta: chavePar(p.tons),
+      tons: p.tons,
+      nota: observacaoPar(p),
     };
   }
 
@@ -306,7 +351,7 @@ export class TreinoTonsPagina {
       alvo,
       opcoes: itens.map((i) => ({ rotulo: i.pinyin, valor: i.pinyin })),
       correta: alvo.pinyin,
-      tom: tomDaSilaba(alvo.pinyin),
+      tons: [tomDaSilaba(alvo.pinyin)],
     };
   }
 

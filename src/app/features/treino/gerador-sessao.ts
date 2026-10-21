@@ -6,7 +6,8 @@ import { CartaoSrs, cartoesVencidos } from '../../core/srs/sm2';
 import { embaralhar, montarAlternativas, sortear } from '../../core/util/aleatorio';
 import { DataISO } from '../../core/util/datas';
 import { numero } from '../../core/numeros/numeros';
-import { LICOES_PINYIN, LicaoPinyin, exerciciosDaLicao, itemTom } from './curriculo';
+import { palavrasPorPar, sortearPar } from '../../core/pinyin/pares-tons';
+import { LICOES_PINYIN, LicaoPinyin, exerciciosDaLicao, itemParDeTons, itemTom } from './curriculo';
 import { ItemEscolha, ItemSessao } from './sessao.model';
 
 export interface FraseComId extends Frase {
@@ -301,8 +302,10 @@ export function gerarSessao(ctx: ContextoSessao, opcoes: { extraNovas?: number }
   const resumo = { licoes: 0, revisoes: 0, novas: 0, escrita: 0, frases: 0, minutos: 0 };
   let aviso: string | undefined;
 
-  // 1. Aquecimento de tons
-  for (const s of embaralhar(ctx.silabasAquecimento).slice(0, 3)) itens.push(itemTom(s.hanzi, s.pinyin, s.letras));
+  // 1. Aquecimento de tons: duas sílabas soltas + um par de tons (palavra de 2 sílabas)
+  const par = sortearPar(palavrasPorPar(palavras));
+  for (const s of embaralhar(ctx.silabasAquecimento).slice(0, par ? 2 : 3)) itens.push(itemTom(s.hanzi, s.pinyin, s.letras));
+  if (par) itens.push(itemParDeTons(par));
 
   // 2. Lições de pinyin pendentes (no máximo 2 por dia)
   const feitasHoje = Object.values(estado.licoesPinyin).filter((d) => d === hoje).length;

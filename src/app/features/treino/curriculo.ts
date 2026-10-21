@@ -1,3 +1,4 @@
+import { PalavraPar, alternativasDePar, chavePar, observacaoPar } from '../../core/pinyin/pares-tons';
 import { Tom, semTom, silabaComAcento, tomDaSilaba } from '../../core/pinyin/pinyin';
 import { embaralhar, montarAlternativas } from '../../core/util/aleatorio';
 import {
@@ -122,6 +123,22 @@ export function itemTom(hanzi: string, pinyin: string, letras: string): ItemEsco
     correta: String(tom),
     tons: [tom],
     resposta: { hanzi, pinyin },
+  };
+}
+
+/** "Ouça a palavra e escolha o par de tons" (ex.: 老师 = 3º + 1º). */
+export function itemParDeTons(p: PalavraPar): ItemEscolha {
+  return {
+    id: novoId('par'),
+    tipo: 'escolha',
+    modulo: 'tons',
+    enunciado: 'Ouça a palavra: quais são os dois tons?',
+    pergunta: { audio: p.hanzi },
+    opcoes: alternativasDePar(p).map((a) => ({ valor: a.valor, rotulo: a.rotulo, pinyin: true })),
+    correta: chavePar(p.tons),
+    tons: p.tons,
+    resposta: { hanzi: p.hanzi, pinyin: p.pinyin, traducao: p.traducao },
+    explicacao: observacaoPar(p),
   };
 }
 

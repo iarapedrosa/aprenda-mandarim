@@ -1,5 +1,7 @@
-import { Component, inject } from '@angular/core';
+import { Component, computed, inject } from '@angular/core';
 import { RouterLink } from '@angular/router';
+import { VocabularioService } from '../../../core/dados/vocabulario.service';
+import { nomePar, palavrasPorPar } from '../../../core/pinyin/pares-tons';
 import { VozService } from '../../../core/voz/voz.service';
 import { BotaoAudio } from '../../../shared/botao-audio/botao-audio';
 import { DiagramaTom } from '../../../shared/diagrama-tom/diagrama-tom';
@@ -46,6 +48,44 @@ import { TONS } from '../dados-pinyin';
         <app-botao-audio texto="妈妈骂马吗？" rotulo="Māma mà mǎ ma" legenda="Normal" velocidade="normal" />
         <app-botao-audio texto="妈妈骂马吗？" rotulo="Māma mà mǎ ma" legenda="Devagar" velocidade="lenta" />
       </div>
+    </section>
+
+    <section class="cartao">
+      <h2>Os tons em pares</h2>
+      <p>
+        Na fala, os tons quase nunca aparecem sozinhos: a maioria das palavras tem duas sílabas. Treine as 20
+        combinações — toque numa palavra para ouvir. Linhas: tom da 1ª sílaba; colunas: tom da 2ª.
+      </p>
+      <div class="rolagem-x">
+        <table class="tabela-pares">
+          <thead>
+            <tr>
+              <th scope="col"><span class="visualmente-oculto">1ª sílaba</span></th>
+              @for (b of colunas; track b) {
+                <th scope="col" [class]="'tom-' + b">{{ b === 5 ? 'neutro' : b + 'º' }}</th>
+              }
+            </tr>
+          </thead>
+          <tbody>
+            @for (a of linhas; track a) {
+              <tr>
+                <th scope="row" [class]="'tom-' + a">{{ a }}º</th>
+                @for (b of colunas; track b) {
+                  <td>
+                    @if (exemploPar(a, b); as p) {
+                      <button type="button" class="celula-par" (click)="voz.falar(p.hanzi)" [attr.aria-label]="nome(a, b) + ': ' + p.hanzi + ', ' + p.pinyin + ', ' + p.traducao">
+                        <span lang="zh-CN">{{ p.hanzi }}</span>
+                        <app-pinyin [texto]="p.pinyin" />
+                      </button>
+                    }
+                  </td>
+                }
+              </tr>
+            }
+          </tbody>
+        </table>
+      </div>
+      <p class="suave pequeno">Atenção: 3º + 3º (como 水果) é falado 2º + 3º. E antes de outros tons o 3º fica só grave.</p>
     </section>
 
     <section class="cartao">
@@ -134,6 +174,38 @@ import { TONS } from '../dados-pinyin';
     .proximos {
       margin-top: 16px;
     }
+    .tabela-pares {
+      min-width: 520px;
+      width: 100%;
+    }
+    .tabela-pares th {
+      font-weight: 700;
+      padding: 4px;
+    }
+    .tabela-pares td {
+      padding: 3px;
+    }
+    .celula-par {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 2px;
+      padding: 6px 4px;
+      border-radius: 8px;
+      border: 1px solid var(--cor-borda);
+      background: var(--cor-superficie-2);
+      color: var(--cor-texto);
+      font: inherit;
+      font-size: 0.85rem;
+      cursor: pointer;
+    }
+    .celula-par [lang='zh-CN'] {
+      font-size: 1.2rem;
+    }
+    .celula-par:hover {
+      border-color: var(--cor-primaria);
+    }
     code {
       background: var(--cor-superficie-2);
       padding: 1px 6px;
@@ -143,5 +215,21 @@ import { TONS } from '../dados-pinyin';
 })
 export class TonsPagina {
   protected readonly voz = inject(VozService);
+  private readonly vocabulario = inject(VocabularioService);
   protected readonly tons = TONS;
+  protected readonly linhas = [1, 2, 3, 4] as const;
+  protected readonly colunas = [1, 2, 3, 4, 5] as const;
+  private readonly pares = computed(() => palavrasPorPar(this.vocabulario.palavras()));
+
+  constructor() {
+    void this.vocabulario.carregar();
+  }
+
+  protected exemploPar(a: number, b: number) {
+    return this.pares().get(`${a}-${b}`)?.[0] ?? null;
+  }
+
+  protected nome(a: number, b: number): string {
+    return nomePar([a, b] as never);
+  }
 }
