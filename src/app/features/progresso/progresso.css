@@ -262,3 +262,18 @@ section.cartao {
   color: var(--cor-texto-suave);
   margin-bottom: 8px;
 }
+
+.variar {
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+  font-weight: 600;
+  margin-bottom: 12px;
+}
+
+.variar input {
+  width: 18px;
+  height: 18px;
+  margin-top: 3px;
+  accent-color: var(--cor-primaria);
+}

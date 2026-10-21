@@ -165,7 +165,12 @@
       @if (voz.vozesChinesas().length > 1) {
         <label>
           Voz em chinês
-          <select class="campo" [ngModel]="voz.voz()?.name" (ngModelChange)="voz.nomeVozEscolhida.set($event)">
+          <select
+            class="campo"
+            [ngModel]="voz.voz()?.name"
+            (ngModelChange)="voz.nomeVozEscolhida.set($event)"
+            [disabled]="voz.variarVozes() && voz.podeVariar()"
+          >
             @for (v of voz.vozesChinesas(); track v.name) {
               <option [value]="v.name">{{ v.name }} ({{ v.lang }})</option>
             }
@@ -173,6 +178,20 @@
         </label>
       }
     </div>
+    <label class="variar">
+      <input type="checkbox" [checked]="voz.variarVozes()" (change)="voz.variarVozes.set($any($event.target).checked)" />
+      <span>
+        Variar as vozes
+        <span class="suave pequeno">
+          — ouvir pessoas diferentes ajuda a reconhecer os tons.
+          @if (voz.podeVariar()) {
+            {{ voz.vozesMandarim().length }} vozes de mandarim neste aparelho.
+          } @else {
+            Este aparelho tem só uma voz de mandarim (no Edge e no Chrome costuma haver mais).
+          }
+        </span>
+      </span>
+    </label>
     <button type="button" class="botao" (click)="testarVoz()" [disabled]="!voz.suportado">🔊 Testar voz</button>
     @if (voz.semVozChinesa()) {
       <p class="aviso pequeno">Nenhuma voz em chinês encontrada neste aparelho. Veja como instalar na seção <a routerLink="/pinyin/tons">Pinyin</a>.</p>

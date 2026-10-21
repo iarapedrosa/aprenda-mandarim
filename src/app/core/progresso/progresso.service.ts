@@ -26,7 +26,7 @@ import {
 
 const CHAVE = 'progresso';
 /** Preferências (fora do progresso) que também vão no backup. */
-const CHAVES_PREFERENCIAS = ['tema', 'velocidade-voz', 'voz'];
+const CHAVES_PREFERENCIAS = ['tema', 'velocidade-voz', 'voz', 'variar-vozes'];
 
 function estadoInicial(): EstadoProgresso {
   return {

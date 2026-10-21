@@ -32,6 +32,8 @@ export class VozService {
   readonly velocidade = signal<Velocidade>(this.armazenamento.ler<Velocidade>('velocidade-voz', 'normal'));
   readonly nomeVozEscolhida = signal<string | null>(this.armazenamento.ler<string | null>('voz', null));
   readonly falando = signal(false);
+  /** alternar entre as vozes de mandarim do aparelho (treino com várias vozes) */
+  readonly variarVozes = signal(this.armazenamento.ler('variar-vozes', true));
 
   /** Vozes de mandarim disponíveis (zh-CN primeiro; depois outras variantes de chinês). */
   readonly vozesChinesas = computed(() => {
@@ -54,6 +56,17 @@ export class VozService {
     return lista.find((v) => v.name === nome) ?? lista[0] ?? null;
   });
 
+  /** Vozes de mandarim da China continental (as usadas na variação). */
+  readonly vozesMandarim = computed(() =>
+    this.vozesChinesas().filter((v) => {
+      const lang = v.lang.replace('_', '-').toLowerCase();
+      return (lang === 'zh-cn' || lang.startsWith('cmn')) && !/hk|yue|cantonese|粤/i.test(v.name);
+    }),
+  );
+
+  /** Há mais de uma voz para alternar? */
+  readonly podeVariar = computed(() => this.vozesMandarim().length > 1);
+
   /** true quando o navegador fala, mas não tem voz chinesa instalada. */
   readonly semVozChinesa = computed(() => this.suportado && this.vozes().length > 0 && !this.voz());
 
@@ -68,6 +81,7 @@ export class VozService {
     }
     effect(() => this.armazenamento.salvar('velocidade-voz', this.velocidade()));
     effect(() => this.armazenamento.salvar('voz', this.nomeVozEscolhida()));
+    effect(() => this.armazenamento.salvar('variar-vozes', this.variarVozes()));
   }
 
   /**
@@ -80,7 +94,7 @@ export class VozService {
     return new Promise((resolve) => {
       const fala = new SpeechSynthesisUtterance(texto);
       fala.lang = 'zh-CN';
-      const voz = this.voz();
+      const voz = this.escolherVoz();
       if (voz) fala.voice = voz;
       fala.rate = TAXAS[opcoes.velocidade ?? this.velocidade()];
       fala.pitch = 1;
@@ -95,6 +109,15 @@ export class VozService {
       // Proteção: alguns navegadores não disparam onend.
       setTimeout(terminar, 1500 + texto.length * 700);
     });
+  }
+
+  /** Uma voz por fala: sorteada entre as vozes de mandarim, se a variação estiver ligada. */
+  private escolherVoz(): SpeechSynthesisVoice | null {
+    const opcoes = this.vozesMandarim();
+    if (this.variarVozes() && opcoes.length > 1) {
+      return opcoes[Math.floor(Math.random() * opcoes.length)];
+    }
+    return this.voz();
   }
 
   parar(): void {
