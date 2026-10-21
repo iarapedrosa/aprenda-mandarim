@@ -8,17 +8,23 @@ import { PinyinColorido } from '../../shared/pinyin-colorido/pinyin-colorido';
 import { LICOES_PINYIN } from './curriculo';
 import { FraseDoDiaCartao } from './do-dia/frase-do-dia';
 import { PalavraDoDiaCartao } from './do-dia/palavra-do-dia';
+import { ComoUsar } from './do-dia/como-usar';
+import { MeuPlano } from './do-dia/meu-plano';
 import { PALAVRAS_PARA_LIBERAR_FRASES, etapaAtual, gerarSessao } from './gerador-sessao';
 
 @Component({
   selector: 'app-treino',
-  imports: [RouterLink, FraseDoDiaCartao, PalavraDoDiaCartao, PinyinColorido],
+  imports: [RouterLink, FraseDoDiaCartao, PalavraDoDiaCartao, PinyinColorido, ComoUsar, MeuPlano],
   template: `
     <section class="pagina">
       <header class="saudacao">
         <h1>{{ saudacao() }} <span lang="zh-CN" class="ni-hao">你好！</span></h1>
         <p class="subtitulo">Seu treino de hoje leva uns 15–20 minutos. Um pouquinho por dia faz toda a diferença.</p>
       </header>
+
+      @if (iniciante()) {
+        <app-como-usar [aberto]="true" />
+      }
 
       <div class="painel">
         <div class="cartao indicador">
@@ -63,6 +69,8 @@ import { PALAVRAS_PARA_LIBERAR_FRASES, etapaAtual, gerarSessao } from './gerador
           {{ progresso.atividadeHoje().treinoConcluido ? 'Treinar de novo' : 'Começar treino' }}
         </a>
       </section>
+
+      <app-meu-plano />
 
       <section class="cartao etapas" aria-labelledby="titulo-etapas">
         <h2 id="titulo-etapas" class="visualmente-oculto">Sua jornada</h2>
@@ -120,6 +128,10 @@ import { PALAVRAS_PARA_LIBERAR_FRASES, etapaAtual, gerarSessao } from './gerador
             }
           </ul>
         </details>
+      }
+
+      @if (!iniciante()) {
+        <app-como-usar />
       }
 
       <nav class="atalhos" aria-label="Módulos">
@@ -230,6 +242,9 @@ import { PALAVRAS_PARA_LIBERAR_FRASES, etapaAtual, gerarSessao } from './gerador
     .hanzi-anterior {
       font-size: 1.15rem;
     }
+    .chamada {
+      margin-top: 12px;
+    }
     .atalhos {
       display: grid;
       grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
@@ -270,6 +285,10 @@ export class TreinoPagina {
   protected readonly palavrasParaFrases = PALAVRAS_PARA_LIBERAR_FRASES;
   protected readonly confirmarPulo = signal(false);
 
+  /** quem ainda praticou pouco vê a explicação do site aberta, no topo */
+  protected readonly iniciante = computed(
+    () => Object.values(this.progresso.estado().atividade).reduce((t, a) => t + a.exercicios, 0) < 20,
+  );
   protected readonly etapa = computed(() => etapaAtual(this.progresso.estado(), this.progresso.hoje()));
   protected readonly licoesFeitas = computed(() => this.progresso.licoesConcluidas().size);
   protected readonly fraseDoDia = computed(() =>
@@ -307,6 +326,7 @@ export class TreinoPagina {
     { rota: '/numeros', icone: '数', nome: 'Números' },
     { rota: '/cartoes', icone: '卡', nome: 'Cartões' },
     { rota: '/recursos', icone: '书', nome: 'Recursos' },
+    { rota: '/metodo', icone: '研', nome: 'O método' },
   ];
 
   constructor() {
