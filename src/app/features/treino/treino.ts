@@ -4,7 +4,6 @@ import { FrasesService, palavraDoDia } from '../../core/dados/frases.service';
 import { GramaticaService } from '../../core/dados/gramatica.service';
 import { VocabularioService } from '../../core/dados/vocabulario.service';
 import { ProgressoService } from '../../core/progresso/progresso.service';
-import { APRENDER, PRATICAR, SOBRE } from '../../core/navegacao';
 import { PinyinColorido } from '../../shared/pinyin-colorido/pinyin-colorido';
 import { LICOES_PINYIN } from './curriculo';
 import { FraseDoDiaCartao } from './do-dia/frase-do-dia';
@@ -55,50 +54,42 @@ import { IdiomaService } from '../../core/i18n/idioma.service';
         <a routerLink="/treino" class="botao botao-primario botao-bloco grande">
           {{ progresso.atividadeHoje().treinoConcluido ? i.t('Treinar de novo', 'Train again') : i.t('Começar treino', 'Start training') }}
         </a>
-      </section>
-
-      @if (iniciante()) {
-        <app-como-usar [destaque]="true" />
-      }
-
-      <app-meu-plano />
-
-      <section class="cartao etapas" aria-labelledby="titulo-etapas">
-        <h2 id="titulo-etapas" class="visualmente-oculto">{{ i.t('Sua jornada', 'Your journey') }}</h2>
-        <ol class="jornada">
-          <li [class.atual]="etapa() === 'pinyin'" [class.feita]="etapa() !== 'pinyin'">
-            <strong>1. {{ i.t('Pinyin e tons', 'Pinyin and tones') }}</strong>
-            <span class="suave pequeno">{{ licoesFeitas() }}/{{ totalLicoes }} {{ i.t('lições', 'lessons') }}</span>
-          </li>
-          <li [class.atual]="etapa() === 'palavras'" [class.feita]="etapa() === 'frases'">
-            <strong>2. {{ i.t('Palavras e caracteres', 'Words and characters') }}</strong>
-            <span class="suave pequeno">{{ progresso.palavrasEstudadas().length }} {{ i.t('palavras estudadas', 'words studied') }}</span>
-          </li>
-          <li [class.atual]="etapa() === 'frases'">
-            <strong>3. {{ i.t('Frases', 'Sentences') }}</strong>
-            <span class="suave pequeno">
-              @if (etapa() === 'frases') { {{ i.t('liberado', 'unlocked') }} } @else { {{ i.t('a partir de', 'from') }} {{ palavrasParaFrases }} {{ i.t('palavras', 'words') }} }
-            </span>
-          </li>
-        </ol>
-        @if (etapa() === 'pinyin') {
-          @if (!confirmarPulo()) {
-            <button type="button" class="botao botao-texto pequeno" (click)="confirmarPulo.set(true)">{{ i.t('Já sei pinyin — pular para o vocabulário', 'I already know pinyin — skip to vocabulary') }}</button>
-          } @else {
-            <div class="aviso pulo" role="alert">
-              {{ i.t('Pular as lições de pinyin e começar o vocabulário agora?', 'Skip the pinyin lessons and start vocabulary now?') }}
-              <div class="linha">
-                <button type="button" class="botao botao-primario" (click)="pularPinyin()">{{ i.t('Sim, pular', 'Yes, skip') }}</button>
-                <button type="button" class="botao" (click)="confirmarPulo.set(false)">{{ i.t('Cancelar', 'Cancel') }}</button>
+        <div class="etapas">
+          <h2 id="titulo-etapas" class="visualmente-oculto">{{ i.t('Sua jornada', 'Your journey') }}</h2>
+          <ol class="jornada">
+            <li [class.atual]="etapa() === 'pinyin'" [class.feita]="etapa() !== 'pinyin'">
+              <strong>1. {{ i.t('Pinyin e tons', 'Pinyin and tones') }}</strong>
+              <span class="suave pequeno">{{ licoesFeitas() }}/{{ totalLicoes }} {{ i.t('lições', 'lessons') }}</span>
+            </li>
+            <li [class.atual]="etapa() === 'palavras'" [class.feita]="etapa() === 'frases'">
+              <strong>2. {{ i.t('Palavras e caracteres', 'Words and characters') }}</strong>
+              <span class="suave pequeno">{{ progresso.palavrasEstudadas().length }} {{ i.t('palavras estudadas', 'words studied') }}</span>
+            </li>
+            <li [class.atual]="etapa() === 'frases'">
+              <strong>3. {{ i.t('Frases', 'Sentences') }}</strong>
+              <span class="suave pequeno">
+                @if (etapa() === 'frases') { {{ i.t('liberado', 'unlocked') }} } @else { {{ i.t('a partir de', 'from') }} {{ palavrasParaFrases }} {{ i.t('palavras', 'words') }} }
+              </span>
+            </li>
+          </ol>
+          @if (etapa() === 'pinyin') {
+            @if (!confirmarPulo()) {
+              <button type="button" class="botao botao-texto pequeno" (click)="confirmarPulo.set(true)">{{ i.t('Já sei pinyin — pular para o vocabulário', 'I already know pinyin — skip to vocabulary') }}</button>
+            } @else {
+              <div class="aviso pulo" role="alert">
+                {{ i.t('Pular as lições de pinyin e começar o vocabulário agora?', 'Skip the pinyin lessons and start vocabulary now?') }}
+                <div class="linha">
+                  <button type="button" class="botao botao-primario" (click)="pularPinyin()">{{ i.t('Sim, pular', 'Yes, skip') }}</button>
+                  <button type="button" class="botao" (click)="confirmarPulo.set(false)">{{ i.t('Cancelar', 'Cancel') }}</button>
+                </div>
               </div>
-            </div>
+            }
           }
-        }
+        </div>
+        <app-meu-plano [embutido]="true" />
       </section>
 
-      @if (!iniciante()) {
-        <app-como-usar />
-      }
+      <app-como-usar [destaque]="iniciante()" />
       </div>
 
       <div class="coluna lateral">
@@ -128,13 +119,6 @@ import { IdiomaService } from '../../core/i18n/idioma.service';
       </div>
       </div>
 
-      <nav class="atalhos" [attr.aria-label]="i.t('Ir para', 'Go to')">
-        @for (m of atalhos; track m.rota) {
-          <a [routerLink]="m.rota" class="atalho">
-            <span lang="zh-CN" aria-hidden="true">{{ m.icone }}</span>{{ i.tr(m, 'nome') }}
-          </a>
-        }
-      </nav>
     </section>
   `,
   styles: `
@@ -188,22 +172,35 @@ import { IdiomaService } from '../../core/i18n/idioma.service';
       font-size: 1.15rem;
       margin-top: 8px;
     }
+    .etapas {
+      margin-top: 14px;
+    }
+    .etapas > .botao-texto {
+      min-height: 32px;
+      padding: 2px 0;
+      text-align: left;
+      font-weight: 600;
+    }
     .jornada {
       list-style: none;
       padding: 0;
-      margin: 0 0 8px;
+      margin: 0 0 4px;
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 8px;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 6px;
     }
     .jornada li {
       display: flex;
       flex-direction: column;
       gap: 2px;
-      padding: 8px;
+      padding: 6px 8px;
+      font-size: 0.8rem;
+      line-height: 1.3;
       border-radius: var(--raio-p);
       border: 1px dashed var(--cor-borda);
-      font-size: 0.9rem;
+    }
+    .jornada .pequeno {
+      font-size: inherit;
     }
     .jornada li.atual {
       border: 2px solid var(--cor-primaria);
@@ -265,34 +262,6 @@ import { IdiomaService } from '../../core/i18n/idioma.service';
     .hanzi-anterior {
       font-size: 1.15rem;
     }
-    .atalhos {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
-      gap: 8px;
-      margin-top: 24px;
-    }
-    .atalho {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      padding: 10px 12px;
-      border-radius: var(--raio-p);
-      border: 1px solid var(--cor-borda);
-      background: var(--cor-superficie);
-      color: var(--cor-texto);
-      text-decoration: none;
-      font-weight: 600;
-    }
-    .atalho span {
-      font-family: var(--fonte-hanzi);
-      font-size: 1.3rem;
-      color: var(--cor-primaria);
-    }
-    @media (max-width: 420px) {
-      .jornada {
-        grid-template-columns: 1fr;
-      }
-    }
   `,
 })
 export class TreinoPagina {
@@ -339,7 +308,6 @@ export class TreinoPagina {
     return p?.aviso ? this.i.t(p.aviso, p.avisoEn ?? p.aviso) : null;
   });
 
-  protected readonly atalhos = [...APRENDER, ...PRATICAR, ...SOBRE].filter((d) => d.rota !== '/caracteres/radicais');
 
   constructor() {
     void this.vocabulario.carregar();

@@ -25,16 +25,17 @@ let contador = 0;
   selector: 'app-praticar-numeros',
   imports: [FormsModule, BotaoAudio, PinyinColorido, ExEscolha],
   template: `
-    <div class="modos" role="radiogroup" [attr.aria-label]="i.t('Tipo de prática', 'Practice type')">
+    <div class="segmentado" role="radiogroup" [attr.aria-label]="i.t('Tipo de prática', 'Practice type')">
       @for (m of modos; track m.id) {
-        <label class="modo">
+        <label>
           <input type="radio" name="modo-numeros" [value]="m.id" [ngModel]="modo()" (ngModelChange)="modo.set($event); nova()" />
-          <span><strong>{{ i.tr(m, 'nome') }}</strong><br /><small>{{ i.tr(m, 'descricao') }}</small></span>
+          {{ i.tr(m, 'nome') }}
         </label>
       }
     </div>
+    <p class="suave pequeno descricao-modo">{{ descricaoModo() }}</p>
 
-    <div class="categorias" role="group" [attr.aria-label]="i.t('Que números praticar', 'Which numbers to practice')">
+    <div class="categorias chips-rolagem" role="group" [attr.aria-label]="i.t('Que números praticar', 'Which numbers to practice')">
       @for (c of categorias; track c.id) {
         <button type="button" [class.ativo]="categoria() === c.id" [attr.aria-pressed]="categoria() === c.id" (click)="categoria.set(c.id); nova()">
           {{ i.tr(c, 'nome') }}
@@ -93,37 +94,6 @@ let contador = 0;
   `,
   styleUrl: '../../treino/exercicios/exercicios.css',
   styles: `
-    .modos {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 8px;
-      margin-bottom: 12px;
-    }
-    .modo {
-      display: flex;
-      gap: 8px;
-      align-items: flex-start;
-      padding: 10px;
-      border-radius: var(--raio-p);
-      border: 2px solid var(--cor-borda);
-      background: var(--cor-superficie);
-      font-weight: 400;
-      cursor: pointer;
-    }
-    .modo:has(input:checked) {
-      border-color: var(--cor-primaria);
-      background: var(--cor-primaria-suave);
-    }
-    .modo input {
-      accent-color: var(--cor-primaria);
-      margin-top: 4px;
-    }
-    .categorias {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 6px;
-      margin-bottom: 12px;
-    }
     .categorias button {
       min-height: 38px;
       padding: 4px 12px;
@@ -155,17 +125,6 @@ let contador = 0;
     .retorno {
       margin-top: 12px;
     }
-    @media (max-width: 599px) {
-      .modo {
-        flex-direction: column;
-        align-items: center;
-        text-align: center;
-        padding: 8px 4px;
-      }
-      .modo small {
-        display: none;
-      }
-    }
   `,
 })
 export class PraticarNumerosPagina {
@@ -184,6 +143,8 @@ export class PraticarNumerosPagina {
   protected readonly resposta = signal<boolean | null>(null);
   protected readonly acertos = signal(0);
   protected readonly total = signal(0);
+
+  protected readonly descricaoModo = computed(() => this.i.tr(MODOS.find((m) => m.id === this.modo())!, 'descricao'));
 
   protected readonly dica = computed(() => {
     const dicas = this.i.ingles()

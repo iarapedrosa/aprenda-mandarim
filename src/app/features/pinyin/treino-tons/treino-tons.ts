@@ -40,24 +40,32 @@ const SILABAS_INICIANTE = ['ma', 'ba', 'yi', 'shi', 'wu', 'tang', 'qi', 'tu', 'y
   selector: 'app-treino-tons',
   imports: [FormsModule, DiagramaTom, PinyinColorido],
   template: `
-    <div class="modos" role="radiogroup" [attr.aria-label]="i.t('Tipo de treino', 'Drill type')">
-      <label class="modo">
+    <div class="segmentado" role="radiogroup" [attr.aria-label]="i.t('Tipo de treino', 'Drill type')">
+      <label>
         <input type="radio" name="modo" value="tom" [ngModel]="modo()" (ngModelChange)="mudarModo($event)" />
-        <span><strong>{{ i.t('Qual é o tom?', 'Which tone?') }}</strong><br /><small>{{ i.t('Ouça uma sílaba e diga o tom', 'Hear a syllable and name the tone') }}</small></span>
+        {{ i.t('Qual é o tom?', 'Which tone?') }}
       </label>
-      <label class="modo">
+      <label>
         <input type="radio" name="modo" value="combinacoes" [ngModel]="modo()" (ngModelChange)="mudarModo($event)" />
-        <span><strong>{{ i.t('Pares de tons', 'Tone pairs') }}</strong><br /><small>{{ i.t('Palavras de 2 sílabas: 老师 = 3º + 1º', '2-syllable words: 老师 = 3rd + 1st') }}</small></span>
+        {{ i.t('Pares de tons', 'Tone pairs') }}
       </label>
-      <label class="modo">
+      <label>
         <input type="radio" name="modo" value="pares-tons" [ngModel]="modo()" (ngModelChange)="mudarModo($event)" />
-        <span><strong>{{ i.t('Pares mínimos', 'Minimal pairs') }}</strong><br /><small>{{ i.t('mā, má, mǎ ou mà?', 'mā, má, mǎ or mà?') }}</small></span>
+        {{ i.t('Pares mínimos', 'Minimal pairs') }}
       </label>
-      <label class="modo">
+      <label>
         <input type="radio" name="modo" value="pares-sons" [ngModel]="modo()" (ngModelChange)="mudarModo($event)" />
-        <span><strong>{{ i.t('Sons parecidos', 'Similar sounds') }}</strong><br /><small>{{ i.t('shì ou sì? lù ou lǜ?', 'shì or sì? lù or lǜ?') }}</small></span>
+        {{ i.t('Sons parecidos', 'Similar sounds') }}
       </label>
     </div>
+    <p class="suave pequeno descricao-modo">
+      @switch (modo()) {
+        @case ('tom') { {{ i.t('Ouça uma sílaba e diga o tom', 'Hear a syllable and name the tone') }} }
+        @case ('combinacoes') { {{ i.t('Palavras de 2 sílabas: 老师 = 3º + 1º', '2-syllable words: 老师 = 3rd + 1st') }} }
+        @case ('pares-tons') { {{ i.t('mā, má, mǎ ou mà?', 'mā, má, mǎ or mà?') }} }
+        @case ('pares-sons') { {{ i.t('shì ou sì? lù ou lǜ?', 'shì or sì? lù or lǜ?') }} }
+      }
+    </p>
 
     @if (modo() === 'tom') {
       <label class="opcao-linha">
@@ -156,31 +164,6 @@ const SILABAS_INICIANTE = ['ma', 'ba', 'yi', 'shi', 'wu', 'tang', 'qi', 'tu', 'y
       flex-basis: 100%;
       color: var(--cor-texto);
     }
-    .modos {
-      display: grid;
-      gap: 8px;
-      grid-template-columns: repeat(4, 1fr);
-      margin-bottom: 12px;
-    }
-    .modo {
-      display: flex;
-      gap: 10px;
-      align-items: flex-start;
-      padding: 12px;
-      border-radius: var(--raio-p);
-      border: 2px solid var(--cor-borda);
-      background: var(--cor-superficie);
-      font-weight: 400;
-      cursor: pointer;
-    }
-    .modo:has(input:checked) {
-      border-color: var(--cor-primaria);
-      background: var(--cor-primaria-suave);
-    }
-    .modo input {
-      margin-top: 4px;
-      accent-color: var(--cor-primaria);
-    }
     .opcao-linha,
     .grupo-pares {
       display: flex;
@@ -236,25 +219,6 @@ const SILABAS_INICIANTE = ['ma', 'ba', 'yi', 'shi', 'wu', 'tang', 'qi', 'tu', 'y
     }
     .teclas {
       margin: 10px 0 0;
-    }
-    @media (max-width: 599px) {
-      .modos {
-        grid-template-columns: repeat(2, 1fr);
-      }
-      .modo {
-        flex-direction: column;
-        align-items: center;
-        text-align: center;
-        gap: 4px;
-        padding: 8px 6px;
-        font-size: 0.9rem;
-      }
-      .modo small {
-        display: none;
-      }
-      .modo input {
-        margin: 0;
-      }
     }
   `,
 })

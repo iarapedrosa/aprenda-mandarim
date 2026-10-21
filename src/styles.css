@@ -477,3 +477,88 @@ table {
 [hidden] {
   display: none !important;
 }
+
+/* ---------- Seletores compactos ---------- */
+/* Escolha única em "pílulas" (rádios escondidos, mas acessíveis pelo teclado). */
+.segmentado {
+  display: flex;
+  gap: 4px;
+  padding: 4px;
+  margin-bottom: 6px;
+  border-radius: 999px;
+  border: 1px solid var(--cor-borda);
+  background: var(--cor-superficie-2);
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+
+.segmentado > label {
+  flex: 1 0 auto;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 40px;
+  padding: 6px 14px;
+  border-radius: 999px;
+  font-weight: 600;
+  white-space: nowrap;
+  cursor: pointer;
+}
+
+.segmentado input {
+  position: absolute;
+  inset: 0;
+  margin: 0;
+  opacity: 0;
+  cursor: pointer;
+}
+
+.segmentado > label:has(input:checked) {
+  background: var(--cor-primaria);
+  color: var(--cor-sobre-primaria);
+}
+
+.segmentado > label:has(input:focus-visible) {
+  outline: 2px solid var(--cor-primaria);
+  outline-offset: 2px;
+}
+
+.descricao-modo {
+  margin: 0 0 12px 8px;
+}
+
+/* Linha de chips: rola na horizontal no celular, quebra em linhas no PC. */
+.chips-rolagem {
+  display: flex;
+  gap: 6px;
+  margin-bottom: 12px;
+  padding-bottom: 2px;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+
+.chips-rolagem > * {
+  flex: none;
+}
+
+@media (min-width: 600px) {
+  .chips-rolagem {
+    flex-wrap: wrap;
+  }
+}
+
+/* Abas da seção + controle de velocidade na mesma linha */
+.barra-secao {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 16px;
+}
+
+.barra-secao > .abas {
+  flex: 1 1 auto;
+  min-width: 0;
+  margin-bottom: 0;
+}

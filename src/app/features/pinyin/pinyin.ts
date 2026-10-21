@@ -15,21 +15,19 @@ import { IdiomaService } from '../../core/i18n/idioma.service';
         </p>
       </header>
 
+      <div class="barra-secao">
       <nav class="abas" [attr.aria-label]="i.t('Seções de pinyin', 'Pinyin sections')">
         @for (aba of abas; track aba.rota) {
           <a [routerLink]="aba.rota" routerLinkActive="ativa" ariaCurrentWhenActive="page">{{ i.tr(aba, 'rotulo') }}</a>
         }
       </nav>
-
-      <app-controle-voz class="controle" />
+      <app-controle-voz />
+      </div>
 
       <router-outlet />
     </section>
   `,
   styles: `
-    .controle {
-      margin-bottom: 16px;
-    }
   `,
 })
 export class PinyinPagina {

@@ -1,4 +1,4 @@
-import { Component, computed, inject, signal } from '@angular/core';
+import { Component, computed, inject, input, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { RouterLink } from '@angular/router';
 import { ProgressoService } from '../../../core/progresso/progresso.service';
@@ -15,8 +15,17 @@ const SUGESTOES_ONDE = ['na mesa da cozinha', 'no sofá', 'no transporte', 'no t
   selector: 'app-meu-plano',
   imports: [FormsModule, RouterLink],
   template: `
-    <section class="cartao plano" aria-labelledby="titulo-plano">
-      @if (plano() && !editando()) {
+    <section [class]="embutido() ? 'plano embutido' : 'cartao plano'" aria-labelledby="titulo-plano">
+      @if (embutido() && !editando()) {
+        <p class="linha-plano pequeno" id="titulo-plano">
+          @if (plano(); as p) {
+            📌 <span>“{{ p.quando }}, {{ p.onde }}”</span>
+            <button type="button" class="botao botao-texto pequeno" (click)="abrir()">{{ i.t('mudar', 'change') }}</button>
+          } @else {
+            <button type="button" class="botao botao-texto pequeno" (click)="abrir()">📌 {{ i.t('Definir quando e onde vou estudar', 'Set when and where I’ll study') }}</button>
+          }
+        </p>
+      } @else if (plano() && !editando()) {
         <p class="rotulo" id="titulo-plano">📌 {{ i.t('Meu plano', 'My plan') }}</p>
         <p class="frase-plano">“{{ plano()!.quando }}, {{ plano()!.onde }}, {{ i.t('eu faço o meu treino de mandarim.', 'I do my Mandarin training.') }}”</p>
         <button type="button" class="botao botao-texto pequeno" (click)="abrir()">{{ i.t('mudar', 'change') }}</button>
@@ -59,6 +68,23 @@ const SUGESTOES_ONDE = ['na mesa da cozinha', 'no sofá', 'no transporte', 'no t
     </section>
   `,
   styles: `
+    .embutido {
+      margin-top: 12px;
+      padding-top: 10px;
+      border-top: 1px solid var(--cor-borda);
+    }
+    .linha-plano {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 4px;
+      margin: 0;
+      color: var(--cor-texto-suave);
+    }
+    .linha-plano .botao {
+      min-height: 32px;
+      padding: 2px 6px;
+    }
     .plano {
       margin-top: 12px;
     }
@@ -110,6 +136,8 @@ export class MeuPlano {
   protected readonly sugestoesQuandoEn = ['After breakfast', 'At lunch', 'On the bus/subway', 'After work', 'Before bed'];
   protected readonly sugestoesOndeEn = ['at the kitchen table', 'on the couch', 'on the commute', 'at work', 'in my room'];
   protected readonly plano = computed(() => this.progresso.estado().plano ?? null);
+  /** versão de uma linha, dentro do cartão do treino */
+  readonly embutido = input(false);
   protected readonly editando = signal(false);
   protected readonly quando = signal('');
   protected readonly onde = signal('');

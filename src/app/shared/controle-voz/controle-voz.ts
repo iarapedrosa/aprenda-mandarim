@@ -35,7 +35,7 @@ import { IdiomaService } from '../../core/i18n/idioma.service';
       </div>
     }
     <div class="controle" role="group" [attr.aria-label]="i.t('Velocidade da voz', 'Voice speed')">
-      <span class="rotulo">{{ i.t('Velocidade:', 'Speed:') }}</span>
+      <span class="rotulo"><span aria-hidden="true">🔊</span><span class="texto-rotulo"> {{ i.t('Velocidade:', 'Speed:') }}</span></span>
       <button
         type="button"
         [class.ativo]="voz.velocidade() === 'lenta'"
@@ -97,6 +97,19 @@ import { IdiomaService } from '../../core/i18n/idioma.service';
     button.ativo {
       background: var(--cor-primaria);
       color: var(--cor-sobre-primaria);
+    }
+    @media (max-width: 599px) {
+      .texto-rotulo {
+        display: none;
+      }
+      .rotulo {
+        padding: 0 4px 0 6px;
+      }
+      button {
+        min-height: 32px;
+        padding: 2px 10px;
+        font-size: 0.875rem;
+      }
     }
   `,
 })
