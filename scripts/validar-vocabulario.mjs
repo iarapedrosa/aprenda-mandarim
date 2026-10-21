@@ -24,7 +24,12 @@ const SILABAS = new Set(/`([^`]+)`/.exec(fonteSilabas)[1].split(/\s+/).filter(Bo
  * Leituras já revisadas por humanos em que o pinyin-pro discorda (formato "trecho|caractere").
  * Ex.: 为 em 一言为定 é wéi; 虎 em 马马虎虎 é hū; 空 em 有空 é kòng.
  */
-const REVISADOS = new Set(['一言为定！|为', '马马虎虎。|虎', '有空吗？|空']);
+const REVISADOS = new Set([
+  '一言为定！|为',
+  '马马虎虎。|虎',
+  '有空吗？|空',
+  '吃葡萄不吐葡萄皮，不吃葡萄倒吐葡萄皮。|倒', // dào = "ao contrário"
+]);
 
 const MARCAS = {};
 for (const [v, ms] of Object.entries({ a: 'āáǎà', e: 'ēéěè', i: 'īíǐì', o: 'ōóǒò', u: 'ūúǔù', ü: 'ǖǘǚǜ' })) {

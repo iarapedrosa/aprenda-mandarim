@@ -14,6 +14,7 @@ import { ExApresentar } from '../exercicios/ex-apresentar';
 import { ExDigitarPinyin } from '../exercicios/ex-digitar-pinyin';
 import { ExEscolha } from '../exercicios/ex-escolha';
 import { ExEscrever } from '../exercicios/ex-escrever';
+import { ExFalar } from '../exercicios/ex-falar';
 import { ExLicao } from '../exercicios/ex-licao';
 import { ItensDeFraseService } from '../itens-de-frase.service';
 
@@ -21,7 +22,7 @@ const SILABAS_AQUECIMENTO = ['ma', 'ba', 'yi', 'shi', 'wu', 'tang', 'qi', 'tu', 
 
 @Component({
   selector: 'app-sessao',
-  imports: [RouterLink, ControleVoz, ExEscolha, ExLicao, ExApresentar, ExDigitarPinyin, ExEscrever],
+  imports: [RouterLink, ControleVoz, ExEscolha, ExLicao, ExApresentar, ExDigitarPinyin, ExEscrever, ExFalar],
   template: `
     <section class="pagina">
       @if (carregando()) {
@@ -63,6 +64,9 @@ const SILABAS_AQUECIMENTO = ['ma', 'ba', 'yi', 'shi', 'wu', 'tang', 'qi', 'tu', 
               }
               @case ('escrever') {
                 <app-ex-escrever [item]="item" (concluir)="registrar(item, $event)" />
+              }
+              @case ('falar') {
+                <app-ex-falar [item]="item" (concluir)="registrar(item, $event)" />
               }
               @default {
                 <p class="info">Exercício indisponível.</p>

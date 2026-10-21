@@ -19,12 +19,7 @@ import { Velocidade, VozService } from '../../core/voz/voz.service';
       [title]="rotuloAcessivel()"
     >
       @if (velocidade() === 'lenta') {
-        <svg viewBox="0 0 24 24" aria-hidden="true">
-          <path
-            fill="currentColor"
-            d="M19 11.5c0-3.6-3-6.5-6.8-6.5S5.4 7.9 5.4 11.5H4a1 1 0 0 0 0 2h1.7l-.6 2.2a1 1 0 0 0 1.9.6l.8-2.8h8.5l.8 2.8a1 1 0 0 0 1.9-.6l-.6-2.2H21a1 1 0 0 0 0-2h-2Zm-6.8-4.5c2.5 0 4.6 1.8 4.8 4.5H7.4c.2-2.7 2.3-4.5 4.8-4.5Z"
-          />
-        </svg>
+        <span class="tartaruga" aria-hidden="true">🐢</span>
       } @else {
         <svg viewBox="0 0 24 24" aria-hidden="true">
           <path fill="currentColor" d="M4 9v6h4l5 4V5L8 9H4Z" />
@@ -73,6 +68,10 @@ import { Velocidade, VozService } from '../../core/voz/voz.service';
       min-width: 36px;
       min-height: 36px;
       padding: 6px;
+    }
+    .tartaruga {
+      font-size: 1.15rem;
+      line-height: 1;
     }
     svg {
       width: 22px;
