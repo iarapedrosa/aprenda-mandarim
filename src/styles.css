@@ -398,12 +398,13 @@ label {
 
 /* ---------- Abas ---------- */
 .abas {
+  position: relative;
   display: flex;
-  gap: 6px;
+  gap: 4px;
   overflow-x: auto;
-  padding-bottom: 4px;
   margin-bottom: 16px;
-  scrollbar-width: thin;
+  border-bottom: 1px solid var(--cor-borda);
+  scrollbar-width: none;
 }
 
 .abas a,
@@ -411,22 +412,28 @@ label {
   flex: none;
   font: inherit;
   cursor: pointer;
-  padding: 8px 14px;
-  border-radius: 999px;
-  border: 1px solid var(--cor-borda);
-  background: var(--cor-superficie);
-  color: var(--cor-texto);
+  padding: 8px 12px;
+  margin-bottom: -1px;
+  border: 0;
+  border-bottom: 2px solid transparent;
+  border-radius: 0;
+  background: none;
+  color: var(--cor-texto-suave);
   text-decoration: none;
   font-weight: 600;
   font-size: 0.95rem;
   white-space: nowrap;
 }
 
+.abas a:hover,
+.abas button:hover {
+  color: var(--cor-texto);
+}
+
 .abas a.ativa,
 .abas button.ativa {
-  background: var(--cor-primaria);
-  border-color: var(--cor-primaria);
-  color: var(--cor-sobre-primaria);
+  color: var(--cor-primaria);
+  border-bottom-color: var(--cor-primaria);
 }
 
 /* ---------- Diversos ---------- */
@@ -561,4 +568,37 @@ table {
   flex: 1 1 auto;
   min-width: 0;
   margin-bottom: 0;
+}
+
+/* ---------- Celular: menos peso visual nos controles ---------- */
+@media (max-width: 599px) {
+  .barra-secao > app-controle-voz {
+    display: none;
+  }
+
+  .subtitulo {
+    font-size: 0.9rem;
+  }
+
+  .abas a,
+  .abas button {
+    padding: 8px 10px;
+    font-size: 0.9rem;
+  }
+
+  .segmentado > label {
+    min-height: 36px;
+    padding: 4px 12px;
+    font-size: 0.9rem;
+  }
+
+  .chips-rolagem > button {
+    min-height: 34px;
+    padding: 2px 12px;
+    font-size: 0.875rem;
+  }
+
+  .descricao-modo {
+    font-size: 0.8rem;
+  }
 }

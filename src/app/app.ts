@@ -60,6 +60,13 @@ export class App {
       this.url.set((e as NavigationEnd).urlAfterRedirects);
       this.submenu.set(null);
       this.fecharMenu(false);
+      // abas de seção roláveis (celular): traz a aba ativa para a área visível
+      setTimeout(() => {
+        for (const aba of this.documento.querySelectorAll<HTMLElement>('.abas .ativa')) {
+          const faixa = aba.parentElement!;
+          faixa.scrollLeft = aba.offsetLeft - (faixa.clientWidth - aba.offsetWidth) / 2;
+        }
+      }, 50);
     });
     if (this.sw.isEnabled) {
       this.sw.versionUpdates

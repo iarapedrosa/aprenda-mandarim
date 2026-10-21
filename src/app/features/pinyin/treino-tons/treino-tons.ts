@@ -40,52 +40,69 @@ const SILABAS_INICIANTE = ['ma', 'ba', 'yi', 'shi', 'wu', 'tang', 'qi', 'tu', 'y
   selector: 'app-treino-tons',
   imports: [FormsModule, DiagramaTom, PinyinColorido],
   template: `
-    <div class="segmentado" role="radiogroup" [attr.aria-label]="i.t('Tipo de treino', 'Drill type')">
-      <label>
-        <input type="radio" name="modo" value="tom" [ngModel]="modo()" (ngModelChange)="mudarModo($event)" />
-        {{ i.t('Qual é o tom?', 'Which tone?') }}
-      </label>
-      <label>
-        <input type="radio" name="modo" value="combinacoes" [ngModel]="modo()" (ngModelChange)="mudarModo($event)" />
-        {{ i.t('Pares de tons', 'Tone pairs') }}
-      </label>
-      <label>
-        <input type="radio" name="modo" value="pares-tons" [ngModel]="modo()" (ngModelChange)="mudarModo($event)" />
-        {{ i.t('Pares mínimos', 'Minimal pairs') }}
-      </label>
-      <label>
-        <input type="radio" name="modo" value="pares-sons" [ngModel]="modo()" (ngModelChange)="mudarModo($event)" />
-        {{ i.t('Sons parecidos', 'Similar sounds') }}
-      </label>
-    </div>
-    <p class="suave pequeno descricao-modo">
-      @switch (modo()) {
-        @case ('tom') { {{ i.t('Ouça uma sílaba e diga o tom', 'Hear a syllable and name the tone') }} }
-        @case ('combinacoes') { {{ i.t('Palavras de 2 sílabas: 老师 = 3º + 1º', '2-syllable words: 老师 = 3rd + 1st') }} }
-        @case ('pares-tons') { {{ i.t('mā, má, mǎ ou mà?', 'mā, má, mǎ or mà?') }} }
-        @case ('pares-sons') { {{ i.t('shì ou sì? lù ou lǜ?', 'shì or sì? lù or lǜ?') }} }
-      }
-    </p>
-
-    @if (modo() === 'tom') {
-      <label class="opcao-linha">
-        <input type="checkbox" [ngModel]="todasSilabas()" (ngModelChange)="todasSilabas.set($event); nova()" />
-        {{ i.t('Usar todas as sílabas (mais difícil)', 'Use all syllables (harder)') }}
-      </label>
-    } @else if (modo() === 'combinacoes') {
-      <p class="suave pequeno">
-        {{ i.t('Na fala, os tons quase sempre vêm em pares. São 20 combinações (4 tons × 4 tons + neutro), sorteadas por igual.', 'In speech, tones almost always come in pairs. There are 20 combinations (4 tones × 4 tones + neutral), drawn evenly.') }}
+    @if (!iniciado() || ajustando()) {
+      <div class="segmentado" role="radiogroup" [attr.aria-label]="i.t('Tipo de treino', 'Drill type')">
+        <label>
+          <input type="radio" name="modo" value="tom" [ngModel]="modo()" (ngModelChange)="mudarModo($event)" />
+          {{ i.t('Qual é o tom?', 'Which tone?') }}
+        </label>
+        <label>
+          <input type="radio" name="modo" value="combinacoes" [ngModel]="modo()" (ngModelChange)="mudarModo($event)" />
+          {{ i.t('Pares de tons', 'Tone pairs') }}
+        </label>
+        <label>
+          <input type="radio" name="modo" value="pares-tons" [ngModel]="modo()" (ngModelChange)="mudarModo($event)" />
+          {{ i.t('Pares mínimos', 'Minimal pairs') }}
+        </label>
+        <label>
+          <input type="radio" name="modo" value="pares-sons" [ngModel]="modo()" (ngModelChange)="mudarModo($event)" />
+          {{ i.t('Sons parecidos', 'Similar sounds') }}
+        </label>
+      </div>
+      <p class="suave pequeno descricao-modo">
+        @switch (modo()) {
+          @case ('tom') { {{ i.t('Ouça uma sílaba e diga o tom', 'Hear a syllable and name the tone') }} }
+          @case ('combinacoes') { {{ i.t('Palavras de 2 sílabas: 老师 = 3º + 1º', '2-syllable words: 老师 = 3rd + 1st') }} }
+          @case ('pares-tons') { {{ i.t('mā, má, mǎ ou mà?', 'mā, má, mǎ or mà?') }} }
+          @case ('pares-sons') { {{ i.t('shì ou sì? lù ou lǜ?', 'shì or sì? lù or lǜ?') }} }
+        }
       </p>
+
+      @if (modo() === 'tom') {
+        <label class="opcao-linha">
+          <input type="checkbox" [ngModel]="todasSilabas()" (ngModelChange)="todasSilabas.set($event); nova()" />
+          {{ i.t('Usar todas as sílabas (mais difícil)', 'Use all syllables (harder)') }}
+        </label>
+      } @else if (modo() === 'combinacoes') {
+        <p class="suave pequeno">
+          {{ i.t('Na fala, os tons quase sempre vêm em pares. São 20 combinações (4 tons × 4 tons + neutro), sorteadas por igual.', 'In speech, tones almost always come in pairs. There are 20 combinations (4 tones × 4 tones + neutral), drawn evenly.') }}
+        </p>
+      } @else {
+        <label class="grupo-pares">
+          <span>{{ i.t('Grupo:', 'Group:') }}</span>
+          <select class="campo" [ngModel]="grupoId()" (ngModelChange)="grupoId.set($event); nova()">
+            <option value="">{{ i.t('Misturar todos', 'Mix all') }}</option>
+            @for (g of grupos(); track g.id) {
+              <option [value]="g.id">{{ i.tr(g, 'titulo') }}</option>
+            }
+          </select>
+        </label>
+      }
+      @if (iniciado()) {
+        <button type="button" class="botao botao-texto pequeno pronto" (click)="ajustando.set(false)">{{ i.t('Pronto', 'Done') }}</button>
+      }
     } @else {
-      <label class="grupo-pares">
-        <span>{{ i.t('Grupo:', 'Group:') }}</span>
-        <select class="campo" [ngModel]="grupoId()" (ngModelChange)="grupoId.set($event); nova()">
-          <option value="">{{ i.t('Misturar todos', 'Mix all') }}</option>
-          @for (g of grupos(); track g.id) {
-            <option [value]="g.id">{{ i.tr(g, 'titulo') }}</option>
+      <div class="resumo-ajustes">
+        <strong>
+          @switch (modo()) {
+            @case ('tom') { {{ i.t('Qual é o tom?', 'Which tone?') }} }
+            @case ('combinacoes') { {{ i.t('Pares de tons', 'Tone pairs') }} }
+            @case ('pares-tons') { {{ i.t('Pares mínimos', 'Minimal pairs') }} }
+            @case ('pares-sons') { {{ i.t('Sons parecidos', 'Similar sounds') }} }
           }
-        </select>
-      </label>
+        </strong>
+        <button type="button" class="botao botao-texto pequeno" (click)="ajustando.set(true)">⚙️ {{ i.t('Mudar', 'Change') }}</button>
+      </div>
     }
 
     <section class="cartao treino" aria-live="polite">
@@ -164,6 +181,22 @@ const SILABAS_INICIANTE = ['ma', 'ba', 'yi', 'shi', 'wu', 'tang', 'qi', 'tu', 'y
       flex-basis: 100%;
       color: var(--cor-texto);
     }
+    .resumo-ajustes {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      margin-bottom: 8px;
+      font-size: 0.95rem;
+    }
+    .resumo-ajustes .botao,
+    .pronto {
+      min-height: 32px;
+      padding: 2px 8px;
+    }
+    .pronto {
+      margin: -4px 0 8px;
+    }
     .opcao-linha,
     .grupo-pares {
       display: flex;
@@ -220,6 +253,11 @@ const SILABAS_INICIANTE = ['ma', 'ba', 'yi', 'shi', 'wu', 'tang', 'qi', 'tu', 'y
     .teclas {
       margin: 10px 0 0;
     }
+    @media (hover: none) {
+      .teclas {
+        display: none;
+      }
+    }
   `,
 })
 export class TreinoTonsPagina {
@@ -234,6 +272,8 @@ export class TreinoTonsPagina {
   protected readonly todasSilabas = signal(false);
   protected readonly grupoId = signal('');
   protected readonly iniciado = signal(false);
+  /** depois de começar, as opções viram uma linha de resumo (o exercício fica em foco) */
+  protected readonly ajustando = signal(false);
   protected readonly rodada = signal<Rodada | null>(null);
   protected readonly escolha = signal<string | null>(null);
   protected readonly respondido = computed(() => this.escolha() !== null);

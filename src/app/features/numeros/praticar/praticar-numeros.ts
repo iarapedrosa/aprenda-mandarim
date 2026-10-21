@@ -25,23 +25,35 @@ let contador = 0;
   selector: 'app-praticar-numeros',
   imports: [FormsModule, BotaoAudio, PinyinColorido, ExEscolha],
   template: `
-    <div class="segmentado" role="radiogroup" [attr.aria-label]="i.t('Tipo de prática', 'Practice type')">
-      @for (m of modos; track m.id) {
-        <label>
-          <input type="radio" name="modo-numeros" [value]="m.id" [ngModel]="modo()" (ngModelChange)="modo.set($event); nova()" />
-          {{ i.tr(m, 'nome') }}
-        </label>
-      }
-    </div>
-    <p class="suave pequeno descricao-modo">{{ descricaoModo() }}</p>
+    @if (!iniciado() || ajustando()) {
+      <div class="segmentado" role="radiogroup" [attr.aria-label]="i.t('Tipo de prática', 'Practice type')">
+        @for (m of modos; track m.id) {
+          <label>
+            <input type="radio" name="modo-numeros" [value]="m.id" [ngModel]="modo()" (ngModelChange)="modo.set($event); nova()" />
+            {{ i.tr(m, 'nome') }}
+          </label>
+        }
+      </div>
+      <p class="suave pequeno descricao-modo">{{ descricaoModo() }}</p>
 
-    <div class="categorias chips-rolagem" role="group" [attr.aria-label]="i.t('Que números praticar', 'Which numbers to practice')">
-      @for (c of categorias; track c.id) {
-        <button type="button" [class.ativo]="categoria() === c.id" [attr.aria-pressed]="categoria() === c.id" (click)="categoria.set(c.id); nova()">
-          {{ i.tr(c, 'nome') }}
-        </button>
+      <div class="categorias chips-rolagem" role="group" [attr.aria-label]="i.t('Que números praticar', 'Which numbers to practice')">
+        @for (c of categorias; track c.id) {
+          <button type="button" [class.ativo]="categoria() === c.id" [attr.aria-pressed]="categoria() === c.id" (click)="categoria.set(c.id); nova()">
+            {{ i.tr(c, 'nome') }}
+          </button>
+        }
+      </div>
+      @if (iniciado()) {
+        <button type="button" class="botao botao-texto pequeno pronto" (click)="ajustando.set(false)">{{ i.t('Pronto', 'Done') }}</button>
       }
-    </div>
+    } @else {
+      <div class="resumo-ajustes">
+        <span>
+          <strong>{{ i.tr(modoAtual(), 'nome') }}</strong> · {{ i.tr(categoriaAtual(), 'nome') }}
+        </span>
+        <button type="button" class="botao botao-texto pequeno" (click)="ajustando.set(true)">⚙️ {{ i.t('Mudar', 'Change') }}</button>
+      </div>
+    }
 
     <section class="cartao rodada" aria-live="polite">
       <p class="placar suave">{{ i.t('Acertos:', 'Score:') }} <strong>{{ acertos() }}</strong> {{ i.t('de', 'of') }} {{ total() }}</p>
@@ -94,9 +106,26 @@ let contador = 0;
   `,
   styleUrl: '../../treino/exercicios/exercicios.css',
   styles: `
+    .resumo-ajustes {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      margin-bottom: 8px;
+      font-size: 0.95rem;
+    }
+    .resumo-ajustes .botao,
+    .pronto {
+      min-height: 32px;
+      padding: 2px 8px;
+    }
+    .pronto {
+      margin: -4px 0 8px;
+    }
     .categorias button {
-      min-height: 38px;
-      padding: 4px 12px;
+      min-height: 34px;
+      padding: 2px 12px;
+      font-size: 0.9rem;
       border-radius: 999px;
       border: 1px solid var(--cor-borda);
       background: var(--cor-superficie);
@@ -144,6 +173,10 @@ export class PraticarNumerosPagina {
   protected readonly acertos = signal(0);
   protected readonly total = signal(0);
 
+  /** depois de começar, o modo e a faixa viram uma linha de resumo (o exercício fica em foco) */
+  protected readonly ajustando = signal(false);
+  protected readonly modoAtual = computed(() => MODOS.find((m) => m.id === this.modo())!);
+  protected readonly categoriaAtual = computed(() => CATEGORIAS.find((c) => c.id === this.categoria())!);
   protected readonly descricaoModo = computed(() => this.i.tr(MODOS.find((m) => m.id === this.modo())!, 'descricao'));
 
   protected readonly dica = computed(() => {
