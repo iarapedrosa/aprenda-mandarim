@@ -522,8 +522,9 @@ table {
 }
 
 .segmentado > label:has(input:checked) {
-  background: var(--cor-primaria);
-  color: var(--cor-sobre-primaria);
+  background: var(--cor-superficie);
+  color: var(--cor-primaria);
+  box-shadow: 0 1px 3px rgb(0 0 0 / 15%);
 }
 
 .segmentado > label:has(input:focus-visible) {
@@ -547,6 +548,25 @@ table {
 
 .chips-rolagem > * {
   flex: none;
+}
+
+.chips-rolagem > button {
+  min-height: 36px;
+  padding: 4px 14px;
+  border-radius: 999px;
+  border: 1px solid var(--cor-borda);
+  background: var(--cor-superficie);
+  color: var(--cor-texto);
+  font: inherit;
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.chips-rolagem > button.ativo {
+  border-color: var(--cor-primaria);
+  background: var(--cor-primaria-suave);
+  color: var(--cor-primaria);
 }
 
 @media (min-width: 600px) {

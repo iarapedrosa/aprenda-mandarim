@@ -56,7 +56,9 @@ let contador = 0;
     }
 
     <section class="cartao rodada" aria-live="polite">
-      <p class="placar suave">{{ i.t('Acertos:', 'Score:') }} <strong>{{ acertos() }}</strong> {{ i.t('de', 'of') }} {{ total() }}</p>
+      @if (iniciado()) {
+        <p class="placar suave">{{ i.t('Acertos:', 'Score:') }} <strong>{{ acertos() }}</strong> {{ i.t('de', 'of') }} {{ total() }}</p>
+      }
 
       @if (!iniciado()) {
         <button type="button" class="botao botao-primario botao-bloco" (click)="comecar()">{{ i.t('Começar', 'Start') }}</button>
@@ -121,22 +123,6 @@ let contador = 0;
     }
     .pronto {
       margin: -4px 0 8px;
-    }
-    .categorias button {
-      min-height: 34px;
-      padding: 2px 12px;
-      font-size: 0.9rem;
-      border-radius: 999px;
-      border: 1px solid var(--cor-borda);
-      background: var(--cor-superficie);
-      color: var(--cor-texto);
-      font: inherit;
-      font-weight: 600;
-      cursor: pointer;
-    }
-    .categorias button.ativo {
-      background: var(--cor-texto);
-      color: var(--cor-fundo);
     }
     .hanzi-alvo {
       font-family: var(--fonte-hanzi);

@@ -30,9 +30,9 @@ const TIPOS: { id: Tipo; nome: string; nomeEn: string; exemplo: string; exemploE
   selector: 'app-conversor',
   imports: [FormsModule, BotaoAudio, PinyinColorido],
   template: `
-    <p>{{ i.t('Digite qualquer número para ver como se escreve e se fala em chinês.', 'Type any number to see how it is written and said in Chinese.') }}</p>
+    <p class="suave pequeno intro">{{ i.t('Digite qualquer número para ver como se escreve e se fala em chinês.', 'Type any number to see how it is written and said in Chinese.') }}</p>
 
-    <div class="tipos" role="radiogroup" [attr.aria-label]="i.t('Tipo', 'Type')">
+    <div class="tipos chips-rolagem" role="radiogroup" [attr.aria-label]="i.t('Tipo', 'Type')">
       @for (t of tipos; track t.id) {
         <button type="button" role="radio" [attr.aria-checked]="tipo() === t.id" [class.ativo]="tipo() === t.id" (click)="mudarTipo(t.id)">
           {{ i.tr(t, 'nome') }}
@@ -52,7 +52,7 @@ const TIPOS: { id: Tipo; nome: string; nomeEn: string; exemplo: string; exemploE
         (ngModelChange)="texto.set($event)"
         name="numero"
       />
-      <button type="button" class="botao" (click)="aleatorio()">🎲 {{ i.t('Aleatório', 'Random') }}</button>
+      <button type="button" class="botao aleatorio" (click)="aleatorio()" [attr.aria-label]="i.t('Número aleatório', 'Random number')" [title]="i.t('Número aleatório', 'Random number')">🎲<span class="rotulo-aleatorio">{{ i.t('Aleatório', 'Random') }}</span></button>
     </form>
 
     @if (resultado(); as r) {
@@ -71,31 +71,31 @@ const TIPOS: { id: Tipo; nome: string; nomeEn: string; exemplo: string; exemploE
     }
   `,
   styles: `
-    .tipos {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 6px;
-      margin-bottom: 12px;
-    }
-    .tipos button {
-      min-height: 40px;
-      padding: 6px 14px;
-      border-radius: 999px;
-      border: 1px solid var(--cor-borda);
-      background: var(--cor-superficie);
-      color: var(--cor-texto);
-      font: inherit;
-      font-weight: 600;
-      cursor: pointer;
-    }
-    .tipos button.ativo {
-      background: var(--cor-texto);
-      color: var(--cor-fundo);
+    .intro {
+      margin: 0 0 10px;
     }
     .entrada {
       display: flex;
       gap: 8px;
       margin-bottom: 12px;
+    }
+    .entrada .campo {
+      flex: 1;
+      min-width: 0;
+    }
+    .aleatorio {
+      flex: none;
+      white-space: nowrap;
+    }
+    @media (max-width: 599px) {
+      .rotulo-aleatorio {
+        display: none;
+      }
+      .aleatorio {
+        width: 52px;
+        padding: 0;
+        font-size: 1.3rem;
+      }
     }
     .grande {
       font-size: 1.4rem;
