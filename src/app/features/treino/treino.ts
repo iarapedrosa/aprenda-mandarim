@@ -294,6 +294,8 @@ export class TreinoPagina {
     { rota: '/leitura', icone: '读', nome: 'Leitura' },
     { rota: '/escuta', icone: '听', nome: 'Escuta' },
     { rota: '/fala', icone: '说', nome: 'Fala' },
+    { rota: '/numeros', icone: '数', nome: 'Números' },
+    { rota: '/cartoes', icone: '卡', nome: 'Cartões' },
   ];
 
   constructor() {

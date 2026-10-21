@@ -32,6 +32,14 @@ export const routes: Routes = [
     loadChildren: () => import('./features/fala/fala.routes').then((m) => m.FALA_ROTAS),
   },
   {
+    path: 'cartoes',
+    loadChildren: () => import('./features/cartoes/cartoes.routes').then((m) => m.CARTOES_ROTAS),
+  },
+  {
+    path: 'numeros',
+    loadChildren: () => import('./features/numeros/numeros.routes').then((m) => m.NUMEROS_ROTAS),
+  },
+  {
     path: 'praticar',
     loadChildren: () =>
       import('./features/praticar/praticar.routes').then((m) => m.PRATICAR_ROTAS),

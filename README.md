@@ -10,6 +10,8 @@ Toda a interface, as explicações e as traduções estão em português.
 - 📖 **Leitura**: diálogos do dia a dia e historinhas com pinyin/tradução que você mostra ou esconde, palavras clicáveis e perguntas de compreensão.
 - 👂 **Escuta**: ditado de palavras e frases (pinyin com números ou acentos, ou escolha dos caracteres).
 - 🗣️ **Fala**: shadowing e trava-línguas com reconhecimento de voz.
+- 🔢 **Números**: regras explicadas (十, 百, 千, 万, 零, 两 × 二), conversor (digite um número e ouça em chinês) e prática de números, preços, horas, anos e telefones.
+- 🃏 **Cartões (estilo Anki)**: flashcards com Errei/Difícil/Bom/Fácil e prévia do próximo intervalo, mais exportação dos baralhos para o app do Anki.
 - 💬 **Frase do dia** e **palavra do dia** na página inicial.
 - 📱 PWA instalável, funciona offline, tema claro/escuro, progresso salvo no navegador com backup em JSON.
 
@@ -49,9 +51,27 @@ Toque em **Começar treino** na página inicial. A sessão segue esta ordem:
 5. escrita de caracteres;
 6. exercícios com frases.
 
-O que você errar volta no fim da sessão como reforço. Teclado no computador: `1`–`4` respondem, `Enter` continua e `R` repete o áudio.
+O treino também traz dois números para ouvir e reconhecer, e a faixa aumenta conforme você aprende. O que você errar volta no fim da sessão como reforço. Teclado no computador: `1`–`4` respondem, `Enter` continua e `R` repete o áudio.
 
 **Meta diária**: em **Progresso › Meta diária** você escolhe quantas palavras novas e quantas revisões quer por dia (padrão: 10 e 20).
+
+### Cartões (estilo Anki)
+
+Em **Praticar › Cartões** você revisa como no Anki:
+
+- **Revisar agora** traz os cartões vencidos de todos os baralhos (HSK 1, HSK 2 e Frases do dia).
+- **Estudar** em um baralho junta as revisões dele com cartões novos (você escolhe quantos por sessão).
+- A frente pode mostrar os **caracteres**, o **português** ou **só o áudio**. Vire com o espaço e avalie com `1`–`4` (Errei, Difícil, Bom, Fácil). Cada botão mostra quando o cartão volta.
+- Os cartões são **os mesmos do Treino de hoje**: o que você revisar aqui conta lá também.
+- **Exportar p/ Anki** gera um `.txt` que o Anki importa direto (Arquivo › Importar, tipo de nota "Básico"). O progresso no app do Anki fica separado do site.
+
+### Números
+
+Em **Praticar › Números**:
+
+- **Aprender**: regras com áudio — 11–19, dezenas, 百, 千, 万 (o chinês conta de 10 mil em 10 mil!), 零 no meio, 两 × 二, sandhi de 一, dinheiro (块/毛), horas (点/分/半), datas e telefones (1 = 幺).
+- **Conversor**: digite um número, preço, hora, telefone ou ano para ver os caracteres e o pinyin e ouvir.
+- **Praticar**: ouvir e digitar o número, ler os caracteres e digitar, ou ver os algarismos e escolher o pinyin.
 
 ### Dicas
 
@@ -194,6 +214,7 @@ Depois de editar, rode `npm run dados:validar`.
 │   ├── core/                 # services e lógica pura (sem interface)
 │   │   ├── armazenamento/    # localStorage tipado
 │   │   ├── dados/            # vocabulário, frases, leitura
+│   │   ├── numeros/          # números, preços, horas e datas em caracteres + pinyin
 │   │   ├── pinyin/           # conversão de tons, segmentação e correção de pinyin
 │   │   ├── progresso/        # progresso, streak, estatísticas, backup
 │   │   ├── srs/              # algoritmo SM-2
@@ -203,6 +224,8 @@ Depois de editar, rode `npm run dados:validar`.
 │   └── features/             # um módulo por área, com rotas carregadas sob demanda
 │       ├── treino/           # Treino de hoje + gerador da sessão + exercícios
 │       ├── pinyin/ · caracteres/ · escrita/ · leitura/ · escuta/ · fala/
+│       ├── cartoes/          # flashcards estilo Anki + exportação para o Anki
+│       ├── numeros/          # aprender, conversor e prática de números
 │       ├── praticar/         # atalhos (celular)
 │       └── progresso/        # estatísticas, calendário, metas, backup
 ├── ngsw-config.json          # cache offline do service worker
@@ -223,7 +246,9 @@ Os testes unitários (Vitest) cobrem:
 - a validação de pinyin;
 - streak, metas e backup;
 - o gerador do treino diário;
-- a comparação da fala.
+- a comparação da fala;
+- a conversão de números;
+- a exportação para o Anki.
 
 ---
 

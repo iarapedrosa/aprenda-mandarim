@@ -38,6 +38,8 @@ export class App {
     { rota: '/leitura', rotulo: 'Leitura', icone: '读', soDesktop: true },
     { rota: '/escuta', rotulo: 'Escuta', icone: '听', soDesktop: true },
     { rota: '/fala', rotulo: 'Fala', icone: '说', soDesktop: true },
+    { rota: '/numeros', rotulo: 'Números', icone: '数', soDesktop: true },
+    { rota: '/cartoes', rotulo: 'Cartões', icone: '卡', soDesktop: true },
     { rota: '/progresso', rotulo: 'Progresso', icone: '进' },
   ];
 

@@ -5,6 +5,7 @@ import { EstadoProgresso } from '../../core/progresso/progresso.model';
 import { CartaoSrs, cartoesVencidos } from '../../core/srs/sm2';
 import { embaralhar, montarAlternativas, sortear } from '../../core/util/aleatorio';
 import { DataISO } from '../../core/util/datas';
+import { numero } from '../../core/numeros/numeros';
 import { LICOES_PINYIN, LicaoPinyin, exerciciosDaLicao, itemTom } from './curriculo';
 import { ItemEscolha, ItemSessao } from './sessao.model';
 
@@ -223,6 +224,26 @@ function nivelEscrita(cartao: CartaoSrs | undefined): 'contorno' | 'sem-contorno
   return 'memoria';
 }
 
+/** "Ouça e escolha o número" com alternativas próximas. */
+export function itemNumero(maximo: number): ItemEscolha {
+  const sortearN = () => Math.floor(Math.random() * (maximo + 1));
+  const alvo = sortearN();
+  const opcoes = new Set([alvo]);
+  while (opcoes.size < 4) opcoes.add(sortearN());
+  const n = numero(alvo);
+  return {
+    id: novoId('num'),
+    tipo: 'escolha',
+    modulo: 'numeros',
+    enunciado: 'Ouça e escolha o número',
+    pergunta: { audio: n.hanzi },
+    opcoes: embaralhar([...opcoes]).map((o) => ({ valor: String(o), rotulo: o.toLocaleString('pt-BR') })),
+    correta: String(alvo),
+    tons: analisarPinyin(n.pinyin).map((s) => s.tom),
+    resposta: { hanzi: n.hanzi, pinyin: n.pinyin, traducao: alvo.toLocaleString('pt-BR') },
+  };
+}
+
 // ---------------------------------------------------------------------------
 // Sessão
 // ---------------------------------------------------------------------------
@@ -332,7 +353,12 @@ export function gerarSessao(ctx: ContextoSessao, opcoes: { extraNovas?: number }
     }
     resumo.escrita = caracteresNovos.length;
 
-    // 6. Frases (ditado, shadowing…), quando já há vocabulário suficiente
+    // 6. Números: ouvir e reconhecer (as faixas crescem com o vocabulário estudado)
+    const estudadas = Object.values(estado.cartoes).filter((c) => c.tipo === 'palavra' && c.revisoes > 0).length;
+    const maximo = estudadas < 30 ? 10 : estudadas < 80 ? 99 : 999;
+    for (let k = 0; k < 2; k++) itens.push(itemNumero(maximo));
+
+    // 7. Frases (ditado, shadowing…), quando já há vocabulário suficiente
     if (etapa === 'frases' && ctx.itensDeFrase) {
       const conhecidas = Object.values(estado.cartoes)
         .filter((c) => c.tipo === 'palavra' && c.revisoes > 0 && porId.has(c.ref))
