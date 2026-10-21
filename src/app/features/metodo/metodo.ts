@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { RouterLink } from '@angular/router';
+import { IdiomaService } from '../../core/i18n/idioma.service';
 
 interface Referencia {
   autores: string;
@@ -12,7 +13,10 @@ interface Principio {
   titulo: string;
   pesquisa: string;
   noSite: string;
-  link?: { rota: string; rotulo: string };
+  tituloEn: string;
+  pesquisaEn: string;
+  noSiteEn: string;
+  link?: { rota: string; rotulo: string; rotuloEn: string };
   refs: Referencia[];
 }
 
@@ -46,20 +50,19 @@ const R = {
   template: `
     <section class="pagina">
       <header>
-        <h1>O método e a ciência</h1>
+        <h1>{{ i.t('O método e a ciência', 'The method and the science') }}</h1>
         <p class="subtitulo">
-          Cada parte do site segue algum resultado da pesquisa sobre memória e aprendizagem de línguas, publicado em
-          revistas científicas revisadas por pares. Aqui está o porquê de cada coisa.
+          {{ i.t('Cada parte do site segue algum resultado da pesquisa sobre memória e aprendizagem de línguas, publicado em revistas científicas revisadas por pares. Aqui está o porquê de cada coisa.', 'Each part of the site follows a research finding on memory and language learning, published in peer-reviewed journals. Here is the why behind each one.') }}
         </p>
       </header>
 
       @for (p of principios; track p.titulo; let idx = $index) {
         <article class="cartao principio">
-          <h2><span class="numero" aria-hidden="true">{{ idx + 1 }}</span> {{ p.titulo }}</h2>
-          <p><strong>O que a pesquisa mostra:</strong> {{ p.pesquisa }}</p>
-          <p><strong>Como o site usa:</strong> {{ p.noSite }}</p>
+          <h2><span class="numero" aria-hidden="true">{{ idx + 1 }}</span> {{ i.tr(p, 'titulo') }}</h2>
+          <p><strong>{{ i.t('O que a pesquisa mostra:', 'What research shows:') }}</strong> {{ i.tr(p, 'pesquisa') }}</p>
+          <p><strong>{{ i.t('Como o site usa:', 'How the site uses it:') }}</strong> {{ i.tr(p, 'noSite') }}</p>
           @if (p.link) {
-            <p><a [routerLink]="p.link.rota">{{ p.link.rotulo }} →</a></p>
+            <p><a [routerLink]="p.link.rota">{{ i.tr(p.link, 'rotulo') }} →</a></p>
           }
           <ul class="refs">
             @for (r of p.refs; track r.titulo) {
@@ -73,6 +76,49 @@ const R = {
         </article>
       }
 
+      @if (i.ingles()) {
+        <article class="cartao">
+          <h2>What about English speakers?</h2>
+          <p>
+            Good news: much of the research on learning Mandarin tones and characters was done
+            <strong>with English speakers</strong> (e.g. Wang et al., 1999; Hao, 2012), so the findings above apply
+            directly. The specific tips for English speakers (the puff of air in p/t/k vs b/d/g, the x/q/j sounds, the
+            r, the ü, and finals like "-ian" and "-ui") come from:
+          </p>
+          <ul>
+            <li>
+              <strong>Contrastive phonology:</strong> comparing English and Mandarin sounds to predict where your native
+              language gets in the way — for example, pinyin b/d/g are unvoiced and unaspirated, unlike English b/d/g.
+            </li>
+            <li>
+              <strong>Models of L2 sound learning</strong> (James Flege’s <em>Speech Learning Model</em> and Best &amp;
+              Tyler’s <em>PAM-L2</em>): sounds "similar" to native ones are harder to learn than completely new sounds,
+              because the brain files them under the old category.
+            </li>
+          </ul>
+          <p>That’s why the <a routerLink="/pinyin/armadilhas">Pitfalls</a> section focuses on the similar sounds.</p>
+        </article>
+
+        <article class="cartao">
+          <h2>What we still plan to improve</h2>
+          <ul>
+            <li>
+              <strong>Try before learning:</strong> guessing the meaning before seeing the answer, even wrongly,
+              improves retention (Richland, Kornell &amp; Kao, 2009, <em>J. Exp. Psych.: Applied</em>).
+            </li>
+            <li>
+              <strong>More precise scheduling:</strong> the FSRS algorithm, trained on millions of reviews, predicts
+              forgetting better than SM-2 (Ye, Su &amp; Cao, 2022, <em>KDD</em>).
+            </li>
+            <li><strong>Visual intonation feedback</strong> when speaking, to compare your pitch contour with the model’s.</li>
+          </ul>
+        </article>
+
+        <p class="suave pequeno">
+          Links open the article search on Google Scholar. Found a mistake or know a relevant study? Write to the email
+          in the footer.
+        </p>
+      } @else {
       <article class="cartao">
         <h2>E para quem fala português?</h2>
         <p>
@@ -115,6 +161,7 @@ const R = {
         Os links abrem a busca do artigo no Google Acadêmico. Achou um erro ou conhece um estudo relevante? Escreva para
         o email do rodapé.
       </p>
+      }
     </section>
   `,
   styles: `
@@ -149,104 +196,157 @@ const R = {
   `,
 })
 export class MetodoPagina {
+  protected readonly i = inject(IdiomaService);
   protected readonly principios: Principio[] = [
     {
       titulo: 'Lembrar ativamente, e não só reler',
+      tituloEn: 'Active recall, not just rereading',
+      pesquisaEn:
+        'Trying to recall the answer (taking a test) locks it in far better than rereading the same material. In classic studies, people who practiced recall remembered much more a week later than those who only reread.',
+      noSiteEn: 'Every exercise asks for the answer before showing it: choose the meaning, listen and recognize, type the pinyin, write the character, flip the card.',
       pesquisa:
         'Tentar lembrar a resposta (fazer um teste) fixa muito mais do que reler o mesmo conteúdo. Em estudos clássicos, quem praticou recordação lembrou bem mais uma semana depois do que quem só releu.',
       noSite: 'Todo exercício pede a resposta antes de mostrá-la: escolher o significado, ouvir e reconhecer, digitar o pinyin, escrever o caractere, virar o cartão.',
-      link: { rota: '/cartoes', rotulo: 'Ver os cartões' },
+      link: { rota: '/cartoes', rotulo: 'Ver os cartões' , rotuloEn: 'See the flashcards' },
       refs: [R.roediger2006, R.karpicke2008, R.dunlosky2013],
     },
     {
       titulo: 'Espaçar as revisões no tempo',
+      tituloEn: 'Space out reviews over time',
+      pesquisaEn:
+        'Reviewing at growing intervals yields far more long-term memory than studying everything at once. The best interval grows the longer you want to remember.',
+      noSiteEn: 'The SM-2 algorithm schedules each word for the right day (1 day, 6 days, ~2 weeks…). Goals prevent backlog, and a short daily session keeps you consistent.',
       pesquisa:
         'Revisar em intervalos crescentes rende muito mais memória de longo prazo do que estudar tudo de uma vez. O melhor intervalo cresce conforme você quer lembrar por mais tempo.',
       noSite:
         'O algoritmo SM-2 marca cada palavra para o dia certo (1 dia, 6 dias, ~2 semanas…). As metas evitam acúmulo e o treino diário curto mantém a constância.',
-      link: { rota: '/progresso', rotulo: 'Ver a previsão de revisões' },
+      link: { rota: '/progresso', rotulo: 'Ver a previsão de revisões' , rotuloEn: 'See the review forecast' },
       refs: [R.cepeda2006, R.cepeda2008, R.dunlosky2013],
     },
     {
       titulo: 'Misturar tipos de exercício',
+      tituloEn: 'Mix exercise types',
+      pesquisaEn:
+        'Interleaving items and task types (instead of practicing one block at a time) helps you notice differences and generalize.',
+      noSiteEn: 'Today’s training mixes tones, words, writing, listening, sentences, numbers and grammar in the same session.',
       pesquisa: 'Intercalar itens e tipos de tarefa (em vez de treinar um bloco de cada vez) ajuda a perceber diferenças e a generalizar.',
       noSite: 'O Treino de hoje mistura tons, palavras, escrita, escuta, frases, números e gramática na mesma sessão.',
-      link: { rota: '/', rotulo: 'Ir para o Treino de hoje' },
+      link: { rota: '/', rotulo: 'Ir para o Treino de hoje' , rotuloEn: 'Go to Today’s training' },
       refs: [R.kornell2008, R.dunlosky2013],
     },
     {
       titulo: 'Treinar a percepção dos tons com muitas vozes',
+      tituloEn: 'Train tone perception with many voices',
+      pesquisaEn:
+        'High-variability perception training (many voices and words) improved identification of new sounds and generalized to new voices. With Mandarin tones, trained Americans improved identification — and their own pronunciation too, without speaking practice.',
+      noSiteEn: 'Tone drills, minimal pairs, the 20 two-tone combinations and a daily warm-up; audio alternates between the Mandarin voices on your device.',
       pesquisa:
         'O treino de percepção com alta variabilidade (várias vozes e palavras) melhorou a identificação de sons novos e se generalizou para vozes novas. Com tons do mandarim, americanos treinados melhoraram a identificação — e também a própria pronúncia, sem treino de fala.',
       noSite:
         'Treino de tons, pares mínimos, as 20 combinações de dois tons e aquecimento diário; o áudio alterna entre as vozes de mandarim do aparelho.',
-      link: { rota: '/pinyin/treino', rotulo: 'Treinar os tons' },
+      link: { rota: '/pinyin/treino', rotulo: 'Treinar os tons' , rotuloEn: 'Practice tones' },
       refs: [R.logan1991, R.wang1999, R.wang2003],
     },
     {
       titulo: 'Focar na confusão 2º × 3º tom',
+      tituloEn: 'Focus on the tone 2 × tone 3 confusion',
+      pesquisaEn:
+        'For speakers of non-tonal languages, confusing the 2nd and 3rd tones (both contours rise) is the most common mistake and can last into advanced levels.',
+      noSiteEn: 'The site records which tones you confuse and picks those tones more often; under Progress you can see your hardest pairs.',
       pesquisa:
         'Para quem vem de língua não tonal, a confusão entre 2º e 3º tons (as duas curvas sobem) é a mais comum e pode durar até níveis avançados.',
       noSite: 'O site registra os tons que você confunde e passa a sortear mais esses tons; em Progresso você vê os seus pares mais difíceis.',
-      link: { rota: '/progresso', rotulo: 'Ver meus tons mais confundidos' },
+      link: { rota: '/progresso', rotulo: 'Ver meus tons mais confundidos' , rotuloEn: 'See my most confused tones' },
       refs: [R.hao2012],
     },
     {
       titulo: 'Usar as mãos para os tons',
+      tituloEn: 'Use your hands for tones',
+      pesquisaEn:
+        'In an experiment with 106 beginners, watching and making gestures that trace the tone contour improved tone identification and word learning.',
+      noSiteEn: 'After each tone exercise the correct contour appears with a prompt to draw it in the air; the tones page teaches the gestures.',
       pesquisa:
         'Num experimento com 106 iniciantes, ver e fazer gestos que desenham a curva do tom melhorou a identificação dos tons e o aprendizado das palavras.',
       noSite: 'Depois de cada exercício de tom aparece a curva certa com a sugestão de desenhá-la no ar; a página dos tons ensina os gestos.',
-      link: { rota: '/pinyin/tons', rotulo: 'Ver os gestos' },
+      link: { rota: '/pinyin/tons', rotulo: 'Ver os gestos' , rotuloEn: 'See the gestures' },
       refs: [R.baills2019],
     },
     {
       titulo: 'Escrever à mão para os caracteres, digitar pinyin para o som',
+      tituloEn: 'Handwrite for characters, type pinyin for sound',
+      pesquisaEn:
+        'Handwriting characters strengthened recognition and the character–meaning link; typing pinyin strengthened the character–sound link. The authors recommend combining both.',
+      noSiteEn: 'Handwriting is included lightly in training, and the "Chinese keyboard" exercise practices pinyin → character (just like on a phone).',
       pesquisa:
         'Escrever caracteres à mão fortaleceu o reconhecimento e a ligação caractere-significado; digitar pinyin fortaleceu a ligação caractere-som. Os autores recomendam combinar os dois.',
       noSite: 'A escrita à mão entra de forma leve no treino e o exercício "Teclado chinês" treina o pinyin → caractere (como no celular).',
-      link: { rota: '/escrita', rotulo: 'Praticar escrita e teclado' },
+      link: { rota: '/escrita', rotulo: 'Praticar escrita e teclado' , rotuloEn: 'Practice writing and keyboard' },
       refs: [R.guan2011],
     },
     {
       titulo: 'Ler textos em que você conhece quase tudo',
+      tituloEn: 'Read texts where you know almost everything',
+      pesquisaEn:
+        'To understand a text well without help, you need to know about 98% of its words.',
+      noSiteEn: 'Graded texts with optional pinyin and translation; Reading shows what % of each text’s words you have already studied.',
       pesquisa: 'Para entender bem um texto sem ajuda, é preciso conhecer cerca de 98% das palavras.',
       noSite: 'Textos graduados com pinyin e tradução opcionais; a Leitura mostra quantos % das palavras de cada texto você já estudou.',
-      link: { rota: '/leitura', rotulo: 'Ir para a Leitura' },
+      link: { rota: '/leitura', rotulo: 'Ir para a Leitura' , rotuloEn: 'Go to Reading' },
       refs: [R.hu2000],
     },
     {
       titulo: 'Gramática explicada + prática',
+      tituloEn: 'Explained grammar + practice',
+      pesquisaEn:
+        'A meta-analysis of dozens of studies showed that explicit instruction (explaining the rule and practicing) is effective and its effects last.',
+      noSiteEn: 'Short mini-lessons with structure, comparison with English and exercises, which gradually join training; plus the "Build the sentence" exercise.',
       pesquisa: 'Uma meta-análise de dezenas de estudos mostrou que o ensino explícito (explicar a regra e praticar) é eficaz e seus efeitos duram.',
       noSite: 'Mini-lições curtas com estrutura, comparação com o português e exercícios, que entram aos poucos no treino; e o exercício "Monte a frase".',
-      link: { rota: '/gramatica', rotulo: 'Ver a gramática' },
+      link: { rota: '/gramatica', rotulo: 'Ver a gramática' , rotuloEn: 'See the grammar' },
       refs: [R.norris2000],
     },
     {
       titulo: 'Correção imediata',
+      tituloEn: 'Immediate feedback',
+      pesquisaEn:
+        'A meta-analysis of oral feedback in classrooms found positive, lasting effects of corrective feedback.',
+      noSiteEn: 'Every answer is corrected right away: syllable by syllable in dictation, stroke by stroke in writing, character by character in speaking.',
       pesquisa: 'Uma meta-análise sobre correção oral em sala de aula encontrou efeitos positivos e duradouros do feedback corretivo.',
       noSite: 'Cada resposta é corrigida na hora: sílaba por sílaba no ditado, traço a traço na escrita, caractere a caractere na fala.',
       refs: [R.lyster2010],
     },
     {
       titulo: 'Shadowing: ouvir e repetir em seguida',
+      tituloEn: 'Shadowing: listen and repeat right after',
+      pesquisaEn:
+        'Repeating audio right after hearing it (shadowing) especially helped beginner learners improve listening comprehension.',
+      noSiteEn: 'The Speaking module has shadowing with daily phrases, examples and dialogues, plus tongue twisters for tricky sounds.',
       pesquisa: 'Repetir o áudio logo depois de ouvir (shadowing) ajudou especialmente aprendizes iniciantes a melhorar a compreensão oral.',
       noSite: 'O módulo Fala tem shadowing com frases do dia, exemplos e diálogos, e trava-línguas para sons difíceis.',
-      link: { rota: '/fala', rotulo: 'Praticar a fala' },
+      link: { rota: '/fala', rotulo: 'Praticar a fala' , rotuloEn: 'Practice speaking' },
       refs: [R.hamada2016],
     },
     {
       titulo: 'Mnemônicos: ligar o novo ao que você já sabe',
+      tituloEn: 'Mnemonics: link the new to what you know',
+      pesquisaEn:
+        'Linking a new word to an image or to a familiar, similar-sounding word (the keyword method) greatly improved vocabulary memorization.',
+      noSiteEn: 'Each word can have its own "memory tip" (💡), shown in training and on flashcards; radicals give hints about meaning.',
       pesquisa: 'Associar uma palavra nova a uma imagem ou a uma palavra conhecida de som parecido (método da palavra-chave) melhorou muito a memorização de vocabulário.',
       noSite: 'Cada palavra pode ter a sua "dica para lembrar" (💡), que aparece no treino e nos cartões; os radicais dão pistas de significado.',
-      link: { rota: '/caracteres/radicais', rotulo: 'Ver os radicais' },
+      link: { rota: '/caracteres/radicais', rotulo: 'Ver os radicais' , rotuloEn: 'See the radicals' },
       refs: [R.atkinson1975],
     },
     {
       titulo: 'Hábito: plano concreto e paciência',
+      tituloEn: 'Habit: a concrete plan and patience',
+      pesquisaEn:
+        'Deciding in advance when and where to do something ("implementation intention") greatly raises the chance of doing it. And a habit takes time to become automatic: in one study, the median was 66 days, with wide variation between people.',
+      noSiteEn: '"My plan" on the home page, the day streak and a session short enough to fit into any day.',
       pesquisa:
         'Decidir de antemão quando e onde fazer algo ("intenção de implementação") aumenta muito a chance de cumprir. E um hábito leva tempo para ficar automático: num estudo, a mediana foi de 66 dias, com grande variação entre pessoas.',
       noSite: 'O "Meu plano" na página inicial, a sequência de dias e um treino curto o bastante para caber em qualquer dia.',
-      link: { rota: '/', rotulo: 'Definir meu plano' },
+      link: { rota: '/', rotulo: 'Definir meu plano' , rotuloEn: 'Set my plan' },
       refs: [R.gollwitzer1999, R.lally2010],
     },
   ];

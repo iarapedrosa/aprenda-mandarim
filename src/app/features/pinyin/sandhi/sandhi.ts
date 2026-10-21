@@ -48,7 +48,7 @@ import { IdiomaService } from '../../../core/i18n/idioma.service';
                     <span class="traducao">{{ i.tr(e, 'traducao') }}</span>
                   </td>
                   <td><app-pinyin [texto]="e.pinyin" /></td>
-                  <td><app-pinyin [texto]="e.falado" /></td>
+                  <td><app-pinyin [texto]="i.tr(e, 'falado')" /></td>
                   <td><app-botao-audio [texto]="e.hanzi" [rotulo]="e.pinyin" [compacto]="true" /></td>
                 </tr>
               }

@@ -204,11 +204,7 @@ function conferirIngles(valor, rotulo) {
 }
 for (const arquivo of listar(pastaData)) {
   const rotulo = arquivo.slice(pastaData.length + 1);
-  // traduções de tokens só são exigidas quando não há palavra do vocabulário ligada
-  const dados = JSON.parse(readFileSync(arquivo, 'utf8'), (k, v) =>
-    v && typeof v === 'object' && !Array.isArray(v) && v.palavra && v.pinyin ? { ...v, traducaoEn: '' } : v,
-  );
-  conferirIngles(dados, rotulo);
+  conferirIngles(JSON.parse(readFileSync(arquivo, 'utf8')), rotulo);
 }
 if (semIngles > 20) problemas.push(`… e mais ${semIngles - 20} campo(s) sem inglês.`);
 

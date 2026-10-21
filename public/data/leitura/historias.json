@@ -13,13 +13,15 @@
       "hanzi": "我",
       "pinyin": "wǒ",
       "traducao": "eu",
-      "palavra": "我"
+      "palavra": "我",
+      "traducaoEn": "I; me"
      },
      {
       "hanzi": "叫",
       "pinyin": "jiào",
       "traducao": "chamar(-se)",
-      "palavra": "叫"
+      "palavra": "叫",
+      "traducaoEn": "to be called; to call"
      },
      {
       "hanzi": "小明",
@@ -34,19 +36,22 @@
       "hanzi": "我",
       "pinyin": "wǒ",
       "traducao": "eu",
-      "palavra": "我"
+      "palavra": "我",
+      "traducaoEn": "I; me"
      },
      {
       "hanzi": "是",
       "pinyin": "shì",
       "traducao": "ser",
-      "palavra": "是"
+      "palavra": "是",
+      "traducaoEn": "to be"
      },
      {
       "hanzi": "学生",
       "pinyin": "xuésheng",
       "traducao": "estudante; aluno(a)",
-      "palavra": "学生"
+      "palavra": "学生",
+      "traducaoEn": "student"
      },
      {
       "hanzi": "。"
@@ -61,7 +66,8 @@
       "hanzi": "我",
       "pinyin": "wǒ",
       "traducao": "eu",
-      "palavra": "我"
+      "palavra": "我",
+      "traducaoEn": "I; me"
      },
      {
       "hanzi": "每天",
@@ -73,19 +79,22 @@
       "hanzi": "六",
       "pinyin": "liù",
       "traducao": "seis",
-      "palavra": "六"
+      "palavra": "六",
+      "traducaoEn": "six"
      },
      {
       "hanzi": "点",
       "pinyin": "diǎn",
       "traducao": "hora (em ponto); ponto",
-      "palavra": "点"
+      "palavra": "点",
+      "traducaoEn": "o'clock; point"
      },
      {
       "hanzi": "起床",
       "pinyin": "qǐchuáng",
       "traducao": "levantar-se (da cama)",
-      "palavra": "起床"
+      "palavra": "起床",
+      "traducaoEn": "to get up (out of bed)"
      },
      {
       "hanzi": "，"
@@ -94,19 +103,22 @@
       "hanzi": "七",
       "pinyin": "qī",
       "traducao": "sete",
-      "palavra": "七"
+      "palavra": "七",
+      "traducaoEn": "seven"
      },
      {
       "hanzi": "点",
       "pinyin": "diǎn",
       "traducao": "hora (em ponto); ponto",
-      "palavra": "点"
+      "palavra": "点",
+      "traducaoEn": "o'clock; point"
      },
      {
       "hanzi": "吃",
       "pinyin": "chī",
       "traducao": "comer",
-      "palavra": "吃"
+      "palavra": "吃",
+      "traducaoEn": "to eat"
      },
      {
       "hanzi": "早饭",
@@ -127,31 +139,36 @@
       "hanzi": "我",
       "pinyin": "wǒ",
       "traducao": "eu",
-      "palavra": "我"
+      "palavra": "我",
+      "traducaoEn": "I; me"
      },
      {
       "hanzi": "坐",
       "pinyin": "zuò",
       "traducao": "sentar; pegar (transporte)",
-      "palavra": "坐"
+      "palavra": "坐",
+      "traducaoEn": "to sit; to take (transport)"
      },
      {
       "hanzi": "公共汽车",
       "pinyin": "gōnggòng qìchē",
       "traducao": "ônibus",
-      "palavra": "公共汽车"
+      "palavra": "公共汽车",
+      "traducaoEn": "bus"
      },
      {
       "hanzi": "去",
       "pinyin": "qù",
       "traducao": "ir",
-      "palavra": "去"
+      "palavra": "去",
+      "traducaoEn": "to go"
      },
      {
       "hanzi": "学校",
       "pinyin": "xuéxiào",
       "traducao": "escola",
-      "palavra": "学校"
+      "palavra": "学校",
+      "traducaoEn": "school"
      },
      {
       "hanzi": "。"
@@ -166,25 +183,29 @@
       "hanzi": "上午",
       "pinyin": "shàngwǔ",
       "traducao": "manhã",
-      "palavra": "上午"
+      "palavra": "上午",
+      "traducaoEn": "morning"
      },
      {
       "hanzi": "我们",
       "pinyin": "wǒmen",
       "traducao": "nós",
-      "palavra": "我们"
+      "palavra": "我们",
+      "traducaoEn": "we; us"
      },
      {
       "hanzi": "有",
       "pinyin": "yǒu",
       "traducao": "ter; haver",
-      "palavra": "有"
+      "palavra": "有",
+      "traducaoEn": "to have; there is"
      },
      {
       "hanzi": "四",
       "pinyin": "sì",
       "traducao": "quatro",
-      "palavra": "四"
+      "palavra": "四",
+      "traducaoEn": "four"
      },
      {
       "hanzi": "节",
@@ -196,7 +217,8 @@
       "hanzi": "课",
       "pinyin": "kè",
       "traducao": "aula; lição",
-      "palavra": "课"
+      "palavra": "课",
+      "traducaoEn": "class; lesson"
      },
      {
       "hanzi": "。"
@@ -205,31 +227,36 @@
       "hanzi": "我",
       "pinyin": "wǒ",
       "traducao": "eu",
-      "palavra": "我"
+      "palavra": "我",
+      "traducaoEn": "I; me"
      },
      {
       "hanzi": "最",
       "pinyin": "zuì",
       "traducao": "o mais",
-      "palavra": "最"
+      "palavra": "最",
+      "traducaoEn": "most"
      },
      {
       "hanzi": "喜欢",
       "pinyin": "xǐhuan",
       "traducao": "gostar",
-      "palavra": "喜欢"
+      "palavra": "喜欢",
+      "traducaoEn": "to like"
      },
      {
       "hanzi": "汉语",
       "pinyin": "Hànyǔ",
       "traducao": "língua chinesa (mandarim)",
-      "palavra": "汉语"
+      "palavra": "汉语",
+      "traducaoEn": "Chinese (language)"
      },
      {
       "hanzi": "课",
       "pinyin": "kè",
       "traducao": "aula; lição",
-      "palavra": "课"
+      "palavra": "课",
+      "traducaoEn": "class; lesson"
      },
      {
       "hanzi": "。"
@@ -244,25 +271,29 @@
       "hanzi": "中午",
       "pinyin": "zhōngwǔ",
       "traducao": "meio-dia",
-      "palavra": "中午"
+      "palavra": "中午",
+      "traducaoEn": "noon"
      },
      {
       "hanzi": "我",
       "pinyin": "wǒ",
       "traducao": "eu",
-      "palavra": "我"
+      "palavra": "我",
+      "traducaoEn": "I; me"
      },
      {
       "hanzi": "和",
       "pinyin": "hé",
       "traducao": "e (entre palavras); com",
-      "palavra": "和"
+      "palavra": "和",
+      "traducaoEn": "and; with"
      },
      {
       "hanzi": "同学",
       "pinyin": "tóngxué",
       "traducao": "colega de classe",
-      "palavra": "同学"
+      "palavra": "同学",
+      "traducaoEn": "classmate"
      },
      {
       "hanzi": "们",
@@ -274,7 +305,8 @@
       "hanzi": "一起",
       "pinyin": "yìqǐ",
       "traducao": "juntos",
-      "palavra": "一起"
+      "palavra": "一起",
+      "traducaoEn": "together"
      },
      {
       "hanzi": "吃饭",
@@ -295,25 +327,29 @@
       "hanzi": "下午",
       "pinyin": "xiàwǔ",
       "traducao": "tarde",
-      "palavra": "下午"
+      "palavra": "下午",
+      "traducaoEn": "afternoon"
      },
      {
       "hanzi": "我",
       "pinyin": "wǒ",
       "traducao": "eu",
-      "palavra": "我"
+      "palavra": "我",
+      "traducaoEn": "I; me"
      },
      {
       "hanzi": "去",
       "pinyin": "qù",
       "traducao": "ir",
-      "palavra": "去"
+      "palavra": "去",
+      "traducaoEn": "to go"
      },
      {
       "hanzi": "打篮球",
       "pinyin": "dǎ lánqiú",
       "traducao": "jogar basquete",
-      "palavra": "打篮球"
+      "palavra": "打篮球",
+      "traducaoEn": "to play basketball"
      },
      {
       "hanzi": "。"
@@ -328,31 +364,36 @@
       "hanzi": "晚上",
       "pinyin": "wǎnshang",
       "traducao": "noite",
-      "palavra": "晚上"
+      "palavra": "晚上",
+      "traducaoEn": "evening; night"
      },
      {
       "hanzi": "我",
       "pinyin": "wǒ",
       "traducao": "eu",
-      "palavra": "我"
+      "palavra": "我",
+      "traducaoEn": "I; me"
      },
      {
       "hanzi": "在",
       "pinyin": "zài",
       "traducao": "estar (em); em",
-      "palavra": "在"
+      "palavra": "在",
+      "traducaoEn": "to be at; at; in"
      },
      {
       "hanzi": "家",
       "pinyin": "jiā",
       "traducao": "casa; família",
-      "palavra": "家"
+      "palavra": "家",
+      "traducaoEn": "home; family"
      },
      {
       "hanzi": "学习",
       "pinyin": "xuéxí",
       "traducao": "estudar; aprender",
-      "palavra": "学习"
+      "palavra": "学习",
+      "traducaoEn": "to study; to learn"
      },
      {
       "hanzi": "，"
@@ -361,19 +402,22 @@
       "hanzi": "看",
       "pinyin": "kàn",
       "traducao": "olhar; ver; ler",
-      "palavra": "看"
+      "palavra": "看",
+      "traducaoEn": "to look; to see; to watch; to read"
      },
      {
       "hanzi": "一点儿",
       "pinyin": "yìdiǎnr",
       "traducao": "um pouco",
-      "palavra": "一点儿"
+      "palavra": "一点儿",
+      "traducaoEn": "a little"
      },
      {
       "hanzi": "电视",
       "pinyin": "diànshì",
       "traducao": "televisão",
-      "palavra": "电视"
+      "palavra": "电视",
+      "traducaoEn": "television; TV"
      },
      {
       "hanzi": "。"
@@ -388,37 +432,43 @@
       "hanzi": "十",
       "pinyin": "shí",
       "traducao": "dez",
-      "palavra": "十"
+      "palavra": "十",
+      "traducaoEn": "ten"
      },
      {
       "hanzi": "点",
       "pinyin": "diǎn",
       "traducao": "hora (em ponto); ponto",
-      "palavra": "点"
+      "palavra": "点",
+      "traducaoEn": "o'clock; point"
      },
      {
       "hanzi": "我",
       "pinyin": "wǒ",
       "traducao": "eu",
-      "palavra": "我"
+      "palavra": "我",
+      "traducaoEn": "I; me"
      },
      {
       "hanzi": "就",
       "pinyin": "jiù",
       "traducao": "já; então; justamente",
-      "palavra": "就"
+      "palavra": "就",
+      "traducaoEn": "already; then; just"
      },
      {
       "hanzi": "睡觉",
       "pinyin": "shuìjiào",
       "traducao": "dormir",
-      "palavra": "睡觉"
+      "palavra": "睡觉",
+      "traducaoEn": "to sleep"
      },
      {
       "hanzi": "了",
       "pinyin": "le",
       "traducao": "(partícula de ação concluída ou mudança)",
-      "palavra": "了"
+      "palavra": "了",
+      "traducaoEn": "(particle: completed action or change)"
      },
      {
       "hanzi": "。"
@@ -492,25 +542,29 @@
       "hanzi": "我",
       "pinyin": "wǒ",
       "traducao": "eu",
-      "palavra": "我"
+      "palavra": "我",
+      "traducaoEn": "I; me"
      },
      {
       "hanzi": "家",
       "pinyin": "jiā",
       "traducao": "casa; família",
-      "palavra": "家"
+      "palavra": "家",
+      "traducaoEn": "home; family"
      },
      {
       "hanzi": "有",
       "pinyin": "yǒu",
       "traducao": "ter; haver",
-      "palavra": "有"
+      "palavra": "有",
+      "traducaoEn": "to have; there is"
      },
      {
       "hanzi": "一",
       "pinyin": "yì",
       "traducao": "um",
-      "palavra": "一"
+      "palavra": "一",
+      "traducaoEn": "one"
      },
      {
       "hanzi": "只",
@@ -522,25 +576,29 @@
       "hanzi": "小",
       "pinyin": "xiǎo",
       "traducao": "pequeno",
-      "palavra": "小"
+      "palavra": "小",
+      "traducaoEn": "small; little"
      },
      {
       "hanzi": "猫",
       "pinyin": "māo",
       "traducao": "gato",
-      "palavra": "猫"
+      "palavra": "猫",
+      "traducaoEn": "cat"
      },
      {
       "hanzi": "和",
       "pinyin": "hé",
       "traducao": "e (entre palavras); com",
-      "palavra": "和"
+      "palavra": "和",
+      "traducaoEn": "and; with"
      },
      {
       "hanzi": "一",
       "pinyin": "yì",
       "traducao": "um",
-      "palavra": "一"
+      "palavra": "一",
+      "traducaoEn": "one"
      },
      {
       "hanzi": "只",
@@ -552,13 +610,15 @@
       "hanzi": "小",
       "pinyin": "xiǎo",
       "traducao": "pequeno",
-      "palavra": "小"
+      "palavra": "小",
+      "traducaoEn": "small; little"
      },
      {
       "hanzi": "狗",
       "pinyin": "gǒu",
       "traducao": "cachorro",
-      "palavra": "狗"
+      "palavra": "狗",
+      "traducaoEn": "dog"
      },
      {
       "hanzi": "。"
@@ -573,19 +633,22 @@
       "hanzi": "小",
       "pinyin": "xiǎo",
       "traducao": "pequeno",
-      "palavra": "小"
+      "palavra": "小",
+      "traducaoEn": "small; little"
      },
      {
       "hanzi": "猫",
       "pinyin": "māo",
       "traducao": "gato",
-      "palavra": "猫"
+      "palavra": "猫",
+      "traducaoEn": "cat"
      },
      {
       "hanzi": "是",
       "pinyin": "shì",
       "traducao": "ser",
-      "palavra": "是"
+      "palavra": "是",
+      "traducaoEn": "to be"
      },
      {
       "hanzi": "白色",
@@ -597,7 +660,8 @@
       "hanzi": "的",
       "pinyin": "de",
       "traducao": "(partícula de posse: \"de\")",
-      "palavra": "的"
+      "palavra": "的",
+      "traducaoEn": "(possessive particle: \"'s\", \"of\")"
      },
      {
       "hanzi": "，"
@@ -606,19 +670,22 @@
       "hanzi": "小",
       "pinyin": "xiǎo",
       "traducao": "pequeno",
-      "palavra": "小"
+      "palavra": "小",
+      "traducaoEn": "small; little"
      },
      {
       "hanzi": "狗",
       "pinyin": "gǒu",
       "traducao": "cachorro",
-      "palavra": "狗"
+      "palavra": "狗",
+      "traducaoEn": "dog"
      },
      {
       "hanzi": "是",
       "pinyin": "shì",
       "traducao": "ser",
-      "palavra": "是"
+      "palavra": "是",
+      "traducaoEn": "to be"
      },
      {
       "hanzi": "黑色",
@@ -630,7 +697,8 @@
       "hanzi": "的",
       "pinyin": "de",
       "traducao": "(partícula de posse: \"de\")",
-      "palavra": "的"
+      "palavra": "的",
+      "traducaoEn": "(possessive particle: \"'s\", \"of\")"
      },
      {
       "hanzi": "。"
@@ -645,25 +713,29 @@
       "hanzi": "小",
       "pinyin": "xiǎo",
       "traducao": "pequeno",
-      "palavra": "小"
+      "palavra": "小",
+      "traducaoEn": "small; little"
      },
      {
       "hanzi": "猫",
       "pinyin": "māo",
       "traducao": "gato",
-      "palavra": "猫"
+      "palavra": "猫",
+      "traducaoEn": "cat"
      },
      {
       "hanzi": "喜欢",
       "pinyin": "xǐhuan",
       "traducao": "gostar",
-      "palavra": "喜欢"
+      "palavra": "喜欢",
+      "traducaoEn": "to like"
      },
      {
       "hanzi": "睡觉",
       "pinyin": "shuìjiào",
       "traducao": "dormir",
-      "palavra": "睡觉"
+      "palavra": "睡觉",
+      "traducaoEn": "to sleep"
      },
      {
       "hanzi": "，"
@@ -672,25 +744,29 @@
       "hanzi": "小",
       "pinyin": "xiǎo",
       "traducao": "pequeno",
-      "palavra": "小"
+      "palavra": "小",
+      "traducaoEn": "small; little"
      },
      {
       "hanzi": "狗",
       "pinyin": "gǒu",
       "traducao": "cachorro",
-      "palavra": "狗"
+      "palavra": "狗",
+      "traducaoEn": "dog"
      },
      {
       "hanzi": "喜欢",
       "pinyin": "xǐhuan",
       "traducao": "gostar",
-      "palavra": "喜欢"
+      "palavra": "喜欢",
+      "traducaoEn": "to like"
      },
      {
       "hanzi": "玩",
       "pinyin": "wán",
       "traducao": "brincar; divertir-se",
-      "palavra": "玩"
+      "palavra": "玩",
+      "traducaoEn": "to play; to have fun"
      },
      {
       "hanzi": "。"
@@ -705,13 +781,15 @@
       "hanzi": "有",
       "pinyin": "yǒu",
       "traducao": "ter; haver",
-      "palavra": "有"
+      "palavra": "有",
+      "traducaoEn": "to have; there is"
      },
      {
       "hanzi": "一",
       "pinyin": "yì",
       "traducao": "um",
-      "palavra": "一"
+      "palavra": "一",
+      "traducaoEn": "one"
      },
      {
       "hanzi": "天",
@@ -726,13 +804,15 @@
       "hanzi": "小",
       "pinyin": "xiǎo",
       "traducao": "pequeno",
-      "palavra": "小"
+      "palavra": "小",
+      "traducaoEn": "small; little"
      },
      {
       "hanzi": "狗",
       "pinyin": "gǒu",
       "traducao": "cachorro",
-      "palavra": "狗"
+      "palavra": "狗",
+      "traducaoEn": "dog"
      },
      {
       "hanzi": "找不到",
@@ -744,19 +824,22 @@
       "hanzi": "小",
       "pinyin": "xiǎo",
       "traducao": "pequeno",
-      "palavra": "小"
+      "palavra": "小",
+      "traducaoEn": "small; little"
      },
      {
       "hanzi": "猫",
       "pinyin": "māo",
       "traducao": "gato",
-      "palavra": "猫"
+      "palavra": "猫",
+      "traducaoEn": "cat"
      },
      {
       "hanzi": "了",
       "pinyin": "le",
       "traducao": "(partícula de ação concluída ou mudança)",
-      "palavra": "了"
+      "palavra": "了",
+      "traducaoEn": "(particle: completed action or change)"
      },
      {
       "hanzi": "。"
@@ -771,37 +854,43 @@
       "hanzi": "它",
       "pinyin": "tā",
       "traducao": "ele; ela (para coisas e animais)",
-      "palavra": "它"
+      "palavra": "它",
+      "traducaoEn": "it (for things and animals)"
      },
      {
       "hanzi": "找",
       "pinyin": "zhǎo",
       "traducao": "procurar",
-      "palavra": "找"
+      "palavra": "找",
+      "traducaoEn": "to look for"
      },
      {
       "hanzi": "了",
       "pinyin": "le",
       "traducao": "(partícula de ação concluída ou mudança)",
-      "palavra": "了"
+      "palavra": "了",
+      "traducaoEn": "(particle: completed action or change)"
      },
      {
       "hanzi": "很",
       "pinyin": "hěn",
       "traducao": "muito",
-      "palavra": "很"
+      "palavra": "很",
+      "traducaoEn": "very"
      },
      {
       "hanzi": "长",
       "pinyin": "cháng",
       "traducao": "comprido; longo",
-      "palavra": "长"
+      "palavra": "长",
+      "traducaoEn": "long"
      },
      {
       "hanzi": "时间",
       "pinyin": "shíjiān",
       "traducao": "tempo; horário",
-      "palavra": "时间"
+      "palavra": "时间",
+      "traducaoEn": "time"
      },
      {
       "hanzi": "："
@@ -813,13 +902,15 @@
       "hanzi": "小",
       "pinyin": "xiǎo",
       "traducao": "pequeno",
-      "palavra": "小"
+      "palavra": "小",
+      "traducaoEn": "small; little"
      },
      {
       "hanzi": "猫",
       "pinyin": "māo",
       "traducao": "gato",
-      "palavra": "猫"
+      "palavra": "猫",
+      "traducaoEn": "cat"
      },
      {
       "hanzi": "，"
@@ -828,19 +919,22 @@
       "hanzi": "你",
       "pinyin": "nǐ",
       "traducao": "você",
-      "palavra": "你"
+      "palavra": "你",
+      "traducaoEn": "you"
      },
      {
       "hanzi": "在",
       "pinyin": "zài",
       "traducao": "estar (em); em",
-      "palavra": "在"
+      "palavra": "在",
+      "traducaoEn": "to be at; at; in"
      },
      {
       "hanzi": "哪儿",
       "pinyin": "nǎr",
       "traducao": "onde",
-      "palavra": "哪儿"
+      "palavra": "哪儿",
+      "traducaoEn": "where"
      },
      {
       "hanzi": "？"
@@ -867,49 +961,57 @@
       "hanzi": "小",
       "pinyin": "xiǎo",
       "traducao": "pequeno",
-      "palavra": "小"
+      "palavra": "小",
+      "traducaoEn": "small; little"
      },
      {
       "hanzi": "狗",
       "pinyin": "gǒu",
       "traducao": "cachorro",
-      "palavra": "狗"
+      "palavra": "狗",
+      "traducaoEn": "dog"
      },
      {
       "hanzi": "看见",
       "pinyin": "kànjiàn",
       "traducao": "ver (conseguir ver)",
-      "palavra": "看见"
+      "palavra": "看见",
+      "traducaoEn": "to see"
      },
      {
       "hanzi": "小",
       "pinyin": "xiǎo",
       "traducao": "pequeno",
-      "palavra": "小"
+      "palavra": "小",
+      "traducaoEn": "small; little"
      },
      {
       "hanzi": "猫",
       "pinyin": "māo",
       "traducao": "gato",
-      "palavra": "猫"
+      "palavra": "猫",
+      "traducaoEn": "cat"
      },
      {
       "hanzi": "在",
       "pinyin": "zài",
       "traducao": "estar (em); em",
-      "palavra": "在"
+      "palavra": "在",
+      "traducaoEn": "to be at; at; in"
      },
      {
       "hanzi": "我",
       "pinyin": "wǒ",
       "traducao": "eu",
-      "palavra": "我"
+      "palavra": "我",
+      "traducaoEn": "I; me"
      },
      {
       "hanzi": "的",
       "pinyin": "de",
       "traducao": "(partícula de posse: \"de\")",
-      "palavra": "的"
+      "palavra": "的",
+      "traducaoEn": "(possessive particle: \"'s\", \"of\")"
      },
      {
       "hanzi": "床",
@@ -921,13 +1023,15 @@
       "hanzi": "上",
       "pinyin": "shang",
       "traducao": "em cima; subir; anterior",
-      "palavra": "上"
+      "palavra": "上",
+      "traducaoEn": "on; above; to go up; previous"
      },
      {
       "hanzi": "睡觉",
       "pinyin": "shuìjiào",
       "traducao": "dormir",
-      "palavra": "睡觉"
+      "palavra": "睡觉",
+      "traducaoEn": "to sleep"
      },
      {
       "hanzi": "！"
@@ -1001,31 +1105,36 @@
       "hanzi": "今天",
       "pinyin": "jīntiān",
       "traducao": "hoje",
-      "palavra": "今天"
+      "palavra": "今天",
+      "traducaoEn": "today"
      },
      {
       "hanzi": "早上",
       "pinyin": "zǎoshang",
       "traducao": "manhã (cedo)",
-      "palavra": "早上"
+      "palavra": "早上",
+      "traducaoEn": "(early) morning"
      },
      {
       "hanzi": "天气",
       "pinyin": "tiānqì",
       "traducao": "tempo (clima)",
-      "palavra": "天气"
+      "palavra": "天气",
+      "traducaoEn": "weather"
      },
      {
       "hanzi": "很",
       "pinyin": "hěn",
       "traducao": "muito",
-      "palavra": "很"
+      "palavra": "很",
+      "traducaoEn": "very"
      },
      {
       "hanzi": "好",
       "pinyin": "hǎo",
       "traducao": "bom; bem",
-      "palavra": "好"
+      "palavra": "好",
+      "traducaoEn": "good; well"
      },
      {
       "hanzi": "，"
@@ -1034,7 +1143,8 @@
       "hanzi": "是",
       "pinyin": "shì",
       "traducao": "ser",
-      "palavra": "是"
+      "palavra": "是",
+      "traducaoEn": "to be"
      },
      {
       "hanzi": "晴天",
@@ -1079,25 +1189,29 @@
       "hanzi": "就",
       "pinyin": "jiù",
       "traducao": "já; então; justamente",
-      "palavra": "就"
+      "palavra": "就",
+      "traducaoEn": "already; then; just"
      },
      {
       "hanzi": "去",
       "pinyin": "qù",
       "traducao": "ir",
-      "palavra": "去"
+      "palavra": "去",
+      "traducaoEn": "to go"
      },
      {
       "hanzi": "学校",
       "pinyin": "xuéxiào",
       "traducao": "escola",
-      "palavra": "学校"
+      "palavra": "学校",
+      "traducaoEn": "school"
      },
      {
       "hanzi": "了",
       "pinyin": "le",
       "traducao": "(partícula de ação concluída ou mudança)",
-      "palavra": "了"
+      "palavra": "了",
+      "traducaoEn": "(particle: completed action or change)"
      },
      {
       "hanzi": "。"
@@ -1112,7 +1226,8 @@
       "hanzi": "下午",
       "pinyin": "xiàwǔ",
       "traducao": "tarde",
-      "palavra": "下午"
+      "palavra": "下午",
+      "traducaoEn": "afternoon"
      },
      {
       "hanzi": "，"
@@ -1127,13 +1242,15 @@
       "hanzi": "阴",
       "pinyin": "yīn",
       "traducao": "nublado",
-      "palavra": "阴"
+      "palavra": "阴",
+      "traducaoEn": "cloudy; overcast"
      },
      {
       "hanzi": "了",
       "pinyin": "le",
       "traducao": "(partícula de ação concluída ou mudança)",
-      "palavra": "了"
+      "palavra": "了",
+      "traducaoEn": "(particle: completed action or change)"
      },
      {
       "hanzi": "，"
@@ -1142,13 +1259,15 @@
       "hanzi": "开始",
       "pinyin": "kāishǐ",
       "traducao": "começar",
-      "palavra": "开始"
+      "palavra": "开始",
+      "traducaoEn": "to begin; to start"
      },
      {
       "hanzi": "下雨",
       "pinyin": "xià yǔ",
       "traducao": "chover",
-      "palavra": "下雨"
+      "palavra": "下雨",
+      "traducaoEn": "to rain"
      },
      {
       "hanzi": "。"
@@ -1169,7 +1288,8 @@
       "hanzi": "很",
       "pinyin": "hěn",
       "traducao": "muito",
-      "palavra": "很"
+      "palavra": "很",
+      "traducaoEn": "very"
      },
      {
       "hanzi": "着急",
@@ -1187,31 +1307,36 @@
       "hanzi": "我",
       "pinyin": "wǒ",
       "traducao": "eu",
-      "palavra": "我"
+      "palavra": "我",
+      "traducaoEn": "I; me"
      },
      {
       "hanzi": "怎么",
       "pinyin": "zěnme",
       "traducao": "como",
-      "palavra": "怎么"
+      "palavra": "怎么",
+      "traducaoEn": "how"
      },
      {
       "hanzi": "回",
       "pinyin": "huí",
       "traducao": "voltar",
-      "palavra": "回"
+      "palavra": "回",
+      "traducaoEn": "to return; to go back"
      },
      {
       "hanzi": "家",
       "pinyin": "jiā",
       "traducao": "casa; família",
-      "palavra": "家"
+      "palavra": "家",
+      "traducaoEn": "home; family"
      },
      {
       "hanzi": "呢",
       "pinyin": "ne",
       "traducao": "(partícula: \"e ...?\")",
-      "palavra": "呢"
+      "palavra": "呢",
+      "traducaoEn": "(particle: \"and ...?\")"
      },
      {
       "hanzi": "？"
@@ -1238,19 +1363,22 @@
       "hanzi": "她",
       "pinyin": "tā",
       "traducao": "ela",
-      "palavra": "她"
+      "palavra": "她",
+      "traducaoEn": "she; her"
      },
      {
       "hanzi": "的",
       "pinyin": "de",
       "traducao": "(partícula de posse: \"de\")",
-      "palavra": "的"
+      "palavra": "的",
+      "traducaoEn": "(possessive particle: \"'s\", \"of\")"
      },
      {
       "hanzi": "同学",
       "pinyin": "tóngxué",
       "traducao": "colega de classe",
-      "palavra": "同学"
+      "palavra": "同学",
+      "traducaoEn": "classmate"
      },
      {
       "hanzi": "大卫",
@@ -1262,7 +1390,8 @@
       "hanzi": "说",
       "pinyin": "shuō",
       "traducao": "falar; dizer",
-      "palavra": "说"
+      "palavra": "说",
+      "traducaoEn": "to speak; to say"
      },
      {
       "hanzi": "："
@@ -1274,7 +1403,8 @@
       "hanzi": "别",
       "pinyin": "bié",
       "traducao": "não (faça)!",
-      "palavra": "别"
+      "palavra": "别",
+      "traducaoEn": "don't"
      },
      {
       "hanzi": "担心",
@@ -1289,13 +1419,15 @@
       "hanzi": "我",
       "pinyin": "wǒ",
       "traducao": "eu",
-      "palavra": "我"
+      "palavra": "我",
+      "traducaoEn": "I; me"
      },
      {
       "hanzi": "有",
       "pinyin": "yǒu",
       "traducao": "ter; haver",
-      "palavra": "有"
+      "palavra": "有",
+      "traducaoEn": "to have; there is"
      },
      {
       "hanzi": "伞",
@@ -1310,25 +1442,29 @@
       "hanzi": "我们",
       "pinyin": "wǒmen",
       "traducao": "nós",
-      "palavra": "我们"
+      "palavra": "我们",
+      "traducaoEn": "we; us"
      },
      {
       "hanzi": "一起",
       "pinyin": "yìqǐ",
       "traducao": "juntos",
-      "palavra": "一起"
+      "palavra": "一起",
+      "traducaoEn": "together"
      },
      {
       "hanzi": "走",
       "pinyin": "zǒu",
       "traducao": "andar; ir embora",
-      "palavra": "走"
+      "palavra": "走",
+      "traducaoEn": "to walk; to leave"
      },
      {
       "hanzi": "吧",
       "pinyin": "ba",
       "traducao": "(partícula de sugestão: \"vamos...\", \"...né?\")",
-      "palavra": "吧"
+      "palavra": "吧",
+      "traducaoEn": "(suggestion particle: \"let's...\", \"...right?\")"
      },
      {
       "hanzi": "！"
@@ -1352,13 +1488,15 @@
       "hanzi": "笑",
       "pinyin": "xiào",
       "traducao": "rir; sorrir",
-      "palavra": "笑"
+      "palavra": "笑",
+      "traducaoEn": "to laugh; to smile"
      },
      {
       "hanzi": "了",
       "pinyin": "le",
       "traducao": "(partícula de ação concluída ou mudança)",
-      "palavra": "了"
+      "palavra": "了",
+      "traducaoEn": "(particle: completed action or change)"
      },
      {
       "hanzi": "："
@@ -1370,13 +1508,15 @@
       "hanzi": "谢谢",
       "pinyin": "xièxie",
       "traducao": "obrigado(a)",
-      "palavra": "谢谢"
+      "palavra": "谢谢",
+      "traducaoEn": "thank you"
      },
      {
       "hanzi": "你",
       "pinyin": "nǐ",
       "traducao": "você",
-      "palavra": "你"
+      "palavra": "你",
+      "traducaoEn": "you"
      },
      {
       "hanzi": "，"
@@ -1462,37 +1602,43 @@
       "hanzi": "今天",
       "pinyin": "jīntiān",
       "traducao": "hoje",
-      "palavra": "今天"
+      "palavra": "今天",
+      "traducaoEn": "today"
      },
      {
       "hanzi": "是",
       "pinyin": "shì",
       "traducao": "ser",
-      "palavra": "是"
+      "palavra": "是",
+      "traducaoEn": "to be"
      },
      {
       "hanzi": "五",
       "pinyin": "wǔ",
       "traducao": "cinco",
-      "palavra": "五"
+      "palavra": "五",
+      "traducaoEn": "five"
      },
      {
       "hanzi": "月",
       "pinyin": "yuè",
       "traducao": "mês; lua",
-      "palavra": "月"
+      "palavra": "月",
+      "traducaoEn": "month; moon"
      },
      {
       "hanzi": "十",
       "pinyin": "shí",
       "traducao": "dez",
-      "palavra": "十"
+      "palavra": "十",
+      "traducaoEn": "ten"
      },
      {
       "hanzi": "号",
       "pinyin": "hào",
       "traducao": "dia (do mês); número",
-      "palavra": "号"
+      "palavra": "号",
+      "traducaoEn": "day (of the month); number"
      },
      {
       "hanzi": "，"
@@ -1501,25 +1647,29 @@
       "hanzi": "是",
       "pinyin": "shì",
       "traducao": "ser",
-      "palavra": "是"
+      "palavra": "是",
+      "traducaoEn": "to be"
      },
      {
       "hanzi": "妈妈",
       "pinyin": "māma",
       "traducao": "mãe",
-      "palavra": "妈妈"
+      "palavra": "妈妈",
+      "traducaoEn": "mom; mother"
      },
      {
       "hanzi": "的",
       "pinyin": "de",
       "traducao": "(partícula de posse: \"de\")",
-      "palavra": "的"
+      "palavra": "的",
+      "traducaoEn": "(possessive particle: \"'s\", \"of\")"
      },
      {
       "hanzi": "生日",
       "pinyin": "shēngrì",
       "traducao": "aniversário",
-      "palavra": "生日"
+      "palavra": "生日",
+      "traducaoEn": "birthday"
      },
      {
       "hanzi": "。"
@@ -1534,37 +1684,43 @@
       "hanzi": "爸爸",
       "pinyin": "bàba",
       "traducao": "pai",
-      "palavra": "爸爸"
+      "palavra": "爸爸",
+      "traducaoEn": "dad; father"
      },
      {
       "hanzi": "和",
       "pinyin": "hé",
       "traducao": "e (entre palavras); com",
-      "palavra": "和"
+      "palavra": "和",
+      "traducaoEn": "and; with"
      },
      {
       "hanzi": "我",
       "pinyin": "wǒ",
       "traducao": "eu",
-      "palavra": "我"
+      "palavra": "我",
+      "traducaoEn": "I; me"
      },
      {
       "hanzi": "想",
       "pinyin": "xiǎng",
       "traducao": "querer; pensar; sentir saudade",
-      "palavra": "想"
+      "palavra": "想",
+      "traducaoEn": "to want; to think; to miss"
      },
      {
       "hanzi": "送",
       "pinyin": "sòng",
       "traducao": "dar (de presente); levar (alguém)",
-      "palavra": "送"
+      "palavra": "送",
+      "traducaoEn": "to give (as a gift); to see off"
      },
      {
       "hanzi": "妈妈",
       "pinyin": "māma",
       "traducao": "mãe",
-      "palavra": "妈妈"
+      "palavra": "妈妈",
+      "traducaoEn": "mom; mother"
      },
      {
       "hanzi": "一个",
@@ -1591,43 +1747,50 @@
       "hanzi": "我们",
       "pinyin": "wǒmen",
       "traducao": "nós",
-      "palavra": "我们"
+      "palavra": "我们",
+      "traducaoEn": "we; us"
      },
      {
       "hanzi": "去",
       "pinyin": "qù",
       "traducao": "ir",
-      "palavra": "去"
+      "palavra": "去",
+      "traducaoEn": "to go"
      },
      {
       "hanzi": "商店",
       "pinyin": "shāngdiàn",
       "traducao": "loja",
-      "palavra": "商店"
+      "palavra": "商店",
+      "traducaoEn": "shop; store"
      },
      {
       "hanzi": "买",
       "pinyin": "mǎi",
       "traducao": "comprar",
-      "palavra": "买"
+      "palavra": "买",
+      "traducaoEn": "to buy"
      },
      {
       "hanzi": "了",
       "pinyin": "le",
       "traducao": "(partícula de ação concluída ou mudança)",
-      "palavra": "了"
+      "palavra": "了",
+      "traducaoEn": "(particle: completed action or change)"
      },
      {
       "hanzi": "一",
       "pinyin": "yí",
       "traducao": "um",
-      "palavra": "一"
+      "palavra": "一",
+      "traducaoEn": "one"
      },
      {
       "hanzi": "件",
       "pinyin": "jiàn",
       "traducao": "(classificador de roupas e assuntos)",
-      "palavra": "件"
+      "palavra": "件",
+      "traducaoEn": "(measure word for clothes and matters)"
      },
      {
       "hanzi": "红色",
@@ -1639,13 +1802,15 @@
       "hanzi": "的",
       "pinyin": "de",
       "traducao": "(partícula de posse: \"de\")",
-      "palavra": "的"
+      "palavra": "的",
+      "traducaoEn": "(possessive particle: \"'s\", \"of\")"
      },
      {
       "hanzi": "衣服",
       "pinyin": "yīfu",
       "traducao": "roupa",
-      "palavra": "衣服"
+      "palavra": "衣服",
+      "traducaoEn": "clothes"
      },
      {
       "hanzi": "。"
@@ -1660,19 +1825,22 @@
       "hanzi": "妈妈",
       "pinyin": "māma",
       "traducao": "mãe",
-      "palavra": "妈妈"
+      "palavra": "妈妈",
+      "traducaoEn": "mom; mother"
      },
      {
       "hanzi": "最",
       "pinyin": "zuì",
       "traducao": "o mais",
-      "palavra": "最"
+      "palavra": "最",
+      "traducaoEn": "most"
      },
      {
       "hanzi": "喜欢",
       "pinyin": "xǐhuan",
       "traducao": "gostar",
-      "palavra": "喜欢"
+      "palavra": "喜欢",
+      "traducaoEn": "to like"
      },
      {
       "hanzi": "红色",
@@ -1693,7 +1861,8 @@
       "hanzi": "晚上",
       "pinyin": "wǎnshang",
       "traducao": "noite",
-      "palavra": "晚上"
+      "palavra": "晚上",
+      "traducaoEn": "evening; night"
      },
      {
       "hanzi": "，"
@@ -1702,19 +1871,22 @@
       "hanzi": "我们",
       "pinyin": "wǒmen",
       "traducao": "nós",
-      "palavra": "我们"
+      "palavra": "我们",
+      "traducaoEn": "we; us"
      },
      {
       "hanzi": "在",
       "pinyin": "zài",
       "traducao": "estar (em); em",
-      "palavra": "在"
+      "palavra": "在",
+      "traducaoEn": "to be at; at; in"
      },
      {
       "hanzi": "饭店",
       "pinyin": "fàndiàn",
       "traducao": "restaurante; hotel",
-      "palavra": "饭店"
+      "palavra": "饭店",
+      "traducaoEn": "restaurant; hotel"
      },
      {
       "hanzi": "吃饭",
@@ -1735,25 +1907,29 @@
       "hanzi": "我",
       "pinyin": "wǒ",
       "traducao": "eu",
-      "palavra": "我"
+      "palavra": "我",
+      "traducaoEn": "I; me"
      },
      {
       "hanzi": "和",
       "pinyin": "hé",
       "traducao": "e (entre palavras); com",
-      "palavra": "和"
+      "palavra": "和",
+      "traducaoEn": "and; with"
      },
      {
       "hanzi": "爸爸",
       "pinyin": "bàba",
       "traducao": "pai",
-      "palavra": "爸爸"
+      "palavra": "爸爸",
+      "traducaoEn": "dad; father"
      },
      {
       "hanzi": "说",
       "pinyin": "shuō",
       "traducao": "falar; dizer",
-      "palavra": "说"
+      "palavra": "说",
+      "traducaoEn": "to speak; to say"
      },
      {
       "hanzi": "："
@@ -1765,7 +1941,8 @@
       "hanzi": "妈妈",
       "pinyin": "māma",
       "traducao": "mãe",
-      "palavra": "妈妈"
+      "palavra": "妈妈",
+      "traducaoEn": "mom; mother"
      },
      {
       "hanzi": "，"
@@ -1774,13 +1951,15 @@
       "hanzi": "生日",
       "pinyin": "shēngrì",
       "traducao": "aniversário",
-      "palavra": "生日"
+      "palavra": "生日",
+      "traducaoEn": "birthday"
      },
      {
       "hanzi": "快乐",
       "pinyin": "kuàilè",
       "traducao": "feliz; alegre",
-      "palavra": "快乐"
+      "palavra": "快乐",
+      "traducaoEn": "happy; joyful"
      },
      {
       "hanzi": "！"
@@ -1798,7 +1977,8 @@
       "hanzi": "妈妈",
       "pinyin": "māma",
       "traducao": "mãe",
-      "palavra": "妈妈"
+      "palavra": "妈妈",
+      "traducaoEn": "mom; mother"
      },
      {
       "hanzi": "看到",
@@ -1819,13 +1999,15 @@
       "hanzi": "非常",
       "pinyin": "fēicháng",
       "traducao": "extremamente; muito",
-      "palavra": "非常"
+      "palavra": "非常",
+      "traducaoEn": "extremely; very"
      },
      {
       "hanzi": "高兴",
       "pinyin": "gāoxìng",
       "traducao": "feliz; contente",
-      "palavra": "高兴"
+      "palavra": "高兴",
+      "traducaoEn": "happy; glad"
      },
      {
       "hanzi": "。"
@@ -1899,19 +2081,22 @@
       "hanzi": "去年",
       "pinyin": "qùnián",
       "traducao": "ano passado",
-      "palavra": "去年"
+      "palavra": "去年",
+      "traducaoEn": "last year"
      },
      {
       "hanzi": "七",
       "pinyin": "qī",
       "traducao": "sete",
-      "palavra": "七"
+      "palavra": "七",
+      "traducaoEn": "seven"
      },
      {
       "hanzi": "月",
       "pinyin": "yuè",
       "traducao": "mês; lua",
-      "palavra": "月"
+      "palavra": "月",
+      "traducaoEn": "month; moon"
      },
      {
       "hanzi": "，"
@@ -1926,37 +2111,43 @@
       "hanzi": "和",
       "pinyin": "hé",
       "traducao": "e (entre palavras); com",
-      "palavra": "和"
+      "palavra": "和",
+      "traducaoEn": "and; with"
      },
      {
       "hanzi": "爸爸",
       "pinyin": "bàba",
       "traducao": "pai",
-      "palavra": "爸爸"
+      "palavra": "爸爸",
+      "traducaoEn": "dad; father"
      },
      {
       "hanzi": "妈妈",
       "pinyin": "māma",
       "traducao": "mãe",
-      "palavra": "妈妈"
+      "palavra": "妈妈",
+      "traducaoEn": "mom; mother"
      },
      {
       "hanzi": "去",
       "pinyin": "qù",
       "traducao": "ir",
-      "palavra": "去"
+      "palavra": "去",
+      "traducaoEn": "to go"
      },
      {
       "hanzi": "北京",
       "pinyin": "Běijīng",
       "traducao": "Pequim",
-      "palavra": "北京"
+      "palavra": "北京",
+      "traducaoEn": "Beijing"
      },
      {
       "hanzi": "旅游",
       "pinyin": "lǚyóu",
       "traducao": "viajar (a passeio); turismo",
-      "palavra": "旅游"
+      "palavra": "旅游",
+      "traducaoEn": "to travel (for fun); tourism"
      },
      {
       "hanzi": "。"
@@ -1977,19 +2168,22 @@
       "hanzi": "坐",
       "pinyin": "zuò",
       "traducao": "sentar; pegar (transporte)",
-      "palavra": "坐"
+      "palavra": "坐",
+      "traducaoEn": "to sit; to take (transport)"
      },
      {
       "hanzi": "飞机",
       "pinyin": "fēijī",
       "traducao": "avião",
-      "palavra": "飞机"
+      "palavra": "飞机",
+      "traducaoEn": "airplane"
      },
      {
       "hanzi": "去",
       "pinyin": "qù",
       "traducao": "ir",
-      "palavra": "去"
+      "palavra": "去",
+      "traducaoEn": "to go"
      },
      {
       "hanzi": "，"
@@ -1998,37 +2192,43 @@
       "hanzi": "两",
       "pinyin": "liǎng",
       "traducao": "dois (antes de classificador)",
-      "palavra": "两"
+      "palavra": "两",
+      "traducaoEn": "two (before measure words)"
      },
      {
       "hanzi": "个",
       "pinyin": "ge",
       "traducao": "(classificador geral)",
-      "palavra": "个"
+      "palavra": "个",
+      "traducaoEn": "(general measure word)"
      },
      {
       "hanzi": "小时",
       "pinyin": "xiǎoshí",
       "traducao": "hora (duração)",
-      "palavra": "小时"
+      "palavra": "小时",
+      "traducaoEn": "hour"
      },
      {
       "hanzi": "就",
       "pinyin": "jiù",
       "traducao": "já; então; justamente",
-      "palavra": "就"
+      "palavra": "就",
+      "traducaoEn": "already; then; just"
      },
      {
       "hanzi": "到",
       "pinyin": "dào",
       "traducao": "chegar; até",
-      "palavra": "到"
+      "palavra": "到",
+      "traducaoEn": "to arrive; to; until"
      },
      {
       "hanzi": "了",
       "pinyin": "le",
       "traducao": "(partícula de ação concluída ou mudança)",
-      "palavra": "了"
+      "palavra": "了",
+      "traducaoEn": "(particle: completed action or change)"
      },
      {
       "hanzi": "。"
@@ -2043,19 +2243,22 @@
       "hanzi": "北京",
       "pinyin": "Běijīng",
       "traducao": "Pequim",
-      "palavra": "北京"
+      "palavra": "北京",
+      "traducaoEn": "Beijing"
      },
      {
       "hanzi": "很",
       "pinyin": "hěn",
       "traducao": "muito",
-      "palavra": "很"
+      "palavra": "很",
+      "traducaoEn": "very"
      },
      {
       "hanzi": "大",
       "pinyin": "dà",
       "traducao": "grande",
-      "palavra": "大"
+      "palavra": "大",
+      "traducaoEn": "big"
      },
      {
       "hanzi": "，"
@@ -2064,25 +2267,29 @@
       "hanzi": "人",
       "pinyin": "rén",
       "traducao": "pessoa",
-      "palavra": "人"
+      "palavra": "人",
+      "traducaoEn": "person; people"
      },
      {
       "hanzi": "也",
       "pinyin": "yě",
       "traducao": "também",
-      "palavra": "也"
+      "palavra": "也",
+      "traducaoEn": "also; too"
      },
      {
       "hanzi": "很",
       "pinyin": "hěn",
       "traducao": "muito",
-      "palavra": "很"
+      "palavra": "很",
+      "traducaoEn": "very"
      },
      {
       "hanzi": "多",
       "pinyin": "duō",
       "traducao": "muito(s)",
-      "palavra": "多"
+      "palavra": "多",
+      "traducaoEn": "many; much"
      },
      {
       "hanzi": "。"
@@ -2103,25 +2310,29 @@
       "hanzi": "去",
       "pinyin": "qù",
       "traducao": "ir",
-      "palavra": "去"
+      "palavra": "去",
+      "traducaoEn": "to go"
      },
      {
       "hanzi": "了",
       "pinyin": "le",
       "traducao": "(partícula de ação concluída ou mudança)",
-      "palavra": "了"
+      "palavra": "了",
+      "traducaoEn": "(particle: completed action or change)"
      },
      {
       "hanzi": "很",
       "pinyin": "hěn",
       "traducao": "muito",
-      "palavra": "很"
+      "palavra": "很",
+      "traducaoEn": "very"
      },
      {
       "hanzi": "多",
       "pinyin": "duō",
       "traducao": "muito(s)",
-      "palavra": "多"
+      "palavra": "多",
+      "traducaoEn": "many; much"
      },
      {
       "hanzi": "地方",
@@ -2136,19 +2347,22 @@
       "hanzi": "吃",
       "pinyin": "chī",
       "traducao": "comer",
-      "palavra": "吃"
+      "palavra": "吃",
+      "traducaoEn": "to eat"
      },
      {
       "hanzi": "了",
       "pinyin": "le",
       "traducao": "(partícula de ação concluída ou mudança)",
-      "palavra": "了"
+      "palavra": "了",
+      "traducaoEn": "(particle: completed action or change)"
      },
      {
       "hanzi": "北京",
       "pinyin": "Běijīng",
       "traducao": "Pequim",
-      "palavra": "北京"
+      "palavra": "北京",
+      "traducaoEn": "Beijing"
      },
      {
       "hanzi": "烤鸭",
@@ -2175,7 +2389,8 @@
       "hanzi": "觉得",
       "pinyin": "juéde",
       "traducao": "achar; sentir",
-      "palavra": "觉得"
+      "palavra": "觉得",
+      "traducaoEn": "to think; to feel"
      },
      {
       "hanzi": "烤鸭",
@@ -2187,13 +2402,15 @@
       "hanzi": "非常",
       "pinyin": "fēicháng",
       "traducao": "extremamente; muito",
-      "palavra": "非常"
+      "palavra": "非常",
+      "traducaoEn": "extremely; very"
      },
      {
       "hanzi": "好吃",
       "pinyin": "hǎochī",
       "traducao": "gostoso",
-      "palavra": "好吃"
+      "palavra": "好吃",
+      "traducaoEn": "delicious; tasty"
      },
      {
       "hanzi": "。"
@@ -2208,13 +2425,15 @@
       "hanzi": "北京",
       "pinyin": "Běijīng",
       "traducao": "Pequim",
-      "palavra": "北京"
+      "palavra": "北京",
+      "traducaoEn": "Beijing"
      },
      {
       "hanzi": "的",
       "pinyin": "de",
       "traducao": "(partícula de posse: \"de\")",
-      "palavra": "的"
+      "palavra": "的",
+      "traducaoEn": "(possessive particle: \"'s\", \"of\")"
      },
      {
       "hanzi": "夏天",
@@ -2226,13 +2445,15 @@
       "hanzi": "很",
       "pinyin": "hěn",
       "traducao": "muito",
-      "palavra": "很"
+      "palavra": "很",
+      "traducaoEn": "very"
      },
      {
       "hanzi": "热",
       "pinyin": "rè",
       "traducao": "quente",
-      "palavra": "热"
+      "palavra": "热",
+      "traducaoEn": "hot"
      },
      {
       "hanzi": "，"
@@ -2253,19 +2474,22 @@
       "hanzi": "玩",
       "pinyin": "wán",
       "traducao": "brincar; divertir-se",
-      "palavra": "玩"
+      "palavra": "玩",
+      "traducaoEn": "to play; to have fun"
      },
      {
       "hanzi": "得",
       "pinyin": "de",
       "traducao": "(partícula de grau ou modo)",
-      "palavra": "得"
+      "palavra": "得",
+      "traducaoEn": "(particle of degree or manner)"
      },
      {
       "hanzi": "很",
       "pinyin": "hěn",
       "traducao": "muito",
-      "palavra": "很"
+      "palavra": "很",
+      "traducaoEn": "very"
      },
      {
       "hanzi": "开心",
@@ -2286,13 +2510,15 @@
       "hanzi": "他",
       "pinyin": "tā",
       "traducao": "ele",
-      "palavra": "他"
+      "palavra": "他",
+      "traducaoEn": "he; him"
      },
      {
       "hanzi": "说",
       "pinyin": "shuō",
       "traducao": "falar; dizer",
-      "palavra": "说"
+      "palavra": "说",
+      "traducaoEn": "to speak; to say"
      },
      {
       "hanzi": "："
@@ -2310,31 +2536,36 @@
       "hanzi": "我",
       "pinyin": "wǒ",
       "traducao": "eu",
-      "palavra": "我"
+      "palavra": "我",
+      "traducaoEn": "I; me"
      },
      {
       "hanzi": "还",
       "pinyin": "hái",
       "traducao": "ainda; também",
-      "palavra": "还"
+      "palavra": "还",
+      "traducaoEn": "still; also"
      },
      {
       "hanzi": "想",
       "pinyin": "xiǎng",
       "traducao": "querer; pensar; sentir saudade",
-      "palavra": "想"
+      "palavra": "想",
+      "traducaoEn": "to want; to think; to miss"
      },
      {
       "hanzi": "去",
       "pinyin": "qù",
       "traducao": "ir",
-      "palavra": "去"
+      "palavra": "去",
+      "traducaoEn": "to go"
      },
      {
       "hanzi": "北京",
       "pinyin": "Běijīng",
       "traducao": "Pequim",
-      "palavra": "北京"
+      "palavra": "北京",
+      "traducaoEn": "Beijing"
      },
      {
       "hanzi": "！"
@@ -2411,7 +2642,8 @@
       "hanzi": "很",
       "pinyin": "hěn",
       "traducao": "muito",
-      "palavra": "很"
+      "palavra": "很",
+      "traducaoEn": "very"
      },
      {
       "hanzi": "久",
@@ -2432,7 +2664,8 @@
       "hanzi": "有",
       "pinyin": "yǒu",
       "traducao": "ter; haver",
-      "palavra": "有"
+      "palavra": "有",
+      "traducaoEn": "to have; there is"
      },
      {
       "hanzi": "一个",
@@ -2459,13 +2692,15 @@
       "hanzi": "有",
       "pinyin": "yǒu",
       "traducao": "ter; haver",
-      "palavra": "有"
+      "palavra": "有",
+      "traducaoEn": "to have; there is"
      },
      {
       "hanzi": "一",
       "pinyin": "yì",
       "traducao": "um",
-      "palavra": "一"
+      "palavra": "一",
+      "traducaoEn": "one"
      },
      {
       "hanzi": "天",
@@ -2480,13 +2715,15 @@
       "hanzi": "他",
       "pinyin": "tā",
       "traducao": "ele",
-      "palavra": "他"
+      "palavra": "他",
+      "traducaoEn": "he; him"
      },
      {
       "hanzi": "在",
       "pinyin": "zài",
       "traducao": "estar (em); em",
-      "palavra": "在"
+      "palavra": "在",
+      "traducaoEn": "to be at; at; in"
      },
      {
       "hanzi": "地",
@@ -2498,13 +2735,15 @@
       "hanzi": "里",
       "pinyin": "li",
       "traducao": "dentro",
-      "palavra": "里"
+      "palavra": "里",
+      "traducaoEn": "inside"
      },
      {
       "hanzi": "工作",
       "pinyin": "gōngzuò",
       "traducao": "trabalho; trabalhar",
-      "palavra": "工作"
+      "palavra": "工作",
+      "traducaoEn": "work; job; to work"
      },
      {
       "hanzi": "。"
@@ -2519,7 +2758,8 @@
       "hanzi": "一",
       "pinyin": "yì",
       "traducao": "um",
-      "palavra": "一"
+      "palavra": "一",
+      "traducaoEn": "one"
      },
      {
       "hanzi": "只",
@@ -2558,7 +2798,8 @@
       "hanzi": "到",
       "pinyin": "dào",
       "traducao": "chegar; até",
-      "palavra": "到"
+      "palavra": "到",
+      "traducaoEn": "to arrive; to; until"
      },
      {
       "hanzi": "树",
@@ -2570,7 +2811,8 @@
       "hanzi": "上",
       "pinyin": "shang",
       "traducao": "em cima; subir; anterior",
-      "palavra": "上"
+      "palavra": "上",
+      "traducaoEn": "on; above; to go up; previous"
      },
      {
       "hanzi": "，"
@@ -2585,7 +2827,8 @@
       "hanzi": "了",
       "pinyin": "le",
       "traducao": "(partícula de ação concluída ou mudança)",
-      "palavra": "了"
+      "palavra": "了",
+      "traducaoEn": "(particle: completed action or change)"
      },
      {
       "hanzi": "。"
@@ -2606,13 +2849,15 @@
       "hanzi": "很",
       "pinyin": "hěn",
       "traducao": "muito",
-      "palavra": "很"
+      "palavra": "很",
+      "traducaoEn": "very"
      },
      {
       "hanzi": "高兴",
       "pinyin": "gāoxìng",
       "traducao": "feliz; contente",
-      "palavra": "高兴"
+      "palavra": "高兴",
+      "traducaoEn": "happy; glad"
      },
      {
       "hanzi": "："
@@ -2624,19 +2869,22 @@
       "hanzi": "太",
       "pinyin": "tài",
       "traducao": "demais; muito",
-      "palavra": "太"
+      "palavra": "太",
+      "traducaoEn": "too; very"
      },
      {
       "hanzi": "好",
       "pinyin": "hǎo",
       "traducao": "bom; bem",
-      "palavra": "好"
+      "palavra": "好",
+      "traducaoEn": "good; well"
      },
      {
       "hanzi": "了",
       "pinyin": "le",
       "traducao": "(partícula de ação concluída ou mudança)",
-      "palavra": "了"
+      "palavra": "了",
+      "traducaoEn": "(particle: completed action or change)"
      },
      {
       "hanzi": "！"
@@ -2645,7 +2893,8 @@
       "hanzi": "我",
       "pinyin": "wǒ",
       "traducao": "eu",
-      "palavra": "我"
+      "palavra": "我",
+      "traducaoEn": "I; me"
      },
      {
       "hanzi": "不用",
@@ -2657,13 +2906,15 @@
       "hanzi": "工作",
       "pinyin": "gōngzuò",
       "traducao": "trabalho; trabalhar",
-      "palavra": "工作"
+      "palavra": "工作",
+      "traducaoEn": "work; job; to work"
      },
      {
       "hanzi": "了",
       "pinyin": "le",
       "traducao": "(partícula de ação concluída ou mudança)",
-      "palavra": "了"
+      "palavra": "了",
+      "traducaoEn": "(particle: completed action or change)"
      },
      {
       "hanzi": "！"
@@ -2681,7 +2932,8 @@
       "hanzi": "从",
       "pinyin": "cóng",
       "traducao": "de; desde",
-      "palavra": "从"
+      "palavra": "从",
+      "traducaoEn": "from; since"
      },
      {
       "hanzi": "那天",
@@ -2693,7 +2945,8 @@
       "hanzi": "开始",
       "pinyin": "kāishǐ",
       "traducao": "começar",
-      "palavra": "开始"
+      "palavra": "开始",
+      "traducaoEn": "to begin; to start"
      },
      {
       "hanzi": "，"
@@ -2702,7 +2955,8 @@
       "hanzi": "他",
       "pinyin": "tā",
       "traducao": "ele",
-      "palavra": "他"
+      "palavra": "他",
+      "traducaoEn": "he; him"
      },
      {
       "hanzi": "每天",
@@ -2714,13 +2968,15 @@
       "hanzi": "坐",
       "pinyin": "zuò",
       "traducao": "sentar; pegar (transporte)",
-      "palavra": "坐"
+      "palavra": "坐",
+      "traducaoEn": "to sit; to take (transport)"
      },
      {
       "hanzi": "在",
       "pinyin": "zài",
       "traducao": "estar (em); em",
-      "palavra": "在"
+      "palavra": "在",
+      "traducaoEn": "to be at; at; in"
      },
      {
       "hanzi": "树",
@@ -2732,13 +2988,15 @@
       "hanzi": "旁边",
       "pinyin": "pángbiān",
       "traducao": "ao lado",
-      "palavra": "旁边"
+      "palavra": "旁边",
+      "traducaoEn": "beside; next to"
      },
      {
       "hanzi": "等",
       "pinyin": "děng",
       "traducao": "esperar",
-      "palavra": "等"
+      "palavra": "等",
+      "traducaoEn": "to wait"
      },
      {
       "hanzi": "兔子",
@@ -2768,19 +3026,22 @@
       "hanzi": "再",
       "pinyin": "zài",
       "traducao": "de novo; outra vez",
-      "palavra": "再"
+      "palavra": "再",
+      "traducaoEn": "again"
      },
      {
       "hanzi": "也",
       "pinyin": "yě",
       "traducao": "também",
-      "palavra": "也"
+      "palavra": "也",
+      "traducaoEn": "also; too"
      },
      {
       "hanzi": "没有",
       "pinyin": "méiyǒu",
       "traducao": "não ter; não haver",
-      "palavra": "没有"
+      "palavra": "没有",
+      "traducaoEn": "not have; there isn't"
      },
      {
       "hanzi": "兔子",
@@ -2792,13 +3053,15 @@
       "hanzi": "来",
       "pinyin": "lái",
       "traducao": "vir",
-      "palavra": "来"
+      "palavra": "来",
+      "traducaoEn": "to come"
      },
      {
       "hanzi": "了",
       "pinyin": "le",
       "traducao": "(partícula de ação concluída ou mudança)",
-      "palavra": "了"
+      "palavra": "了",
+      "traducaoEn": "(particle: completed action or change)"
      },
      {
       "hanzi": "。"
@@ -2813,13 +3076,15 @@
       "hanzi": "他",
       "pinyin": "tā",
       "traducao": "ele",
-      "palavra": "他"
+      "palavra": "他",
+      "traducaoEn": "he; him"
      },
      {
       "hanzi": "的",
       "pinyin": "de",
       "traducao": "(partícula de posse: \"de\")",
-      "palavra": "的"
+      "palavra": "的",
+      "traducaoEn": "(possessive particle: \"'s\", \"of\")"
      },
      {
       "hanzi": "地",
@@ -2831,31 +3096,36 @@
       "hanzi": "里",
       "pinyin": "li",
       "traducao": "dentro",
-      "palavra": "里"
+      "palavra": "里",
+      "traducaoEn": "inside"
      },
      {
       "hanzi": "也",
       "pinyin": "yě",
       "traducao": "também",
-      "palavra": "也"
+      "palavra": "也",
+      "traducaoEn": "also; too"
      },
      {
       "hanzi": "没有",
       "pinyin": "méiyǒu",
       "traducao": "não ter; não haver",
-      "palavra": "没有"
+      "palavra": "没有",
+      "traducaoEn": "not have; there isn't"
      },
      {
       "hanzi": "菜",
       "pinyin": "cài",
       "traducao": "prato (comida); verdura",
-      "palavra": "菜"
+      "palavra": "菜",
+      "traducaoEn": "dish (food); vegetable"
      },
      {
       "hanzi": "了",
       "pinyin": "le",
       "traducao": "(partícula de ação concluída ou mudança)",
-      "palavra": "了"
+      "palavra": "了",
+      "traducaoEn": "(particle: completed action or change)"
      },
      {
       "hanzi": "。"
