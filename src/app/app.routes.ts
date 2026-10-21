@@ -52,6 +52,10 @@ export const routes: Routes = [
     loadChildren: () => import('./features/numeros/numeros.routes').then((m) => m.NUMEROS_ROTAS),
   },
   {
+    path: 'aprender',
+    loadChildren: () => import('./features/aprender/aprender.routes').then((m) => m.APRENDER_ROTAS),
+  },
+  {
     path: 'praticar',
     loadChildren: () =>
       import('./features/praticar/praticar.routes').then((m) => m.PRATICAR_ROTAS),

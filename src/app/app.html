@@ -7,42 +7,153 @@
       <span class="marca-texto">Aprenda Mandarim</span>
     </a>
 
-    <nav class="nav-desktop" aria-label="Módulos">
-      @for (item of navegacao; track item.rota) {
-        @if (!item.soCelular) {
-          <a
-            [routerLink]="item.rota"
-            routerLinkActive="ativo"
-            [routerLinkActiveOptions]="{ exact: !!item.exato }"
-            ariaCurrentWhenActive="page"
-            >{{ item.rotulo }}</a
+    <nav class="nav-topo" aria-label="Menu principal">
+      <ul>
+        <li>
+          <a routerLink="/" [class.ativo]="grupo() === 'hoje'" [attr.aria-current]="grupo() === 'hoje' ? 'page' : null">Hoje</a>
+        </li>
+        <li class="com-submenu">
+          <button
+            type="button"
+            [class.ativo]="grupo() === 'aprender'"
+            [attr.aria-expanded]="submenu() === 'aprender'"
+            aria-controls="submenu-aprender"
+            (click)="alternarSubmenu('aprender', $event)"
           >
-        }
-      }
+            Aprender <span class="seta" aria-hidden="true">▾</span>
+          </button>
+          @if (submenu() === 'aprender') {
+            <ul id="submenu-aprender" class="submenu" (click)="$event.stopPropagation()">
+              @for (d of aprender; track d.rota) {
+                <li>
+                  <a [routerLink]="d.rota">
+                    <span class="icone-menu" lang="zh-CN" aria-hidden="true">{{ d.icone }}</span>
+                    <span><strong>{{ d.nome }}</strong><small>{{ d.descricao }}</small></span>
+                  </a>
+                </li>
+              }
+            </ul>
+          }
+        </li>
+        <li class="com-submenu">
+          <button
+            type="button"
+            [class.ativo]="grupo() === 'praticar'"
+            [attr.aria-expanded]="submenu() === 'praticar'"
+            aria-controls="submenu-praticar"
+            (click)="alternarSubmenu('praticar', $event)"
+          >
+            Praticar <span class="seta" aria-hidden="true">▾</span>
+          </button>
+          @if (submenu() === 'praticar') {
+            <ul id="submenu-praticar" class="submenu" (click)="$event.stopPropagation()">
+              @for (d of praticar; track d.rota) {
+                <li>
+                  <a [routerLink]="d.rota">
+                    <span class="icone-menu" lang="zh-CN" aria-hidden="true">{{ d.icone }}</span>
+                    <span><strong>{{ d.nome }}</strong><small>{{ d.descricao }}</small></span>
+                  </a>
+                </li>
+              }
+            </ul>
+          }
+        </li>
+        <li>
+          <a routerLink="/cartoes" [class.ativo]="grupo() === 'cartoes'" [attr.aria-current]="grupo() === 'cartoes' ? 'page' : null">Cartões</a>
+        </li>
+        <li>
+          <a routerLink="/progresso" [class.ativo]="grupo() === 'progresso'" [attr.aria-current]="grupo() === 'progresso' ? 'page' : null">Progresso</a>
+        </li>
+      </ul>
     </nav>
 
-    <button
-      type="button"
-      class="botao botao-texto botao-icone"
-      (click)="tema.alternar()"
-      [attr.aria-label]="tema.temaAtivo() === 'escuro' ? 'Ativar tema claro' : 'Ativar tema escuro'"
-      [title]="tema.temaAtivo() === 'escuro' ? 'Tema claro' : 'Tema escuro'"
-    >
-      @if (tema.temaAtivo() === 'escuro') {
-        <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true">
-          <circle cx="12" cy="12" r="4.5" fill="currentColor" />
-          <g stroke="currentColor" stroke-width="2" stroke-linecap="round">
-            <path d="M12 2v2M12 20v2M2 12h2M20 12h2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4" />
-          </g>
+    <div class="acoes-topo">
+      <button
+        type="button"
+        class="botao-topo"
+        (click)="tema.alternar()"
+        [attr.aria-label]="tema.temaAtivo() === 'escuro' ? 'Ativar tema claro' : 'Ativar tema escuro'"
+        [title]="tema.temaAtivo() === 'escuro' ? 'Tema claro' : 'Tema escuro'"
+      >
+        @if (tema.temaAtivo() === 'escuro') {
+          <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true">
+            <circle cx="12" cy="12" r="4.5" fill="currentColor" />
+            <g stroke="currentColor" stroke-width="2" stroke-linecap="round">
+              <path d="M12 2v2M12 20v2M2 12h2M20 12h2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4" />
+            </g>
+          </svg>
+        } @else {
+          <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true">
+            <path fill="currentColor" d="M20.5 14.6A8.5 8.5 0 0 1 9.4 3.5a8.5 8.5 0 1 0 11.1 11.1Z" />
+          </svg>
+        }
+      </button>
+      <button
+        #botaoMenu
+        type="button"
+        class="botao-topo"
+        aria-label="Abrir o menu completo"
+        aria-controls="menu-completo"
+        [attr.aria-expanded]="menuAberto()"
+        (click)="abrirMenu()"
+      >
+        <svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true">
+          <path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
         </svg>
-      } @else {
-        <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true">
-          <path fill="currentColor" d="M20.5 14.6A8.5 8.5 0 0 1 9.4 3.5a8.5 8.5 0 1 0 11.1 11.1Z" />
-        </svg>
-      }
-    </button>
+      </button>
+    </div>
   </div>
 </header>
+
+@if (menuAberto()) {
+  <div class="fundo-menu" (click)="fecharMenu()" aria-hidden="true"></div>
+  <aside
+    #painel
+    id="menu-completo"
+    class="painel-menu"
+    role="dialog"
+    aria-modal="true"
+    aria-label="Menu completo"
+    (keydown)="prenderFoco($event)"
+  >
+    <div class="cabecalho-painel">
+      <span class="marca-hanzi" lang="zh-CN" aria-hidden="true">学中文</span>
+      <button type="button" class="botao-topo" (click)="fecharMenu()" aria-label="Fechar o menu">✕</button>
+    </div>
+    <nav aria-label="Todas as seções">
+      <a routerLink="/" class="item-painel destaque-painel">
+        <span class="icone-menu" lang="zh-CN" aria-hidden="true">今</span>
+        <span><strong>Treino de hoje</strong><small>15–20 min que misturam tudo, no momento certo.</small></span>
+      </a>
+      <h2>Aprender</h2>
+      @for (d of aprender; track d.rota) {
+        <a [routerLink]="d.rota" class="item-painel">
+          <span class="icone-menu" lang="zh-CN" aria-hidden="true">{{ d.icone }}</span>
+          <span><strong>{{ d.nome }}</strong><small>{{ d.descricao }}</small></span>
+        </a>
+      }
+      <h2>Praticar</h2>
+      @for (d of praticar; track d.rota) {
+        <a [routerLink]="d.rota" class="item-painel">
+          <span class="icone-menu" lang="zh-CN" aria-hidden="true">{{ d.icone }}</span>
+          <span><strong>{{ d.nome }}</strong><small>{{ d.descricao }}</small></span>
+        </a>
+      }
+      <h2>Você</h2>
+      <a routerLink="/progresso" class="item-painel">
+        <span class="icone-menu" lang="zh-CN" aria-hidden="true">进</span>
+        <span><strong>Progresso e ajustes</strong><small>Sequência, estatísticas, metas, voz, tema e backup.</small></span>
+      </a>
+      <h2>Sobre</h2>
+      @for (d of sobre; track d.rota) {
+        <a [routerLink]="d.rota" class="item-painel">
+          <span class="icone-menu" lang="zh-CN" aria-hidden="true">{{ d.icone }}</span>
+          <span><strong>{{ d.nome }}</strong><small>{{ d.descricao }}</small></span>
+        </a>
+      }
+    </nav>
+  </aside>
+}
 
 @if (atualizacaoDisponivel()) {
   <div class="faixa-atualizacao" role="status">
@@ -69,17 +180,10 @@
 </footer>
 
 <nav class="nav-celular" aria-label="Navegação principal" [hidden]="emTreino()">
-  @for (item of navegacao; track item.rota) {
-    @if (!item.soDesktop) {
-      <a
-        [routerLink]="item.rota"
-        routerLinkActive="ativo"
-        [routerLinkActiveOptions]="{ exact: !!item.exato }"
-        ariaCurrentWhenActive="page"
-      >
-        <span class="nav-icone" lang="zh-CN" aria-hidden="true">{{ item.icone }}</span>
-        <span class="nav-rotulo">{{ item.rotulo }}</span>
-      </a>
-    }
+  @for (aba of abas; track aba.rota) {
+    <a [routerLink]="aba.rota" [class.ativo]="grupo() === aba.grupo" [attr.aria-current]="grupo() === aba.grupo ? 'page' : null">
+      <span class="nav-icone" lang="zh-CN" aria-hidden="true">{{ aba.icone }}</span>
+      <span class="nav-rotulo">{{ aba.rotulo }}</span>
+    </a>
   }
 </nav>

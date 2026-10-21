@@ -19,6 +19,11 @@ const SUGESTOES_ONDE = ['na mesa da cozinha', 'no sofá', 'no transporte', 'no t
         <p class="rotulo" id="titulo-plano">📌 Meu plano</p>
         <p class="frase-plano">“{{ plano()!.quando }}, {{ plano()!.onde }}, eu faço o meu treino de mandarim.”</p>
         <button type="button" class="botao botao-texto pequeno" (click)="abrir()">mudar</button>
+      } @else if (!plano() && !editando()) {
+        <div class="convite">
+          <p id="titulo-plano"><strong>📌 Quando e onde você vai estudar?</strong><br /><span class="suave pequeno">Um plano concreto ajuda a manter o hábito.</span></p>
+          <button type="button" class="botao" (click)="abrir()">Definir</button>
+        </div>
       } @else {
         <h2 id="titulo-plano">📌 Quando e onde você vai estudar?</h2>
         <p class="suave pequeno">
@@ -46,9 +51,7 @@ const SUGESTOES_ONDE = ['na mesa da cozinha', 'no sofá', 'no transporte', 'no t
           </datalist>
           <div class="linha">
             <button type="submit" class="botao botao-primario" [disabled]="!quando().trim() || !onde().trim()">Salvar meu plano</button>
-            @if (plano()) {
-              <button type="button" class="botao botao-texto" (click)="editando.set(false)">Cancelar</button>
-            }
+            <button type="button" class="botao botao-texto" (click)="editando.set(false)">Cancelar</button>
           </div>
         </form>
       }
@@ -86,6 +89,15 @@ const SUGESTOES_ONDE = ['na mesa da cozinha', 'no sofá', 'no transporte', 'no t
     }
     h2 {
       font-size: 1.1rem;
+    }
+    .convite {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+    }
+    .convite p {
+      margin: 0;
     }
   `,
 })

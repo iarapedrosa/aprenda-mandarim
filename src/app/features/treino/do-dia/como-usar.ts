@@ -6,8 +6,10 @@ import { RouterLink } from '@angular/router';
   selector: 'app-como-usar',
   imports: [RouterLink],
   template: `
-    <details class="cartao como-usar" [open]="aberto()">
-      <summary><h2>👋 Como usar o site</h2></summary>
+    <details class="cartao como-usar" [class.destaque]="destaque()">
+      <summary>
+        <h2>{{ destaque() ? '👋 Novo por aqui? Veja como usar o site' : '👋 Como usar o site' }}</h2>
+      </summary>
 
       <p>
         O <strong>Aprenda Mandarim</strong> é um site gratuito para aprender mandarim do zero, em português. Não precisa
@@ -60,13 +62,36 @@ import { RouterLink } from '@angular/router';
     .como-usar {
       margin-top: 12px;
     }
+    .como-usar.destaque {
+      border: 2px solid var(--cor-primaria);
+      background: var(--cor-primaria-suave);
+    }
+    .como-usar.destaque[open] {
+      background: var(--cor-superficie);
+    }
     summary {
       cursor: pointer;
-      list-style-position: outside;
+      list-style: none;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 8px;
+    }
+    summary::-webkit-details-marker {
+      display: none;
+    }
+    summary::after {
+      content: '▾';
+      color: var(--cor-texto-suave);
+      transition: transform 0.15s;
+    }
+    details[open] summary::after {
+      transform: rotate(180deg);
     }
     summary h2 {
       display: inline;
-      font-size: 1.15rem;
+      font-size: 1.1rem;
+      margin: 0;
     }
     h3 {
       margin-top: 14px;
@@ -83,6 +108,6 @@ import { RouterLink } from '@angular/router';
   `,
 })
 export class ComoUsar {
-  /** aberto por padrão para quem está começando */
-  readonly aberto = input(false);
+  /** chamada destacada para quem está começando */
+  readonly destaque = input(false);
 }

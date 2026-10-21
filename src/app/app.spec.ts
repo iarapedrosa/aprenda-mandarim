@@ -23,6 +23,6 @@ describe('App', () => {
     const rotulos = Array.from(html.querySelectorAll('.nav-celular .nav-rotulo')).map((e) =>
       e.textContent?.trim(),
     );
-    expect(rotulos).toEqual(['Hoje', 'Pinyin', 'Caracteres', 'Praticar', 'Progresso']);
+    expect(rotulos).toEqual(['Hoje', 'Aprender', 'Praticar', 'Cartões', 'Progresso']);
   });
 });

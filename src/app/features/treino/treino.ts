@@ -4,6 +4,7 @@ import { FrasesService, palavraDoDia } from '../../core/dados/frases.service';
 import { GramaticaService } from '../../core/dados/gramatica.service';
 import { VocabularioService } from '../../core/dados/vocabulario.service';
 import { ProgressoService } from '../../core/progresso/progresso.service';
+import { APRENDER, PRATICAR, SOBRE } from '../../core/navegacao';
 import { PinyinColorido } from '../../shared/pinyin-colorido/pinyin-colorido';
 import { LICOES_PINYIN } from './curriculo';
 import { FraseDoDiaCartao } from './do-dia/frase-do-dia';
@@ -19,38 +20,21 @@ import { PALAVRAS_PARA_LIBERAR_FRASES, etapaAtual, gerarSessao } from './gerador
     <section class="pagina">
       <header class="saudacao">
         <h1>{{ saudacao() }} <span lang="zh-CN" class="ni-hao">你好！</span></h1>
-        <p class="subtitulo">Seu treino de hoje leva uns 15–20 minutos. Um pouquinho por dia faz toda a diferença.</p>
       </header>
 
-      @if (iniciante()) {
-        <app-como-usar [aberto]="true" />
-      }
-
-      <div class="painel">
-        <div class="cartao indicador">
-          <span class="valor">🔥 {{ progresso.sequencia() }}</span>
-          <span class="suave pequeno">{{ progresso.sequencia() === 1 ? 'dia seguido' : 'dias seguidos' }}</span>
+      <section class="cartao chamada" aria-labelledby="titulo-treino">
+        <div class="chips" role="list" aria-label="Seu dia">
+          <span class="chip" role="listitem" title="Sequência de dias">🔥 <strong>{{ progresso.sequencia() }}</strong> {{ progresso.sequencia() === 1 ? 'dia' : 'dias' }}</span>
+          <span class="chip" role="listitem" title="Palavras novas hoje">🆕 <strong>{{ progresso.atividadeHoje().novas }}/{{ progresso.metas().novasPorDia }}</strong> novas</span>
+          <span class="chip" role="listitem" title="Revisões hoje">🔁 <strong>{{ progresso.atividadeHoje().revisoes }}/{{ progresso.metas().revisoesPorDia }}</strong> revisões</span>
         </div>
-        <div class="cartao indicador">
-          <span class="valor">{{ progresso.atividadeHoje().novas }}/{{ progresso.metas().novasPorDia }}</span>
-          <span class="suave pequeno">palavras novas</span>
-          <div class="barra-progresso"><span [style.width.%]="pct(progresso.atividadeHoje().novas, progresso.metas().novasPorDia)"></span></div>
-        </div>
-        <div class="cartao indicador">
-          <span class="valor">{{ progresso.atividadeHoje().revisoes }}/{{ progresso.metas().revisoesPorDia }}</span>
-          <span class="suave pequeno">revisões</span>
-          <div class="barra-progresso"><span [style.width.%]="pct(progresso.atividadeHoje().revisoes, progresso.metas().revisoesPorDia)"></span></div>
-        </div>
-      </div>
-
-      <section class="cartao chamada">
         @if (progresso.atividadeHoje().treinoConcluido) {
-          <h2>✅ Treino de hoje concluído!</h2>
-          <p>Ótimo trabalho. Se quiser, faça mais uma rodada ou pratique um módulo.</p>
+          <h2 id="titulo-treino">✅ Treino de hoje concluído!</h2>
+          <p class="suave">Ótimo trabalho. Se quiser, faça mais uma rodada ou pratique um módulo.</p>
         } @else {
-          <h2>Treino de hoje</h2>
+          <h2 id="titulo-treino">Treino de hoje</h2>
           @if (resumo(); as r) {
-            <p class="suave">
+            <p class="suave resumo">
               ≈ {{ r.minutos }} min ·
               @if (r.licoes) { {{ r.licoes }} {{ r.licoes === 1 ? 'lição' : 'lições' }} de pinyin · }
               @if (r.gramatica) { 1 lição de gramática · }
@@ -69,6 +53,10 @@ import { PALAVRAS_PARA_LIBERAR_FRASES, etapaAtual, gerarSessao } from './gerador
           {{ progresso.atividadeHoje().treinoConcluido ? 'Treinar de novo' : 'Começar treino' }}
         </a>
       </section>
+
+      @if (iniciante()) {
+        <app-como-usar [destaque]="true" />
+      }
 
       <app-meu-plano />
 
@@ -134,7 +122,7 @@ import { PALAVRAS_PARA_LIBERAR_FRASES, etapaAtual, gerarSessao } from './gerador
         <app-como-usar />
       }
 
-      <nav class="atalhos" aria-label="Módulos">
+      <nav class="atalhos" aria-label="Ir para">
         @for (m of atalhos; track m.rota) {
           <a [routerLink]="m.rota" class="atalho">
             <span lang="zh-CN" aria-hidden="true">{{ m.icone }}</span>{{ m.nome }}
@@ -151,11 +139,23 @@ import { PALAVRAS_PARA_LIBERAR_FRASES, etapaAtual, gerarSessao } from './gerador
       color: var(--cor-primaria);
       font-size: 0.8em;
     }
-    .painel {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 8px;
-      margin-bottom: 12px;
+    .chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-bottom: 10px;
+    }
+    .chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      padding: 4px 10px;
+      border-radius: 999px;
+      background: var(--cor-superficie-2);
+      font-size: 0.85rem;
+    }
+    .resumo {
+      margin-bottom: 4px;
     }
     .indicador {
       padding: 12px 10px;
@@ -315,19 +315,7 @@ export class TreinoPagina {
   protected readonly resumo = computed(() => this.plano()?.resumo ?? null);
   protected readonly aviso = computed(() => this.plano()?.aviso ?? null);
 
-  protected readonly atalhos = [
-    { rota: '/pinyin', icone: '音', nome: 'Pinyin' },
-    { rota: '/caracteres', icone: '字', nome: 'Caracteres' },
-    { rota: '/escrita', icone: '写', nome: 'Escrita' },
-    { rota: '/leitura', icone: '读', nome: 'Leitura' },
-    { rota: '/escuta', icone: '听', nome: 'Escuta' },
-    { rota: '/fala', icone: '说', nome: 'Fala' },
-    { rota: '/gramatica', icone: '语', nome: 'Gramática' },
-    { rota: '/numeros', icone: '数', nome: 'Números' },
-    { rota: '/cartoes', icone: '卡', nome: 'Cartões' },
-    { rota: '/recursos', icone: '书', nome: 'Recursos' },
-    { rota: '/metodo', icone: '研', nome: 'O método' },
-  ];
+  protected readonly atalhos = [...APRENDER, ...PRATICAR, ...SOBRE].filter((d) => d.rota !== '/caracteres/radicais');
 
   constructor() {
     void this.vocabulario.carregar();
@@ -338,10 +326,6 @@ export class TreinoPagina {
   protected saudacao(): string {
     const h = new Date().getHours();
     return h < 12 ? 'Bom dia!' : h < 18 ? 'Boa tarde!' : 'Boa noite!';
-  }
-
-  protected pct(valor: number, meta: number): number {
-    return meta > 0 ? Math.min(100, (valor / meta) * 100) : 100;
   }
 
   protected pularPinyin(): void {
