@@ -65,6 +65,26 @@ export function pinyinDaLinha(linha: LinhaTexto): string {
   return saida;
 }
 
+/**
+ * Porcentagem das palavras do texto que a pessoa já estudou (nomes próprios contam como conhecidos).
+ * Para ler com compreensão confortável, recomenda-se conhecer ~98% das palavras
+ * (Hu & Nation, 2000, Reading in a Foreign Language).
+ */
+export function coberturaDoTexto(texto: Texto, conhecidas: ReadonlySet<string>): number {
+  const palavras = texto.linhas.flatMap((l) => l.tokens).filter((t) => t.pinyin);
+  if (!palavras.length) return 0;
+  const sabidas = palavras.filter(
+    (t) => (t.palavra && conhecidas.has(t.palavra)) || /\(nome\)/.test(t.traducao ?? ''),
+  ).length;
+  return Math.round((sabidas / palavras.length) * 100);
+}
+
+export function rotuloCobertura(pct: number): { texto: string; classe: 'ideal' | 'desafio' | 'dificil' } {
+  if (pct >= 95) return { texto: 'ideal para ler', classe: 'ideal' };
+  if (pct >= 85) return { texto: 'bom desafio', classe: 'desafio' };
+  return { texto: 'difícil por enquanto', classe: 'dificil' };
+}
+
 /** Diálogos e historinhas de public/data/leitura. */
 @Injectable({ providedIn: 'root' })
 export class LeituraService {

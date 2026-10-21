@@ -1,4 +1,4 @@
-import { LinhaTexto, hanziDaLinha, pinyinDaLinha } from './leitura.service';
+import { LinhaTexto, Texto, coberturaDoTexto, hanziDaLinha, pinyinDaLinha, rotuloCobertura } from './leitura.service';
 
 const linha: LinhaTexto = {
   traducao: 'Lili ficou aflita: "Como eu vou voltar para casa?"',
@@ -25,5 +25,40 @@ describe('leitura: linhas', () => {
 
   it('monta o pinyin com pontuação ocidental e maiúsculas', () => {
     expect(pinyinDaLinha(linha)).toBe('Lìli hěn zháojí: "Wǒ zěnme huí jiā ne?"');
+  });
+});
+
+describe('leitura: cobertura de vocabulário', () => {
+  const texto: Texto = {
+    id: 't',
+    tipo: 'dialogo',
+    nivel: 1,
+    titulo: '',
+    tituloHanzi: '',
+    resumo: '',
+    perguntas: [],
+    linhas: [
+      {
+        traducao: '',
+        tokens: [
+          { hanzi: '我', pinyin: 'wǒ', palavra: '我' },
+          { hanzi: '叫', pinyin: 'jiào', palavra: '叫' },
+          { hanzi: '安娜', pinyin: 'Ānnà', traducao: 'Ana (nome)' },
+          { hanzi: '绿茶', pinyin: 'lǜchá', traducao: 'chá verde' },
+          { hanzi: '。' },
+        ],
+      },
+    ],
+  };
+
+  it('conta palavras estudadas e nomes próprios', () => {
+    expect(coberturaDoTexto(texto, new Set(['我', '叫']))).toBe(75);
+    expect(coberturaDoTexto(texto, new Set())).toBe(25);
+  });
+
+  it('classifica o nível de dificuldade', () => {
+    expect(rotuloCobertura(98).classe).toBe('ideal');
+    expect(rotuloCobertura(90).classe).toBe('desafio');
+    expect(rotuloCobertura(60).classe).toBe('dificil');
   });
 });
