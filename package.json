@@ -4,6 +4,7 @@
   "scripts": {
     "ng": "ng",
     "dados:tracos": "node scripts/gerar-tracos.mjs",
+    "dados:validar": "node scripts/validar-vocabulario.mjs",
     "prestart": "npm run dados:tracos",
     "start": "ng serve",
     "prebuild": "npm run dados:tracos",
