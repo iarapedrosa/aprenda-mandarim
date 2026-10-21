@@ -32,7 +32,7 @@ describe('ProgressoService', () => {
 
   it('limita as metas a valores válidos', () => {
     servico.definirMetas({ novasPorDia: 999, revisoesPorDia: -3 });
-    expect(servico.metas()).toEqual({ novasPorDia: 30, revisoesPorDia: 5 });
+    expect(servico.metas()).toEqual({ personalizadas: true, novasPorDia: 30, revisoesPorDia: 5 });
   });
 
   it('exporta e importa um backup', () => {
@@ -49,6 +49,12 @@ describe('ProgressoService', () => {
   it('recusa arquivos que não são backup', () => {
     expect(() => servico.importar({ foo: 1 })).toThrowError(/não é um backup/);
     expect(() => servico.importar(null)).toThrowError();
+  });
+
+  it('migra o padrão antigo de metas (10 novas) para o novo, se a pessoa nunca mexeu', () => {
+    expect(normalizarEstado({ metas: { novasPorDia: 10, revisoesPorDia: 20 } }).metas.novasPorDia).toBe(6);
+    const personalizadas = { novasPorDia: 10, revisoesPorDia: 20, personalizadas: true };
+    expect(normalizarEstado({ metas: personalizadas }).metas.novasPorDia).toBe(10);
   });
 
   it('migra lições salvas como lista para o formato com datas', () => {

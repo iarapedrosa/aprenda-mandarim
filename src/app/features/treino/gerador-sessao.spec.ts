@@ -3,7 +3,7 @@ import { EstadoProgresso } from '../../core/progresso/progresso.model';
 import { normalizarEstado } from '../../core/progresso/progresso.service';
 import { CartaoSrs, novoCartao } from '../../core/srs/sm2';
 import { LICOES_PINYIN } from './curriculo';
-import { ContextoSessao, etapaAtual, gerarSessao, palavrasLiberadas } from './gerador-sessao';
+import { ContextoSessao, acumuloDeRevisoes, etapaAtual, gerarSessao, palavrasLiberadas } from './gerador-sessao';
 
 const HOJE = '2026-10-20';
 const ONTEM = '2026-10-19';
@@ -86,10 +86,12 @@ describe('treino diário: metas', () => {
     expect(plano.resumo.novas).toBe(1);
   });
 
-  it('limita as revisões à meta e prioriza as vencidas', () => {
+  it('limita as revisões à meta (até o dobro quando há atraso)', () => {
+    const poucas = Object.fromEntries(palavras.slice(0, 8).map((p) => [`palavra:${p.id}`, cartaoRevisado(p.id)]));
+    expect(gerarSessao(contexto({ licoesPinyin, cartoes: poucas, metas: { novasPorDia: 0, revisoesPorDia: 10 } })).resumo.revisoes).toBe(8);
     const cartoes = Object.fromEntries(palavras.slice(0, 25).map((p) => [`palavra:${p.id}`, cartaoRevisado(p.id)]));
     const plano = gerarSessao(contexto({ licoesPinyin, cartoes, metas: { novasPorDia: 0, revisoesPorDia: 10 } }));
-    expect(plano.resumo.revisoes).toBe(10);
+    expect(plano.resumo.revisoes).toBe(20);
     expect(plano.resumo.novas).toBe(0);
   });
 
@@ -98,5 +100,31 @@ describe('treino diário: metas', () => {
     const plano = gerarSessao(contexto({ licoesPinyin, cartoes, metas: { novasPorDia: 0, revisoesPorDia: 10 } }));
     const escrita = plano.itens.filter((i) => i.tipo === 'escrever');
     expect(escrita.map((i) => (i.tipo === 'escrever' ? i.caractere.hanzi : ''))).toEqual(['一', '人']);
+  });
+});
+
+describe('treino diário: acúmulo de revisões', () => {
+  it('sem atraso, segue a meta', () => {
+    expect(acumuloDeRevisoes(15, 20)).toEqual({ limiteRevisoes: 20, fatorNovas: 1 });
+  });
+
+  it('com atraso, aumenta o limite até o dobro', () => {
+    expect(acumuloDeRevisoes(25, 20).limiteRevisoes).toBe(25);
+    expect(acumuloDeRevisoes(100, 20).limiteRevisoes).toBe(40);
+  });
+
+  it('reduz palavras novas conforme o acúmulo', () => {
+    expect(acumuloDeRevisoes(35, 20).fatorNovas).toBe(0.5);
+    expect(acumuloDeRevisoes(61, 20).fatorNovas).toBe(0);
+    expect(acumuloDeRevisoes(61, 20).aviso).toContain('61 revisões');
+  });
+
+  it('aplica isso na sessão', () => {
+    const licoesPinyin = Object.fromEntries(LICOES_PINYIN.map((l) => [l.id, ONTEM]));
+    const cartoes = Object.fromEntries(palavras.slice(0, 35).map((p) => [`palavra:${p.id}`, cartaoRevisado(p.id)]));
+    const plano = gerarSessao(contexto({ licoesPinyin, cartoes, metas: { novasPorDia: 6, revisoesPorDia: 10 } }));
+    expect(plano.resumo.revisoes).toBe(20);
+    expect(plano.resumo.novas).toBe(0);
+    expect(plano.aviso).toBeTruthy();
   });
 });

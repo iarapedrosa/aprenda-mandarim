@@ -18,6 +18,7 @@ import {
   EstadoProgresso,
   LIMITES_METAS,
   METAS_PADRAO,
+  METAS_PADRAO_ANTIGO,
   Metas,
   Modulo,
   Placar,
@@ -49,6 +50,15 @@ function somar(placar: Placar | undefined, acertou: boolean): Placar {
   return { acertos: (placar?.acertos ?? 0) + (acertou ? 1 : 0), total: (placar?.total ?? 0) + 1 };
 }
 
+function metasNormalizadas(metas: Partial<Metas> | undefined): Metas {
+  const m = { ...METAS_PADRAO, ...(metas ?? {}) };
+  const eraPadraoAntigo =
+    !m.personalizadas &&
+    m.novasPorDia === METAS_PADRAO_ANTIGO.novasPorDia &&
+    m.revisoesPorDia === METAS_PADRAO_ANTIGO.revisoesPorDia;
+  return eraPadraoAntigo ? { ...METAS_PADRAO } : m;
+}
+
 /** Completa um estado lido (de versões antigas ou de um backup) com valores padrão. */
 export function normalizarEstado(bruto: Partial<EstadoProgresso>): EstadoProgresso {
   const base = estadoInicial();
@@ -62,7 +72,7 @@ export function normalizarEstado(bruto: Partial<EstadoProgresso>): EstadoProgres
     ...base,
     ...bruto,
     versao: 1,
-    metas: { ...base.metas, ...(bruto.metas ?? {}) },
+    metas: metasNormalizadas(bruto.metas),
     atividade,
     licoesPinyin: licoes,
     cartoes: bruto.cartoes ?? {},
@@ -160,6 +170,7 @@ export class ProgressoService {
     this.estado.update((e) => ({
       ...e,
       metas: {
+        personalizadas: true,
         novasPorDia: limitar(metas.novasPorDia ?? e.metas.novasPorDia, LIMITES_METAS.novasPorDia),
         revisoesPorDia: limitar(metas.revisoesPorDia ?? e.metas.revisoesPorDia, LIMITES_METAS.revisoesPorDia),
       },

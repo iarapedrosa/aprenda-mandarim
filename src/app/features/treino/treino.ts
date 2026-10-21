@@ -54,6 +54,9 @@ import { PALAVRAS_PARA_LIBERAR_FRASES, etapaAtual, gerarSessao } from './gerador
             </p>
           }
         }
+        @if (aviso() && !progresso.atividadeHoje().treinoConcluido) {
+          <p class="aviso pequeno" role="status">⏳ {{ aviso() }}</p>
+        }
         <a routerLink="/treino" class="botao botao-primario botao-bloco grande">
           {{ progresso.atividadeHoje().treinoConcluido ? 'Treinar de novo' : 'Começar treino' }}
         </a>
@@ -275,7 +278,7 @@ export class TreinoPagina {
   protected readonly palavra = computed(() => palavraDoDia(this.vocabulario.palavras(), this.progresso.hoje()));
 
   /** Prévia do treino (mesmo cálculo da sessão, sem as partes aleatórias importarem). */
-  protected readonly resumo = computed(() => {
+  private readonly plano = computed(() => {
     if (!this.vocabulario.carregado()) return null;
     return gerarSessao({
       hoje: this.progresso.hoje(),
@@ -284,8 +287,10 @@ export class TreinoPagina {
       frases: this.frases.frases(),
       infoCaractere: (c) => ({ hanzi: c, pinyin: '', traducao: '' }),
       silabasAquecimento: [{ hanzi: '妈', pinyin: 'mā', letras: 'ma' }],
-    }).resumo;
+    });
   });
+  protected readonly resumo = computed(() => this.plano()?.resumo ?? null);
+  protected readonly aviso = computed(() => this.plano()?.aviso ?? null);
 
   protected readonly atalhos = [
     { rota: '/pinyin', icone: '音', nome: 'Pinyin' },

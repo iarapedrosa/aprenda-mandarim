@@ -36,6 +36,8 @@ export type Etapa = 'pinyin' | 'palavras' | 'frases';
 export interface PlanoSessao {
   etapa: Etapa;
   itens: ItemSessao[];
+  /** aviso sobre revisões acumuladas, para mostrar na página inicial */
+  aviso?: string;
   resumo: { licoes: number; revisoes: number; novas: number; escrita: number; frases: number; minutos: number };
 }
 
@@ -244,6 +246,36 @@ export function itemNumero(maximo: number): ItemEscolha {
   };
 }
 
+/**
+ * Controle do acúmulo de revisões:
+ * - até a meta: tudo normal;
+ * - acima da meta: o limite do dia sobe (até 2× a meta);
+ * - acima de 1,5× a meta: metade das palavras novas;
+ * - acima de 3× a meta: nenhuma palavra nova até o acúmulo baixar ("modo recuperação").
+ */
+export function acumuloDeRevisoes(
+  pendentes: number,
+  meta: number,
+): { limiteRevisoes: number; fatorNovas: number; aviso?: string } {
+  if (pendentes <= meta) return { limiteRevisoes: meta, fatorNovas: 1 };
+  const limiteRevisoes = Math.min(pendentes, meta * 2);
+  if (pendentes > meta * 3) {
+    return {
+      limiteRevisoes,
+      fatorNovas: 0,
+      aviso: `Você tem ${pendentes} revisões acumuladas. Hoje o treino foca nelas, sem palavras novas — assim a memória não fica para trás.`,
+    };
+  }
+  if (pendentes > meta * 1.5) {
+    return {
+      limiteRevisoes,
+      fatorNovas: 0.5,
+      aviso: `Há ${pendentes} revisões acumuladas: hoje entram menos palavras novas para o acúmulo baixar.`,
+    };
+  }
+  return { limiteRevisoes, fatorNovas: 1 };
+}
+
 // ---------------------------------------------------------------------------
 // Sessão
 // ---------------------------------------------------------------------------
@@ -267,6 +299,7 @@ export function gerarSessao(ctx: ContextoSessao, opcoes: { extraNovas?: number }
   const atividade = estado.atividade[hoje];
   const itens: ItemSessao[] = [];
   const resumo = { licoes: 0, revisoes: 0, novas: 0, escrita: 0, frases: 0, minutos: 0 };
+  let aviso: string | undefined;
 
   // 1. Aquecimento de tons
   for (const s of embaralhar(ctx.silabasAquecimento).slice(0, 3)) itens.push(itemTom(s.hanzi, s.pinyin, s.letras));
@@ -288,7 +321,12 @@ export function gerarSessao(ctx: ContextoSessao, opcoes: { extraNovas?: number }
     const frasesPorId = new Map(ctx.frases.map((f) => [f.id, f]));
 
     // 3. Revisões vencidas
-    const limiteRevisoes = Math.max(0, estado.metas.revisoesPorDia - (atividade?.revisoes ?? 0));
+    const meta = estado.metas.revisoesPorDia;
+    const pendentes = cartoesVencidos(Object.values(estado.cartoes), hoje).filter((c) => c.ultimaRevisao !== hoje).length;
+    const acumulo = acumuloDeRevisoes(pendentes, meta);
+    // com atraso, o limite cresce até o dobro da meta, para o acúmulo baixar
+    const limiteRevisoes = Math.max(0, acumulo.limiteRevisoes - (atividade?.revisoes ?? 0));
+    aviso = acumulo.aviso;
     const revisoes: ItemSessao[] = [];
     for (const c of cartoesVencidos(Object.values(estado.cartoes), hoje)) {
       if (revisoes.length >= limiteRevisoes) break;
@@ -312,7 +350,8 @@ export function gerarSessao(ctx: ContextoSessao, opcoes: { extraNovas?: number }
 
     // 4. Palavras novas (primeiro as que a pessoa adicionou, depois na ordem do vocabulário)
     const limiteNovas =
-      Math.max(0, estado.metas.novasPorDia - (atividade?.novas ?? 0)) + (opcoes.extraNovas ?? 0);
+      Math.max(0, Math.floor(estado.metas.novasPorDia * acumulo.fatorNovas) - (atividade?.novas ?? 0)) +
+      (opcoes.extraNovas ?? 0);
     const adicionadas = Object.values(estado.cartoes)
       .filter((c) => c.tipo === 'palavra' && c.revisoes === 0 && porId.has(c.ref))
       .map((c) => porId.get(c.ref)!);
@@ -370,5 +409,5 @@ export function gerarSessao(ctx: ContextoSessao, opcoes: { extraNovas?: number }
   }
 
   resumo.minutos = Math.max(1, Math.round(itens.reduce((t, i) => t + MINUTOS[i.tipo], 0)));
-  return { etapa, itens, resumo };
+  return { etapa, itens, resumo, aviso };
 }
