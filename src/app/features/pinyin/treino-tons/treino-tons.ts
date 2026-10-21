@@ -3,7 +3,8 @@ import { FormsModule } from '@angular/forms';
 import { Tom, silabaComAcento, tomDaSilaba } from '../../../core/pinyin/pinyin';
 import { SilabasService } from '../../../core/pinyin/silabas.service';
 import { VocabularioService } from '../../../core/dados/vocabulario.service';
-import { alternativasDePar, chavePar, observacaoPar, palavrasPorPar, sortearPar } from '../../../core/pinyin/pares-tons';
+import { alternativasDePar, chavePar, observacaoPar, palavrasPorPar, tonsDoValor } from '../../../core/pinyin/pares-tons';
+import { pesosDosTons, sortearPonderado } from '../../../core/progresso/tons-dificeis';
 import { ProgressoService } from '../../../core/progresso/progresso.service';
 import { embaralhar, sortear } from '../../../core/util/aleatorio';
 import { VozService } from '../../../core/voz/voz.service';
@@ -307,6 +308,9 @@ export class TreinoTonsPagina {
     this.acertos.update((n) => n + (acertou ? 1 : 0));
     this.sequencia.update((n) => (acertou ? n + 1 : 0));
     this.progresso.registrarResposta(this.modo() === 'pares-sons' ? 'pinyin' : 'tons', acertou, r.tons);
+    if (!acertou && this.modo() !== 'pares-sons') {
+      this.progresso.registrarConfusaoTons(tonsDoValor(r.correta), tonsDoValor(valor));
+    }
   }
 
   private rodadaDeTom(): Rodada | null {
@@ -317,7 +321,8 @@ export class TreinoTonsPagina {
           ([1, 2, 3, 4] as Tom[]).map((t) => this.silabas.obter(s, t)).filter((x) => x && !x.raro),
         );
     if (!lista.length) return null;
-    const alvo = sortear(lista)!;
+    const pesos = pesosDosTons(this.progresso.estado().confusaoTons ?? {});
+    const alvo = sortearPonderado(lista, (x) => pesos[x!.tom])!;
     return {
       alvo: { hanzi: alvo.caractere, pinyin: alvo.pinyin },
       opcoes: ([1, 2, 3, 4] as Tom[]).map((t) => ({
@@ -331,8 +336,12 @@ export class TreinoTonsPagina {
   }
 
   private rodadaDeCombinacao(): Rodada | null {
-    const p = sortearPar(this.pares());
-    if (!p) return null;
+    const pares = this.pares();
+    const chaves = [...pares.keys()];
+    if (!chaves.length) return null;
+    const pesos = pesosDosTons(this.progresso.estado().confusaoTons ?? {});
+    const chave = sortearPonderado(chaves, (k) => { const [a, b] = k.split('-').map(Number); return pesos[a as 1] * pesos[b as 1]; });
+    const p = sortear(pares.get(chave)!);
     return {
       alvo: { hanzi: p.hanzi, pinyin: p.pinyin, traducao: p.traducao },
       opcoes: alternativasDePar(p),

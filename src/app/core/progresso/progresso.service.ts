@@ -40,6 +40,8 @@ function estadoInicial(): EstadoProgresso {
     cartoes: {},
     licoesPinyin: {},
     licoesGramatica: {},
+    confusaoTons: {},
+    notas: {},
     textos: {},
   };
 }
@@ -78,6 +80,8 @@ export function normalizarEstado(bruto: Partial<EstadoProgresso>): EstadoProgres
     atividade,
     licoesPinyin: licoes,
     licoesGramatica: bruto.licoesGramatica ?? {},
+    confusaoTons: bruto.confusaoTons ?? {},
+    notas: bruto.notas ?? {},
     cartoes: bruto.cartoes ?? {},
     textos: bruto.textos ?? {},
     porModulo: bruto.porModulo ?? {},
@@ -161,6 +165,33 @@ export class ProgressoService {
     this.estado.update((e) =>
       e.licoesPinyin[id] ? e : { ...e, licoesPinyin: { ...e.licoesPinyin, [id]: hoje() } },
     );
+  }
+
+  /** Registra que a pessoa ouviu o tom `esperado` mas escolheu `escolhido`. */
+  registrarConfusaoTons(esperados: number[], escolhidos: number[]): void {
+    if (esperados.length !== escolhidos.length) return;
+    const pares = esperados
+      .map((t, i) => [t, escolhidos[i]])
+      .filter(([a, b]) => a !== b && a >= 1 && a <= 5 && b >= 1 && b <= 5);
+    if (!pares.length) return;
+    this.estado.update((e) => {
+      const confusaoTons = { ...e.confusaoTons };
+      for (const [a, b] of pares) confusaoTons[`${a}>${b}`] = (confusaoTons[`${a}>${b}`] ?? 0) + 1;
+      return { ...e, confusaoTons };
+    });
+  }
+
+  definirPlano(plano: { quando: string; onde: string } | undefined): void {
+    this.estado.update((e) => ({ ...e, plano }));
+  }
+
+  definirNota(palavraId: string, texto: string): void {
+    this.estado.update((e) => {
+      const notas = { ...e.notas };
+      if (texto.trim()) notas[palavraId] = texto.trim().slice(0, 300);
+      else delete notas[palavraId];
+      return { ...e, notas };
+    });
   }
 
   definirModoEscrita(modo: ModoEscrita): void {

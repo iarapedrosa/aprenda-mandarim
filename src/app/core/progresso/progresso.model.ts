@@ -71,6 +71,12 @@ export interface EstadoProgresso {
   licoesPinyin: Record<string, DataISO>;
   /** lições de gramática concluídas (id → data) */
   licoesGramatica: Record<string, DataISO>;
+  /** confusões de tom: "esperado>escolhido" (ex.: "2>3") → quantidade */
+  confusaoTons: Record<string, number>;
+  /** plano de estudo (intenção de implementação: quando e onde) */
+  plano?: { quando: string; onde: string };
+  /** mnemônicos pessoais por palavra (id da palavra → texto) */
+  notas: Record<string, string>;
   /** textos de leitura concluídos (id → resultado) */
   textos: Record<string, { data: DataISO; acertos: number; total: number }>;
 }

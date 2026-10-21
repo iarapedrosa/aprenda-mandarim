@@ -92,7 +92,25 @@
           </li>
         }
       </ul>
-      <p class="suave pequeno">Vem do treino de tons e dos exercícios com áudio. O 3º tom costuma ser o mais difícil!</p>
+      <p class="suave pequeno">Vem do treino de tons e dos exercícios com áudio.</p>
+      <h3 class="titulo-confusoes">Tons que você mais confunde</h3>
+      @if (confusoes().length) {
+        <ul class="confusoes">
+          @for (c of confusoes(); track c.a + '-' + c.b) {
+            <li>
+              <span [class]="'tom-' + c.a">{{ nomeTom(c.a) }}</span> ×
+              <span [class]="'tom-' + c.b">{{ nomeTom(c.b) }}</span>
+              <span class="suave">— {{ c.vezes }} vez(es)</span>
+            </li>
+          }
+        </ul>
+        <p class="suave pequeno">
+          O treino de tons e o aquecimento passam a sortear mais esses tons. Confundir 2º × 3º é o clássico de quem
+          vem de língua não tonal — e pode durar até níveis avançados (Hao, 2012).
+        </p>
+      } @else {
+        <p class="suave pequeno">Ainda sem dados. Faça o treino de tons para descobrir seus pontos fracos.</p>
+      }
     </section>
   </div>
 

@@ -73,3 +73,9 @@ export function observacaoPar(p: PalavraPar): string | undefined {
   if (p.tons[0] === 3) return 'Antes de outro tom, o 3º tom fica só grave (desce e não sobe).';
   return undefined;
 }
+
+/** Tons de um valor de resposta: "3", "2-4" ou pinyin ("lǎoshī"). */
+export function tonsDoValor(valor: string): Tom[] {
+  if (/^[1-5](-[1-5])?$/.test(valor)) return valor.split('-').map(Number) as Tom[];
+  return analisarPinyin(valor).map((s) => s.tom);
+}

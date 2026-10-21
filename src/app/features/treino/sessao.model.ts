@@ -114,6 +114,8 @@ export type ItemSessao =
 /** Resultado que cada exercício devolve à sessão. */
 export interface ResultadoItem {
   acertou: boolean;
+  /** valor escolhido (múltipla escolha), para registrar confusões de tom */
+  escolha?: string;
   /** nota SM-2 explícita (escrita); senão é calculada a partir de "acertou" */
   nota?: 0 | 1 | 2 | 3 | 4 | 5;
   /** itens informativos (apresentação, lição) não contam nas estatísticas */

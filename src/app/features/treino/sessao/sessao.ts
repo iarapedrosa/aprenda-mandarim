@@ -3,6 +3,7 @@ import { RouterLink } from '@angular/router';
 import { FrasesService } from '../../../core/dados/frases.service';
 import { GramaticaService } from '../../../core/dados/gramatica.service';
 import { VocabularioService } from '../../../core/dados/vocabulario.service';
+import { tonsDoValor } from '../../../core/pinyin/pares-tons';
 import { semTom } from '../../../core/pinyin/pinyin';
 import { SilabasService } from '../../../core/pinyin/silabas.service';
 import { ProgressoService } from '../../../core/progresso/progresso.service';
@@ -235,6 +236,9 @@ export class SessaoPagina {
       const modulo = 'modulo' in item ? item.modulo : item.tipo === 'escrever' || item.tipo === 'teclado' ? 'escrita' : item.tipo === 'falar' ? 'fala' : item.tipo === 'montar' ? 'gramatica' : 'caracteres';
       const tons = item.tipo === 'escolha' ? item.tons : undefined;
       this.progresso.registrarResposta(modulo, r.acertou, tons);
+      if (item.tipo === 'escolha' && item.modulo === 'tons' && item.tons && !r.acertou && r.escolha) {
+        this.progresso.registrarConfusaoTons(tonsDoValor(item.correta), tonsDoValor(r.escolha));
+      }
 
       if (item.cartao && !item.reforco) {
         this.progresso.revisar(item.cartao.tipo, item.cartao.ref, r.nota ?? notaDoExercicio(r.acertou));

@@ -2,6 +2,7 @@ import { Component, computed, inject, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { RouterLink } from '@angular/router';
 import { taxa } from '../../core/progresso/estatisticas';
+import { confusoesFrequentes } from '../../core/progresso/tons-dificeis';
 import { LIMITES_METAS, Modulo, NOMES_MODULOS } from '../../core/progresso/progresso.model';
 import { ProgressoService } from '../../core/progresso/progresso.service';
 import { estagio } from '../../core/srs/sm2';
@@ -81,6 +82,12 @@ export class ProgressoPagina {
       return { tom: t, nome: NOMES_TONS[t], total: p?.total ?? 0, taxa: taxa(p?.acertos ?? 0, p?.total ?? 0) };
     }),
   );
+
+  /** Pares de tons mais confundidos (o treino passa a sortear mais esses tons). */
+  protected readonly confusoes = computed(() => confusoesFrequentes(this.progresso.estado().confusaoTons ?? {}));
+  protected nomeTom(t: number): string {
+    return t === 5 ? 'neutro' : `${t}º`;
+  }
 
   /** Revisões previstas para os próximos 7 dias. */
   protected readonly previsao = computed(() => {

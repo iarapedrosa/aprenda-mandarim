@@ -7,7 +7,9 @@ import { CartaoSrs, cartoesVencidos } from '../../core/srs/sm2';
 import { embaralhar, montarAlternativas, sortear } from '../../core/util/aleatorio';
 import { DataISO } from '../../core/util/datas';
 import { numero } from '../../core/numeros/numeros';
-import { palavrasPorPar, sortearPar } from '../../core/pinyin/pares-tons';
+import { palavrasPorPar } from '../../core/pinyin/pares-tons';
+import { pesosDosTons, sortearPonderado } from '../../core/progresso/tons-dificeis';
+import { tomDaSilaba } from '../../core/pinyin/pinyin';
 import { LICOES_PINYIN, LicaoPinyin, exerciciosDaLicao, itemParDeTons, itemTom } from './curriculo';
 import { itensDaLicaoGramatica } from './gramatica-itens';
 import { segmentarFrase } from '../../core/dados/segmentar';
@@ -335,8 +337,20 @@ export function gerarSessao(ctx: ContextoSessao, opcoes: { extraNovas?: number }
   let aviso: string | undefined;
 
   // 1. Aquecimento de tons: duas sílabas soltas + um par de tons (palavra de 2 sílabas)
-  const par = sortearPar(palavrasPorPar(palavras));
-  for (const s of embaralhar(ctx.silabasAquecimento).slice(0, par ? 2 : 3)) itens.push(itemTom(s.hanzi, s.pinyin, s.letras));
+  //    Os tons que a pessoa mais confunde aparecem mais (Hao, 2012: 2º × 3º é a confusão clássica).
+  const pesos = pesosDosTons(estado.confusaoTons ?? {});
+  const porPar = palavrasPorPar(palavras);
+  const chavesPar = [...porPar.keys()];
+  const par = chavesPar.length
+    ? sortear(porPar.get(sortearPonderado(chavesPar, (k) => { const [a, b] = k.split('-').map(Number); return pesos[a as 1] * pesos[b as 1]; }))!)
+    : null;
+  const quantas = par ? 2 : 3;
+  const silabas = [...ctx.silabasAquecimento];
+  for (let i = 0; i < quantas && silabas.length; i++) {
+    const s = sortearPonderado(silabas, (x) => pesos[tomDaSilaba(x.pinyin)]);
+    silabas.splice(silabas.indexOf(s), 1);
+    itens.push(itemTom(s.hanzi, s.pinyin, s.letras));
+  }
   if (par) itens.push(itemParDeTons(par));
 
   // 2. Lições de pinyin pendentes (no máximo 2 por dia)
