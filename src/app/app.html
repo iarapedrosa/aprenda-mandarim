@@ -55,6 +55,18 @@
   <router-outlet />
 </main>
 
+<footer class="rodape" [class.em-treino]="emTreino()">
+  <p>
+    Feito com <span aria-label="carinho">❤️</span> por <strong>Iara Pedrosa</strong> para quem quer aprender mandarim
+    <span lang="zh-CN">加油！</span>
+  </p>
+  <p class="contato">
+    Dúvidas, sugestões ou erros nas traduções? Escreva para
+    <a href="mailto:iaraferreirahg@gmail.com">iaraferreirahg&#64;gmail.com</a>
+    · <a href="https://github.com/iarapedrosa/aprenda-mandarim" target="_blank" rel="noopener">código no GitHub</a>
+  </p>
+</footer>
+
 <nav class="nav-celular" aria-label="Navegação principal" [hidden]="emTreino()">
   @for (item of navegacao; track item.rota) {
     @if (!item.soDesktop) {

@@ -279,6 +279,10 @@ O site usa o **SM-2** (o algoritmo clássico do SuperMemo, base do Anki). Cada p
 - **Progresso local**: fica no `localStorage` do navegador. Limpar os dados do site apaga o progresso, então exporte backups.
 - **Vocabulário**: segue as listas do HSK 2.0 (HSK 1 e HSK 2, 150 palavras cada). As traduções foram revisadas, mas se encontrar algum erro, abra uma *issue*.
 
+## Autoria e contato
+
+Feito por **Iara Pedrosa**. Dúvidas, sugestões ou erros nas traduções: **iaraferreirahg@gmail.com** — ou abra uma *issue* aqui no GitHub.
+
 ## Créditos e licenças
 
 - Dados de traços: [hanzi-writer-data](https://github.com/chanind/hanzi-writer-data), derivados do projeto [Make Me a Hanzi](https://github.com/skishore/makemeahanzi), sob a Arphic Public License.

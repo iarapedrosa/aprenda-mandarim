@@ -185,7 +185,7 @@ a {
 .pagina {
   max-width: var(--largura-max);
   margin: 0 auto;
-  padding: 16px 16px calc(var(--altura-nav) + 32px + env(safe-area-inset-bottom, 0px));
+  padding: 16px 16px 32px;
 }
 
 .pagina > header {

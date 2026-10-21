@@ -156,3 +156,32 @@ main {
     display: inline;
   }
 }
+
+.rodape {
+  max-width: var(--largura-max);
+  margin: 0 auto;
+  padding: 16px 16px calc(var(--altura-nav) + 24px + env(safe-area-inset-bottom, 0px));
+  border-top: 1px solid var(--cor-borda);
+  color: var(--cor-texto-suave);
+  font-size: 0.875rem;
+  text-align: center;
+}
+
+.rodape p {
+  margin: 0 0 4px;
+}
+
+.rodape a {
+  color: var(--cor-primaria);
+  word-break: break-word;
+}
+
+.rodape.em-treino {
+  display: none;
+}
+
+@media (min-width: 900px) {
+  .rodape {
+    padding-bottom: 24px;
+  }
+}
