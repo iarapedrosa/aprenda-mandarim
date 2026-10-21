@@ -1,3 +1,4 @@
+import { CartaoSrs } from '../srs/sm2';
 import { DataISO } from '../util/datas';
 
 export type Modulo = 'tons' | 'pinyin' | 'caracteres' | 'escrita' | 'leitura' | 'escuta' | 'fala';
@@ -25,6 +26,8 @@ export interface AtividadeDia {
   /** revisões de repetição espaçada feitas no dia */
   revisoes: number;
   treinoConcluido: boolean;
+  /** tempo de estudo no treino diário */
+  segundos: number;
 }
 
 export interface Metas {
@@ -33,6 +36,10 @@ export interface Metas {
 }
 
 export const METAS_PADRAO: Metas = { novasPorDia: 10, revisoesPorDia: 20 };
+export const LIMITES_METAS = {
+  novasPorDia: { min: 0, max: 30 },
+  revisoesPorDia: { min: 5, max: 200 },
+};
 
 export type ChaveTom = '1' | '2' | '3' | '4' | '5';
 
@@ -43,8 +50,19 @@ export interface EstadoProgresso {
   atividade: Record<DataISO, AtividadeDia>;
   porModulo: Partial<Record<Modulo, Placar>>;
   porTom: Partial<Record<ChaveTom, Placar>>;
-  /** ids das lições de pinyin concluídas */
-  licoesPinyin: string[];
+  /** cartões de repetição espaçada (id → cartão) */
+  cartoes: Record<string, CartaoSrs>;
+  /** lições de pinyin concluídas (id → data) */
+  licoesPinyin: Record<string, DataISO>;
   /** textos de leitura concluídos (id → resultado) */
   textos: Record<string, { data: DataISO; acertos: number; total: number }>;
+}
+
+/** Formato do arquivo de backup (exportar/importar). */
+export interface Backup {
+  app: 'aprenda-mandarim';
+  versao: 1;
+  exportadoEm: string;
+  progresso: EstadoProgresso;
+  preferencias?: Record<string, unknown>;
 }
