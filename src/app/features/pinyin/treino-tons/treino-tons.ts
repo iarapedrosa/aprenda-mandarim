@@ -122,7 +122,7 @@ const SILABAS_INICIANTE = ['ma', 'ba', 'yi', 'shi', 'wu', 'tang', 'qi', 'tu', 'y
     .modos {
       display: grid;
       gap: 8px;
-      grid-template-columns: repeat(auto-fit, minmax(min(100%, 200px), 1fr));
+      grid-template-columns: repeat(3, 1fr);
       margin-bottom: 12px;
     }
     .modo {
@@ -199,6 +199,22 @@ const SILABAS_INICIANTE = ['ma', 'ba', 'yi', 'shi', 'wu', 'tang', 'qi', 'tu', 'y
     }
     .teclas {
       margin: 10px 0 0;
+    }
+    @media (max-width: 599px) {
+      .modo {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        gap: 4px;
+        padding: 8px 6px;
+        font-size: 0.9rem;
+      }
+      .modo small {
+        display: none;
+      }
+      .modo input {
+        margin: 0;
+      }
     }
   `,
 })
