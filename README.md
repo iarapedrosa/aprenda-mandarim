@@ -21,7 +21,7 @@ e também para quem fala inglês: dá para escolher **português → mandarim** 
 - 🃏 **Cartões (estilo Anki)**: flashcards com Errei/Difícil/Bom/Fácil e prévia do próximo intervalo, mais exportação dos baralhos para o app do Anki.
 - 💬 **Frase do dia** e **palavra do dia** na página inicial.
 - 🌐 **Português ou inglês**: o botão **PT/EN** no topo troca o site inteiro (interface, traduções, gramática comparada ao inglês e armadilhas de pronúncia para falantes de inglês). A escolha fica salva; na primeira visita, segue o idioma do navegador.
-- 📱 PWA instalável, funciona offline, tema claro/escuro, menu inferior e menu lateral pensados para o celular, progresso salvo no navegador com backup em JSON.
+- 📱 Funciona offline no próprio navegador (depois do primeiro acesso), pode ser adicionado à tela de início, tema claro/escuro, menu inferior e menu lateral pensados para o celular, progresso salvo no navegador com backup em JSON.
 
 ## Sumário
 
@@ -103,7 +103,8 @@ Abra **Números** no menu (no celular, em **Praticar › Números**):
 - **Áudio**: o site usa a voz em chinês do seu aparelho. Se não houver nenhuma, o site mostra como instalar (iPhone: Ajustes › Acessibilidade › Conteúdo Falado › Vozes › Chinês; Android: Conversão de texto em voz › Google › Chinês). Use o botão **Lenta/Normal** para mudar a velocidade.
 - **Digitando pinyin**: use números (`ni3 hao3`) ou acentos (`nǐ hǎo`); `v` vale como `ü` (`lv4` = lǜ) e `5` (ou nada) indica o tom neutro. Espaços são opcionais.
 - **Fala**: o reconhecimento de voz funciona no Chrome, no Edge e no Safari do iPhone. A checagem é **aproximada**: ela compara as palavras transcritas, mas **não avalia os tons com precisão**.
-- **Instalar no celular**: no Chrome (Android), abra o menu e escolha "Instalar app"; no Safari (iPhone), toque em Compartilhar › "Adicionar à Tela de Início". O app funciona offline.
+- **Sem internet**: depois do primeiro acesso, o site guarda o vocabulário, os textos e os traços no navegador e funciona offline, sem instalar nada. Só o reconhecimento de fala (e, no Chrome do computador, as vozes "Google") precisam de conexão.
+- **Atalho na tela de início** (opcional): no Safari (iPhone), Compartilhar › "Adicionar à Tela de Início"; no Chrome (Android), menu › "Adicionar à tela inicial". Abre o site em tela cheia, como um app.
 - **Backup**: o progresso fica só no navegador. Em **Progresso › Backup**, exporte um JSON de vez em quando. Ele também serve para levar o progresso para outro aparelho, com **Importar**.
 
 ---

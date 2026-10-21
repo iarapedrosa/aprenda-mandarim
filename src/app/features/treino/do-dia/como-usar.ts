@@ -21,8 +21,9 @@ import { IdiomaService } from '../../../core/i18n/idioma.service';
       @if (i.ingles()) {
         <p>
           <strong>Learn Mandarin</strong> is a free site to learn Mandarin from scratch. No sign-up needed: your
-          progress is saved on this device (make a backup in <a routerLink="/progresso">Progress</a>). You can install
-          it as an app and use it offline.
+          progress is saved on this device (make a backup in <a routerLink="/progresso">Progress</a>). After your first
+          visit, the site also works offline, right in the browser — only speech recognition and some voices need
+          internet. Tip: add it to your home screen to open it like an app.
         </p>
 
         <h3>The path</h3>
@@ -64,7 +65,9 @@ import { IdiomaService } from '../../../core/i18n/idioma.service';
       <p>
         O <strong>Aprenda Mandarim</strong> é um site gratuito para aprender mandarim do zero, em português. Não precisa
         de cadastro: o seu progresso fica salvo neste aparelho (faça backup em
-        <a routerLink="/progresso">Progresso</a>). Dá para instalar como app e usar offline.
+        <a routerLink="/progresso">Progresso</a>). Depois do primeiro acesso, o site funciona também sem internet, no
+        próprio navegador — só o reconhecimento de fala e algumas vozes precisam de conexão. Dica: adicione-o à tela de
+        início para abrir como um app.
       </p>
 
       <h3>O caminho</h3>
