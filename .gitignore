@@ -57,3 +57,6 @@ pnpm-debug.log*
 
 # Dados de traços gerados no build (scripts/gerar-tracos.mjs)
 /public/hanzi/
+
+# Anotações pessoais (lista de tarefas e melhorias)
+/TODO.md
