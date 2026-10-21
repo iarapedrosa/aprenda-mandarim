@@ -25,29 +25,31 @@ import { IdiomaService } from '../../core/i18n/idioma.service';
       <div class="painel">
       <div class="coluna principal">
       <section class="cartao chamada" aria-labelledby="titulo-treino">
-        <div class="chips" role="list" [attr.aria-label]="i.t('Seu dia', 'Your day')">
-          <span class="chip" role="listitem" [title]="i.t('Sequência de dias', 'Day streak')">🔥 <strong>{{ progresso.sequencia() }}</strong> {{ progresso.sequencia() === 1 ? i.t('dia', 'day') : i.t('dias', 'days') }}</span>
-          <span class="chip" role="listitem" [title]="i.t('Palavras novas hoje', 'New words today')">🆕 <strong>{{ progresso.atividadeHoje().novas }}/{{ progresso.metas().novasPorDia }}</strong> {{ i.t('novas', 'new') }}</span>
-          <span class="chip" role="listitem" [title]="i.t('Revisões hoje', 'Reviews today')">🔁 <strong>{{ progresso.atividadeHoje().revisoes }}/{{ progresso.metas().revisoesPorDia }}</strong> {{ i.t('revisões', 'reviews') }}</span>
-        </div>
-        @if (progresso.atividadeHoje().treinoConcluido) {
-          <h2 id="titulo-treino">✅ {{ i.t('Treino de hoje concluído!', 'Today’s training is done!') }}</h2>
-          <p class="suave">{{ i.t('Ótimo trabalho. Se quiser, faça mais uma rodada ou pratique um módulo.', 'Great job. If you like, do another round or practice a module.') }}</p>
-        } @else {
-          <h2 id="titulo-treino">{{ i.t('Treino de hoje', 'Today’s training') }}</h2>
-          @if (resumo(); as r) {
-            <p class="suave resumo">
-              ≈ {{ r.minutos }} min ·
-              @if (r.licoes) { {{ r.licoes }} {{ r.licoes === 1 ? i.t('lição de pinyin', 'pinyin lesson') : i.t('lições de pinyin', 'pinyin lessons') }} · }
-              @if (r.gramatica) { {{ i.t('1 lição de gramática', '1 grammar lesson') }} · }
-              @if (r.revisoes) { {{ r.revisoes }} {{ i.t('revisões', 'reviews') }} · }
-              @if (r.novas) { {{ r.novas }} {{ i.t('palavras novas', 'new words') }} · }
-              @if (r.escrita) { {{ r.escrita }} {{ i.t('caracteres para escrever', 'characters to write') }} · }
-              @if (r.frases) { {{ r.frases }} {{ i.t('exercícios com frases', 'sentence exercises') }} · }
-              {{ i.t('aquecimento de tons', 'tone warm-up') }}
-            </p>
+        <div class="topo-chamada">
+          <div class="chips" role="list" [attr.aria-label]="i.t('Seu dia', 'Your day')">
+            <span class="chip" role="listitem" [title]="i.t('Sequência de dias', 'Day streak')">🔥 <strong>{{ progresso.sequencia() }}</strong> {{ progresso.sequencia() === 1 ? i.t('dia', 'day') : i.t('dias', 'days') }}</span>
+            <span class="chip" role="listitem" [title]="i.t('Palavras novas hoje', 'New words today')">🆕 <strong>{{ progresso.atividadeHoje().novas }}/{{ progresso.metas().novasPorDia }}</strong> {{ i.t('novas', 'new') }}</span>
+            <span class="chip" role="listitem" [title]="i.t('Revisões hoje', 'Reviews today')">🔁 <strong>{{ progresso.atividadeHoje().revisoes }}/{{ progresso.metas().revisoesPorDia }}</strong> {{ i.t('revisões', 'reviews') }}</span>
+          </div>
+          @if (progresso.atividadeHoje().treinoConcluido) {
+            <h2 id="titulo-treino">✅ {{ i.t('Treino de hoje concluído!', 'Today’s training is done!') }}</h2>
+            <p class="suave">{{ i.t('Ótimo trabalho. Se quiser, faça mais uma rodada ou pratique um módulo.', 'Great job. If you like, do another round or practice a module.') }}</p>
+          } @else {
+            <h2 id="titulo-treino">{{ i.t('Treino de hoje', 'Today’s training') }}</h2>
+            @if (resumo(); as r) {
+              <p class="suave resumo">
+                ≈ {{ r.minutos }} min ·
+                @if (r.licoes) { {{ r.licoes }} {{ r.licoes === 1 ? i.t('lição de pinyin', 'pinyin lesson') : i.t('lições de pinyin', 'pinyin lessons') }} · }
+                @if (r.gramatica) { {{ i.t('1 lição de gramática', '1 grammar lesson') }} · }
+                @if (r.revisoes) { {{ r.revisoes }} {{ i.t('revisões', 'reviews') }} · }
+                @if (r.novas) { {{ r.novas }} {{ i.t('palavras novas', 'new words') }} · }
+                @if (r.escrita) { {{ r.escrita }} {{ i.t('caracteres para escrever', 'characters to write') }} · }
+                @if (r.frases) { {{ r.frases }} {{ i.t('exercícios com frases', 'sentence exercises') }} · }
+                {{ i.t('aquecimento de tons', 'tone warm-up') }}
+              </p>
+            }
           }
-        }
+        </div>
         @if (aviso() && !progresso.atividadeHoje().treinoConcluido) {
           <p class="aviso pequeno" role="status">⏳ {{ aviso() }}</p>
         }
@@ -89,6 +91,21 @@ import { IdiomaService } from '../../core/i18n/idioma.service';
         <app-meu-plano [embutido]="true" />
       </section>
 
+      </div>
+
+      <div class="coluna lateral">
+        @if (fraseDoDia(); as f) {
+          <app-frase-do-dia [frase]="f" />
+        }
+        @if (palavra(); as p) {
+          <app-palavra-do-dia [palavra]="p" />
+        }
+
+
+      </div>
+      </div>
+
+      <div class="extras">
       <app-como-usar [destaque]="iniciante()" />
 
       @if (anteriores().length) {
@@ -107,19 +124,6 @@ import { IdiomaService } from '../../core/i18n/idioma.service';
         </details>
       }
       </div>
-
-      <div class="coluna lateral">
-        @if (fraseDoDia(); as f) {
-          <app-frase-do-dia [frase]="f" />
-        }
-        @if (palavra(); as p) {
-          <app-palavra-do-dia [palavra]="p" />
-        }
-
-
-      </div>
-      </div>
-
     </section>
   `,
   styles: `
@@ -219,6 +223,14 @@ import { IdiomaService } from '../../core/i18n/idioma.service';
       gap: 16px;
       margin-top: 12px;
     }
+    .extras {
+      display: grid;
+      gap: 16px;
+      margin-top: 16px;
+    }
+    .extras > * {
+      margin: 0;
+    }
     .coluna {
       display: flex;
       flex-direction: column;
@@ -237,6 +249,19 @@ import { IdiomaService } from '../../core/i18n/idioma.service';
       .lateral > app-frase-do-dia,
       .lateral > app-palavra-do-dia {
         flex: 1;
+      }
+      /* se o cartão esticar, o espaço extra se divide entre os blocos (sem um buraco só) */
+      .principal > .chamada {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+      }
+      /* "como usar" e "frases anteriores": cada um abre sem esticar o outro */
+      .extras {
+        grid-template-columns: minmax(0, 3fr) minmax(0, 2fr);
+        align-items: start;
+        gap: 24px;
       }
     }
     .anteriores summary {
