@@ -1,0 +1,225 @@
+<section class="pagina">
+  <header>
+    <h1>Progresso</h1>
+    <p class="subtitulo">Sua sequência, estatísticas, metas e backup.</p>
+  </header>
+
+  <div class="numeros">
+    <div class="cartao numero">
+      <span class="valor">🔥 {{ progresso.sequencia() }}</span>
+      <span class="rotulo">dias seguidos</span>
+    </div>
+    <div class="cartao numero">
+      <span class="valor">{{ progresso.melhorSequencia() }}</span>
+      <span class="rotulo">melhor sequência</span>
+    </div>
+    <div class="cartao numero">
+      <span class="valor">{{ contagem().estudadas }}</span>
+      <span class="rotulo">palavras estudadas</span>
+    </div>
+    <div class="cartao numero">
+      <span class="valor">{{ contagem().dominadas }}</span>
+      <span class="rotulo">palavras dominadas</span>
+    </div>
+    <div class="cartao numero">
+      <span class="valor">{{ contagem().caracteres }}</span>
+      <span class="rotulo">caracteres escritos</span>
+    </div>
+    <div class="cartao numero">
+      <span class="valor">{{ minutosTotais() }}</span>
+      <span class="rotulo">minutos de treino</span>
+    </div>
+  </div>
+  <p class="suave pequeno">
+    “Dominadas” = palavras cuja próxima revisão está a 21 dias ou mais. {{ diasPraticados() }} dia(s) com prática no
+    total.
+  </p>
+
+  <section class="cartao">
+    <h2>Calendário de atividade</h2>
+    <div class="rolagem-x">
+      <div class="calendario" role="img" [attr.aria-label]="'Atividade das últimas ' + calendario().length + ' semanas'">
+        <div class="dias-semana" aria-hidden="true">
+          <span>seg</span><span></span><span>qua</span><span></span><span>sex</span><span></span><span></span>
+        </div>
+        @for (semana of calendario(); track $index) {
+          <div class="semana">
+            <span class="mes" aria-hidden="true">{{ semana.mes }}</span>
+            @for (dia of semana.dias; track dia.data) {
+              <span
+                class="dia"
+                [class]="'dia nivel-' + dia.nivel"
+                [class.futuro]="dia.futuro"
+                [class.hoje]="dia.data === progresso.hoje()"
+                [title]="dia.futuro ? '' : dia.rotulo"
+              ></span>
+            }
+          </div>
+        }
+      </div>
+    </div>
+    <p class="legenda" aria-hidden="true">
+      menos <span class="dia nivel-0"></span><span class="dia nivel-1"></span><span class="dia nivel-2"></span
+      ><span class="dia nivel-3"></span><span class="dia nivel-4"></span> mais exercícios
+    </p>
+  </section>
+
+  <div class="duas-colunas">
+    <section class="cartao">
+      <h2>Acertos por módulo</h2>
+      <ul class="barras">
+        @for (m of porModulo(); track m.nome) {
+          <li>
+            <span class="nome">{{ m.nome }}</span>
+            <span class="trilho"><span class="barra" [style.width.%]="m.taxa ?? 0"></span></span>
+            <span class="valor-barra">{{ m.taxa === null ? '—' : m.taxa + '%' }}</span>
+            <span class="total suave">{{ m.total }}</span>
+          </li>
+        }
+      </ul>
+      <p class="suave pequeno">Porcentagem de acertos · última coluna: total de exercícios.</p>
+    </section>
+
+    <section class="cartao">
+      <h2>Acertos por tom</h2>
+      <ul class="barras">
+        @for (t of porTom(); track t.tom) {
+          <li>
+            <span class="nome"><span class="marca-tom" [class]="'marca-tom fundo-tom-' + t.tom"></span>{{ t.nome }}</span>
+            <span class="trilho"><span class="barra" [class]="'barra fundo-tom-' + t.tom" [style.width.%]="t.taxa ?? 0"></span></span>
+            <span class="valor-barra">{{ t.taxa === null ? '—' : t.taxa + '%' }}</span>
+            <span class="total suave">{{ t.total }}</span>
+          </li>
+        }
+      </ul>
+      <p class="suave pequeno">Vem do treino de tons e dos exercícios com áudio. O 3º tom costuma ser o mais difícil!</p>
+    </section>
+  </div>
+
+  <section class="cartao">
+    <h2>Revisões nos próximos dias</h2>
+    <div class="previsao" role="list">
+      @for (d of previsao(); track $index) {
+        <div class="coluna" role="listitem" [attr.aria-label]="d.rotulo + ': ' + d.total + ' revisões'">
+          <span class="numero-coluna">{{ d.total }}</span>
+          <span class="trilho-vertical"><span class="barra-vertical" [style.height.%]="d.altura"></span></span>
+          <span class="suave pequeno">{{ d.rotulo }}</span>
+        </div>
+      }
+    </div>
+  </section>
+
+  <section class="cartao" aria-labelledby="titulo-metas">
+    <h2 id="titulo-metas">Meta diária</h2>
+    <div class="metas">
+      <label>
+        Palavras novas por dia
+        <input
+          class="campo"
+          type="number"
+          inputmode="numeric"
+          [min]="limites.novasPorDia.min"
+          [max]="limites.novasPorDia.max"
+          [ngModel]="progresso.metas().novasPorDia"
+          (ngModelChange)="definirMeta('novasPorDia', $event)"
+          [ngModelOptions]="{ updateOn: 'blur' }"
+        />
+      </label>
+      <label>
+        Revisões por dia
+        <input
+          class="campo"
+          type="number"
+          inputmode="numeric"
+          [min]="limites.revisoesPorDia.min"
+          [max]="limites.revisoesPorDia.max"
+          [ngModel]="progresso.metas().revisoesPorDia"
+          (ngModelChange)="definirMeta('revisoesPorDia', $event)"
+          [ngModelOptions]="{ updateOn: 'blur' }"
+        />
+      </label>
+    </div>
+    <p class="suave pequeno">
+      Dica: 5 a 10 palavras novas por dia é um bom ritmo. Lembre que cada palavra nova vira revisões nos dias seguintes.
+    </p>
+  </section>
+
+  <section class="cartao" aria-labelledby="titulo-preferencias">
+    <h2 id="titulo-preferencias">Preferências</h2>
+    <div class="metas">
+      <label>
+        Tema
+        <select class="campo" [ngModel]="tema.preferencia()" (ngModelChange)="mudarTema($event)">
+          <option value="sistema">Igual ao sistema</option>
+          <option value="claro">Claro</option>
+          <option value="escuro">Escuro</option>
+        </select>
+      </label>
+      <label>
+        Velocidade da voz
+        <select class="campo" [ngModel]="voz.velocidade()" (ngModelChange)="voz.velocidade.set($event)">
+          <option value="normal">Normal</option>
+          <option value="lenta">Lenta</option>
+        </select>
+      </label>
+      @if (voz.vozesChinesas().length > 1) {
+        <label>
+          Voz em chinês
+          <select class="campo" [ngModel]="voz.voz()?.name" (ngModelChange)="voz.nomeVozEscolhida.set($event)">
+            @for (v of voz.vozesChinesas(); track v.name) {
+              <option [value]="v.name">{{ v.name }} ({{ v.lang }})</option>
+            }
+          </select>
+        </label>
+      }
+    </div>
+    <button type="button" class="botao" (click)="testarVoz()" [disabled]="!voz.suportado">🔊 Testar voz</button>
+    @if (voz.semVozChinesa()) {
+      <p class="aviso pequeno">Nenhuma voz em chinês encontrada neste aparelho. Veja como instalar na seção <a routerLink="/pinyin/tons">Pinyin</a>.</p>
+    }
+  </section>
+
+  <section class="cartao" aria-labelledby="titulo-backup">
+    <h2 id="titulo-backup">Backup do progresso</h2>
+    <p>
+      Seu progresso fica salvo só neste navegador. Exporte um backup de vez em quando — e use-o para levar o progresso
+      para outro aparelho.
+    </p>
+    <div class="linha">
+      <button type="button" class="botao botao-primario" (click)="exportar()">⬇ Exportar (JSON)</button>
+      <label class="botao arquivo">
+        ⬆ Importar backup
+        <input type="file" accept="application/json,.json" (change)="escolherArquivo($event)" class="visualmente-oculto" />
+      </label>
+    </div>
+
+    @if (backupPendente(); as b) {
+      <div class="aviso confirmacao" role="alert">
+        <p>{{ b.resumo }}</p>
+        <p><strong>Isso substitui todo o progresso atual.</strong> Continuar?</p>
+        <div class="linha">
+          <button type="button" class="botao botao-primario" (click)="confirmarImportacao()">Sim, restaurar</button>
+          <button type="button" class="botao" (click)="backupPendente.set(null)">Cancelar</button>
+        </div>
+      </div>
+    }
+    @if (mensagemBackup(); as m) {
+      <p [class]="m.tipo" role="status">{{ m.texto }}</p>
+    }
+
+    <details class="perigo">
+      <summary>Apagar todo o progresso</summary>
+      @if (!confirmarApagar()) {
+        <button type="button" class="botao" (click)="confirmarApagar.set(true)">Apagar progresso…</button>
+      } @else {
+        <div class="erro confirmacao" role="alert">
+          <p><strong>Tem certeza?</strong> Isso não pode ser desfeito (exporte um backup antes).</p>
+          <div class="linha">
+            <button type="button" class="botao botao-primario" (click)="apagar()">Sim, apagar tudo</button>
+            <button type="button" class="botao" (click)="confirmarApagar.set(false)">Cancelar</button>
+          </div>
+        </div>
+      }
+    </details>
+  </section>
+</section>

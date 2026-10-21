@@ -1,0 +1,264 @@
+.numeros {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 140px), 1fr));
+  gap: 8px;
+  margin-bottom: 6px;
+}
+
+.numero {
+  display: flex;
+  flex-direction: column;
+  padding: 12px;
+  text-align: center;
+}
+
+.numero + .numero {
+  margin-top: 0;
+}
+
+.valor {
+  font-size: 1.5rem;
+  font-weight: 700;
+}
+
+.rotulo {
+  font-size: 0.85rem;
+  color: var(--cor-texto-suave);
+}
+
+section.cartao {
+  margin-top: 12px;
+}
+
+/* ---------- calendário ---------- */
+.calendario {
+  display: flex;
+  gap: 3px;
+  padding-top: 16px;
+  width: max-content;
+}
+
+.dias-semana,
+.semana {
+  display: grid;
+  grid-template-rows: repeat(7, 14px);
+  gap: 3px;
+  position: relative;
+}
+
+.dias-semana span {
+  font-size: 0.65rem;
+  color: var(--cor-texto-suave);
+  line-height: 14px;
+  padding-right: 4px;
+}
+
+.mes {
+  position: absolute;
+  top: -16px;
+  left: 0;
+  font-size: 0.65rem;
+  color: var(--cor-texto-suave);
+  white-space: nowrap;
+}
+
+.dia {
+  display: inline-block;
+  width: 14px;
+  height: 14px;
+  border-radius: 3px;
+  background: var(--cor-superficie-2);
+  vertical-align: middle;
+}
+
+/* escala sequencial de um só tom (cor primária), do claro ao escuro */
+.nivel-1 {
+  background: color-mix(in srgb, var(--cor-primaria) 30%, var(--cor-superficie-2));
+}
+.nivel-2 {
+  background: color-mix(in srgb, var(--cor-primaria) 55%, var(--cor-superficie-2));
+}
+.nivel-3 {
+  background: color-mix(in srgb, var(--cor-primaria) 78%, var(--cor-superficie-2));
+}
+.nivel-4 {
+  background: var(--cor-primaria);
+}
+
+.dia.futuro {
+  background: transparent;
+  outline: 1px dashed var(--cor-borda);
+  outline-offset: -1px;
+}
+
+.dia.hoje {
+  outline: 2px solid var(--cor-texto);
+  outline-offset: -1px;
+}
+
+.legenda {
+  display: flex;
+  align-items: center;
+  gap: 3px;
+  font-size: 0.75rem;
+  color: var(--cor-texto-suave);
+  margin: 8px 0 0;
+}
+
+/* ---------- barras ---------- */
+.duas-colunas {
+  display: grid;
+  gap: 12px;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 320px), 1fr));
+}
+
+.duas-colunas .cartao {
+  margin-top: 12px;
+}
+
+.barras {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 8px;
+  display: grid;
+  gap: 8px;
+}
+
+.barras li {
+  display: grid;
+  grid-template-columns: 6.5em 1fr 3em 2.5em;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.9rem;
+}
+
+.nome {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.trilho {
+  height: 10px;
+  border-radius: 4px;
+  background: var(--cor-superficie-2);
+  overflow: hidden;
+}
+
+.barra {
+  display: block;
+  height: 100%;
+  border-radius: 0 4px 4px 0;
+  background: var(--cor-primaria);
+}
+
+.valor-barra {
+  text-align: right;
+  font-weight: 700;
+}
+
+.total {
+  text-align: right;
+  font-size: 0.8rem;
+}
+
+.marca-tom {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  flex: none;
+}
+
+.fundo-tom-1 {
+  background: var(--tom-1);
+}
+.fundo-tom-2 {
+  background: var(--tom-2);
+}
+.fundo-tom-3 {
+  background: var(--tom-3);
+}
+.fundo-tom-4 {
+  background: var(--tom-4);
+}
+.fundo-tom-5 {
+  background: var(--tom-5);
+}
+
+/* ---------- previsão ---------- */
+.previsao {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 6px;
+  align-items: end;
+}
+
+.coluna {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+}
+
+.numero-coluna {
+  font-weight: 700;
+  font-size: 0.9rem;
+}
+
+.trilho-vertical {
+  height: 80px;
+  width: 22px;
+  display: flex;
+  align-items: flex-end;
+  background: var(--cor-superficie-2);
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.barra-vertical {
+  display: block;
+  width: 100%;
+  background: var(--cor-primaria);
+  border-radius: 4px 4px 0 0;
+}
+
+/* ---------- formulários ---------- */
+.metas {
+  display: grid;
+  gap: 12px;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 200px), 1fr));
+  margin-bottom: 10px;
+}
+
+.metas label {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.arquivo {
+  cursor: pointer;
+}
+
+.arquivo:focus-within {
+  outline: 3px solid var(--cor-foco);
+  outline-offset: 2px;
+}
+
+.confirmacao {
+  margin-top: 12px;
+}
+
+.confirmacao p {
+  margin: 0 0 8px;
+}
+
+.perigo {
+  margin-top: 16px;
+}
+
+.perigo summary {
+  cursor: pointer;
+  color: var(--cor-texto-suave);
+  margin-bottom: 8px;
+}
