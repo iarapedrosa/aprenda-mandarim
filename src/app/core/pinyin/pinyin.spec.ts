@@ -81,6 +81,12 @@ describe('pinyin: segmentação', () => {
     expect(segmentar('zhuangu')).toEqual([5, 7]);
   });
 
+  it('não começa sílaba com a/o/e no meio da palavra sem apóstrofo', () => {
+    expect(analisarPinyin('kěnéng').map((s) => s.letras)).toEqual(['ke', 'neng']);
+    expect(analisarPinyin('yángròu').map((s) => s.letras)).toEqual(['yang', 'rou']);
+    expect(analisarPinyin('suīrán').map((s) => s.letras)).toEqual(['sui', 'ran']);
+  });
+
   it('retorna null para letras que não formam sílabas', () => {
     expect(segmentar('xyz')).toBeNull();
   });

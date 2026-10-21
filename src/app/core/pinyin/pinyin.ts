@@ -168,6 +168,9 @@ export function segmentar(letras: string, fronteiras: ReadonlySet<number> = new 
         }
       }
       if (atravessa) continue;
+      // Sem separador, uma sílaba no meio da palavra não começa com a/o/e (senão viria apóstrofo):
+      // "kěnéng" = ke + neng, nunca ken + eng.
+      if (inicio > 0 && !fronteiras.has(inicio) && /[aoe]/.test(letras[inicio])) continue;
       if (!ehSilaba(letras.slice(inicio, fim))) continue;
       const resto = resolver(fim);
       if (resto) {
