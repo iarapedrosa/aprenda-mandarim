@@ -41,7 +41,7 @@
   --raio-p: 10px;
   --sombra: 0 1px 2px rgb(0 0 0 / 6%), 0 4px 14px rgb(0 0 0 / 6%);
   --altura-nav: 64px;
-  --largura-max: 1200px;
+  --largura-max: 1400px;
 }
 
 :root[data-tema='escuro'] {
