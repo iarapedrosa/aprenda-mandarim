@@ -1,7 +1,7 @@
 import { CartaoSrs } from '../srs/sm2';
 import { DataISO } from '../util/datas';
 
-export type Modulo = 'tons' | 'pinyin' | 'caracteres' | 'escrita' | 'leitura' | 'escuta' | 'fala';
+export type Modulo = 'tons' | 'pinyin' | 'caracteres' | 'escrita' | 'leitura' | 'escuta' | 'fala' | 'numeros';
 
 export const NOMES_MODULOS: Record<Modulo, string> = {
   tons: 'Tons',
@@ -11,6 +11,7 @@ export const NOMES_MODULOS: Record<Modulo, string> = {
   leitura: 'Leitura',
   escuta: 'Escuta',
   fala: 'Fala',
+  numeros: 'Números',
 };
 
 export interface Placar {
