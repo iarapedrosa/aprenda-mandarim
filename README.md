@@ -12,6 +12,7 @@ Toda a interface, as explicações e as traduções estão em português.
 - 🗣️ **Fala**: shadowing e trava-línguas com reconhecimento de voz.
 - 🔢 **Números**: regras explicadas (十, 百, 千, 万, 零, 两 × 二), conversor (digite um número e ouça em chinês) e prática de números, preços, horas, anos e telefones.
 - 📐 **Gramática**: 12 mini-lições (ordem da frase, 的, classificadores, 了, 比…) que entram no treino aos poucos, e o exercício **Monte a frase**.
+- 🔬 **O método e a ciência**: por que o site funciona assim, com as referências dos estudos (recordação ativa, espaçamento, treino de tons com várias vozes, gestos, cobertura de leitura…).
 - 🧭 **Recursos**: o que usar fora do site em cada fase (livros graduados, apps, vídeos) e quando começar a conversar.
 - 🃏 **Cartões (estilo Anki)**: flashcards com Errei/Difícil/Bom/Fácil e prévia do próximo intervalo, mais exportação dos baralhos para o app do Anki.
 - 💬 **Frase do dia** e **palavra do dia** na página inicial.
@@ -42,6 +43,10 @@ O treino diário apresenta o conteúdo aos poucos:
 
 Já sabe pinyin? Na página inicial, use **"Já sei pinyin — pular para o vocabulário"**.
 
+### Primeiros passos
+
+Na página inicial, **Como usar o site** explica o caminho e dá dicas, e **Meu plano** pede para você decidir quando e onde vai estudar (decidir isso de antemão aumenta muito a chance de cumprir).
+
 ### O treino de hoje
 
 Toque em **Começar treino** na página inicial. A sessão segue esta ordem:
@@ -64,6 +69,10 @@ O treino também traz:
 **Meta diária**: em **Progresso › Meta diária** você escolhe quantas palavras novas e quantas revisões quer por dia (padrão: 6 e 20) e quanto de **escrita à mão** entra no treino (leve, normal ou desligada).
 
 - **Acúmulo de revisões**: se as revisões atrasarem, o limite do dia sobe (até o dobro da meta) e entram menos palavras novas até normalizar. Regra prática: cada palavra nova por dia vira ~10 revisões diárias.
+- **Tons difíceis**: o site registra os tons que você confunde (o clássico é 2º × 3º) e passa a sortear mais esses tons; veja em Progresso.
+- **Gestos**: depois de cada exercício de tom aparece a curva certa — desenhe-a no ar com a mão.
+- **Dicas para lembrar**: crie um mnemônico (💡) para qualquer palavra; ele aparece no treino e nos cartões.
+- **Leitura**: cada texto mostra quantos % das palavras você já estudou ("ideal", "bom desafio" ou "difícil").
 - **Vozes**: se o aparelho tiver mais de uma voz de mandarim, o site alterna entre elas (ouvir vozes diferentes ajuda a perceber os tons).
 
 ### Cartões (estilo Anki)
@@ -239,6 +248,7 @@ Depois de editar, rode `npm run dados:validar`.
 │       ├── cartoes/          # flashcards estilo Anki + exportação para o Anki
 │       ├── gramatica/        # mini-lições de gramática e "Monte a frase"
 │       ├── recursos/         # recursos externos por fase e dicas de conversa
+│       ├── metodo/           # o método e a ciência (referências)
 │       ├── numeros/          # aprender, conversor e prática de números
 │       ├── praticar/         # atalhos (celular)
 │       └── progresso/        # estatísticas, calendário, metas, backup
@@ -265,6 +275,28 @@ Os testes unitários (Vitest) cobrem:
 - a exportação para o Anki.
 
 ---
+
+## Base científica
+
+Cada decisão de design tem uma referência na página **O método e a ciência** do site (`src/app/features/metodo/metodo.ts`). Resumo:
+
+| Princípio | Referência |
+|---|---|
+| Recordação ativa (testar > reler) | Roediger & Karpicke (2006), *Psychological Science*; Karpicke & Roediger (2008), *Science* |
+| Revisão espaçada | Cepeda et al. (2006), *Psychological Bulletin*; Cepeda et al. (2008), *Psychological Science* |
+| Intercalar exercícios | Kornell & Bjork (2008), *Psychological Science*; Dunlosky et al. (2013), *PSPI* |
+| Treino de percepção com várias vozes | Logan, Lively & Pisoni (1991); Wang et al. (1999, 2003), *JASA* |
+| Confusão 2º × 3º tom | Hao (2012), *Journal of Phonetics* |
+| Gestos para os tons | Baills et al. (2019), *Studies in Second Language Acquisition* |
+| Escrever à mão + digitar pinyin | Guan et al. (2011), *Journal of Educational Psychology* |
+| ~98% de cobertura para ler | Hu & Nation (2000), *Reading in a Foreign Language* |
+| Gramática explícita | Norris & Ortega (2000), *Language Learning* |
+| Correção imediata | Lyster & Saito (2010), *SSLA* |
+| Shadowing | Hamada (2016), *Language Teaching Research* |
+| Mnemônicos | Atkinson & Raugh (1975), *J. Exp. Psych.: Human Learning and Memory* |
+| Plano e hábito | Gollwitzer (1999), *American Psychologist*; Lally et al. (2010), *Eur. J. Social Psychology* |
+
+Há pouca pesquisa em revistas de alto impacto especificamente sobre brasileiros aprendendo mandarim; as dicas para brasileiros vêm da fonologia contrastiva e de modelos de aprendizagem de sons de L2 (Flege; Best & Tyler).
 
 ## Como funciona a repetição espaçada
 
