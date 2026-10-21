@@ -7,6 +7,7 @@ import { Frase, Palavra } from './modelos';
 export interface FraseDoDia extends Frase {
   id: string;
   nota?: string;
+  notaEn?: string;
 }
 
 /** Frase do dia (public/data/frases-do-dia.json) e palavra do dia (do vocabulário). */

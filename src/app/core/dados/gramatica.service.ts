@@ -4,22 +4,27 @@ import { Frase } from './modelos';
 
 export interface ExercicioGramatica {
   pergunta: string;
+  perguntaEn?: string;
   /** frase com lacuna (___), se houver */
   frase?: string;
   opcoes: string[];
   /** índice da opção correta (no arquivo, sempre 0; o site embaralha) */
   correta: number;
   explicacao: string;
+  explicacaoEn?: string;
 }
 
 /** Mini-lição de gramática (public/data/gramatica.json). */
 export interface LicaoGramatica {
   id: string;
   titulo: string;
+  tituloEn?: string;
   /** palavras estudadas para a lição entrar no treino diário */
   minPalavras: number;
   estrutura: string;
+  estruturaEn?: string;
   explicacao: string[];
+  explicacaoEn?: string[];
   exemplos: Frase[];
   exercicios: ExercicioGramatica[];
 }

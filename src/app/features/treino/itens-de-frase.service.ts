@@ -35,11 +35,12 @@ export class ItensDeFraseService {
         tipo: 'escolha',
         modulo: 'escuta',
         enunciado: 'Ouça a frase e escolha o que foi dito',
+        enunciadoEn: 'Listen to the sentence and choose what was said',
         pergunta: { audio: alvo.hanzi },
         opcoes: opcoes.map((o) => ({ valor: o.chave, rotulo: o.hanzi, hanzi: true })),
         correta: alvo.chave,
         tons: analisarPinyin(alvo.pinyin).map((s) => s.tom),
-        resposta: { hanzi: alvo.hanzi, pinyin: alvo.pinyin, traducao: alvo.traducao },
+        resposta: { hanzi: alvo.hanzi, pinyin: alvo.pinyin, traducao: alvo.traducao, traducaoEn: alvo.traducaoEn },
       });
     }
 
@@ -47,7 +48,15 @@ export class ItensDeFraseService {
     const linhas = this.leitura
       .textos()
       .filter((t) => t.nivel <= (conhecidas.length > 120 ? 2 : 1))
-      .flatMap((t) => t.linhas.map((l, i) => ({ chave: `${t.id}:${i}`, hanzi: hanziDaLinha(l), pinyin: pinyinDaLinha(l), traducao: l.traducao })))
+      .flatMap((t) =>
+        t.linhas.map((l, i) => ({
+          chave: `${t.id}:${i}`,
+          hanzi: hanziDaLinha(l),
+          pinyin: pinyinDaLinha(l),
+          traducao: l.traducao,
+          traducaoEn: l.traducaoEn,
+        })),
+      )
       .filter((l) => [...l.hanzi].length <= 18);
     if (linhas.length >= 4) {
       const alvo = sortear(linhas);
@@ -57,17 +66,22 @@ export class ItensDeFraseService {
         tipo: 'escolha',
         modulo: 'leitura',
         enunciado: 'Leia e escolha a tradução',
+        enunciadoEn: 'Read and choose the translation',
         pergunta: { hanzi: alvo.hanzi, audio: alvo.hanzi },
-        opcoes: opcoes.map((o) => ({ valor: o.chave, rotulo: o.traducao })),
+        opcoes: opcoes.map((o) => ({ valor: o.chave, rotulo: o.traducao, rotuloEn: o.traducaoEn })),
         correta: alvo.chave,
-        resposta: { hanzi: alvo.hanzi, pinyin: alvo.pinyin, traducao: alvo.traducao },
+        resposta: { hanzi: alvo.hanzi, pinyin: alvo.pinyin, traducao: alvo.traducao, traducaoEn: alvo.traducaoEn },
       });
     }
 
     // Fala: repetir uma frase (shadowing)
     if (exemplos.length) {
       const alvo = sortear(exemplos);
-      itens.push({ id: novoId('fala'), tipo: 'falar', frase: { hanzi: alvo.hanzi, pinyin: alvo.pinyin, traducao: alvo.traducao } });
+      itens.push({
+        id: novoId('fala'),
+        tipo: 'falar',
+        frase: { hanzi: alvo.hanzi, pinyin: alvo.pinyin, traducao: alvo.traducao, traducaoEn: alvo.traducaoEn },
+      });
     }
 
     return itens;

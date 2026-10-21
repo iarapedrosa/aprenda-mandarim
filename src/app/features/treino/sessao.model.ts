@@ -24,6 +24,7 @@ interface ItemBase {
 export interface OpcaoEscolha {
   valor: string;
   rotulo: string;
+  rotuloEn?: string;
   /** mostrar com fonte chinesa */
   hanzi?: boolean;
   /** mostrar colorido como pinyin */
@@ -34,10 +35,12 @@ export interface ItemEscolha extends ItemBase {
   tipo: 'escolha';
   modulo: Modulo;
   enunciado: string;
+  enunciadoEn?: string;
   pergunta: {
     hanzi?: string;
     pinyin?: string;
     texto?: string;
+    textoEn?: string;
     /** texto em chinês a ser falado */
     audio?: string;
   };
@@ -46,8 +49,9 @@ export interface ItemEscolha extends ItemBase {
   /** tons envolvidos (estatística por tom) */
   tons?: number[];
   /** mostrado depois de responder */
-  resposta?: { hanzi: string; pinyin: string; traducao?: string };
+  resposta?: { hanzi: string; pinyin: string; traducao?: string; traducaoEn?: string };
   explicacao?: string;
+  explicacaoEn?: string;
 }
 
 export interface ItemLicao extends ItemBase {
@@ -69,9 +73,11 @@ export interface ItemDigitarPinyin extends ItemBase {
   tipo: 'digitar-pinyin';
   modulo: Modulo;
   enunciado: string;
+  enunciadoEn?: string;
   hanzi: string;
   pinyin: string;
   traducao: string;
+  traducaoEn?: string;
   /** só áudio (ditado) ou mostra os caracteres */
   soAudio: boolean;
 }

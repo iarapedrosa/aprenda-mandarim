@@ -1,5 +1,6 @@
 import { Component, computed, inject, input } from '@angular/core';
 import { Velocidade, VozService } from '../../core/voz/voz.service';
+import { IdiomaService } from '../../core/i18n/idioma.service';
 
 /**
  * Botão que pronuncia um texto em mandarim.
@@ -84,6 +85,7 @@ import { Velocidade, VozService } from '../../core/voz/voz.service';
   `,
 })
 export class BotaoAudio {
+  protected readonly i = inject(IdiomaService);
   protected readonly voz = inject(VozService);
 
   /** texto em chinês a ser falado */
@@ -97,7 +99,7 @@ export class BotaoAudio {
   readonly compacto = input(false);
 
   protected readonly rotuloAcessivel = computed(() => {
-    const base = this.velocidade() === 'lenta' ? 'Ouvir devagar' : 'Ouvir';
+    const base = this.velocidade() === 'lenta' ? this.i.t('Ouvir devagar', 'Listen slowly') : this.i.t('Ouvir', 'Listen');
     return `${base}: ${this.rotulo() || this.texto()}`;
   });
 

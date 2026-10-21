@@ -7,6 +7,7 @@ export interface PalavraPar {
   hanzi: string;
   pinyin: string;
   traducao: string;
+  traducaoEn?: string;
   letras: [string, string];
   tons: [Tom, Tom];
 }
@@ -36,6 +37,7 @@ export function palavrasPorPar(palavras: Palavra[]): Map<string, PalavraPar[]> {
       hanzi: p.hanzi,
       pinyin: p.pinyin,
       traducao: p.traducao,
+      traducaoEn: p.traducaoEn,
       letras: [silabas[0].letras, silabas[1].letras],
       tons: [silabas[0].tom, silabas[1].tom],
     };
@@ -72,6 +74,18 @@ export function observacaoPar(p: PalavraPar): string | undefined {
   if (p.tons[0] === 3 && p.tons[1] === 3) return 'Na fala, o primeiro 3º tom vira 2º (sandhi 3+3).';
   if (p.tons[0] === 3) return 'Antes de outro tom, o 3º tom fica só grave (desce e não sobe).';
   return undefined;
+}
+
+export function observacaoParEn(p: PalavraPar): string | undefined {
+  if (p.tons[0] === 3 && p.tons[1] === 3) return 'In speech, the first 3rd tone becomes a 2nd tone (3+3 sandhi).';
+  if (p.tons[0] === 3) return 'Before another tone, the 3rd tone just stays low (dips without rising).';
+  return undefined;
+}
+
+/** Nome do par em inglês ("3rd + 1st"). */
+export function nomeParEn(tons: [Tom, Tom]): string {
+  const nome = (t: Tom) => (t === 5 ? 'neutral' : ['1st', '2nd', '3rd', '4th'][t - 1]);
+  return `${nome(tons[0])} + ${nome(tons[1])}`;
 }
 
 /** Tons de um valor de resposta: "3", "2-4" ou pinyin ("lǎoshī"). */

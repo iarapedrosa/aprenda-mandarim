@@ -3,6 +3,7 @@ export interface Frase {
   hanzi: string;
   pinyin: string;
   traducao: string;
+  traducaoEn?: string;
 }
 
 /** Uma palavra do vocabulário (public/data/vocabulario/*.json). */
@@ -12,6 +13,7 @@ export interface Palavra {
   hanzi: string;
   pinyin: string;
   traducao: string;
+  traducaoEn?: string;
   classe: string;
   /** nível HSK */
   nivel: number;
@@ -23,6 +25,7 @@ export interface NivelVocabulario {
   nome: string;
   arquivo: string;
   descricao?: string;
+  descricaoEn?: string;
 }
 
 export interface IndiceVocabulario {
@@ -36,7 +39,9 @@ export interface Radical {
   completo: string;
   pinyin: string;
   significado: string;
+  significadoEn?: string;
   dica: string;
+  dicaEn?: string;
   /** caracteres do vocabulário que usam o radical */
   exemplos: string[];
 }

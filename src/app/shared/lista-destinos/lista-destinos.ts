@@ -1,6 +1,7 @@
-import { Component, input } from '@angular/core';
+import { Component, input, inject } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { Destino } from '../../core/navegacao';
+import { IdiomaService } from '../../core/i18n/idioma.service';
 
 /** Grade de cartões grandes que levam às seções (páginas "Aprender" e "Praticar"). */
 @Component({
@@ -13,8 +14,8 @@ import { Destino } from '../../core/navegacao';
           <a class="cartao destino" [routerLink]="d.rota">
             <span class="icone" lang="zh-CN" aria-hidden="true">{{ d.icone }}</span>
             <span class="textos">
-              <strong>{{ d.nome }}</strong>
-              <span class="suave pequeno">{{ d.descricao }}</span>
+              <strong>{{ i.tr(d, 'nome') }}</strong>
+              <span class="suave pequeno">{{ i.tr(d, 'descricao') }}</span>
             </span>
             <span class="seta" aria-hidden="true">›</span>
           </a>
@@ -73,5 +74,6 @@ import { Destino } from '../../core/navegacao';
   `,
 })
 export class ListaDestinos {
+  protected readonly i = inject(IdiomaService);
   readonly destinos = input.required<Destino[]>();
 }

@@ -77,6 +77,39 @@
   cursor: pointer;
 }
 
+.botao-topo.idioma {
+  width: auto;
+  min-width: 44px;
+  padding: 0 8px;
+  font-size: 0.8rem;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+}
+
+.escolha-idioma {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 6px;
+  padding: 0 4px;
+}
+
+.escolha-idioma button {
+  min-height: 44px;
+  border-radius: var(--raio-p);
+  border: 1px solid var(--cor-borda);
+  background: var(--cor-superficie);
+  color: var(--cor-texto);
+  font: inherit;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.escolha-idioma button.ativo {
+  border-color: var(--cor-primaria);
+  background: var(--cor-primaria-suave);
+  color: var(--cor-primaria);
+}
+
 .botao-topo:hover {
   background: var(--cor-superficie-2);
 }

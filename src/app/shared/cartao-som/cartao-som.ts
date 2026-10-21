@@ -1,6 +1,7 @@
 import { Component, inject, input } from '@angular/core';
 import { VozService } from '../../core/voz/voz.service';
 import { PinyinColorido } from '../pinyin-colorido/pinyin-colorido';
+import { IdiomaService } from '../../core/i18n/idioma.service';
 
 /** Botão grande com caractere, pinyin e tradução; ao tocar, pronuncia. */
 @Component({
@@ -11,7 +12,7 @@ import { PinyinColorido } from '../pinyin-colorido/pinyin-colorido';
       type="button"
       class="cartao-som"
       (click)="voz.falar(hanzi())"
-      [attr.aria-label]="'Ouvir ' + hanzi() + ', ' + pinyin() + (traducao() ? ', ' + traducao() : '')"
+      [attr.aria-label]="i.t('Ouvir ', 'Listen to ') + hanzi() + ', ' + pinyin() + (traducao() ? ', ' + traducao() : '')"
     >
       @if (destaque()) {
         <span class="destaque">{{ destaque() }}</span>
@@ -63,6 +64,7 @@ import { PinyinColorido } from '../pinyin-colorido/pinyin-colorido';
   `,
 })
 export class CartaoSom {
+  protected readonly i = inject(IdiomaService);
   protected readonly voz = inject(VozService);
   readonly hanzi = input.required<string>();
   readonly pinyin = input.required<string>();

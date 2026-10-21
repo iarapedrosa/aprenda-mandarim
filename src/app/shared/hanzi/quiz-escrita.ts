@@ -15,6 +15,7 @@ import { TemaService } from '../../core/tema/tema.service';
 import { carregarTracos } from './carregador-tracos';
 import { coresDoTema } from './cores-hanzi';
 import { GradeHanzi } from './grade-hanzi';
+import { IdiomaService } from '../../core/i18n/idioma.service';
 
 /**
  * - contorno: o caractere aparece em cinza para "decalcar";
@@ -50,27 +51,27 @@ export interface ResultadoEscrita {
         #alvo
         class="alvo"
         role="application"
-        [attr.aria-label]="'Área de desenho: escreva o caractere traço a traço'"
+        [attr.aria-label]="i.t('Área de desenho: escreva o caractere traço a traço', 'Drawing area: write the character stroke by stroke')"
       ></div>
     </div>
     <p class="status" aria-live="polite">
       @if (erro()) {
         <span class="erro">{{ erro() }}</span>
       } @else if (concluido()) {
-        <strong>Pronto!</strong> {{ erros() === 0 ? 'Sem nenhum erro 🎉' : erros() + ' erro(s).' }}
+        <strong>{{ i.t('Pronto!', 'Done!') }}</strong> {{ erros() === 0 ? i.t('Sem nenhum erro 🎉', 'No mistakes 🎉') : erros() + i.t(' erro(s).', ' mistake(s).') }}
       } @else if (totalTracos()) {
-        Traço {{ tracosFeitos() + 1 }} de {{ totalTracos() }}
+        {{ i.t('Traço', 'Stroke') }} {{ tracosFeitos() + 1 }} {{ i.t('de', 'of') }} {{ totalTracos() }}
         @if (erros()) {
-          · {{ erros() }} erro(s)
+          · {{ erros() }} {{ i.t('erro(s)', 'mistake(s)') }}
         }
       } @else {
-        Carregando…
+        {{ i.t('Carregando…', 'Loading…') }}
       }
     </p>
     <div class="controles">
-      <button type="button" class="botao" (click)="recomecar()">↺ Recomeçar</button>
+      <button type="button" class="botao" (click)="recomecar()">↺ {{ i.t('Recomeçar', 'Restart') }}</button>
       @if (!concluido()) {
-        <button type="button" class="botao" (click)="dica()">💡 Dica</button>
+        <button type="button" class="botao" (click)="dica()">💡 {{ i.t('Dica', 'Hint') }}</button>
       }
     </div>
   `,
@@ -108,6 +109,7 @@ export interface ResultadoEscrita {
   `,
 })
 export class QuizEscrita {
+  protected readonly i = inject(IdiomaService);
   private readonly tema = inject(TemaService);
   readonly caractere = input.required<string>();
   readonly nivel = input<NivelEscrita>('contorno');
@@ -163,7 +165,7 @@ export class QuizEscrita {
       charDataLoader: (c) => carregarTracos(c),
       onLoadCharDataSuccess: (dados) => this.totalTracos.set(dados.strokes.length),
       onLoadCharDataError: () =>
-        this.erro.set('Não foi possível carregar os traços (verifique a conexão).'),
+        this.erro.set(this.i.t('Não foi possível carregar os traços (verifique a conexão).', 'Could not load the strokes (check your connection).')),
     });
     this.iniciarQuiz();
   }

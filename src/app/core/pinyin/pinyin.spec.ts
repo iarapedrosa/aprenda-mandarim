@@ -163,6 +163,11 @@ describe('pinyin: correção de respostas', () => {
     expect(r2.silabas[0].estado).toBe('letras-erradas');
   });
 
+  it('dá as mensagens em inglês quando pedido', () => {
+    expect(compararPinyin('nihao', 'nǐ hǎo', { ingles: true }).mensagem).toContain('tones are missing');
+    expect(compararPinyin('ni2 hao3', 'nǐ hǎo', { ingles: true }).silabas[0].nota).toContain('3+3 sandhi');
+  });
+
   it('trata resposta vazia', () => {
     const r = compararPinyin('   ', 'nǐ');
     expect(r.correto).toBe(false);

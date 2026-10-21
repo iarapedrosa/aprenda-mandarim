@@ -13,10 +13,12 @@ export function exercicioDeGramatica(licao: LicaoGramatica, ex: ExercicioGramati
     tipo: 'escolha',
     modulo: 'gramatica',
     enunciado: ex.pergunta,
+    enunciadoEn: ex.perguntaEn,
     pergunta: ex.frase ? { hanzi: ex.frase } : {},
     opcoes: embaralhar(opcoes).map((o) => ({ valor: String(o.i), rotulo: o.texto, hanzi: temHanzi })),
     correta: String(ex.correta),
     explicacao: ex.explicacao,
+    explicacaoEn: ex.explicacaoEn,
     licao: `gramatica:${licao.id}`,
   };
 }

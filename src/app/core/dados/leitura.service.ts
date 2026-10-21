@@ -6,6 +6,7 @@ export interface Token {
   hanzi: string;
   pinyin?: string;
   traducao?: string;
+  traducaoEn?: string;
   /** id da palavra no vocabulário, se existir */
   palavra?: string;
 }
@@ -14,11 +15,14 @@ export interface LinhaTexto {
   falante?: { hanzi: string; pinyin: string };
   tokens: Token[];
   traducao: string;
+  traducaoEn?: string;
 }
 
 export interface PerguntaTexto {
   pergunta: string;
+  perguntaEn?: string;
   opcoes: string[];
+  opcoesEn?: string[];
   /** índice da opção correta (no arquivo, sempre 0; o site embaralha) */
   correta: number;
 }
@@ -28,9 +32,12 @@ export interface Texto {
   tipo: 'dialogo' | 'historia';
   nivel: number;
   titulo: string;
+  tituloEn?: string;
   tituloHanzi: string;
   resumo: string;
+  resumoEn?: string;
   nota?: string;
+  notaEn?: string;
   linhas: LinhaTexto[];
   perguntas: PerguntaTexto[];
 }

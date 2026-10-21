@@ -242,6 +242,8 @@ export interface OpcoesComparacao {
   hanzi?: string;
   /** se false, letras certas sem tom contam como acerto */
   exigirTons?: boolean;
+  /** mensagens em inglês */
+  ingles?: boolean;
 }
 
 /** Associa cada sílaba a um caractere (sílabas com erhua consomem também o 儿). */
@@ -262,21 +264,23 @@ function tonsAceitos(
   esperada: Silaba,
   proxima: Silaba | undefined,
   caractere: string | undefined,
+  ingles = false,
 ): { aceitos: Set<Tom>; notas: Map<Tom, string> } {
+  const txt = (pt: string, en: string) => (ingles ? en : pt);
   const aceitos = new Set<Tom>([esperada.tom]);
   const notas = new Map<Tom, string>();
   if (esperada.tom === 5) {
     // Tom neutro: aceitamos qualquer tom (muitas vezes a pessoa escreve o tom original).
     ([1, 2, 3, 4] as Tom[]).forEach((t) => {
       aceitos.add(t);
-      notas.set(t, 'Aqui a sílaba é pronunciada no tom neutro (leve).');
+      notas.set(t, txt('Aqui a sílaba é pronunciada no tom neutro (leve).', 'Here the syllable is said in the neutral (light) tone.'));
     });
   }
   if (caractere === '一' && esperada.letras === 'yi') {
     ([1, 2, 4] as Tom[]).forEach((t) => {
       if (t !== esperada.tom) {
         aceitos.add(t);
-        notas.set(t, `Certo! Por causa do sandhi de 一, aqui se fala ${silabaComAcento('yi', esperada.tom)}.`);
+        notas.set(t, txt(`Certo! Por causa do sandhi de 一, aqui se fala ${silabaComAcento('yi', esperada.tom)}.`, `Correct! Because of 一 sandhi, here it is said ${silabaComAcento('yi', esperada.tom)}.`));
       }
     });
   }
@@ -284,13 +288,13 @@ function tonsAceitos(
     ([2, 4] as Tom[]).forEach((t) => {
       if (t !== esperada.tom) {
         aceitos.add(t);
-        notas.set(t, `Certo! Por causa do sandhi de 不, aqui se fala ${silabaComAcento('bu', esperada.tom)}.`);
+        notas.set(t, txt(`Certo! Por causa do sandhi de 不, aqui se fala ${silabaComAcento('bu', esperada.tom)}.`, `Correct! Because of 不 sandhi, here it is said ${silabaComAcento('bu', esperada.tom)}.`));
       }
     });
   }
   if (esperada.tom === 3 && proxima?.tom === 3) {
     aceitos.add(2);
-    notas.set(2, 'Na fala vira 2º tom (sandhi 3+3), mas na escrita o pinyin mantém o 3º tom.');
+    notas.set(2, txt('Na fala vira 2º tom (sandhi 3+3), mas na escrita o pinyin mantém o 3º tom.', 'In speech it becomes a 2nd tone (3+3 sandhi), but written pinyin keeps the 3rd tone.'));
   }
   return { aceitos, notas };
 }
@@ -305,6 +309,7 @@ export function compararPinyin(
   opcoes: OpcoesComparacao = {},
 ): ResultadoPinyin {
   const exigirTons = opcoes.exigirTons ?? true;
+  const txt = (pt: string, en: string) => (opcoes.ingles ? en : pt);
   const silabasEsperadas = analisarPinyin(esperado);
   const hanziAlinhado = alinharHanzi(opcoes.hanzi, silabasEsperadas);
   const entrada = analisarEntrada(digitado);
@@ -320,7 +325,7 @@ export function compararPinyin(
         digitada: null,
         estado: 'letras-erradas',
       })),
-      mensagem: 'Digite o pinyin do que você ouviu.',
+      mensagem: txt('Digite o pinyin do que você ouviu.', 'Type the pinyin of what you heard.'),
     };
   }
 
@@ -360,7 +365,7 @@ export function compararPinyin(
       const ok = esperada.tom === 5 || !exigirTons;
       return { esperada: textoEsperado, digitada: textoDigitado, estado: ok ? 'certo' : 'sem-tom' };
     }
-    const { aceitos, notas } = tonsAceitos(esperada, silabasEsperadas[i + 1], hanziAlinhado[i]);
+    const { aceitos, notas } = tonsAceitos(esperada, silabasEsperadas[i + 1], hanziAlinhado[i], opcoes.ingles);
     if (aceitos.has(digitada.tom)) {
       return { esperada: textoEsperado, digitada: textoDigitado, estado: 'certo', nota: notas.get(digitada.tom) };
     }
@@ -373,15 +378,20 @@ export function compararPinyin(
 
   let mensagem: string;
   if (correto) {
-    mensagem = 'Correto!';
+    mensagem = txt('Correto!', 'Correct!');
   } else if (!letrasCorretas) {
-    mensagem = sobrando ? 'Você digitou sílabas a mais.' : 'Algumas sílabas estão diferentes.';
+    mensagem = sobrando
+      ? txt('Você digitou sílabas a mais.', 'You typed extra syllables.')
+      : txt('Algumas sílabas estão diferentes.', 'Some syllables are different.');
   } else if (!tonsInformados) {
-    mensagem = 'As letras estão certas, mas faltaram os tons. Use números (ni3 hao3) ou acentos (nǐ hǎo).';
+    mensagem = txt(
+      'As letras estão certas, mas faltaram os tons. Use números (ni3 hao3) ou acentos (nǐ hǎo).',
+      'The letters are right, but the tones are missing. Use numbers (ni3 hao3) or tone marks (nǐ hǎo).',
+    );
   } else if (silabas.some((s) => s.estado === 'sem-tom')) {
-    mensagem = 'As letras estão certas, mas faltou o tom em alguma sílaba.';
+    mensagem = txt('As letras estão certas, mas faltou o tom em alguma sílaba.', 'The letters are right, but a syllable is missing its tone.');
   } else {
-    mensagem = 'As letras estão certas, mas há tom errado.';
+    mensagem = txt('As letras estão certas, mas há tom errado.', 'The letters are right, but a tone is wrong.');
   }
 
   return { correto, letrasCorretas, tonsInformados, silabas, mensagem };

@@ -140,7 +140,7 @@ export function exercicioDePalavra(
 ): ItemSessao {
   const escolhido = tipo ?? sortear(tiposPorMaturidade(cartao, p));
   const ref = { tipo: 'palavra' as const, ref: p.id };
-  const resposta = { hanzi: p.hanzi, pinyin: p.pinyin, traducao: p.traducao };
+  const resposta = { hanzi: p.hanzi, pinyin: p.pinyin, traducao: p.traducao, traducaoEn: p.traducaoEn };
   const tons = analisarPinyin(p.pinyin)
     .map((s) => s.tom)
     .filter((t) => t !== 5);
@@ -154,8 +154,9 @@ export function exercicioDePalavra(
         tipo: 'escolha',
         modulo: 'caracteres',
         enunciado: 'O que significa?',
+        enunciadoEn: 'What does it mean?',
         pergunta: { hanzi: p.hanzi, pinyin: p.pinyin, audio: p.hanzi },
-        opcoes: opcoes.map((o) => ({ valor: o.id, rotulo: o.traducao })),
+        opcoes: opcoes.map((o) => ({ valor: o.id, rotulo: o.traducao, rotuloEn: o.traducaoEn })),
         correta: p.id,
         cartao: ref,
         resposta,
@@ -168,6 +169,7 @@ export function exercicioDePalavra(
         tipo: 'escolha',
         modulo: 'escuta',
         enunciado: 'Ouça e escolha a palavra',
+        enunciadoEn: 'Listen and choose the word',
         pergunta: { audio: p.hanzi },
         opcoes: opcoes.map((o) => ({ valor: o.id, rotulo: o.hanzi, hanzi: true })),
         correta: p.id,
@@ -182,7 +184,8 @@ export function exercicioDePalavra(
         tipo: 'escolha',
         modulo: 'caracteres',
         enunciado: 'Como se escreve?',
-        pergunta: { texto: p.traducao },
+        enunciadoEn: 'How is it written?',
+        pergunta: { texto: p.traducao, textoEn: p.traducaoEn },
         opcoes: opcoes.map((o) => ({ valor: o.id, rotulo: o.hanzi, hanzi: true })),
         correta: p.id,
         cartao: ref,
@@ -199,7 +202,8 @@ export function exercicioDePalavra(
         tipo: 'escolha',
         modulo: 'tons',
         enunciado: 'Ouça: quais são os tons?',
-        pergunta: { hanzi: p.hanzi, audio: p.hanzi, texto: p.traducao },
+        enunciadoEn: 'Listen: what are the tones?',
+        pergunta: { hanzi: p.hanzi, audio: p.hanzi, texto: p.traducao, textoEn: p.traducaoEn },
         opcoes: variacoes.map((v) => ({ valor: v, rotulo: v, pinyin: true })),
         correta,
         cartao: ref,
@@ -215,9 +219,11 @@ export function exercicioDePalavra(
         tipo: 'digitar-pinyin',
         modulo: 'pinyin',
         enunciado: 'Escreva o pinyin (com tons)',
+        enunciadoEn: 'Type the pinyin (with tones)',
         hanzi: p.hanzi,
         pinyin: p.pinyin,
         traducao: p.traducao,
+        traducaoEn: p.traducaoEn,
         soAudio: false,
         cartao: ref,
       };
@@ -231,11 +237,12 @@ function exercicioDeFrase(f: FraseComId, frases: FraseComId[]): ItemEscolha {
     tipo: 'escolha',
     modulo: 'leitura',
     enunciado: 'O que significa esta frase?',
+    enunciadoEn: 'What does this sentence mean?',
     pergunta: { hanzi: f.hanzi, audio: f.hanzi },
-    opcoes: opcoes.map((o) => ({ valor: o.id, rotulo: o.traducao })),
+    opcoes: opcoes.map((o) => ({ valor: o.id, rotulo: o.traducao, rotuloEn: o.traducaoEn })),
     correta: f.id,
     cartao: { tipo: 'frase', ref: f.id },
-    resposta: { hanzi: f.hanzi, pinyin: f.pinyin, traducao: f.traducao },
+    resposta: { hanzi: f.hanzi, pinyin: f.pinyin, traducao: f.traducao, traducaoEn: f.traducaoEn },
   };
 }
 
@@ -258,11 +265,12 @@ export function itemNumero(maximo: number): ItemEscolha {
     tipo: 'escolha',
     modulo: 'numeros',
     enunciado: 'Ouça e escolha o número',
+    enunciadoEn: 'Listen and choose the number',
     pergunta: { audio: n.hanzi },
-    opcoes: embaralhar([...opcoes]).map((o) => ({ valor: String(o), rotulo: o.toLocaleString('pt-BR') })),
+    opcoes: embaralhar([...opcoes]).map((o) => ({ valor: String(o), rotulo: o.toLocaleString('pt-BR'), rotuloEn: o.toLocaleString('en-US') })),
     correta: String(alvo),
     tons: analisarPinyin(n.pinyin).map((s) => s.tom),
-    resposta: { hanzi: n.hanzi, pinyin: n.pinyin, traducao: alvo.toLocaleString('pt-BR') },
+    resposta: { hanzi: n.hanzi, pinyin: n.pinyin, traducao: alvo.toLocaleString('pt-BR'), traducaoEn: alvo.toLocaleString('en-US') },
   };
 }
 

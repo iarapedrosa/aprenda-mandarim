@@ -1,19 +1,21 @@
-import { Component, computed, input } from '@angular/core';
+import { Component, computed, input, inject } from '@angular/core';
 import { Tom } from '../../core/pinyin/pinyin';
+import { IdiomaService } from '../../core/i18n/idioma.service';
 
 /**
  * Curva de altura (pitch) de cada tom, na escala de 5 níveis de Chao Yuen Ren:
  * 1º = 55 (alto e reto), 2º = 35 (sobe), 3º = 214 (desce e sobe), 4º = 51 (cai), neutro = curto.
  */
-const CURVAS: Record<Tom, { caminho: string; descricao: string }> = {
-  1: { caminho: 'M 20 20 L 180 20', descricao: 'alto e reto (5→5)' },
-  2: { caminho: 'M 20 60 C 80 55, 130 40, 180 20', descricao: 'sobe, do meio para o alto (3→5)' },
+const CURVAS: Record<Tom, { caminho: string; descricao: string; descricaoEn: string }> = {
+  1: { caminho: 'M 20 20 L 180 20', descricao: 'alto e reto (5→5)', descricaoEn: 'high and level (5→5)' },
+  2: { caminho: 'M 20 60 C 80 55, 130 40, 180 20', descricao: 'sobe, do meio para o alto (3→5)', descricaoEn: 'rising, from mid to high (3→5)' },
   3: {
     caminho: 'M 20 80 C 60 100, 90 108, 110 100 S 160 55, 180 40',
     descricao: 'desce até o fundo e volta a subir (2→1→4)',
+    descricaoEn: 'dips to the bottom and rises again (2→1→4)',
   },
-  4: { caminho: 'M 20 20 C 70 30, 130 70, 180 100', descricao: 'cai rápido, do alto até o fundo (5→1)' },
-  5: { caminho: 'M 90 70 L 110 72', descricao: 'curto e leve, sem curva própria' },
+  4: { caminho: 'M 20 20 C 70 30, 130 70, 180 100', descricao: 'cai rápido, do alto até o fundo (5→1)', descricaoEn: 'falls sharply, from high to low (5→1)' },
+  5: { caminho: 'M 90 70 L 110 72', descricao: 'curto e leve, sem curva própria', descricaoEn: 'short and light, no contour of its own' },
 };
 
 @Component({
@@ -22,7 +24,7 @@ const CURVAS: Record<Tom, { caminho: string; descricao: string }> = {
     <svg
       viewBox="0 0 200 120"
       role="img"
-      [attr.aria-label]="'Curva do ' + nome() + ': ' + curva().descricao"
+      [attr.aria-label]="i.t('Curva do ', 'Contour of the ') + nome() + ': ' + i.tr(curva(), 'descricao')"
       [class]="'tom-' + tom()"
     >
       @for (nivel of niveis; track nivel.n) {
@@ -60,6 +62,7 @@ const CURVAS: Record<Tom, { caminho: string; descricao: string }> = {
   `,
 })
 export class DiagramaTom {
+  protected readonly i = inject(IdiomaService);
   readonly tom = input.required<Tom>();
 
   protected readonly niveis = [
@@ -71,5 +74,7 @@ export class DiagramaTom {
   ];
 
   protected readonly curva = computed(() => CURVAS[this.tom()]);
-  protected readonly nome = computed(() => (this.tom() === 5 ? 'tom neutro' : `${this.tom()}º tom`));
+  protected readonly nome = computed(() =>
+    this.tom() === 5 ? this.i.t('tom neutro', 'neutral tone') : this.i.t(`${this.tom()}º tom`, `tone ${this.tom()}`),
+  );
 }

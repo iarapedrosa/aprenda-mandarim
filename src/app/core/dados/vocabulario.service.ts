@@ -43,13 +43,16 @@ export class VocabularioService {
   /** Pinyin e significado de um caractere, a partir do vocabulário. */
   infoCaractere(c: string): InfoCaractere {
     const isolado = this.caractereIsolado().get(c);
-    if (isolado) return { hanzi: c, pinyin: isolado.pinyin, traducao: isolado.traducao, palavra: isolado };
+    if (isolado) {
+      return { hanzi: c, pinyin: isolado.pinyin, traducao: isolado.traducao, traducaoEn: isolado.traducaoEn, palavra: isolado };
+    }
     const palavra = this.porCaractere().get(c)?.[0];
     if (!palavra) return { hanzi: c, pinyin: '', traducao: '' };
     return {
       hanzi: c,
       pinyin: pinyinDoCaractere(palavra.hanzi, palavra.pinyin, c) ?? '',
       traducao: `parte de ${palavra.hanzi} (${palavra.traducao})`,
+      traducaoEn: `part of ${palavra.hanzi} (${palavra.traducaoEn ?? palavra.traducao})`,
       palavra,
     };
   }
@@ -86,6 +89,7 @@ export interface InfoCaractere {
   hanzi: string;
   pinyin: string;
   traducao: string;
+  traducaoEn?: string;
   palavra?: Palavra;
 }
 

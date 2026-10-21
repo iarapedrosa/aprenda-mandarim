@@ -14,6 +14,7 @@ import { TemaService } from '../../core/tema/tema.service';
 import { carregarTracos } from './carregador-tracos';
 import { coresDoTema } from './cores-hanzi';
 import { GradeHanzi } from './grade-hanzi';
+import { IdiomaService } from '../../core/i18n/idioma.service';
 
 /**
  * Mostra um caractere e anima a ordem dos traços (hanzi-writer).
@@ -24,22 +25,22 @@ import { GradeHanzi } from './grade-hanzi';
   template: `
     <div class="quadro" [style.width.px]="tamanho()" [style.height.px]="tamanho()">
       <app-grade-hanzi />
-      <div #alvo class="alvo" role="img" [attr.aria-label]="'Ordem dos traços de ' + caractere()"></div>
+      <div #alvo class="alvo" role="img" [attr.aria-label]="i.t('Ordem dos traços de ', 'Stroke order of ') + caractere()"></div>
     </div>
     @if (erro()) {
       <p class="erro pequeno">{{ erro() }}</p>
     } @else {
       <div class="controles">
-        <button type="button" class="botao" (click)="animar()" [disabled]="!pronto()">▶ Animar</button>
+        <button type="button" class="botao" (click)="animar()" [disabled]="!pronto()">▶ {{ i.t('Animar', 'Animate') }}</button>
         <button type="button" class="botao" (click)="proximoTraco()" [disabled]="!pronto()">
-          Traço a traço
+          {{ i.t('Traço a traço', 'Stroke by stroke') }}
           @if (passo() > 0) {
             ({{ passo() }}/{{ totalTracos() }})
           }
         </button>
       </div>
       @if (totalTracos()) {
-        <p class="suave pequeno total">{{ totalTracos() }} traços</p>
+        <p class="suave pequeno total">{{ totalTracos() }} {{ i.t('traços', 'strokes') }}</p>
       }
     }
   `,
@@ -72,6 +73,7 @@ import { GradeHanzi } from './grade-hanzi';
   `,
 })
 export class AnimacaoTracos {
+  protected readonly i = inject(IdiomaService);
   private readonly tema = inject(TemaService);
   readonly caractere = input.required<string>();
   readonly tamanho = input(200);
@@ -123,7 +125,7 @@ export class AnimacaoTracos {
         if (this.autoAnimar()) this.animar();
       },
       onLoadCharDataError: () =>
-        this.erro.set('Não foi possível carregar os traços (verifique a conexão).'),
+        this.erro.set(this.i.t('Não foi possível carregar os traços (verifique a conexão).', 'Could not load the strokes (check your connection).')),
     });
   }
 

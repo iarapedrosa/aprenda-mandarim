@@ -1,6 +1,7 @@
 import { Component, computed, inject, input, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { ProgressoService } from '../../core/progresso/progresso.service';
+import { IdiomaService } from '../../core/i18n/idioma.service';
 
 /**
  * Dica pessoal para lembrar uma palavra (mnemônico). Associações criadas pela própria pessoa
@@ -13,29 +14,29 @@ import { ProgressoService } from '../../core/progresso/progresso.service';
   template: `
     @if (editando()) {
       <form class="editor" (submit)="$event.preventDefault(); salvar()">
-        <label [for]="'nota-' + palavraId()">Sua dica para lembrar</label>
+        <label [for]="'nota-' + palavraId()">{{ i.t('Sua dica para lembrar', 'Your memory hint') }}</label>
         <textarea
           [id]="'nota-' + palavraId()"
           class="campo"
           rows="2"
           maxlength="300"
-          [placeholder]="exemplo()"
+          [placeholder]="i.t(exemplo(), 'E.g.: 门 (door) looks like saloon doors; 妈 = woman (女) + the sound “ma” (马).')"
           [ngModel]="rascunho()"
           (ngModelChange)="rascunho.set($event)"
           name="nota"
         ></textarea>
         <div class="linha">
-          <button type="submit" class="botao botao-primario">Salvar</button>
-          <button type="button" class="botao botao-texto" (click)="editando.set(false)">Cancelar</button>
+          <button type="submit" class="botao botao-primario">{{ i.t('Salvar', 'Save') }}</button>
+          <button type="button" class="botao botao-texto" (click)="editando.set(false)">{{ i.t('Cancelar', 'Cancel') }}</button>
         </div>
       </form>
     } @else if (nota()) {
       <p class="nota">
         💡 <span>{{ nota() }}</span>
-        <button type="button" class="botao botao-texto pequeno" (click)="abrir()">editar</button>
+        <button type="button" class="botao botao-texto pequeno" (click)="abrir()">{{ i.t('editar', 'edit') }}</button>
       </p>
     } @else {
-      <button type="button" class="botao botao-texto pequeno" (click)="abrir()">💡 Criar uma dica para lembrar</button>
+      <button type="button" class="botao botao-texto pequeno" (click)="abrir()">💡 {{ i.t('Criar uma dica para lembrar', 'Create a memory hint') }}</button>
     }
   `,
   styles: `
@@ -63,6 +64,7 @@ import { ProgressoService } from '../../core/progresso/progresso.service';
   `,
 })
 export class NotaMnemonica {
+  protected readonly i = inject(IdiomaService);
   private readonly progresso = inject(ProgressoService);
   readonly palavraId = input.required<string>();
   /** texto de exemplo no campo vazio */

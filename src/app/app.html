@@ -1,16 +1,16 @@
-<a class="pular-conteudo" href="#conteudo">Pular para o conteúdo</a>
+<a class="pular-conteudo" href="#conteudo">{{ i.t('Pular para o conteúdo', 'Skip to content') }}</a>
 
 <header class="topo">
   <div class="topo-interno">
-    <a routerLink="/" class="marca" aria-label="Aprenda Mandarim — página inicial">
+    <a routerLink="/" class="marca" [attr.aria-label]="i.t('Aprenda Mandarim — página inicial', 'Learn Mandarin — home')">
       <span class="marca-hanzi" lang="zh-CN" aria-hidden="true">学中文</span>
-      <span class="marca-texto">Aprenda Mandarim</span>
+      <span class="marca-texto">{{ i.t('Aprenda Mandarim', 'Learn Mandarin') }}</span>
     </a>
 
-    <nav class="nav-topo" aria-label="Menu principal">
+    <nav class="nav-topo" [attr.aria-label]="i.t('Menu principal', 'Main menu')">
       <ul>
         <li>
-          <a routerLink="/" [class.ativo]="grupo() === 'hoje'" [attr.aria-current]="grupo() === 'hoje' ? 'page' : null">Hoje</a>
+          <a routerLink="/" [class.ativo]="grupo() === 'hoje'" [attr.aria-current]="grupo() === 'hoje' ? 'page' : null">{{ i.t('Hoje', 'Today') }}</a>
         </li>
         <li class="com-submenu">
           <button
@@ -20,7 +20,7 @@
             aria-controls="submenu-aprender"
             (click)="alternarSubmenu('aprender', $event)"
           >
-            Aprender <span class="seta" aria-hidden="true">▾</span>
+            {{ i.t('Aprender', 'Learn') }} <span class="seta" aria-hidden="true">▾</span>
           </button>
           @if (submenu() === 'aprender') {
             <ul id="submenu-aprender" class="submenu" (click)="$event.stopPropagation()">
@@ -28,7 +28,7 @@
                 <li>
                   <a [routerLink]="d.rota">
                     <span class="icone-menu" lang="zh-CN" aria-hidden="true">{{ d.icone }}</span>
-                    <span><strong>{{ d.nome }}</strong><small>{{ d.descricao }}</small></span>
+                    <span><strong>{{ i.tr(d, 'nome') }}</strong><small>{{ i.tr(d, 'descricao') }}</small></span>
                   </a>
                 </li>
               }
@@ -43,7 +43,7 @@
             aria-controls="submenu-praticar"
             (click)="alternarSubmenu('praticar', $event)"
           >
-            Praticar <span class="seta" aria-hidden="true">▾</span>
+            {{ i.t('Praticar', 'Practice') }} <span class="seta" aria-hidden="true">▾</span>
           </button>
           @if (submenu() === 'praticar') {
             <ul id="submenu-praticar" class="submenu" (click)="$event.stopPropagation()">
@@ -51,7 +51,7 @@
                 <li>
                   <a [routerLink]="d.rota">
                     <span class="icone-menu" lang="zh-CN" aria-hidden="true">{{ d.icone }}</span>
-                    <span><strong>{{ d.nome }}</strong><small>{{ d.descricao }}</small></span>
+                    <span><strong>{{ i.tr(d, 'nome') }}</strong><small>{{ i.tr(d, 'descricao') }}</small></span>
                   </a>
                 </li>
               }
@@ -59,10 +59,10 @@
           }
         </li>
         <li>
-          <a routerLink="/cartoes" [class.ativo]="grupo() === 'cartoes'" [attr.aria-current]="grupo() === 'cartoes' ? 'page' : null">Cartões</a>
+          <a routerLink="/cartoes" [class.ativo]="grupo() === 'cartoes'" [attr.aria-current]="grupo() === 'cartoes' ? 'page' : null">{{ i.t('Cartões', 'Flashcards') }}</a>
         </li>
         <li>
-          <a routerLink="/progresso" [class.ativo]="grupo() === 'progresso'" [attr.aria-current]="grupo() === 'progresso' ? 'page' : null">Progresso</a>
+          <a routerLink="/progresso" [class.ativo]="grupo() === 'progresso'" [attr.aria-current]="grupo() === 'progresso' ? 'page' : null">{{ i.t('Progresso', 'Progress') }}</a>
         </li>
       </ul>
     </nav>
@@ -70,10 +70,19 @@
     <div class="acoes-topo">
       <button
         type="button"
+        class="botao-topo idioma"
+        (click)="i.alternar()"
+        [attr.aria-label]="i.t('Mudar o idioma para inglês', 'Switch language to Portuguese')"
+        [title]="i.t('English', 'Português')"
+      >
+        <span aria-hidden="true">{{ i.ingles() ? 'EN' : 'PT' }}</span>
+      </button>
+      <button
+        type="button"
         class="botao-topo"
         (click)="tema.alternar()"
-        [attr.aria-label]="tema.temaAtivo() === 'escuro' ? 'Ativar tema claro' : 'Ativar tema escuro'"
-        [title]="tema.temaAtivo() === 'escuro' ? 'Tema claro' : 'Tema escuro'"
+        [attr.aria-label]="tema.temaAtivo() === 'escuro' ? i.t('Ativar tema claro', 'Switch to light theme') : i.t('Ativar tema escuro', 'Switch to dark theme')"
+        [title]="tema.temaAtivo() === 'escuro' ? i.t('Tema claro', 'Light theme') : i.t('Tema escuro', 'Dark theme')"
       >
         @if (tema.temaAtivo() === 'escuro') {
           <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true">
@@ -92,7 +101,7 @@
         #botaoMenu
         type="button"
         class="botao-topo"
-        aria-label="Abrir o menu completo"
+        [attr.aria-label]="i.t('Abrir o menu completo', 'Open the full menu')"
         aria-controls="menu-completo"
         [attr.aria-expanded]="menuAberto()"
         (click)="abrirMenu()"
@@ -113,52 +122,57 @@
     class="painel-menu"
     role="dialog"
     aria-modal="true"
-    aria-label="Menu completo"
+    [attr.aria-label]="i.t('Menu completo', 'Full menu')"
     (keydown)="prenderFoco($event)"
   >
     <div class="cabecalho-painel">
       <span class="marca-hanzi" lang="zh-CN" aria-hidden="true">学中文</span>
-      <button type="button" class="botao-topo" (click)="fecharMenu()" aria-label="Fechar o menu">✕</button>
+      <button type="button" class="botao-topo" (click)="fecharMenu()" [attr.aria-label]="i.t('Fechar o menu', 'Close the menu')">✕</button>
     </div>
-    <nav aria-label="Todas as seções">
+    <nav [attr.aria-label]="i.t('Todas as seções', 'All sections')">
       <a routerLink="/" class="item-painel destaque-painel">
         <span class="icone-menu" lang="zh-CN" aria-hidden="true">今</span>
-        <span><strong>Treino de hoje</strong><small>15–20 min que misturam tudo, no momento certo.</small></span>
+        <span><strong>{{ i.t('Treino de hoje', 'Today’s training') }}</strong><small>{{ i.t('15–20 min que misturam tudo, no momento certo.', '15–20 min that mix everything, at the right time.') }}</small></span>
       </a>
-      <h2>Aprender</h2>
+      <h2>{{ i.t('Aprender', 'Learn') }}</h2>
       @for (d of aprender; track d.rota) {
         <a [routerLink]="d.rota" class="item-painel">
           <span class="icone-menu" lang="zh-CN" aria-hidden="true">{{ d.icone }}</span>
-          <span><strong>{{ d.nome }}</strong><small>{{ d.descricao }}</small></span>
+          <span><strong>{{ i.tr(d, 'nome') }}</strong><small>{{ i.tr(d, 'descricao') }}</small></span>
         </a>
       }
-      <h2>Praticar</h2>
+      <h2>{{ i.t('Praticar', 'Practice') }}</h2>
       @for (d of praticar; track d.rota) {
         <a [routerLink]="d.rota" class="item-painel">
           <span class="icone-menu" lang="zh-CN" aria-hidden="true">{{ d.icone }}</span>
-          <span><strong>{{ d.nome }}</strong><small>{{ d.descricao }}</small></span>
+          <span><strong>{{ i.tr(d, 'nome') }}</strong><small>{{ i.tr(d, 'descricao') }}</small></span>
         </a>
       }
-      <h2>Você</h2>
+      <h2>{{ i.t('Você', 'You') }}</h2>
       <a routerLink="/progresso" class="item-painel">
         <span class="icone-menu" lang="zh-CN" aria-hidden="true">进</span>
-        <span><strong>Progresso e ajustes</strong><small>Sequência, estatísticas, metas, voz, tema e backup.</small></span>
+        <span><strong>{{ i.t('Progresso e ajustes', 'Progress and settings') }}</strong><small>{{ i.t('Sequência, estatísticas, metas, voz, tema e backup.', 'Streak, stats, goals, voice, theme and backup.') }}</small></span>
       </a>
-      <h2>Sobre</h2>
+      <h2>{{ i.t('Sobre', 'About') }}</h2>
       @for (d of sobre; track d.rota) {
         <a [routerLink]="d.rota" class="item-painel">
           <span class="icone-menu" lang="zh-CN" aria-hidden="true">{{ d.icone }}</span>
-          <span><strong>{{ d.nome }}</strong><small>{{ d.descricao }}</small></span>
+          <span><strong>{{ i.tr(d, 'nome') }}</strong><small>{{ i.tr(d, 'descricao') }}</small></span>
         </a>
       }
+      <h2>Idioma · Language</h2>
+      <div class="escolha-idioma" role="radiogroup" aria-label="Idioma · Language">
+        <button type="button" role="radio" [attr.aria-checked]="!i.ingles()" [class.ativo]="!i.ingles()" (click)="i.idioma.set('pt')">🇧🇷 Português</button>
+        <button type="button" role="radio" [attr.aria-checked]="i.ingles()" [class.ativo]="i.ingles()" (click)="i.idioma.set('en')">🇺🇸 English</button>
+      </div>
     </nav>
   </aside>
 }
 
 @if (atualizacaoDisponivel()) {
   <div class="faixa-atualizacao" role="status">
-    <span>Há uma nova versão do site.</span>
-    <button type="button" class="botao botao-primario" (click)="atualizar()">Atualizar</button>
+    <span>{{ i.t('Há uma nova versão do site.', 'A new version of the site is available.') }}</span>
+    <button type="button" class="botao botao-primario" (click)="atualizar()">{{ i.t('Atualizar', 'Update') }}</button>
   </div>
 }
 
@@ -168,22 +182,23 @@
 
 <footer class="rodape" [class.em-treino]="emTreino()">
   <p>
-    Feito com <span aria-label="carinho">❤️</span> por <strong>Iara Pedrosa</strong> para quem quer aprender mandarim
+    {{ i.t('Feito com', 'Made with') }} <span aria-hidden="true">❤️</span> {{ i.t('por', 'by') }} <strong>Iara Pedrosa</strong>
+    {{ i.t('para quem quer aprender mandarim', 'for everyone who wants to learn Mandarin') }}
     <span lang="zh-CN">加油！</span>
   </p>
   <p class="contato">
-    Dúvidas, sugestões ou erros nas traduções? Escreva para
+    {{ i.t('Dúvidas, sugestões ou erros nas traduções? Escreva para', 'Questions, suggestions or translation mistakes? Write to') }}
     <a href="mailto:iaraferreirahg@gmail.com">iaraferreirahg&#64;gmail.com</a>
-    · <a routerLink="/recursos">Recursos para estudar</a>
-    · <a routerLink="/metodo">O método e a ciência</a>
+    · <a routerLink="/recursos">{{ i.t('Recursos para estudar', 'Study resources') }}</a>
+    · <a routerLink="/metodo">{{ i.t('O método e a ciência', 'The method and the science') }}</a>
   </p>
 </footer>
 
-<nav class="nav-celular" aria-label="Navegação principal" [hidden]="emTreino()">
+<nav class="nav-celular" [attr.aria-label]="i.t('Navegação principal', 'Main navigation')" [hidden]="emTreino()">
   @for (aba of abas; track aba.rota) {
     <a [routerLink]="aba.rota" [class.ativo]="grupo() === aba.grupo" [attr.aria-current]="grupo() === aba.grupo ? 'page' : null">
       <span class="nav-icone" lang="zh-CN" aria-hidden="true">{{ aba.icone }}</span>
-      <span class="nav-rotulo">{{ aba.rotulo }}</span>
+      <span class="nav-rotulo">{{ i.tr(aba, 'rotulo') }}</span>
     </a>
   }
 </nav>

@@ -4,11 +4,13 @@ import { SwUpdate } from '@angular/service-worker';
 import { filter } from 'rxjs';
 import { APRENDER, Grupo, PRATICAR, SOBRE, grupoDaUrl } from './core/navegacao';
 import { TemaService } from './core/tema/tema.service';
+import { IdiomaService } from './core/i18n/idioma.service';
 
 interface AbaPrincipal {
   grupo: Grupo;
   rota: string;
   rotulo: string;
+  rotuloEn: string;
   icone: string;
 }
 
@@ -19,6 +21,7 @@ interface AbaPrincipal {
   styleUrl: './app.css',
 })
 export class App {
+  protected readonly i = inject(IdiomaService);
   protected readonly tema = inject(TemaService);
   private readonly sw = inject(SwUpdate);
   private readonly router = inject(Router);
@@ -30,11 +33,11 @@ export class App {
 
   /** Abas da barra inferior (celular). */
   protected readonly abas: AbaPrincipal[] = [
-    { grupo: 'hoje', rota: '/', rotulo: 'Hoje', icone: '今' },
-    { grupo: 'aprender', rota: '/aprender', rotulo: 'Aprender', icone: '学' },
-    { grupo: 'praticar', rota: '/praticar', rotulo: 'Praticar', icone: '练' },
-    { grupo: 'cartoes', rota: '/cartoes', rotulo: 'Cartões', icone: '卡' },
-    { grupo: 'progresso', rota: '/progresso', rotulo: 'Progresso', icone: '进' },
+    { grupo: 'hoje', rota: '/', rotulo: 'Hoje', rotuloEn: 'Today', icone: '今' },
+    { grupo: 'aprender', rota: '/aprender', rotulo: 'Aprender', rotuloEn: 'Learn', icone: '学' },
+    { grupo: 'praticar', rota: '/praticar', rotulo: 'Praticar', rotuloEn: 'Practice', icone: '练' },
+    { grupo: 'cartoes', rota: '/cartoes', rotulo: 'Cartões', rotuloEn: 'Cards', icone: '卡' },
+    { grupo: 'progresso', rota: '/progresso', rotulo: 'Progresso', rotuloEn: 'Progress', icone: '进' },
   ];
 
   protected readonly url = signal('/');
