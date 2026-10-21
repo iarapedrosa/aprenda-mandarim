@@ -1,0 +1,126 @@
+<section class="pagina">
+  <p><a routerLink="/leitura">← Todos os textos</a></p>
+
+  @if (!carregado()) {
+    <p class="info">Carregando…</p>
+  } @else if (texto(); as t) {
+    <header>
+      <p class="etiqueta">{{ t.tipo === 'dialogo' ? 'Diálogo' : 'Historinha' }} · HSK {{ t.nivel }}</p>
+      <h1><span lang="zh-CN" class="titulo-hanzi">{{ t.tituloHanzi }}</span> {{ t.titulo }}</h1>
+      <p class="subtitulo">{{ t.resumo }}</p>
+    </header>
+
+    <div class="controles">
+      <label class="interruptor">
+        <input type="checkbox" [checked]="mostrarPinyin()" (change)="mostrarPinyin.set($any($event.target).checked)" />
+        Pinyin
+      </label>
+      <label class="interruptor">
+        <input type="checkbox" [checked]="mostrarTraducao()" (change)="mostrarTraducao.set($any($event.target).checked)" />
+        Tradução
+      </label>
+      <button type="button" class="botao botao-primario" (click)="narrar()">
+        {{ narrando() ? '■ Parar' : '▶ Ouvir tudo' }}
+      </button>
+    </div>
+    <app-controle-voz class="voz" />
+
+    <article class="cartao texto" [class.historia]="t.tipo === 'historia'">
+      @for (linha of t.linhas; track $index; let i = $index) {
+        <div class="linha-texto" [id]="'linha-' + i" [class.tocando]="linhaTocando() === i">
+          @if (linha.falante) {
+            <span class="falante" lang="zh-CN">{{ linha.falante.hanzi }}</span>
+          }
+          <div class="conteudo">
+            <p class="frase" lang="zh-CN">
+              @for (tk of linha.tokens; track $index) {
+                @if (tk.pinyin) {
+                  <button
+                    type="button"
+                    class="palavra"
+                    [class.selecionada]="selecionado() === tk"
+                    (click)="tocarToken(tk)"
+                    [attr.aria-label]="tk.hanzi + ', ' + tk.pinyin + ': ' + tk.traducao"
+                  >
+                    <ruby>{{ tk.hanzi }}@if (mostrarPinyin()) {<rt>{{ tk.pinyin }}</rt>}</ruby>
+                  </button>
+                } @else {
+                  <span class="pontuacao">{{ tk.hanzi }}</span>
+                }
+              }
+            </p>
+            @if (mostrarTraducao()) {
+              <p class="traducao">{{ linha.traducao }}</p>
+            }
+          </div>
+          <button type="button" class="ouvir-linha" (click)="tocarLinha(i)" [attr.aria-label]="'Ouvir a linha ' + (i + 1)">🔊</button>
+        </div>
+      }
+      @if (t.nota) {
+        <p class="info nota">💡 {{ t.nota }}</p>
+      }
+    </article>
+
+    @if (selecionado(); as s) {
+      <aside class="painel-palavra" aria-live="polite" aria-label="Palavra selecionada">
+        <span class="hanzi-sel" lang="zh-CN">{{ s.hanzi }}</span>
+        <span class="info-sel">
+          <app-pinyin [texto]="s.pinyin!" />
+          <span>{{ s.traducao }}</span>
+        </span>
+        <app-botao-audio [texto]="s.hanzi" [rotulo]="s.pinyin!" [compacto]="true" />
+        @if (s.palavra) {
+          @if (naRevisao(s)) {
+            <span class="etiqueta">✓ revisão</span>
+          } @else {
+            <button type="button" class="botao botao-texto pequeno" (click)="adicionarRevisao(s)">+ revisar</button>
+          }
+          <a [routerLink]="['/caracteres/palavra', s.palavra]" class="pequeno">ver</a>
+        }
+        <button type="button" class="fechar" (click)="selecionado.set(null)" aria-label="Fechar">✕</button>
+      </aside>
+    }
+
+    @if (perguntas().length) {
+      <section class="cartao perguntas" aria-labelledby="titulo-perguntas">
+        <h2 id="titulo-perguntas">Você entendeu?</h2>
+        @for (p of perguntas(); track $index; let i = $index) {
+          <fieldset class="pergunta">
+            <legend>{{ i + 1 }}. {{ p.pergunta }}</legend>
+            @for (o of p.opcoes; track o.texto; let j = $index) {
+              <label
+                class="opcao-resposta"
+                [class.correta]="verificado() && o.correta"
+                [class.errada]="verificado() && respostas()[i] === j && !o.correta"
+              >
+                <input
+                  type="radio"
+                  [name]="'pergunta-' + i"
+                  [checked]="respostas()[i] === j"
+                  [disabled]="verificado()"
+                  (change)="responder(i, j)"
+                />
+                {{ o.texto }}
+              </label>
+            }
+          </fieldset>
+        }
+        @if (!verificado()) {
+          <button type="button" class="botao botao-primario" [disabled]="!todasRespondidas()" (click)="verificar()">
+            Verificar respostas
+          </button>
+        } @else {
+          <p [class]="acertos() === perguntas().length ? 'sucesso' : 'info'" role="status">
+            Você acertou {{ acertos() }} de {{ perguntas().length }}.
+            {{ acertos() === perguntas().length ? 'Excelente! 太棒了！' : 'Releia o texto com a tradução ligada e tente de novo outro dia.' }}
+          </p>
+          @if (proximo(); as n) {
+            <a class="botao botao-primario" [routerLink]="['/leitura', n.id]">Próximo: {{ n.titulo }} →</a>
+          }
+        }
+      </section>
+    }
+  } @else {
+    <p class="erro">Texto não encontrado.</p>
+  }
+</section>

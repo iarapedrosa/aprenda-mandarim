@@ -399,8 +399,11 @@ label {
   scrollbar-width: thin;
 }
 
-.abas a {
+.abas a,
+.abas button {
   flex: none;
+  font: inherit;
+  cursor: pointer;
   padding: 8px 14px;
   border-radius: 999px;
   border: 1px solid var(--cor-borda);
@@ -412,7 +415,8 @@ label {
   white-space: nowrap;
 }
 
-.abas a.ativa {
+.abas a.ativa,
+.abas button.ativa {
   background: var(--cor-primaria);
   border-color: var(--cor-primaria);
   color: var(--cor-sobre-primaria);

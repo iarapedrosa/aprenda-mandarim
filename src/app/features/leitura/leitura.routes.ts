@@ -6,4 +6,9 @@ export const LEITURA_ROTAS: Routes = [
     title: 'Leitura',
     loadComponent: () => import('./leitura').then((m) => m.LeituraPagina),
   },
+  {
+    path: ':id',
+    title: 'Texto',
+    loadComponent: () => import('./texto/texto').then((m) => m.TextoPagina),
+  },
 ];
