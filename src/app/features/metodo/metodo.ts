@@ -117,8 +117,8 @@ const R = {
         </article>
 
         <p class="suave pequeno">
-          Links open the article search on Google Scholar. Found a mistake or know a relevant study? Write to the email
-          in the footer.
+          Links open the article search on Google Scholar. Found a mistake or know a relevant study?
+          <a routerLink="/contato">Get in touch</a>.
         </p>
       } @else {
       <article class="cartao">
@@ -160,8 +160,8 @@ const R = {
       </article>
 
       <p class="suave pequeno">
-        Os links abrem a busca do artigo no Google Acadêmico. Achou um erro ou conhece um estudo relevante? Escreva para
-        o email do rodapé.
+        Os links abrem a busca do artigo no Google Acadêmico. Achou um erro ou conhece um estudo relevante?
+        <a routerLink="/contato">Fale comigo</a>.
       </p>
       }
     </section>

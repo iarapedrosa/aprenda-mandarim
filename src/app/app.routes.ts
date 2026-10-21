@@ -40,6 +40,10 @@ export const routes: Routes = [
     loadChildren: () => import('./features/recursos/recursos.routes').then((m) => m.RECURSOS_ROTAS),
   },
   {
+    path: 'contato',
+    loadChildren: () => import('./features/contato/contato.routes').then((m) => m.CONTATO_ROTAS),
+  },
+  {
     path: 'gramatica',
     loadChildren: () => import('./features/gramatica/gramatica.routes').then((m) => m.GRAMATICA_ROTAS),
   },

@@ -1,3 +1,4 @@
+import { RouterLink } from '@angular/router';
 import { Component, inject } from '@angular/core';
 import { BotaoAudio } from '../../shared/botao-audio/botao-audio';
 import { PinyinColorido } from '../../shared/pinyin-colorido/pinyin-colorido';
@@ -25,7 +26,7 @@ interface Fase {
 
 @Component({
   selector: 'app-recursos',
-  imports: [BotaoAudio, PinyinColorido],
+  imports: [BotaoAudio, PinyinColorido, RouterLink],
   template: `
     <section class="pagina">
       <header>
@@ -127,7 +128,8 @@ interface Fase {
       </section>
 
       <p class="suave pequeno nota">
-        {{ i.t('Os links levam a sites de terceiros; alguns têm partes pagas. Nenhum tem relação com este site. Achou um recurso ótimo? Conte para a autora pelo email no rodapé!', 'Links go to third-party sites; some have paid parts. None is affiliated with this site. Found a great resource? Tell the author via the email in the footer!') }}
+        {{ i.t('Os links levam a sites de terceiros; alguns têm partes pagas. Nenhum tem relação com este site. Achou um recurso ótimo?', 'Links go to third-party sites; some have paid parts. None is affiliated with this site. Found a great resource?') }}
+        <a routerLink="/contato">{{ i.t('Conte para mim', 'Tell me about it') }}</a>!
       </p>
     </section>
   `,

@@ -33,6 +33,7 @@ export const PRATICAR: Destino[] = [
 export const SOBRE: Destino[] = [
   { rota: '/recursos', icone: '书', nome: 'Recursos para estudar', descricao: 'Livros, apps, vídeos e conversa — fora do site.', nomeEn: 'Study resources', descricaoEn: 'Books, apps, videos and conversation — beyond this site.' },
   { rota: '/metodo', icone: '研', nome: 'O método e a ciência', descricao: 'Por que o site funciona assim, com as referências.', nomeEn: 'The method and the science', descricaoEn: 'Why the site works this way, with references.' },
+  { rota: '/contato', icone: '信', nome: 'Fale comigo', descricao: 'Dúvidas, sugestões ou erros? Mande uma mensagem.', nomeEn: 'Get in touch', descricaoEn: 'Questions, suggestions or mistakes? Send a message.' },
 ];
 
 /** Grupo (aba ativa do menu) de uma URL. */
