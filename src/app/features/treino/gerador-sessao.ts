@@ -46,6 +46,7 @@ export interface PlanoSessao {
   itens: ItemSessao[];
   /** aviso sobre revisões acumuladas, para mostrar na página inicial */
   aviso?: string;
+  avisoEn?: string;
   resumo: { licoes: number; gramatica: number; revisoes: number; novas: number; escrita: number; frases: number; minutos: number };
 }
 
@@ -284,7 +285,7 @@ export function itemNumero(maximo: number): ItemEscolha {
 export function acumuloDeRevisoes(
   pendentes: number,
   meta: number,
-): { limiteRevisoes: number; fatorNovas: number; aviso?: string } {
+): { limiteRevisoes: number; fatorNovas: number; aviso?: string; avisoEn?: string } {
   if (pendentes <= meta) return { limiteRevisoes: meta, fatorNovas: 1 };
   const limiteRevisoes = Math.min(pendentes, meta * 2);
   if (pendentes > meta * 3) {
@@ -292,6 +293,7 @@ export function acumuloDeRevisoes(
       limiteRevisoes,
       fatorNovas: 0,
       aviso: `Você tem ${pendentes} revisões acumuladas. Hoje o treino foca nelas, sem palavras novas — assim a memória não fica para trás.`,
+      avisoEn: `You have ${pendentes} reviews piled up. Today's training focuses on them, with no new words — so your memory doesn't fall behind.`,
     };
   }
   if (pendentes > meta * 1.5) {
@@ -299,6 +301,7 @@ export function acumuloDeRevisoes(
       limiteRevisoes,
       fatorNovas: 0.5,
       aviso: `Há ${pendentes} revisões acumuladas: hoje entram menos palavras novas para o acúmulo baixar.`,
+      avisoEn: `There are ${pendentes} reviews piled up: fewer new words today so the backlog goes down.`,
     };
   }
   return { limiteRevisoes, fatorNovas: 1 };
@@ -343,6 +346,7 @@ export function gerarSessao(ctx: ContextoSessao, opcoes: { extraNovas?: number }
   const itens: ItemSessao[] = [];
   const resumo = { licoes: 0, gramatica: 0, revisoes: 0, novas: 0, escrita: 0, frases: 0, minutos: 0 };
   let aviso: string | undefined;
+  let avisoEn: string | undefined;
 
   // 1. Aquecimento de tons: duas sílabas soltas + um par de tons (palavra de 2 sílabas)
   //    Os tons que a pessoa mais confunde aparecem mais (Hao, 2012: 2º × 3º é a confusão clássica).
@@ -396,6 +400,7 @@ export function gerarSessao(ctx: ContextoSessao, opcoes: { extraNovas?: number }
     // com atraso, o limite cresce até o dobro da meta, para o acúmulo baixar
     const limiteRevisoes = Math.max(0, acumulo.limiteRevisoes - (atividade?.revisoes ?? 0));
     aviso = acumulo.aviso;
+    avisoEn = acumulo.avisoEn;
     const escrita = ESCRITA[estado.metas.escrita ?? 'leve'];
     let revisoesEscrita = 0;
     const revisoes: ItemSessao[] = [];
@@ -500,5 +505,5 @@ export function gerarSessao(ctx: ContextoSessao, opcoes: { extraNovas?: number }
   }
 
   resumo.minutos = Math.max(1, Math.round(itens.reduce((t, i) => t + MINUTOS[i.tipo], 0)));
-  return { etapa, itens, resumo, aviso };
+  return { etapa, itens, resumo, aviso, avisoEn };
 }

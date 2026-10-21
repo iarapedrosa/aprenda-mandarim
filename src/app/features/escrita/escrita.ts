@@ -61,8 +61,8 @@ const NIVEIS: { id: NivelEscrita; nome: string; descricao: string }[] = [
         <section class="cartao">
           <h2>O que vamos praticar?</h2>
           <div class="escolhas">
-            @for (n of vocabulario.niveis(); track n.id; let i = $index) {
-              <button type="button" class="botao" (click)="sortear(i + 1)">5 caracteres do {{ n.nome }}</button>
+            @for (n of vocabulario.niveis(); track n.id; let idx = $index) {
+              <button type="button" class="botao" (click)="sortear(idx + 1)">5 caracteres do {{ n.nome }}</button>
             }
           </div>
           <form class="proprios" (submit)="$event.preventDefault(); usarTexto(textoProprio())">

@@ -5,22 +5,28 @@ import { VozService } from '../../../core/voz/voz.service';
 import { BotaoAudio } from '../../../shared/botao-audio/botao-audio';
 import { PinyinColorido } from '../../../shared/pinyin-colorido/pinyin-colorido';
 import { QUIZ_SANDHI, REGRAS_SANDHI } from '../dados-pinyin';
+import { IdiomaService } from '../../../core/i18n/idioma.service';
 
 @Component({
   selector: 'app-sandhi',
   imports: [BotaoAudio, PinyinColorido],
   template: `
     <p>
-      <strong>Sandhi tonal</strong> são mudanças de tom que acontecem quando certas sílabas ficam
-      juntas. São só três regras — e a voz do site já as aplica, então ouça os exemplos.
+      @if (i.ingles()) {
+        <strong>Tone sandhi</strong> means tone changes that happen when certain syllables come
+        together. There are only three rules — and the site’s voice already applies them, so listen to the examples.
+      } @else {
+        <strong>Sandhi tonal</strong> são mudanças de tom que acontecem quando certas sílabas ficam
+        juntas. São só três regras — e a voz do site já as aplica, então ouça os exemplos.
+      }
     </p>
 
     @for (r of regras; track r.id) {
       <article class="cartao regra">
-        <h2>{{ r.titulo }}</h2>
-        <p class="enunciado">{{ r.regra }}</p>
+        <h2>{{ i.tr(r, 'titulo') }}</h2>
+        <p class="enunciado">{{ i.tr(r, 'regra') }}</p>
         <ul>
-          @for (d of r.detalhes; track d) {
+          @for (d of i.trLista(r, 'detalhes'); track d) {
             <li>{{ d }}</li>
           }
         </ul>
@@ -28,10 +34,10 @@ import { QUIZ_SANDHI, REGRAS_SANDHI } from '../dados-pinyin';
           <table>
             <thead>
               <tr>
-                <th scope="col">Palavra</th>
+                <th scope="col">{{ i.t('Palavra', 'Word') }}</th>
                 <th scope="col">Pinyin</th>
-                <th scope="col">Como se fala</th>
-                <th scope="col"><span class="visualmente-oculto">Ouvir</span></th>
+                <th scope="col">{{ i.t('Como se fala', 'How it’s said') }}</th>
+                <th scope="col"><span class="visualmente-oculto">{{ i.t('Ouvir', 'Listen') }}</span></th>
               </tr>
             </thead>
             <tbody>
@@ -39,7 +45,7 @@ import { QUIZ_SANDHI, REGRAS_SANDHI } from '../dados-pinyin';
                 <tr>
                   <td>
                     <span lang="zh-CN" class="hanzi">{{ e.hanzi }}</span>
-                    <span class="traducao">{{ e.traducao }}</span>
+                    <span class="traducao">{{ i.tr(e, 'traducao') }}</span>
                   </td>
                   <td><app-pinyin [texto]="e.pinyin" /></td>
                   <td><app-pinyin [texto]="e.falado" /></td>
@@ -53,15 +59,15 @@ import { QUIZ_SANDHI, REGRAS_SANDHI } from '../dados-pinyin';
     }
 
     <section class="cartao quiz" aria-labelledby="titulo-quiz">
-      <h2 id="titulo-quiz">Teste rápido</h2>
+      <h2 id="titulo-quiz">{{ i.t('Teste rápido', 'Quick quiz') }}</h2>
       @if (atual(); as p) {
-        <p class="progresso-quiz suave">Pergunta {{ indice() + 1 }} de {{ perguntas().length }}</p>
-        <p class="pergunta">{{ p.pergunta }}</p>
+        <p class="progresso-quiz suave">{{ i.t('Pergunta', 'Question') }} {{ indice() + 1 }} {{ i.t('de', 'of') }} {{ perguntas().length }}</p>
+        <p class="pergunta">{{ i.tr(p, 'pergunta') }}</p>
         <p class="linha">
           <span lang="zh-CN" class="hanzi-quiz">{{ p.hanzi }}</span>
           <app-botao-audio [texto]="p.hanzi" />
         </p>
-        <div class="opcoes" role="group" aria-label="Alternativas">
+        <div class="opcoes" role="group" [attr.aria-label]="i.t('Alternativas', 'Options')">
           @for (o of p.opcoes; track o) {
             <button
               type="button"
@@ -77,17 +83,17 @@ import { QUIZ_SANDHI, REGRAS_SANDHI } from '../dados-pinyin';
         </div>
         @if (resposta() !== null) {
           <p [class]="resposta() === p.correta ? 'sucesso' : 'erro'" role="status">
-            {{ resposta() === p.correta ? 'Isso!' : 'Quase.' }} {{ p.explicacao }}
+            {{ resposta() === p.correta ? i.t('Isso!', 'Right!') : i.t('Quase.', 'Almost.') }} {{ i.tr(p, 'explicacao') }}
           </p>
           <button type="button" class="botao botao-primario" (click)="proxima()">
-            {{ indice() + 1 < perguntas().length ? 'Próxima' : 'Ver resultado' }}
+            {{ indice() + 1 < perguntas().length ? i.t('Próxima', 'Next') : i.t('Ver resultado', 'See result') }}
           </button>
         }
       } @else {
         <p class="sucesso" role="status">
-          Você acertou {{ acertos() }} de {{ perguntas().length }}.
+          {{ i.t('Você acertou', 'You got') }} {{ acertos() }} {{ i.t('de', 'of') }} {{ perguntas().length }}{{ i.t('.', ' right.') }}
         </p>
-        <button type="button" class="botao" (click)="reiniciar()">Fazer de novo</button>
+        <button type="button" class="botao" (click)="reiniciar()">{{ i.t('Fazer de novo', 'Try again') }}</button>
       }
     </section>
   `,
@@ -132,6 +138,7 @@ import { QUIZ_SANDHI, REGRAS_SANDHI } from '../dados-pinyin';
   `,
 })
 export class SandhiPagina {
+  protected readonly i = inject(IdiomaService);
   private readonly progresso = inject(ProgressoService);
   protected readonly voz = inject(VozService);
   protected readonly regras = REGRAS_SANDHI;
@@ -153,7 +160,7 @@ export class SandhiPagina {
 
   protected proxima(): void {
     this.resposta.set(null);
-    this.indice.update((i) => i + 1);
+    this.indice.update((n) => n + 1);
   }
 
   protected reiniciar(): void {

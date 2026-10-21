@@ -1,4 +1,5 @@
-import { Injectable, signal } from '@angular/core';
+import { Injectable, inject, signal } from '@angular/core';
+import { IdiomaService } from '../i18n/idioma.service';
 
 /** Tipos mínimos da Web Speech API (SpeechRecognition ainda não está no lib.dom de todos). */
 interface ResultadoAlternativo {
@@ -31,14 +32,20 @@ export interface ResultadoReconhecimento {
   confianca: number;
 }
 
-const MENSAGENS_ERRO: Record<string, string> = {
-  'not-allowed': 'O acesso ao microfone foi negado. Libere o microfone nas configurações do navegador.',
-  'service-not-allowed': 'O navegador bloqueou o reconhecimento de voz neste site.',
-  'no-speech': 'Não ouvi nada. Tente falar mais perto do microfone.',
-  'audio-capture': 'Nenhum microfone encontrado.',
-  network: 'O reconhecimento de voz precisa de internet neste navegador.',
-  'language-not-supported': 'Este navegador não reconhece mandarim (zh-CN).',
-  aborted: 'Gravação cancelada.',
+const MENSAGENS_ERRO: Record<string, [string, string]> = {
+  'not-allowed': [
+    'O acesso ao microfone foi negado. Libere o microfone nas configurações do navegador.',
+    'Microphone access was denied. Allow the microphone in your browser settings.',
+  ],
+  'service-not-allowed': [
+    'O navegador bloqueou o reconhecimento de voz neste site.',
+    'The browser blocked speech recognition on this site.',
+  ],
+  'no-speech': ['Não ouvi nada. Tente falar mais perto do microfone.', 'I didn’t hear anything. Try speaking closer to the microphone.'],
+  'audio-capture': ['Nenhum microfone encontrado.', 'No microphone found.'],
+  network: ['O reconhecimento de voz precisa de internet neste navegador.', 'Speech recognition needs internet in this browser.'],
+  'language-not-supported': ['Este navegador não reconhece mandarim (zh-CN).', 'This browser does not recognize Mandarin (zh-CN).'],
+  aborted: ['Gravação cancelada.', 'Recording cancelled.'],
 };
 
 /**
@@ -47,6 +54,13 @@ const MENSAGENS_ERRO: Record<string, string> = {
  */
 @Injectable({ providedIn: 'root' })
 export class ReconhecimentoService {
+  private readonly i = inject(IdiomaService);
+
+  private msg(codigo: string): string | undefined {
+    const m = MENSAGENS_ERRO[codigo];
+    return m && this.i.t(m[0], m[1]);
+  }
+
   private readonly Construtor: ConstrutorReconhecedor | null = (() => {
     if (typeof window === 'undefined') return null;
     const w = window as unknown as Record<string, unknown>;
@@ -59,7 +73,7 @@ export class ReconhecimentoService {
 
   ouvir(): Promise<ResultadoReconhecimento> {
     if (!this.Construtor) {
-      return Promise.reject(new Error('Seu navegador não suporta reconhecimento de voz.'));
+      return Promise.reject(new Error(this.i.t('Seu navegador não suporta reconhecimento de voz.', 'Your browser does not support speech recognition.')));
     }
     this.atual?.abort();
     const rec = new this.Construtor();
@@ -84,11 +98,11 @@ export class ReconhecimentoService {
       };
       rec.onerror = (e) => {
         resolvido = true;
-        reject(new Error(MENSAGENS_ERRO[e.error] ?? `Erro no reconhecimento de voz (${e.error}).`));
+        reject(new Error(this.msg(e.error) ?? this.i.t(`Erro no reconhecimento de voz (${e.error}).`, `Speech recognition error (${e.error}).`)));
       };
       rec.onend = () => {
         this.ouvindo.set(false);
-        if (!resolvido) reject(new Error(MENSAGENS_ERRO['no-speech']));
+        if (!resolvido) reject(new Error(this.msg('no-speech')));
       };
       try {
         rec.start();

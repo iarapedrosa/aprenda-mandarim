@@ -8,6 +8,7 @@ import { VozService } from '../../../core/voz/voz.service';
 import { BotaoAudio } from '../../../shared/botao-audio/botao-audio';
 import { PinyinColorido } from '../../../shared/pinyin-colorido/pinyin-colorido';
 import { ItemTeclado, ResultadoItem } from '../sessao.model';
+import { IdiomaService } from '../../../core/i18n/idioma.service';
 
 /**
  * Digitar como no teclado chinês do celular: escreve-se o pinyin sem tons e escolhe-se
@@ -17,28 +18,28 @@ import { ItemTeclado, ResultadoItem } from '../sessao.model';
   selector: 'app-ex-teclado',
   imports: [FormsModule, BotaoAudio, PinyinColorido],
   template: `
-    <p class="enunciado">Digite como no teclado chinês</p>
+    <p class="enunciado">{{ i.t('Digite como no teclado chinês', 'Type it like on a Chinese keyboard') }}</p>
     <div class="pergunta">
-      <p class="texto-pergunta">{{ item().palavra.traducao }}</p>
+      <p class="texto-pergunta">{{ i.tr(item().palavra, 'traducao') }}</p>
       <div class="linha centro">
-        <app-botao-audio [texto]="item().palavra.hanzi" legenda="Ouvir" rotulo="a palavra" />
+        <app-botao-audio [texto]="item().palavra.hanzi" [legenda]="i.t('Ouvir', 'Listen')" [rotulo]="i.t('a palavra', 'the word')" />
       </div>
     </div>
 
-    <label for="campo-teclado" class="visualmente-oculto">Pinyin sem tons</label>
+    <label for="campo-teclado" class="visualmente-oculto">{{ i.t('Pinyin sem tons', 'Pinyin without tones') }}</label>
     <input
       id="campo-teclado"
       class="campo"
       autocomplete="off"
       autocapitalize="off"
       spellcheck="false"
-      placeholder="pinyin sem tons (ex.: nihao)"
+      [placeholder]="i.t('pinyin sem tons (ex.: nihao)', 'pinyin without tones (e.g. nihao)')"
       [ngModel]="texto()"
       (ngModelChange)="texto.set($event)"
       [disabled]="escolhido() !== null"
     />
-    <div class="barra-candidatos" role="listbox" aria-label="Candidatos">
-      @for (c of candidatos(); track c.hanzi; let i = $index) {
+    <div class="barra-candidatos" role="listbox" [attr.aria-label]="i.t('Candidatos', 'Candidates')">
+      @for (c of candidatos(); track c.hanzi; let idx = $index) {
         <button
           type="button"
           role="option"
@@ -49,28 +50,28 @@ import { ItemTeclado, ResultadoItem } from '../sessao.model';
           [disabled]="escolhido() !== null"
           (click)="escolher(c)"
         >
-          <span class="num" aria-hidden="true">{{ i + 1 }}</span>{{ c.hanzi }}
+          <span class="num" aria-hidden="true">{{ idx + 1 }}</span>{{ c.hanzi }}
         </button>
       } @empty {
-        <span class="suave pequeno">{{ texto() ? 'Nenhum candidato — confira a grafia.' : 'Os caracteres aparecem aqui enquanto você digita.' }}</span>
+        <span class="suave pequeno">{{ texto() ? i.t('Nenhum candidato — confira a grafia.', 'No candidates — check the spelling.') : i.t('Os caracteres aparecem aqui enquanto você digita.', 'Characters show up here as you type.') }}</span>
       }
     </div>
-    <p class="suave pequeno">No celular, é assim que se escreve em chinês: teclado "Chinês (Pinyin)" nas configurações.</p>
+    <p class="suave pequeno">{{ i.t('No celular, é assim que se escreve em chinês: teclado "Chinês (Pinyin)" nas configurações.', 'On a phone, this is how people write Chinese: add the "Chinese (Pinyin)" keyboard in settings.') }}</p>
 
     @if (escolhido() !== null) {
       <div [class]="acertou() ? 'sucesso retorno' : 'erro retorno'" role="status">
-        <strong>{{ acertou() ? 'Certo!' : 'Era outro caractere:' }}</strong>
+        <strong>{{ acertou() ? i.t('Certo!', 'Correct!') : i.t('Era outro caractere:', 'It was a different character:') }}</strong>
         <span class="resposta">
           <span lang="zh-CN" class="hanzi-resposta">{{ item().palavra.hanzi }}</span>
           <app-pinyin [texto]="item().palavra.pinyin" />
         </span>
         @if (!acertou() && homofono()) {
-          <span class="explicacao">Mesmo som, caractere diferente — por isso no chinês é preciso reconhecer o caractere certo!</span>
+          <span class="explicacao">{{ i.t('Mesmo som, caractere diferente — por isso no chinês é preciso reconhecer o caractere certo!', 'Same sound, different character — that’s why in Chinese you need to recognize the right character!') }}</span>
         }
       </div>
-      <button type="button" class="botao botao-primario botao-bloco" (click)="concluir.emit({ acertou: acertou() })">Continuar</button>
+      <button type="button" class="botao botao-primario botao-bloco" (click)="concluir.emit({ acertou: acertou() })">{{ i.t('Continuar', 'Continue') }}</button>
     } @else {
-      <button type="button" class="botao botao-texto botao-bloco" (click)="desistir()">Não sei</button>
+      <button type="button" class="botao botao-texto botao-bloco" (click)="desistir()">{{ i.t('Não sei', 'I don’t know') }}</button>
     }
   `,
   styleUrl: './exercicios.css',
@@ -118,6 +119,7 @@ import { ItemTeclado, ResultadoItem } from '../sessao.model';
   `,
 })
 export class ExTeclado {
+  protected readonly i = inject(IdiomaService);
   private readonly vocabulario = inject(VocabularioService);
   private readonly silabas = inject(SilabasService);
   private readonly voz = inject(VozService);

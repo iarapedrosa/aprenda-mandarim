@@ -3,7 +3,7 @@ import { FormsModule } from '@angular/forms';
 import { Tom, silabaComAcento, tomDaSilaba } from '../../../core/pinyin/pinyin';
 import { SilabasService } from '../../../core/pinyin/silabas.service';
 import { VocabularioService } from '../../../core/dados/vocabulario.service';
-import { alternativasDePar, chavePar, observacaoPar, palavrasPorPar, tonsDoValor } from '../../../core/pinyin/pares-tons';
+import { alternativasDePar, chavePar, observacaoPar, observacaoParEn, palavrasPorPar, tonsDoValor } from '../../../core/pinyin/pares-tons';
 import { pesosDosTons, sortearPonderado } from '../../../core/progresso/tons-dificeis';
 import { ProgressoService } from '../../../core/progresso/progresso.service';
 import { embaralhar, sortear } from '../../../core/util/aleatorio';
@@ -11,6 +11,7 @@ import { VozService } from '../../../core/voz/voz.service';
 import { DiagramaTom } from '../../../shared/diagrama-tom/diagrama-tom';
 import { PinyinColorido } from '../../../shared/pinyin-colorido/pinyin-colorido';
 import { ExemploSom, GrupoPares, PARES_SONS, PARES_TONS } from '../dados-pinyin';
+import { IdiomaService } from '../../../core/i18n/idioma.service';
 
 type Modo = 'tom' | 'combinacoes' | 'pares-tons' | 'pares-sons';
 
@@ -20,6 +21,7 @@ interface Opcao {
   tom?: Tom;
   /** ex.: "3º + 1º" */
   nome?: string;
+  nomeEn?: string;
 }
 
 interface Rodada {
@@ -28,6 +30,7 @@ interface Rodada {
   correta: string;
   tons: number[];
   nota?: string;
+  notaEn?: string;
 }
 
 /** Sílabas comuns e fáceis de ouvir para quem está começando. */
@@ -37,41 +40,41 @@ const SILABAS_INICIANTE = ['ma', 'ba', 'yi', 'shi', 'wu', 'tang', 'qi', 'tu', 'y
   selector: 'app-treino-tons',
   imports: [FormsModule, DiagramaTom, PinyinColorido],
   template: `
-    <div class="modos" role="radiogroup" aria-label="Tipo de treino">
+    <div class="modos" role="radiogroup" [attr.aria-label]="i.t('Tipo de treino', 'Drill type')">
       <label class="modo">
         <input type="radio" name="modo" value="tom" [ngModel]="modo()" (ngModelChange)="mudarModo($event)" />
-        <span><strong>Qual é o tom?</strong><br /><small>Ouça uma sílaba e diga o tom</small></span>
+        <span><strong>{{ i.t('Qual é o tom?', 'Which tone?') }}</strong><br /><small>{{ i.t('Ouça uma sílaba e diga o tom', 'Hear a syllable and name the tone') }}</small></span>
       </label>
       <label class="modo">
         <input type="radio" name="modo" value="combinacoes" [ngModel]="modo()" (ngModelChange)="mudarModo($event)" />
-        <span><strong>Pares de tons</strong><br /><small>Palavras de 2 sílabas: 老师 = 3º + 1º</small></span>
+        <span><strong>{{ i.t('Pares de tons', 'Tone pairs') }}</strong><br /><small>{{ i.t('Palavras de 2 sílabas: 老师 = 3º + 1º', '2-syllable words: 老师 = 3rd + 1st') }}</small></span>
       </label>
       <label class="modo">
         <input type="radio" name="modo" value="pares-tons" [ngModel]="modo()" (ngModelChange)="mudarModo($event)" />
-        <span><strong>Pares mínimos</strong><br /><small>mā, má, mǎ ou mà?</small></span>
+        <span><strong>{{ i.t('Pares mínimos', 'Minimal pairs') }}</strong><br /><small>{{ i.t('mā, má, mǎ ou mà?', 'mā, má, mǎ or mà?') }}</small></span>
       </label>
       <label class="modo">
         <input type="radio" name="modo" value="pares-sons" [ngModel]="modo()" (ngModelChange)="mudarModo($event)" />
-        <span><strong>Sons parecidos</strong><br /><small>shì ou sì? lù ou lǜ?</small></span>
+        <span><strong>{{ i.t('Sons parecidos', 'Similar sounds') }}</strong><br /><small>{{ i.t('shì ou sì? lù ou lǜ?', 'shì or sì? lù or lǜ?') }}</small></span>
       </label>
     </div>
 
     @if (modo() === 'tom') {
       <label class="opcao-linha">
         <input type="checkbox" [ngModel]="todasSilabas()" (ngModelChange)="todasSilabas.set($event); nova()" />
-        Usar todas as sílabas (mais difícil)
+        {{ i.t('Usar todas as sílabas (mais difícil)', 'Use all syllables (harder)') }}
       </label>
     } @else if (modo() === 'combinacoes') {
       <p class="suave pequeno">
-        Na fala, os tons quase sempre vêm em pares. São 20 combinações (4 tons × 4 tons + neutro), sorteadas por igual.
+        {{ i.t('Na fala, os tons quase sempre vêm em pares. São 20 combinações (4 tons × 4 tons + neutro), sorteadas por igual.', 'In speech, tones almost always come in pairs. There are 20 combinations (4 tones × 4 tones + neutral), drawn evenly.') }}
       </p>
     } @else {
       <label class="grupo-pares">
-        <span>Grupo:</span>
+        <span>{{ i.t('Grupo:', 'Group:') }}</span>
         <select class="campo" [ngModel]="grupoId()" (ngModelChange)="grupoId.set($event); nova()">
-          <option value="">Misturar todos</option>
+          <option value="">{{ i.t('Misturar todos', 'Mix all') }}</option>
           @for (g of grupos(); track g.id) {
-            <option [value]="g.id">{{ g.titulo }}</option>
+            <option [value]="g.id">{{ i.tr(g, 'titulo') }}</option>
           }
         </select>
       </label>
@@ -79,23 +82,29 @@ const SILABAS_INICIANTE = ['ma', 'ba', 'yi', 'shi', 'wu', 'tang', 'qi', 'tu', 'y
 
     <section class="cartao treino" aria-live="polite">
       <p class="placar">
-        <span>Acertos: <strong>{{ acertos() }}</strong> de {{ total() }}</span>
+        <span>{{ i.t('Acertos:', 'Score:') }} <strong>{{ acertos() }}</strong> {{ i.t('de', 'of') }} {{ total() }}</span>
         @if (sequencia() >= 3) {
-          <span class="etiqueta">🔥 {{ sequencia() }} seguidos</span>
+          <span class="etiqueta">🔥 {{ sequencia() }} {{ i.t('seguidos', 'in a row') }}</span>
         }
       </p>
 
       @if (!iniciado()) {
-        <p>Toque em <strong>Começar</strong> e ouça com atenção. Dica: use fones de ouvido.</p>
-        <button type="button" class="botao botao-primario botao-bloco" (click)="comecar()">Começar</button>
+        <p>
+          @if (i.ingles()) {
+            Tap <strong>Start</strong> and listen carefully. Tip: use headphones.
+          } @else {
+            Toque em <strong>Começar</strong> e ouça com atenção. Dica: use fones de ouvido.
+          }
+        </p>
+        <button type="button" class="botao botao-primario botao-bloco" (click)="comecar()">{{ i.t('Começar', 'Start') }}</button>
       } @else if (rodada(); as r) {
         <div class="ouvir">
-          <button type="button" class="botao botao-primario" (click)="tocar()">🔊 Ouvir de novo</button>
-          <button type="button" class="botao" (click)="tocar('lenta')">🐢 Devagar</button>
+          <button type="button" class="botao botao-primario" (click)="tocar()">🔊 {{ i.t('Ouvir de novo', 'Listen again') }}</button>
+          <button type="button" class="botao" (click)="tocar('lenta')">🐢 {{ i.t('Devagar', 'Slow') }}</button>
         </div>
 
-        <div class="opcoes" role="group" aria-label="Alternativas">
-          @for (o of r.opcoes; track o.valor; let i = $index) {
+        <div class="opcoes" role="group" [attr.aria-label]="i.t('Alternativas', 'Options')">
+          @for (o of r.opcoes; track o.valor; let idx = $index) {
             <button
               type="button"
               class="opcao"
@@ -104,13 +113,13 @@ const SILABAS_INICIANTE = ['ma', 'ba', 'yi', 'shi', 'wu', 'tang', 'qi', 'tu', 'y
               [disabled]="respondido()"
               (click)="responder(o.valor)"
             >
-              <span class="atalho" aria-hidden="true">{{ i + 1 }}</span>
+              <span class="atalho" aria-hidden="true">{{ idx + 1 }}</span>
               @if (modo() === 'tom' && o.tom) {
                 <app-diagrama-tom [tom]="o.tom" [class]="'tom-' + o.tom" class="mini" />
               }
               <app-pinyin [texto]="o.rotulo" />
               @if (o.nome) {
-                <span class="nome-par">{{ o.nome }}</span>
+                <span class="nome-par">{{ i.tr(o, 'nome') }}</span>
               }
             </button>
           }
@@ -118,23 +127,23 @@ const SILABAS_INICIANTE = ['ma', 'ba', 'yi', 'shi', 'wu', 'tang', 'qi', 'tu', 'y
 
         @if (respondido()) {
           <div [class]="escolha() === r.correta ? 'sucesso resultado' : 'erro resultado'" role="status">
-            <strong>{{ escolha() === r.correta ? 'Acertou!' : 'Não foi dessa vez.' }}</strong>
-            Era <span lang="zh-CN" class="hanzi">{{ r.alvo.hanzi }}</span>
+            <strong>{{ escolha() === r.correta ? i.t('Acertou!', 'Correct!') : i.t('Não foi dessa vez.', 'Not this time.') }}</strong>
+            {{ i.t('Era', 'It was') }} <span lang="zh-CN" class="hanzi">{{ r.alvo.hanzi }}</span>
             <app-pinyin [texto]="r.alvo.pinyin" />
             @if (r.alvo.traducao) {
-              <span>({{ r.alvo.traducao }})</span>
+              <span>({{ i.tr(r.alvo, 'traducao') }})</span>
             }
             @if (r.nota) {
-              <span class="nota-par">{{ r.nota }}</span>
+              <span class="nota-par">{{ i.tr(r, 'nota') }}</span>
             }
           </div>
           <button type="button" class="botao botao-primario botao-bloco" (click)="nova(true)">
-            Próxima <span class="suave pequeno">(Enter)</span>
+            {{ i.t('Próxima', 'Next') }} <span class="suave pequeno">(Enter)</span>
           </button>
         }
-        <p class="suave pequeno teclas">Teclado: 1–4 para responder · R para repetir · Enter para continuar</p>
+        <p class="suave pequeno teclas">{{ i.t('Teclado: 1–4 para responder · R para repetir · Enter para continuar', 'Keyboard: 1–4 to answer · R to replay · Enter to continue') }}</p>
       } @else {
-        <p class="info">Carregando sílabas…</p>
+        <p class="info">{{ i.t('Carregando sílabas…', 'Loading syllables…') }}</p>
       }
     </section>
   `,
@@ -250,6 +259,7 @@ const SILABAS_INICIANTE = ['ma', 'ba', 'yi', 'shi', 'wu', 'tang', 'qi', 'tu', 'y
   `,
 })
 export class TreinoTonsPagina {
+  protected readonly i = inject(IdiomaService);
   private readonly silabas = inject(SilabasService);
   private readonly vocabulario = inject(VocabularioService);
   private readonly pares = computed(() => palavrasPorPar(this.vocabulario.palavras()));
@@ -343,11 +353,12 @@ export class TreinoTonsPagina {
     const chave = sortearPonderado(chaves, (k) => { const [a, b] = k.split('-').map(Number); return pesos[a as 1] * pesos[b as 1]; });
     const p = sortear(pares.get(chave)!);
     return {
-      alvo: { hanzi: p.hanzi, pinyin: p.pinyin, traducao: p.traducao },
+      alvo: { hanzi: p.hanzi, pinyin: p.pinyin, traducao: p.traducao, traducaoEn: p.traducaoEn },
       opcoes: alternativasDePar(p),
       correta: chavePar(p.tons),
       tons: p.tons,
       nota: observacaoPar(p),
+      notaEn: observacaoParEn(p),
     };
   }
 
@@ -358,7 +369,7 @@ export class TreinoTonsPagina {
     const itens = this.modo() === 'pares-tons' ? grupo.itens : embaralhar(grupo.itens);
     return {
       alvo,
-      opcoes: itens.map((i) => ({ rotulo: i.pinyin, valor: i.pinyin })),
+      opcoes: itens.map((x) => ({ rotulo: x.pinyin, valor: x.pinyin })),
       correta: alvo.pinyin,
       tons: [tomDaSilaba(alvo.pinyin)],
     };

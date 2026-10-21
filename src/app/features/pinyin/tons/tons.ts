@@ -1,94 +1,98 @@
 import { Component, computed, inject } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { VocabularioService } from '../../../core/dados/vocabulario.service';
-import { nomePar, palavrasPorPar } from '../../../core/pinyin/pares-tons';
+import { nomePar, nomeParEn, palavrasPorPar } from '../../../core/pinyin/pares-tons';
 import { VozService } from '../../../core/voz/voz.service';
 import { BotaoAudio } from '../../../shared/botao-audio/botao-audio';
 import { DiagramaTom } from '../../../shared/diagrama-tom/diagrama-tom';
 import { PinyinColorido } from '../../../shared/pinyin-colorido/pinyin-colorido';
 import { TONS } from '../dados-pinyin';
+import { IdiomaService } from '../../../core/i18n/idioma.service';
 
 @Component({
   selector: 'app-tons',
   imports: [DiagramaTom, BotaoAudio, PinyinColorido, RouterLink],
   template: `
     <p>
-      O mandarim é uma língua <strong>tonal</strong>: a mesma sílaba muda de significado conforme a
-      melodia da voz. Existem 4 tons e um tom neutro. As cores abaixo são usadas em todo o site.
+      @if (i.ingles()) {
+        Mandarin is a <strong>tonal</strong> language: the same syllable changes meaning depending on the
+        melody of the voice. There are 4 tones plus a neutral tone. The colors below are used across the site.
+      } @else {
+        O mandarim é uma língua <strong>tonal</strong>: a mesma sílaba muda de significado conforme a
+        melodia da voz. Existem 4 tons e um tom neutro. As cores abaixo são usadas em todo o site.
+      }
     </p>
 
     <div class="tons">
       @for (t of tons; track t.tom) {
         <article class="cartao tom" [class]="'tom-' + t.tom">
           <header class="cabecalho">
-            <h2>{{ t.nome }}</h2>
+            <h2>{{ i.tr(t, 'nome') }}</h2>
             <span class="marca" aria-hidden="true">{{ t.marca }}</span>
           </header>
           <app-diagrama-tom [tom]="t.tom" />
-          <p class="resumo"><strong>{{ t.resumo }}</strong></p>
-          <p class="comparacao">{{ t.comparacao }}</p>
+          <p class="resumo"><strong>{{ i.tr(t, 'resumo') }}</strong></p>
+          <p class="comparacao">{{ i.tr(t, 'comparacao') }}</p>
           <button type="button" class="exemplo" (click)="voz.falar(t.exemplo.hanzi)">
             <span class="hanzi" lang="zh-CN">{{ t.exemplo.hanzi }}</span>
             <app-pinyin [texto]="t.exemplo.pinyin" />
-            <span class="traducao">{{ t.exemplo.traducao }}</span>
-            <span class="visualmente-oculto">— ouvir</span>
+            <span class="traducao">{{ i.tr(t.exemplo, 'traducao') }}</span>
+            <span class="visualmente-oculto">— {{ i.t('ouvir', 'listen') }}</span>
           </button>
         </article>
       }
     </div>
 
     <section class="cartao">
-      <h2>✋ Use as mãos</h2>
+      <h2>✋ {{ i.t('Use as mãos', 'Use your hands') }}</h2>
       <p>
-        Desenhar a curva do tom no ar com a mão enquanto ouve e repete ajuda a aprender os tons e as palavras — um
-        experimento com 106 iniciantes mostrou ganho tanto observando quanto fazendo os gestos (Baills et al., 2019).
+        {{ i.t('Desenhar a curva do tom no ar com a mão enquanto ouve e repete ajuda a aprender os tons e as palavras — um experimento com 106 iniciantes mostrou ganho tanto observando quanto fazendo os gestos (Baills et al., 2019).', 'Drawing the tone contour in the air with your hand while you listen and repeat helps you learn tones and words — an experiment with 106 beginners found gains both from watching and from making the gestures (Baills et al., 2019).') }}
       </p>
       <ul class="gestos">
-        <li><strong class="tom-1">1º</strong> mão reta, parada no alto, da esquerda para a direita</li>
-        <li><strong class="tom-2">2º</strong> mão subindo na diagonal, como quem pergunta</li>
-        <li><strong class="tom-3">3º</strong> mão desce até embaixo e volta a subir (um "✓")</li>
-        <li><strong class="tom-4">4º</strong> mão cai rápido de cima para baixo, firme</li>
-        <li><strong class="tom-5">neutro</strong> um toquinho leve e curto, sem curva</li>
+        <li><strong class="tom-1">{{ i.t('1º', '1st') }}</strong> {{ i.t('mão reta, parada no alto, da esquerda para a direita', 'flat hand, held high, moving left to right') }}</li>
+        <li><strong class="tom-2">{{ i.t('2º', '2nd') }}</strong> {{ i.t('mão subindo na diagonal, como quem pergunta', 'hand rising diagonally, like asking a question') }}</li>
+        <li><strong class="tom-3">{{ i.t('3º', '3rd') }}</strong> {{ i.t('mão desce até embaixo e volta a subir (um "✓")', 'hand dips down and comes back up (a "✓")') }}</li>
+        <li><strong class="tom-4">{{ i.t('4º', '4th') }}</strong> {{ i.t('mão cai rápido de cima para baixo, firme', 'hand drops fast from top to bottom, firmly') }}</li>
+        <li><strong class="tom-5">{{ i.t('neutro', 'neutral') }}</strong> {{ i.t('um toquinho leve e curto, sem curva', 'a light, short tap, no curve') }}</li>
       </ul>
     </section>
 
     <section class="cartao destaque">
-      <h2>Ouça a diferença</h2>
-      <p>Uma frase famosa para treinar: “A mamãe xinga o cavalo?”</p>
+      <h2>{{ i.t('Ouça a diferença', 'Hear the difference') }}</h2>
+      <p>{{ i.t('Uma frase famosa para treinar: “A mamãe xinga o cavalo?”', 'A famous practice sentence: “Does mom scold the horse?”') }}</p>
       <p class="frase">
         <span lang="zh-CN" class="hanzi">妈妈骂马吗？</span><br />
         <app-pinyin texto="Māma mà mǎ ma?" />
       </p>
       <div class="linha">
-        <app-botao-audio texto="妈妈骂马吗？" rotulo="Māma mà mǎ ma" legenda="Normal" velocidade="normal" />
-        <app-botao-audio texto="妈妈骂马吗？" rotulo="Māma mà mǎ ma" legenda="Devagar" velocidade="lenta" />
+        <app-botao-audio texto="妈妈骂马吗？" rotulo="Māma mà mǎ ma" [legenda]="i.t('Normal', 'Normal')" velocidade="normal" />
+        <app-botao-audio texto="妈妈骂马吗？" rotulo="Māma mà mǎ ma" [legenda]="i.t('Devagar', 'Slow')" velocidade="lenta" />
       </div>
     </section>
 
     <section class="cartao">
-      <h2>Os tons em pares</h2>
+      <h2>{{ i.t('Os tons em pares', 'Tones in pairs') }}</h2>
       <p>
-        Na fala, os tons quase nunca aparecem sozinhos: a maioria das palavras tem duas sílabas. Treine as 20
-        combinações — toque numa palavra para ouvir. Linhas: tom da 1ª sílaba; colunas: tom da 2ª.
+        {{ i.t('Na fala, os tons quase nunca aparecem sozinhos: a maioria das palavras tem duas sílabas. Treine as 20 combinações — toque numa palavra para ouvir. Linhas: tom da 1ª sílaba; colunas: tom da 2ª.', 'In speech, tones almost never appear alone: most words have two syllables. Practice the 20 combinations — tap a word to listen. Rows: tone of the 1st syllable; columns: tone of the 2nd.') }}
       </p>
       <div class="rolagem-x">
         <table class="tabela-pares">
           <thead>
             <tr>
-              <th scope="col"><span class="visualmente-oculto">1ª sílaba</span></th>
+              <th scope="col"><span class="visualmente-oculto">{{ i.t('1ª sílaba', '1st syllable') }}</span></th>
               @for (b of colunas; track b) {
-                <th scope="col" [class]="'tom-' + b">{{ b === 5 ? 'neutro' : b + 'º' }}</th>
+                <th scope="col" [class]="'tom-' + b">{{ b === 5 ? i.t('neutro', 'neutral') : ordinal(b) }}</th>
               }
             </tr>
           </thead>
           <tbody>
             @for (a of linhas; track a) {
               <tr>
-                <th scope="row" [class]="'tom-' + a">{{ a }}º</th>
+                <th scope="row" [class]="'tom-' + a">{{ ordinal(a) }}</th>
                 @for (b of colunas; track b) {
                   <td>
                     @if (exemploPar(a, b); as p) {
-                      <button type="button" class="celula-par" (click)="voz.falar(p.hanzi)" [attr.aria-label]="nome(a, b) + ': ' + p.hanzi + ', ' + p.pinyin + ', ' + p.traducao">
+                      <button type="button" class="celula-par" (click)="voz.falar(p.hanzi)" [attr.aria-label]="nome(a, b) + ': ' + p.hanzi + ', ' + p.pinyin + ', ' + i.tr(p, 'traducao')">
                         <span lang="zh-CN">{{ p.hanzi }}</span>
                         <app-pinyin [texto]="p.pinyin" />
                       </button>
@@ -100,27 +104,42 @@ import { TONS } from '../dados-pinyin';
           </tbody>
         </table>
       </div>
-      <p class="suave pequeno">Atenção: 3º + 3º (como 水果) é falado 2º + 3º. E antes de outros tons o 3º fica só grave.</p>
+      <p class="suave pequeno">{{ i.t('Atenção: 3º + 3º (como 水果) é falado 2º + 3º. E antes de outros tons o 3º fica só grave.', 'Note: 3rd + 3rd (like 水果) is spoken 2nd + 3rd. And before other tones the 3rd tone just stays low.') }}</p>
     </section>
 
     <section class="cartao">
-      <h2>Onde vai o acento?</h2>
-      <ol>
-        <li>Se houver <strong>a</strong> ou <strong>e</strong>, o acento vai nele: hǎo, xiè.</li>
-        <li>Em <strong>ou</strong>, vai no <strong>o</strong>: gǒu.</li>
-        <li>Nos outros casos, vai na <strong>última vogal</strong>: liù, guì.</li>
-      </ol>
-      <h3>Digitando tons com números</h3>
-      <p>
-        Nos exercícios você pode digitar o tom como número depois da sílaba:
-        <code>ma1 ma2 ma3 ma4</code> = mā má mǎ mà. Use <code>5</code> (ou nada) para o tom neutro e
-        <code>v</code> para o ü: <code>lv4</code> = lǜ.
-      </p>
+      @if (i.ingles()) {
+        <h2>Where does the tone mark go?</h2>
+        <ol>
+          <li>If there is an <strong>a</strong> or <strong>e</strong>, the mark goes on it: hǎo, xiè.</li>
+          <li>In <strong>ou</strong>, it goes on the <strong>o</strong>: gǒu.</li>
+          <li>Otherwise, it goes on the <strong>last vowel</strong>: liù, guì.</li>
+        </ol>
+        <h3>Typing tones with numbers</h3>
+        <p>
+          In the exercises you can type the tone as a number after the syllable:
+          <code>ma1 ma2 ma3 ma4</code> = mā má mǎ mà. Use <code>5</code> (or nothing) for the neutral tone and
+          <code>v</code> for ü: <code>lv4</code> = lǜ.
+        </p>
+      } @else {
+        <h2>Onde vai o acento?</h2>
+        <ol>
+          <li>Se houver <strong>a</strong> ou <strong>e</strong>, o acento vai nele: hǎo, xiè.</li>
+          <li>Em <strong>ou</strong>, vai no <strong>o</strong>: gǒu.</li>
+          <li>Nos outros casos, vai na <strong>última vogal</strong>: liù, guì.</li>
+        </ol>
+        <h3>Digitando tons com números</h3>
+        <p>
+          Nos exercícios você pode digitar o tom como número depois da sílaba:
+          <code>ma1 ma2 ma3 ma4</code> = mā má mǎ mà. Use <code>5</code> (ou nada) para o tom neutro e
+          <code>v</code> para o ü: <code>lv4</code> = lǜ.
+        </p>
+      }
     </section>
 
     <p class="linha proximos">
-      <a class="botao botao-primario" routerLink="../treino">Treinar os tons</a>
-      <a class="botao" routerLink="../sons">Ver iniciais e finais</a>
+      <a class="botao botao-primario" routerLink="../treino">{{ i.t('Treinar os tons', 'Practice tones') }}</a>
+      <a class="botao" routerLink="../sons">{{ i.t('Ver iniciais e finais', 'See initials and finals') }}</a>
     </p>
   `,
   styles: `
@@ -235,6 +254,7 @@ import { TONS } from '../dados-pinyin';
   `,
 })
 export class TonsPagina {
+  protected readonly i = inject(IdiomaService);
   protected readonly voz = inject(VozService);
   private readonly vocabulario = inject(VocabularioService);
   protected readonly tons = TONS;
@@ -251,6 +271,10 @@ export class TonsPagina {
   }
 
   protected nome(a: number, b: number): string {
-    return nomePar([a, b] as never);
+    return this.i.ingles() ? nomeParEn([a, b] as never) : nomePar([a, b] as never);
+  }
+
+  protected ordinal(t: number): string {
+    return this.i.t(`${t}º`, ['1st', '2nd', '3rd', '4th'][t - 1]);
   }
 }

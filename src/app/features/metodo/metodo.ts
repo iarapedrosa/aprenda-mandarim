@@ -53,9 +53,9 @@ const R = {
         </p>
       </header>
 
-      @for (p of principios; track p.titulo; let i = $index) {
+      @for (p of principios; track p.titulo; let idx = $index) {
         <article class="cartao principio">
-          <h2><span class="numero" aria-hidden="true">{{ i + 1 }}</span> {{ p.titulo }}</h2>
+          <h2><span class="numero" aria-hidden="true">{{ idx + 1 }}</span> {{ p.titulo }}</h2>
           <p><strong>O que a pesquisa mostra:</strong> {{ p.pesquisa }}</p>
           <p><strong>Como o site usa:</strong> {{ p.noSite }}</p>
           @if (p.link) {

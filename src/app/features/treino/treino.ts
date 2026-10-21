@@ -12,6 +12,7 @@ import { PalavraDoDiaCartao } from './do-dia/palavra-do-dia';
 import { ComoUsar } from './do-dia/como-usar';
 import { MeuPlano } from './do-dia/meu-plano';
 import { PALAVRAS_PARA_LIBERAR_FRASES, etapaAtual, gerarSessao } from './gerador-sessao';
+import { IdiomaService } from '../../core/i18n/idioma.service';
 
 @Component({
   selector: 'app-treino',
@@ -23,26 +24,26 @@ import { PALAVRAS_PARA_LIBERAR_FRASES, etapaAtual, gerarSessao } from './gerador
       </header>
 
       <section class="cartao chamada" aria-labelledby="titulo-treino">
-        <div class="chips" role="list" aria-label="Seu dia">
-          <span class="chip" role="listitem" title="Sequência de dias">🔥 <strong>{{ progresso.sequencia() }}</strong> {{ progresso.sequencia() === 1 ? 'dia' : 'dias' }}</span>
-          <span class="chip" role="listitem" title="Palavras novas hoje">🆕 <strong>{{ progresso.atividadeHoje().novas }}/{{ progresso.metas().novasPorDia }}</strong> novas</span>
-          <span class="chip" role="listitem" title="Revisões hoje">🔁 <strong>{{ progresso.atividadeHoje().revisoes }}/{{ progresso.metas().revisoesPorDia }}</strong> revisões</span>
+        <div class="chips" role="list" [attr.aria-label]="i.t('Seu dia', 'Your day')">
+          <span class="chip" role="listitem" [title]="i.t('Sequência de dias', 'Day streak')">🔥 <strong>{{ progresso.sequencia() }}</strong> {{ progresso.sequencia() === 1 ? i.t('dia', 'day') : i.t('dias', 'days') }}</span>
+          <span class="chip" role="listitem" [title]="i.t('Palavras novas hoje', 'New words today')">🆕 <strong>{{ progresso.atividadeHoje().novas }}/{{ progresso.metas().novasPorDia }}</strong> {{ i.t('novas', 'new') }}</span>
+          <span class="chip" role="listitem" [title]="i.t('Revisões hoje', 'Reviews today')">🔁 <strong>{{ progresso.atividadeHoje().revisoes }}/{{ progresso.metas().revisoesPorDia }}</strong> {{ i.t('revisões', 'reviews') }}</span>
         </div>
         @if (progresso.atividadeHoje().treinoConcluido) {
-          <h2 id="titulo-treino">✅ Treino de hoje concluído!</h2>
-          <p class="suave">Ótimo trabalho. Se quiser, faça mais uma rodada ou pratique um módulo.</p>
+          <h2 id="titulo-treino">✅ {{ i.t('Treino de hoje concluído!', 'Today’s training is done!') }}</h2>
+          <p class="suave">{{ i.t('Ótimo trabalho. Se quiser, faça mais uma rodada ou pratique um módulo.', 'Great job. If you like, do another round or practice a module.') }}</p>
         } @else {
-          <h2 id="titulo-treino">Treino de hoje</h2>
+          <h2 id="titulo-treino">{{ i.t('Treino de hoje', 'Today’s training') }}</h2>
           @if (resumo(); as r) {
             <p class="suave resumo">
               ≈ {{ r.minutos }} min ·
-              @if (r.licoes) { {{ r.licoes }} {{ r.licoes === 1 ? 'lição' : 'lições' }} de pinyin · }
-              @if (r.gramatica) { 1 lição de gramática · }
-              @if (r.revisoes) { {{ r.revisoes }} revisões · }
-              @if (r.novas) { {{ r.novas }} palavras novas · }
-              @if (r.escrita) { {{ r.escrita }} caracteres para escrever · }
-              @if (r.frases) { {{ r.frases }} exercícios com frases · }
-              aquecimento de tons
+              @if (r.licoes) { {{ r.licoes }} {{ r.licoes === 1 ? i.t('lição de pinyin', 'pinyin lesson') : i.t('lições de pinyin', 'pinyin lessons') }} · }
+              @if (r.gramatica) { {{ i.t('1 lição de gramática', '1 grammar lesson') }} · }
+              @if (r.revisoes) { {{ r.revisoes }} {{ i.t('revisões', 'reviews') }} · }
+              @if (r.novas) { {{ r.novas }} {{ i.t('palavras novas', 'new words') }} · }
+              @if (r.escrita) { {{ r.escrita }} {{ i.t('caracteres para escrever', 'characters to write') }} · }
+              @if (r.frases) { {{ r.frases }} {{ i.t('exercícios com frases', 'sentence exercises') }} · }
+              {{ i.t('aquecimento de tons', 'tone warm-up') }}
             </p>
           }
         }
@@ -50,7 +51,7 @@ import { PALAVRAS_PARA_LIBERAR_FRASES, etapaAtual, gerarSessao } from './gerador
           <p class="aviso pequeno" role="status">⏳ {{ aviso() }}</p>
         }
         <a routerLink="/treino" class="botao botao-primario botao-bloco grande">
-          {{ progresso.atividadeHoje().treinoConcluido ? 'Treinar de novo' : 'Começar treino' }}
+          {{ progresso.atividadeHoje().treinoConcluido ? i.t('Treinar de novo', 'Train again') : i.t('Começar treino', 'Start training') }}
         </a>
       </section>
 
@@ -61,32 +62,32 @@ import { PALAVRAS_PARA_LIBERAR_FRASES, etapaAtual, gerarSessao } from './gerador
       <app-meu-plano />
 
       <section class="cartao etapas" aria-labelledby="titulo-etapas">
-        <h2 id="titulo-etapas" class="visualmente-oculto">Sua jornada</h2>
+        <h2 id="titulo-etapas" class="visualmente-oculto">{{ i.t('Sua jornada', 'Your journey') }}</h2>
         <ol class="jornada">
           <li [class.atual]="etapa() === 'pinyin'" [class.feita]="etapa() !== 'pinyin'">
-            <strong>1. Pinyin e tons</strong>
-            <span class="suave pequeno">{{ licoesFeitas() }}/{{ totalLicoes }} lições</span>
+            <strong>1. {{ i.t('Pinyin e tons', 'Pinyin and tones') }}</strong>
+            <span class="suave pequeno">{{ licoesFeitas() }}/{{ totalLicoes }} {{ i.t('lições', 'lessons') }}</span>
           </li>
           <li [class.atual]="etapa() === 'palavras'" [class.feita]="etapa() === 'frases'">
-            <strong>2. Palavras e caracteres</strong>
-            <span class="suave pequeno">{{ progresso.palavrasEstudadas().length }} palavras estudadas</span>
+            <strong>2. {{ i.t('Palavras e caracteres', 'Words and characters') }}</strong>
+            <span class="suave pequeno">{{ progresso.palavrasEstudadas().length }} {{ i.t('palavras estudadas', 'words studied') }}</span>
           </li>
           <li [class.atual]="etapa() === 'frases'">
-            <strong>3. Frases</strong>
+            <strong>3. {{ i.t('Frases', 'Sentences') }}</strong>
             <span class="suave pequeno">
-              @if (etapa() === 'frases') { liberado } @else { a partir de {{ palavrasParaFrases }} palavras }
+              @if (etapa() === 'frases') { {{ i.t('liberado', 'unlocked') }} } @else { {{ i.t('a partir de', 'from') }} {{ palavrasParaFrases }} {{ i.t('palavras', 'words') }} }
             </span>
           </li>
         </ol>
         @if (etapa() === 'pinyin') {
           @if (!confirmarPulo()) {
-            <button type="button" class="botao botao-texto pequeno" (click)="confirmarPulo.set(true)">Já sei pinyin — pular para o vocabulário</button>
+            <button type="button" class="botao botao-texto pequeno" (click)="confirmarPulo.set(true)">{{ i.t('Já sei pinyin — pular para o vocabulário', 'I already know pinyin — skip to vocabulary') }}</button>
           } @else {
             <div class="aviso pulo" role="alert">
-              Pular as lições de pinyin e começar o vocabulário agora?
+              {{ i.t('Pular as lições de pinyin e começar o vocabulário agora?', 'Skip the pinyin lessons and start vocabulary now?') }}
               <div class="linha">
-                <button type="button" class="botao botao-primario" (click)="pularPinyin()">Sim, pular</button>
-                <button type="button" class="botao" (click)="confirmarPulo.set(false)">Cancelar</button>
+                <button type="button" class="botao botao-primario" (click)="pularPinyin()">{{ i.t('Sim, pular', 'Yes, skip') }}</button>
+                <button type="button" class="botao" (click)="confirmarPulo.set(false)">{{ i.t('Cancelar', 'Cancel') }}</button>
               </div>
             </div>
           }
@@ -104,14 +105,14 @@ import { PALAVRAS_PARA_LIBERAR_FRASES, etapaAtual, gerarSessao } from './gerador
 
       @if (anteriores().length) {
         <details class="cartao anteriores">
-          <summary>Frases dos dias anteriores</summary>
+          <summary>{{ i.t('Frases dos dias anteriores', 'Phrases from previous days') }}</summary>
           <ul>
             @for (a of anteriores(); track a.data) {
               <li>
                 <span class="data suave pequeno">{{ formatarData(a.data) }}</span>
                 <span lang="zh-CN" class="hanzi-anterior">{{ a.frase.hanzi }}</span>
                 <app-pinyin [texto]="a.frase.pinyin" />
-                <span class="suave">— {{ a.frase.traducao }}</span>
+                <span class="suave">— {{ i.tr(a.frase, 'traducao') }}</span>
               </li>
             }
           </ul>
@@ -122,10 +123,10 @@ import { PALAVRAS_PARA_LIBERAR_FRASES, etapaAtual, gerarSessao } from './gerador
         <app-como-usar />
       }
 
-      <nav class="atalhos" aria-label="Ir para">
+      <nav class="atalhos" [attr.aria-label]="i.t('Ir para', 'Go to')">
         @for (m of atalhos; track m.rota) {
           <a [routerLink]="m.rota" class="atalho">
-            <span lang="zh-CN" aria-hidden="true">{{ m.icone }}</span>{{ m.nome }}
+            <span lang="zh-CN" aria-hidden="true">{{ m.icone }}</span>{{ i.tr(m, 'nome') }}
           </a>
         }
       </nav>
@@ -276,6 +277,7 @@ import { PALAVRAS_PARA_LIBERAR_FRASES, etapaAtual, gerarSessao } from './gerador
   `,
 })
 export class TreinoPagina {
+  protected readonly i = inject(IdiomaService);
   protected readonly progresso = inject(ProgressoService);
   private readonly vocabulario = inject(VocabularioService);
   private readonly frases = inject(FrasesService);
@@ -313,7 +315,10 @@ export class TreinoPagina {
     });
   });
   protected readonly resumo = computed(() => this.plano()?.resumo ?? null);
-  protected readonly aviso = computed(() => this.plano()?.aviso ?? null);
+  protected readonly aviso = computed(() => {
+    const p = this.plano();
+    return p?.aviso ? this.i.t(p.aviso, p.avisoEn ?? p.aviso) : null;
+  });
 
   protected readonly atalhos = [...APRENDER, ...PRATICAR, ...SOBRE].filter((d) => d.rota !== '/caracteres/radicais');
 
@@ -325,7 +330,7 @@ export class TreinoPagina {
 
   protected saudacao(): string {
     const h = new Date().getHours();
-    return h < 12 ? 'Bom dia!' : h < 18 ? 'Boa tarde!' : 'Boa noite!';
+    return h < 12 ? this.i.t('Bom dia!', 'Good morning!') : h < 18 ? this.i.t('Boa tarde!', 'Good afternoon!') : this.i.t('Boa noite!', 'Good evening!');
   }
 
   protected pularPinyin(): void {
@@ -335,6 +340,6 @@ export class TreinoPagina {
 
   protected formatarData(data: string): string {
     const [, m, d] = data.split('-');
-    return `${d}/${m}`;
+    return this.i.ingles() ? `${m}/${d}` : `${d}/${m}`;
   }
 }

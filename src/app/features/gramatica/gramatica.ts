@@ -26,10 +26,10 @@ import { ItemMontar, ResultadoItem } from '../treino/sessao.model';
         <p class="info">Carregando…</p>
       } @else {
         <ol class="licoes">
-          @for (l of gramatica.licoes(); track l.id; let i = $index) {
+          @for (l of gramatica.licoes(); track l.id; let idx = $index) {
             <li>
               <a class="cartao licao" [routerLink]="['/gramatica', l.id]">
-                <span class="numero" aria-hidden="true">{{ i + 1 }}</span>
+                <span class="numero" aria-hidden="true">{{ idx + 1 }}</span>
                 <span class="corpo">
                   <strong>{{ l.titulo }}</strong>
                   <span class="suave pequeno">{{ l.estrutura }}</span>

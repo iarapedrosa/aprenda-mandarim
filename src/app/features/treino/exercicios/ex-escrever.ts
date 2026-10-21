@@ -1,9 +1,10 @@
-import { Component, input, output, signal } from '@angular/core';
+import { Component, input, output, signal, inject } from '@angular/core';
 import { notaDaEscrita } from '../../../core/srs/sm2';
 import { BotaoAudio } from '../../../shared/botao-audio/botao-audio';
 import { QuizEscrita, ResultadoEscrita } from '../../../shared/hanzi/quiz-escrita';
 import { PinyinColorido } from '../../../shared/pinyin-colorido/pinyin-colorido';
 import { ItemEscrever, ResultadoItem } from '../sessao.model';
+import { IdiomaService } from '../../../core/i18n/idioma.service';
 
 const TEXTOS_NIVEL = {
   contorno: 'Decalque o caractere',
@@ -16,7 +17,7 @@ const TEXTOS_NIVEL = {
   selector: 'app-ex-escrever',
   imports: [QuizEscrita, BotaoAudio, PinyinColorido],
   template: `
-    <p class="enunciado">{{ textos[item().nivel] }}</p>
+    <p class="enunciado">{{ i.ingles() ? textosEn[item().nivel] : textos[item().nivel] }}</p>
     <div class="cabecalho">
       @if (item().nivel === 'sem-contorno' || resultado()) {
         <span class="modelo" lang="zh-CN">{{ item().caractere.hanzi }}</span>
@@ -25,7 +26,7 @@ const TEXTOS_NIVEL = {
         @if (item().caractere.pinyin) {
           <p class="pinyin-pergunta"><app-pinyin [texto]="item().caractere.pinyin" /></p>
         }
-        <p class="suave">{{ item().caractere.traducao }}</p>
+        <p class="suave">{{ i.tr(item().caractere, 'traducao') }}</p>
       </div>
       <app-botao-audio [texto]="item().caractere.hanzi" [rotulo]="item().caractere.pinyin" />
     </div>
@@ -36,10 +37,10 @@ const TEXTOS_NIVEL = {
       (concluir)="aoConcluir($event)"
     />
     @if (resultado(); as r) {
-      <button type="button" class="botao botao-primario botao-bloco continuar" (click)="emitir(r)">Continuar</button>
+      <button type="button" class="botao botao-primario botao-bloco continuar" (click)="emitir(r)">{{ i.t('Continuar', 'Continue') }}</button>
     } @else {
       <button type="button" class="botao botao-texto botao-bloco continuar" (click)="pular()">
-        Pular (agora não dá para escrever)
+        {{ i.t('Pular (agora não dá para escrever)', 'Skip (can’t write right now)') }}
       </button>
     }
   `,
@@ -66,9 +67,15 @@ const TEXTOS_NIVEL = {
   `,
 })
 export class ExEscrever {
+  protected readonly i = inject(IdiomaService);
   readonly item = input.required<ItemEscrever>();
   readonly concluir = output<ResultadoItem>();
   protected readonly textos = TEXTOS_NIVEL;
+  protected readonly textosEn = {
+    contorno: 'Trace the character',
+    'sem-contorno': 'Write the character without the outline',
+    memoria: 'Write it from memory',
+  };
   protected readonly resultado = signal<ResultadoEscrita | null>(null);
   protected readonly tamanho = Math.min(280, (typeof window !== 'undefined' ? window.innerWidth : 360) - 80);
 

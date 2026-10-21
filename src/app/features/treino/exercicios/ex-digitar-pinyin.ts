@@ -5,46 +5,47 @@ import { VozService } from '../../../core/voz/voz.service';
 import { BotaoAudio } from '../../../shared/botao-audio/botao-audio';
 import { PinyinColorido } from '../../../shared/pinyin-colorido/pinyin-colorido';
 import { ItemDigitarPinyin, ResultadoItem } from '../sessao.model';
+import { IdiomaService } from '../../../core/i18n/idioma.service';
 
 /** Digitar o pinyin de uma palavra ou frase (com números ou acentos). */
 @Component({
   selector: 'app-ex-digitar-pinyin',
   imports: [FormsModule, BotaoAudio, PinyinColorido],
   template: `
-    <p class="enunciado">{{ item().enunciado }}</p>
+    <p class="enunciado">{{ i.tr(item(), 'enunciado') }}</p>
     <div class="pergunta">
       @if (!item().soAudio || resultado()) {
         <p class="hanzi-pergunta" lang="zh-CN">{{ item().hanzi }}</p>
       }
       @if (!item().soAudio) {
-        <p class="suave">{{ item().traducao }}</p>
+        <p class="suave">{{ i.tr(item(), 'traducao') }}</p>
       }
       <div class="linha centro">
-        <app-botao-audio [texto]="item().hanzi" legenda="Ouvir" rotulo="o áudio" />
-        <app-botao-audio [texto]="item().hanzi" legenda="Devagar" rotulo="o áudio" velocidade="lenta" />
+        <app-botao-audio [texto]="item().hanzi" [legenda]="i.t('Ouvir', 'Listen')" [rotulo]="i.t('o áudio', 'the audio')" />
+        <app-botao-audio [texto]="item().hanzi" [legenda]="i.t('Devagar', 'Slow')" [rotulo]="i.t('o áudio', 'the audio')" velocidade="lenta" />
       </div>
     </div>
 
     <form (submit)="$event.preventDefault(); verificar()">
-      <label for="resposta-pinyin" class="visualmente-oculto">Sua resposta em pinyin</label>
+      <label for="resposta-pinyin" class="visualmente-oculto">{{ i.t('Sua resposta em pinyin', 'Your answer in pinyin') }}</label>
       <input
         id="resposta-pinyin"
         class="campo"
         autocomplete="off"
         autocapitalize="off"
         spellcheck="false"
-        placeholder="ex.: ni3 hao3 ou nǐ hǎo"
+        [placeholder]="i.t('ex.: ni3 hao3 ou nǐ hǎo', 'e.g. ni3 hao3 or nǐ hǎo')"
         [ngModel]="texto()"
         (ngModelChange)="texto.set($event)"
         name="resposta"
         [disabled]="!!resultado()"
         autofocus
       />
-      <p class="suave pequeno dica">Tons com números: 1 ā · 2 á · 3 ǎ · 4 à · 5 neutro · v = ü</p>
+      <p class="suave pequeno dica">{{ i.t('Tons com números: 1 ā · 2 á · 3 ǎ · 4 à · 5 neutro · v = ü', 'Tone numbers: 1 ā · 2 á · 3 ǎ · 4 à · 5 neutral · v = ü') }}</p>
       @if (!resultado()) {
         <div class="linha">
-          <button type="submit" class="botao botao-primario" [disabled]="!texto().trim()">Verificar</button>
-          <button type="button" class="botao botao-texto" (click)="desistir()">Não sei</button>
+          <button type="submit" class="botao botao-primario" [disabled]="!texto().trim()">{{ i.t('Verificar', 'Check') }}</button>
+          <button type="button" class="botao botao-texto" (click)="desistir()">{{ i.t('Não sei', 'I don’t know') }}</button>
         </div>
       }
     </form>
@@ -57,7 +58,7 @@ import { ItemDigitarPinyin, ResultadoItem } from '../sessao.model';
             <span class="silaba" [class]="'silaba ' + s.estado" [title]="s.nota ?? ''">
               {{ s.esperada }}
               @if (s.estado !== 'certo' && s.digitada) {
-                <small>(você: {{ s.digitada }})</small>
+                <small>({{ i.t('você', 'you') }}: {{ s.digitada }})</small>
               }
             </span>
           }
@@ -68,11 +69,11 @@ import { ItemDigitarPinyin, ResultadoItem } from '../sessao.model';
           }
         }
         <span class="resposta">
-          Resposta: <app-pinyin [texto]="item().pinyin" /> — {{ item().traducao }}
+          {{ i.t('Resposta:', 'Answer:') }} <app-pinyin [texto]="item().pinyin" /> — {{ i.tr(item(), 'traducao') }}
         </span>
       </div>
       <button type="button" class="botao botao-primario botao-bloco" (click)="concluir.emit({ acertou: r.correto })">
-        Continuar
+        {{ i.t('Continuar', 'Continue') }}
       </button>
     }
   `,
@@ -110,6 +111,7 @@ import { ItemDigitarPinyin, ResultadoItem } from '../sessao.model';
   `,
 })
 export class ExDigitarPinyin implements OnInit {
+  protected readonly i = inject(IdiomaService);
   private readonly voz = inject(VozService);
   readonly item = input.required<ItemDigitarPinyin>();
   readonly concluir = output<ResultadoItem>();
@@ -122,10 +124,15 @@ export class ExDigitarPinyin implements OnInit {
 
   protected verificar(): void {
     if (!this.texto().trim() || this.resultado()) return;
-    this.resultado.set(compararPinyin(this.texto(), this.item().pinyin, { hanzi: this.item().hanzi }));
+    this.resultado.set(
+      compararPinyin(this.texto(), this.item().pinyin, { hanzi: this.item().hanzi, ingles: this.i.ingles() }),
+    );
   }
 
   protected desistir(): void {
-    this.resultado.set({ ...compararPinyin('', this.item().pinyin), mensagem: 'Tudo bem! Veja a resposta:' });
+    this.resultado.set({
+      ...compararPinyin('', this.item().pinyin),
+      mensagem: this.i.t('Tudo bem! Veja a resposta:', 'That’s OK! Here’s the answer:'),
+    });
   }
 }

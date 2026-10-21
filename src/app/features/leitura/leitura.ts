@@ -31,10 +31,10 @@ import { ProgressoService } from '../../core/progresso/progresso.service';
         <p class="info">Carregando textos…</p>
       } @else {
         <ul class="textos">
-          @for (t of lista(); track t.id; let i = $index) {
+          @for (t of lista(); track t.id; let idx = $index) {
             <li>
               <a class="cartao texto" [routerLink]="['/leitura', t.id]">
-                <span class="numero" aria-hidden="true">{{ i + 1 }}</span>
+                <span class="numero" aria-hidden="true">{{ idx + 1 }}</span>
                 <span class="corpo">
                   <span class="titulo-hanzi" lang="zh-CN">{{ t.tituloHanzi }}</span>
                   <strong>{{ t.titulo }}</strong>

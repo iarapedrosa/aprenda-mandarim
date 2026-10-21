@@ -5,6 +5,7 @@ import { VozService } from '../../../core/voz/voz.service';
 import { BotaoAudio } from '../../../shared/botao-audio/botao-audio';
 import { PinyinColorido } from '../../../shared/pinyin-colorido/pinyin-colorido';
 import { ItemFalar, ResultadoItem } from '../sessao.model';
+import { IdiomaService } from '../../../core/i18n/idioma.service';
 
 /** Pontuação mínima para considerar a repetição boa. */
 const MINIMO = 70;
@@ -14,14 +15,14 @@ const MINIMO = 70;
   selector: 'app-ex-falar',
   imports: [BotaoAudio, PinyinColorido],
   template: `
-    <p class="enunciado">Ouça e repita em voz alta</p>
+    <p class="enunciado">{{ i.t('Ouça e repita em voz alta', 'Listen and repeat out loud') }}</p>
     <div class="pergunta">
       <p class="hanzi-frase" lang="zh-CN">{{ item().frase.hanzi }}</p>
       <p><app-pinyin [texto]="item().frase.pinyin" /></p>
-      <p class="suave">{{ item().frase.traducao }}</p>
+      <p class="suave">{{ i.tr(item().frase, 'traducao') }}</p>
       <div class="linha centro">
-        <app-botao-audio [texto]="item().frase.hanzi" [rotulo]="item().frase.pinyin" legenda="Ouvir" />
-        <app-botao-audio [texto]="item().frase.hanzi" [rotulo]="item().frase.pinyin" legenda="Devagar" velocidade="lenta" />
+        <app-botao-audio [texto]="item().frase.hanzi" [rotulo]="item().frase.pinyin" [legenda]="i.t('Ouvir', 'Listen')" />
+        <app-botao-audio [texto]="item().frase.hanzi" [rotulo]="item().frase.pinyin" [legenda]="i.t('Devagar', 'Slow')" velocidade="lenta" />
       </div>
     </div>
 
@@ -32,12 +33,12 @@ const MINIMO = 70;
           class="botao-microfone"
           [class.ouvindo]="reconhecimento.ouvindo()"
           (click)="gravar()"
-          [attr.aria-label]="reconhecimento.ouvindo() ? 'Parar gravação' : 'Gravar minha voz'"
+          [attr.aria-label]="reconhecimento.ouvindo() ? i.t('Parar gravação', 'Stop recording') : i.t('Gravar minha voz', 'Record my voice')"
         >
           🎙️
         </button>
         <p class="suave pequeno">
-          {{ reconhecimento.ouvindo() ? 'Ouvindo… fale agora' : resultado() ? 'Toque para tentar de novo' : 'Toque e repita a frase' }}
+          {{ reconhecimento.ouvindo() ? i.t('Ouvindo… fale agora', 'Listening… speak now') : resultado() ? i.t('Toque para tentar de novo', 'Tap to try again') : i.t('Toque e repita a frase', 'Tap and repeat the sentence') }}
         </p>
       </div>
 
@@ -47,42 +48,41 @@ const MINIMO = 70;
 
       @if (resultado(); as r) {
         <div [class]="r.pontuacao >= minimo ? 'sucesso retorno' : 'aviso retorno'" role="status">
-          <strong>{{ r.pontuacao }}% de correspondência — {{ mensagem(r.pontuacao) }}</strong>
+          <strong>{{ r.pontuacao }}% {{ i.t('de correspondência', 'match') }} — {{ mensagem(r.pontuacao) }}</strong>
           <span class="comparacao" lang="zh-CN">
             @for (p of r.pedacos; track $index) {
               <span [class]="'c ' + p.estado" [title]="titulo(p.estado, p.ouvido)">{{ p.caractere }}</span>
             }
           </span>
-          <span class="pequeno ouvido">O navegador entendeu: <span lang="zh-CN">{{ transcricao() || '(nada)' }}</span></span>
+          <span class="pequeno ouvido">{{ i.t('O navegador entendeu:', 'The browser heard:') }} <span lang="zh-CN">{{ transcricao() || i.t('(nada)', '(nothing)') }}</span></span>
           <span class="legenda pequeno">
-            <span class="c certo">certo</span> <span class="c homofono">mesmo som</span> <span class="c faltou">faltou</span>
-            <span class="c sobrou">sobrou</span>
+            <span class="c certo">{{ i.t('certo', 'correct') }}</span> <span class="c homofono">{{ i.t('mesmo som', 'same sound') }}</span>
+            <span class="c faltou">{{ i.t('faltou', 'missing') }}</span> <span class="c sobrou">{{ i.t('sobrou', 'extra') }}</span>
           </span>
         </div>
       }
     } @else {
       <div class="info">
         <p>
-          <strong>Seu navegador não tem reconhecimento de voz</strong> (funciona no Chrome, no Edge e no Safari do iPhone).
-          Sem problema: repita a frase em voz alta algumas vezes, imitando a melodia, e avalie você mesmo.
+          <strong>{{ i.t('Seu navegador não tem reconhecimento de voz', 'Your browser has no speech recognition') }}</strong>
+          {{ i.t('(funciona no Chrome, no Edge e no Safari do iPhone). Sem problema: repita a frase em voz alta algumas vezes, imitando a melodia, e avalie você mesmo.', '(it works in Chrome, Edge and Safari on iPhone). No problem: repeat the sentence out loud a few times, copying the melody, and rate yourself.') }}
         </p>
       </div>
     }
 
     <p class="suave pequeno aviso-precisao">
-      ⚠️ Checagem aproximada: o reconhecimento transcreve palavras, mas não avalia os tons com precisão. Compare sua
-      melodia com o áudio.
+      ⚠️ {{ i.t('Checagem aproximada: o reconhecimento transcreve palavras, mas não avalia os tons com precisão. Compare sua melodia com o áudio.', 'Approximate check: recognition transcribes words but does not assess tones precisely. Compare your melody with the audio.') }}
     </p>
 
     @if (!reconhecimento.suportado) {
       <div class="linha">
-        <button type="button" class="botao botao-primario" (click)="concluir.emit({ acertou: true })">Consegui repetir bem</button>
-        <button type="button" class="botao" (click)="concluir.emit({ acertou: false })">Preciso treinar mais</button>
+        <button type="button" class="botao botao-primario" (click)="concluir.emit({ acertou: true })">{{ i.t('Consegui repetir bem', 'I repeated it well') }}</button>
+        <button type="button" class="botao" (click)="concluir.emit({ acertou: false })">{{ i.t('Preciso treinar mais', 'I need more practice') }}</button>
       </div>
     } @else if (resultado() || tentativas() >= 2) {
-      <button type="button" class="botao botao-primario botao-bloco" (click)="continuar()">Continuar</button>
+      <button type="button" class="botao botao-primario botao-bloco" (click)="continuar()">{{ i.t('Continuar', 'Continue') }}</button>
     } @else {
-      <button type="button" class="botao botao-texto botao-bloco" (click)="concluir.emit({ acertou: false })">Pular (não posso falar agora)</button>
+      <button type="button" class="botao botao-texto botao-bloco" (click)="concluir.emit({ acertou: false })">{{ i.t('Pular (não posso falar agora)', 'Skip (can’t speak right now)') }}</button>
     }
   `,
   styleUrl: './exercicios.css',
@@ -154,6 +154,7 @@ const MINIMO = 70;
   `,
 })
 export class ExFalar implements OnInit {
+  protected readonly i = inject(IdiomaService);
   private readonly voz = inject(VozService);
   protected readonly reconhecimento = inject(ReconhecimentoService);
   readonly item = input.required<ItemFalar>();
@@ -186,7 +187,7 @@ export class ExFalar implements OnInit {
       this.resultado.set(melhor.res);
       this.melhor = Math.max(this.melhor, melhor.res.pontuacao);
     } catch (e) {
-      this.erro.set(e instanceof Error ? e.message : 'Não foi possível gravar.');
+      this.erro.set(e instanceof Error ? e.message : this.i.t('Não foi possível gravar.', 'Could not record.'));
     } finally {
       this.tentativas.update((n) => n + 1);
     }
@@ -197,13 +198,20 @@ export class ExFalar implements OnInit {
   }
 
   protected mensagem(p: number): string {
-    if (p >= 90) return 'excelente!';
-    if (p >= MINIMO) return 'muito bom!';
-    if (p >= 40) return 'quase lá, tente de novo.';
-    return 'ouça mais uma vez e repita devagar.';
+    if (p >= 90) return this.i.t('excelente!', 'excellent!');
+    if (p >= MINIMO) return this.i.t('muito bom!', 'very good!');
+    if (p >= 40) return this.i.t('quase lá, tente de novo.', 'almost there, try again.');
+    return this.i.t('ouça mais uma vez e repita devagar.', 'listen once more and repeat slowly.');
   }
 
   protected titulo(estado: string, ouvido?: string): string {
-    return estado === 'homofono' ? `mesmo som (entendido como ${ouvido})` : estado;
+    const nomes: Record<string, [string, string]> = {
+      certo: ['certo', 'correct'],
+      faltou: ['faltou', 'missing'],
+      sobrou: ['sobrou', 'extra'],
+    };
+    if (estado === 'homofono') return this.i.t(`mesmo som (entendido como ${ouvido})`, `same sound (heard as ${ouvido})`);
+    const n = nomes[estado];
+    return n ? this.i.t(n[0], n[1]) : estado;
   }
 }

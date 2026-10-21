@@ -28,9 +28,9 @@ const com = (rotulo: string, x: NumeroChines): Exemplo => ({ ...x, rotulo });
       }
     </div>
 
-    @for (r of regras; track r.titulo; let i = $index) {
+    @for (r of regras; track r.titulo; let idx = $index) {
       <section class="cartao regra">
-        <h2><span class="numero-regra" aria-hidden="true">{{ i + 1 }}</span> {{ r.titulo }}</h2>
+        <h2><span class="numero-regra" aria-hidden="true">{{ idx + 1 }}</span> {{ r.titulo }}</h2>
         <p>{{ r.texto }}</p>
         <div class="grade-exemplos">
           @for (e of r.exemplos; track e.rotulo) {

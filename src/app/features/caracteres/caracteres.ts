@@ -37,13 +37,13 @@ import { PinyinColorido } from '../../shared/pinyin-colorido/pinyin-colorido';
           <button type="button" role="radio" [attr.aria-checked]="nivel() === 0" [class.ativo]="nivel() === 0" (click)="nivel.set(0)">
             Todos
           </button>
-          @for (n of vocabulario.niveis(); track n.id; let i = $index) {
+          @for (n of vocabulario.niveis(); track n.id; let idx = $index) {
             <button
               type="button"
               role="radio"
-              [attr.aria-checked]="nivel() === i + 1"
-              [class.ativo]="nivel() === i + 1"
-              (click)="nivel.set(i + 1)"
+              [attr.aria-checked]="nivel() === idx + 1"
+              [class.ativo]="nivel() === idx + 1"
+              (click)="nivel.set(idx + 1)"
             >
               {{ n.nome }}
             </button>

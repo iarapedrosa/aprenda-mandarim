@@ -22,6 +22,7 @@ import { ExMontar } from '../exercicios/ex-montar';
 import { ExTeclado } from '../exercicios/ex-teclado';
 import { ExLicao } from '../exercicios/ex-licao';
 import { ItensDeFraseService } from '../itens-de-frase.service';
+import { IdiomaService } from '../../../core/i18n/idioma.service';
 
 const SILABAS_AQUECIMENTO = ['ma', 'ba', 'yi', 'shi', 'wu', 'tang', 'qi', 'tu', 'yan', 'wei', 'ying', 'yu', 'ji', 'xi'];
 
@@ -31,14 +32,14 @@ const SILABAS_AQUECIMENTO = ['ma', 'ba', 'yi', 'shi', 'wu', 'tang', 'qi', 'tu', 
   template: `
     <section class="pagina">
       @if (carregando()) {
-        <p class="info">Preparando o treino de hoje…</p>
+        <p class="info">{{ i.t('Preparando o treino de hoje…', 'Preparing today’s training…') }}</p>
       } @else if (!terminou()) {
         <div class="barra-topo">
-          <a routerLink="/" class="botao botao-texto botao-icone" aria-label="Sair do treino">✕</a>
+          <a routerLink="/" class="botao botao-texto botao-icone" [attr.aria-label]="i.t('Sair do treino', 'Leave the training')">✕</a>
           <div
             class="barra-progresso"
             role="progressbar"
-            aria-label="Progresso do treino"
+            [attr.aria-label]="i.t('Progresso do treino', 'Training progress')"
             [attr.aria-valuenow]="indice()"
             aria-valuemin="0"
             [attr.aria-valuemax]="fila().length"
@@ -51,7 +52,7 @@ const SILABAS_AQUECIMENTO = ['ma', 'ba', 'yi', 'shi', 'wu', 'tang', 'qi', 'tu', 
         <!-- @for com track por id garante um componente novo a cada exercício -->
         @for (item of atual() ? [atual()!] : []; track item.id) {
           @if (item.reforco) {
-            <p class="etiqueta reforco">Revendo o que você errou</p>
+            <p class="etiqueta reforco">{{ i.t('Revendo o que você errou', 'Reviewing what you missed') }}</p>
           }
           <article class="cartao exercicio">
             @switch (item.tipo) {
@@ -83,38 +84,38 @@ const SILABAS_AQUECIMENTO = ['ma', 'ba', 'yi', 'shi', 'wu', 'tang', 'qi', 'tu', 
                 <app-ex-falar [item]="item" (concluir)="registrar(item, $event)" />
               }
               @default {
-                <p class="info">Exercício indisponível.</p>
-                <button type="button" class="botao" (click)="registrar(item, { acertou: true, informativo: true })">Pular</button>
+                <p class="info">{{ i.t('Exercício indisponível.', 'Exercise unavailable.') }}</p>
+                <button type="button" class="botao" (click)="registrar(item, { acertou: true, informativo: true })">{{ i.t('Pular', 'Skip') }}</button>
               }
             }
           </article>
         }
         <details class="ajustes">
-          <summary>Ajustes de áudio</summary>
+          <summary>{{ i.t('Ajustes de áudio', 'Audio settings') }}</summary>
           <app-controle-voz />
         </details>
       } @else {
         <article class="cartao fim" aria-live="polite">
           <p class="festa" aria-hidden="true">🎉</p>
-          <h1>Treino concluído!</h1>
+          <h1>{{ i.t('Treino concluído!', 'Training complete!') }}</h1>
           <p>
-            🔥 Sequência: <strong>{{ progresso.sequencia() }} {{ progresso.sequencia() === 1 ? 'dia' : 'dias' }}</strong>
+            🔥 {{ i.t('Sequência:', 'Streak:') }} <strong>{{ progresso.sequencia() }} {{ progresso.sequencia() === 1 ? i.t('dia', 'day') : i.t('dias', 'days') }}</strong>
           </p>
           <ul class="resumo">
-            <li><strong>{{ acertos() }}</strong> de {{ respondidas() }} acertos ({{ porcentagem() }}%)</li>
-            <li><strong>{{ progresso.atividadeHoje().novas }}</strong> palavras novas hoje</li>
-            <li><strong>{{ progresso.atividadeHoje().revisoes }}</strong> revisões hoje</li>
-            <li><strong>{{ minutos() }}</strong> min de estudo</li>
+            <li><strong>{{ acertos() }}</strong> {{ i.t('de', 'of') }} {{ respondidas() }} {{ i.t('acertos', 'correct') }} ({{ porcentagem() }}%)</li>
+            <li><strong>{{ progresso.atividadeHoje().novas }}</strong> {{ i.t('palavras novas hoje', 'new words today') }}</li>
+            <li><strong>{{ progresso.atividadeHoje().revisoes }}</strong> {{ i.t('revisões hoje', 'reviews today') }}</li>
+            <li><strong>{{ minutos() }}</strong> {{ i.t('min de estudo', 'min of study') }}</li>
           </ul>
           @for (m of mensagensLicoes(); track m) {
             <p class="info">{{ m }}</p>
           }
           <div class="linha centro">
-            <a routerLink="/" class="botao botao-primario">Voltar ao início</a>
+            <a routerLink="/" class="botao botao-primario">{{ i.t('Voltar ao início', 'Back to home') }}</a>
             @if (plano()?.etapa !== 'pinyin') {
-              <button type="button" class="botao" (click)="maisPalavras()">+5 palavras novas</button>
+              <button type="button" class="botao" (click)="maisPalavras()">{{ i.t('+5 palavras novas', '+5 new words') }}</button>
             }
-            <a routerLink="/praticar" class="botao">Praticar mais</a>
+            <a routerLink="/praticar" class="botao">{{ i.t('Praticar mais', 'Practice more') }}</a>
           </div>
         </article>
       }
@@ -170,6 +171,7 @@ const SILABAS_AQUECIMENTO = ['ma', 'ba', 'yi', 'shi', 'wu', 'tang', 'qi', 'tu', 
   `,
 })
 export class SessaoPagina {
+  protected readonly i = inject(IdiomaService);
   protected readonly progresso = inject(ProgressoService);
   private readonly vocabulario = inject(VocabularioService);
   private readonly frases = inject(FrasesService);
@@ -281,8 +283,8 @@ export class SessaoPagina {
       this.mensagensLicoes.update((m) => [
         ...m,
         id.startsWith('gramatica:')
-          ? 'A lição de gramática fica para outro dia (menos de 50% de acertos). Releia em Praticar › Gramática!'
-          : 'Uma lição de pinyin ficou para amanhã (menos de 50% de acertos). Sem problema — repetir faz parte!',
+          ? this.i.t('A lição de gramática fica para outro dia (menos de 50% de acertos). Releia em Aprender › Gramática!', 'The grammar lesson will come back another day (under 50% correct). Review it in Learn › Grammar!')
+          : this.i.t('Uma lição de pinyin ficou para amanhã (menos de 50% de acertos). Sem problema — repetir faz parte!', 'A pinyin lesson will come back tomorrow (under 50% correct). No problem — repetition is part of it!'),
       ]);
     }
   }

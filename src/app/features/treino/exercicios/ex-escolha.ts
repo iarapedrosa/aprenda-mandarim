@@ -5,13 +5,14 @@ import { DiagramaTom } from '../../../shared/diagrama-tom/diagrama-tom';
 import { Tom } from '../../../core/pinyin/pinyin';
 import { PinyinColorido } from '../../../shared/pinyin-colorido/pinyin-colorido';
 import { ItemEscolha, ResultadoItem } from '../sessao.model';
+import { IdiomaService } from '../../../core/i18n/idioma.service';
 
 /** Exercício de múltipla escolha (significado, áudio, tons…). */
 @Component({
   selector: 'app-ex-escolha',
   imports: [BotaoAudio, PinyinColorido, DiagramaTom],
   template: `
-    <p class="enunciado">{{ item().enunciado }}</p>
+    <p class="enunciado">{{ i.tr(item(), 'enunciado') }}</p>
 
     <div class="pergunta">
       @if (item().pergunta.hanzi) {
@@ -21,18 +22,18 @@ import { ItemEscolha, ResultadoItem } from '../sessao.model';
         <p class="pinyin-pergunta"><app-pinyin [texto]="item().pergunta.pinyin!" /></p>
       }
       @if (item().pergunta.texto) {
-        <p class="texto-pergunta">{{ item().pergunta.texto }}</p>
+        <p class="texto-pergunta">{{ i.tr(item().pergunta, 'texto') }}</p>
       }
       @if (item().pergunta.audio; as audio) {
         <div class="linha centro">
-          <app-botao-audio [texto]="audio" legenda="Ouvir" rotulo="a pergunta" />
-          <app-botao-audio [texto]="audio" legenda="Devagar" rotulo="a pergunta" velocidade="lenta" />
+          <app-botao-audio [texto]="audio" [legenda]="i.t('Ouvir', 'Listen')" [rotulo]="i.t('a pergunta', 'the question')" />
+          <app-botao-audio [texto]="audio" [legenda]="i.t('Devagar', 'Slow')" [rotulo]="i.t('a pergunta', 'the question')" velocidade="lenta" />
         </div>
       }
     </div>
 
-    <div class="opcoes" role="group" aria-label="Alternativas">
-      @for (o of item().opcoes; track o.valor; let i = $index) {
+    <div class="opcoes" role="group" [attr.aria-label]="i.t('Alternativas', 'Options')">
+      @for (o of item().opcoes; track o.valor; let idx = $index) {
         <button
           type="button"
           class="opcao"
@@ -41,13 +42,13 @@ import { ItemEscolha, ResultadoItem } from '../sessao.model';
           [disabled]="escolha() !== null"
           (click)="responder(o.valor)"
         >
-          <span class="atalho" aria-hidden="true">{{ i + 1 }}</span>
+          <span class="atalho" aria-hidden="true">{{ idx + 1 }}</span>
           @if (o.hanzi) {
             <span class="hanzi-opcao" lang="zh-CN">{{ o.rotulo }}</span>
           } @else if (o.pinyin) {
             <app-pinyin [texto]="o.rotulo" />
           } @else {
-            {{ o.rotulo }}
+            {{ i.tr(o, 'rotulo') }}
           }
         </button>
       }
@@ -55,37 +56,38 @@ import { ItemEscolha, ResultadoItem } from '../sessao.model';
 
     @if (escolha() !== null) {
       <div [class]="acertou() ? 'sucesso retorno' : 'erro retorno'" role="status">
-        <strong>{{ acertou() ? 'Certo!' : 'Ops!' }}</strong>
+        <strong>{{ acertou() ? i.t('Certo!', 'Correct!') : i.t('Ops!', 'Oops!') }}</strong>
         @if (item().resposta; as r) {
           <span class="resposta">
             <span lang="zh-CN" class="hanzi-resposta">{{ r.hanzi }}</span>
             <app-pinyin [texto]="r.pinyin" />
             @if (r.traducao) {
-              <span>— {{ r.traducao }}</span>
+              <span>— {{ i.tr(r, 'traducao') }}</span>
             }
             <app-botao-audio [texto]="r.hanzi" [rotulo]="r.pinyin" [compacto]="true" />
           </span>
         }
         @if (item().explicacao) {
-          <span class="explicacao">{{ item().explicacao }}</span>
+          <span class="explicacao">{{ i.tr(item(), 'explicacao') }}</span>
         }
         @if (tonsCorretos().length) {
           <span class="gesto">
             @for (t of tonsCorretos(); track $index) {
               <app-diagrama-tom [tom]="t" [class]="'tom-' + t" class="mini-gesto" />
             }
-            <span class="pequeno">✋ Ouça de novo e desenhe a curva no ar com a mão enquanto repete.</span>
+            <span class="pequeno">✋ {{ i.t('Ouça de novo e desenhe a curva no ar com a mão enquanto repete.', 'Listen again and draw the contour in the air with your hand as you repeat.') }}</span>
           </span>
         }
       </div>
       <button type="button" class="botao botao-primario botao-bloco" (click)="continuar()" #botaoContinuar>
-        Continuar
+        {{ i.t('Continuar', 'Continue') }}
       </button>
     }
   `,
   styleUrl: './exercicios.css',
 })
 export class ExEscolha implements OnInit {
+  protected readonly i = inject(IdiomaService);
   private readonly voz = inject(VozService);
   readonly item = input.required<ItemEscolha>();
   readonly concluir = output<ResultadoItem>();

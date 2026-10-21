@@ -61,12 +61,12 @@ export function pinyinComTons(p: PalavraPar, tons: [Tom, Tom]): string {
 }
 
 /** Quatro alternativas (a correta + três pares diferentes, de preferência parecidos). */
-export function alternativasDePar(p: PalavraPar): { valor: string; rotulo: string; nome: string }[] {
+export function alternativasDePar(p: PalavraPar): { valor: string; rotulo: string; nome: string; nomeEn: string }[] {
   const parecidos = PARES.filter(
     (t) => chavePar(t) !== chavePar(p.tons) && (t[0] === p.tons[0] || t[1] === p.tons[1]),
   );
   const escolhidos = [p.tons, ...embaralhar(parecidos).slice(0, 3)];
-  return embaralhar(escolhidos).map((t) => ({ valor: chavePar(t), rotulo: pinyinComTons(p, t), nome: nomePar(t) }));
+  return embaralhar(escolhidos).map((t) => ({ valor: chavePar(t), rotulo: pinyinComTons(p, t), nome: nomePar(t), nomeEn: nomeParEn(t) }));
 }
 
 /** Observação de sandhi para mostrar depois da resposta. */

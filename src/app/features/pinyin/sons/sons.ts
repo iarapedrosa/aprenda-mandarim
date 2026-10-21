@@ -10,44 +10,52 @@ import {
   INICIAIS_TABELA,
   escreverSilaba,
 } from '../dados-pinyin';
+import { IdiomaService } from '../../../core/i18n/idioma.service';
 
 @Component({
   selector: 'app-sons',
   imports: [CartaoSom],
   template: `
     <p>
-      Uma sílaba em mandarim é formada por <strong>inicial</strong> (consoante do começo) +
-      <strong>final</strong> (o resto) + <strong>tom</strong>. Ex.: <em>m</em> + <em>a</em> + 3º tom
-      = mǎ (马, cavalo). Como a voz do navegador lê caracteres, cada som é tocado através de um
-      caractere de exemplo.
+      @if (i.ingles()) {
+        A Mandarin syllable is made of an <strong>initial</strong> (the starting consonant) +
+        a <strong>final</strong> (the rest) + a <strong>tone</strong>. E.g. <em>m</em> + <em>a</em> + 3rd tone
+        = mǎ (马, horse). Since the browser voice reads characters, each sound is played through an
+        example character.
+      } @else {
+        Uma sílaba em mandarim é formada por <strong>inicial</strong> (consoante do começo) +
+        <strong>final</strong> (o resto) + <strong>tom</strong>. Ex.: <em>m</em> + <em>a</em> + 3º tom
+        = mǎ (马, cavalo). Como a voz do navegador lê caracteres, cada som é tocado através de um
+        caractere de exemplo.
+      }
     </p>
 
-    <h2 id="iniciais">Iniciais (21)</h2>
+    <h2 id="iniciais">{{ i.t('Iniciais (21)', 'Initials (21)') }}</h2>
     @for (grupo of gruposIniciais; track grupo.nome) {
       <section class="grupo">
-        <h3>{{ grupo.nome }}</h3>
-        <p class="suave pequeno">{{ grupo.descricao }}</p>
+        <h3>{{ i.tr(grupo, 'nome') }}</h3>
+        <p class="suave pequeno">{{ i.tr(grupo, 'descricao') }}</p>
         <div class="grade-sons">
-          @for (i of grupo.iniciais; track i.letra) {
+          @for (ini of grupo.iniciais; track ini.letra) {
             <div class="item">
               <app-cartao-som
-                [destaque]="i.letra"
-                [hanzi]="i.exemplo.hanzi"
-                [pinyin]="i.exemplo.pinyin"
-                [traducao]="i.exemplo.traducao"
+                [destaque]="ini.letra"
+                [hanzi]="ini.exemplo.hanzi"
+                [pinyin]="ini.exemplo.pinyin"
+                [traducao]="i.tr(ini.exemplo, 'traducao')"
               />
-              <p class="dica">{{ i.dica }}</p>
+              <p class="dica">{{ i.tr(ini, 'dica') }}</p>
             </div>
           }
         </div>
       </section>
     }
 
-    <h2 id="finais">Finais</h2>
+    <h2 id="finais">{{ i.t('Finais', 'Finals') }}</h2>
     @for (grupo of gruposFinais; track grupo.nome) {
       <section class="grupo">
-        <h3>{{ grupo.nome }}</h3>
-        <p class="suave pequeno">{{ grupo.descricao }}</p>
+        <h3>{{ i.tr(grupo, 'nome') }}</h3>
+        <p class="suave pequeno">{{ i.tr(grupo, 'descricao') }}</p>
         <div class="grade-sons">
           @for (f of grupo.finais; track f.final) {
             <div class="item">
@@ -55,35 +63,35 @@ import {
                 [destaque]="f.final + (f.sozinha ? ' (' + f.sozinha + ')' : '')"
                 [hanzi]="f.exemplo.hanzi"
                 [pinyin]="f.exemplo.pinyin"
-                [traducao]="f.exemplo.traducao"
+                [traducao]="i.tr(f.exemplo, 'traducao')"
               />
-              <p class="dica">{{ f.dica }}</p>
+              <p class="dica">{{ i.tr(f, 'dica') }}</p>
             </div>
           }
         </div>
       </section>
     }
 
-    <h2 id="tabela">Tabela de sílabas</h2>
-    <p>Escolha uma inicial para ver todas as sílabas que ela forma. Toque numa sílaba e escolha o tom.</p>
+    <h2 id="tabela">{{ i.t('Tabela de sílabas', 'Syllable table') }}</h2>
+    <p>{{ i.t('Escolha uma inicial para ver todas as sílabas que ela forma. Toque numa sílaba e escolha o tom.', 'Pick an initial to see every syllable it forms. Tap a syllable and choose the tone.') }}</p>
 
     @if (!silabas.carregado()) {
-      <p class="info">Carregando sílabas…</p>
+      <p class="info">{{ i.t('Carregando sílabas…', 'Loading syllables…') }}</p>
     } @else {
-      <div class="seletor" role="radiogroup" aria-label="Inicial">
-        @for (i of iniciaisTabela; track i) {
+      <div class="seletor" role="radiogroup" [attr.aria-label]="i.t('Inicial', 'Initial')">
+        @for (x of iniciaisTabela; track x) {
           <button
             type="button"
             role="radio"
-            [attr.aria-checked]="inicial() === i"
-            [class.ativo]="inicial() === i"
-            (click)="escolherInicial(i)"
+            [attr.aria-checked]="inicial() === x"
+            [class.ativo]="inicial() === x"
+            (click)="escolherInicial(x)"
           >
-            {{ i || '—' }}
+            {{ x || '—' }}
           </button>
         }
       </div>
-      <p class="suave pequeno">“—” = sílabas sem consoante inicial (escritas com y- ou w-).</p>
+      <p class="suave pequeno">{{ i.t('“—” = sílabas sem consoante inicial (escritas com y- ou w-).', '“—” = syllables with no initial consonant (written with y- or w-).') }}</p>
 
       <div class="silabas">
         @for (s of silabasDaInicial(); track s.escrita) {
@@ -112,7 +120,7 @@ import {
             }
           </div>
           @if (tonsDaEscolhida().length < 4) {
-            <p class="suave pequeno">Os tons que faltam não têm caractere comum com esse som.</p>
+            <p class="suave pequeno">{{ i.t('Os tons que faltam não têm caractere comum com esse som.', 'The missing tones have no common character with this sound.') }}</p>
           }
         </div>
       }
@@ -218,6 +226,7 @@ import {
   `,
 })
 export class SonsPagina {
+  protected readonly i = inject(IdiomaService);
   protected readonly silabas = inject(SilabasService);
   private readonly voz = inject(VozService);
 

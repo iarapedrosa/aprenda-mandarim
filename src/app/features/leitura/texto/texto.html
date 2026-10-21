@@ -26,8 +26,8 @@
     <app-controle-voz class="voz" />
 
     <article class="cartao texto" [class.historia]="t.tipo === 'historia'">
-      @for (linha of t.linhas; track $index; let i = $index) {
-        <div class="linha-texto" [id]="'linha-' + i" [class.tocando]="linhaTocando() === i">
+      @for (linha of t.linhas; track $index; let idx = $index) {
+        <div class="linha-texto" [id]="'linha-' + idx" [class.tocando]="linhaTocando() === idx">
           @if (linha.falante) {
             <span class="falante" lang="zh-CN">{{ linha.falante.hanzi }}</span>
           }
@@ -53,7 +53,7 @@
               <p class="traducao">{{ linha.traducao }}</p>
             }
           </div>
-          <button type="button" class="ouvir-linha" (click)="tocarLinha(i)" [attr.aria-label]="'Ouvir a linha ' + (i + 1)">🔊</button>
+          <button type="button" class="ouvir-linha" (click)="tocarLinha(idx)" [attr.aria-label]="'Ouvir a linha ' + (idx + 1)">🔊</button>
         </div>
       }
       @if (t.nota) {
@@ -84,21 +84,21 @@
     @if (perguntas().length) {
       <section class="cartao perguntas" aria-labelledby="titulo-perguntas">
         <h2 id="titulo-perguntas">Você entendeu?</h2>
-        @for (p of perguntas(); track $index; let i = $index) {
+        @for (p of perguntas(); track $index; let idx = $index) {
           <fieldset class="pergunta">
-            <legend>{{ i + 1 }}. {{ p.pergunta }}</legend>
+            <legend>{{ idx + 1 }}. {{ p.pergunta }}</legend>
             @for (o of p.opcoes; track o.texto; let j = $index) {
               <label
                 class="opcao-resposta"
                 [class.correta]="verificado() && o.correta"
-                [class.errada]="verificado() && respostas()[i] === j && !o.correta"
+                [class.errada]="verificado() && respostas()[idx] === j && !o.correta"
               >
                 <input
                   type="radio"
-                  [name]="'pergunta-' + i"
-                  [checked]="respostas()[i] === j"
+                  [name]="'pergunta-' + idx"
+                  [checked]="respostas()[idx] === j"
                   [disabled]="verificado()"
-                  (change)="responder(i, j)"
+                  (change)="responder(idx, j)"
                 />
                 {{ o.texto }}
               </label>

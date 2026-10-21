@@ -1,22 +1,22 @@
-import { Component } from '@angular/core';
+import { Component, computed, inject } from '@angular/core';
 import { CartaoSom } from '../../../shared/cartao-som/cartao-som';
-import { ARMADILHAS } from '../dados-pinyin';
+import { ARMADILHAS, ARMADILHAS_EN } from '../dados-pinyin';
+import { IdiomaService } from '../../../core/i18n/idioma.service';
 
 @Component({
   selector: 'app-armadilhas',
   imports: [CartaoSom],
   template: `
     <p>
-      O pinyin usa letras que conhecemos, mas com sons diferentes. Estas são as armadilhas mais comuns
-      para quem fala português — toque nos exemplos e repita em voz alta.
+      {{ i.t('O pinyin usa letras que conhecemos, mas com sons diferentes. Estas são as armadilhas mais comuns para quem fala português — toque nos exemplos e repita em voz alta.', 'Pinyin uses familiar letters, but with different sounds. These are the most common pitfalls for English speakers — tap the examples and repeat out loud.') }}
     </p>
-    @for (a of armadilhas; track a.titulo; let i = $index) {
+    @for (a of armadilhas(); track a.titulo; let idx = $index) {
       <article class="cartao armadilha">
-        <h2><span class="numero" aria-hidden="true">{{ i + 1 }}</span> {{ a.titulo }}</h2>
+        <h2><span class="numero" aria-hidden="true">{{ idx + 1 }}</span> {{ a.titulo }}</h2>
         <p>{{ a.explicacao }}</p>
         <div class="exemplos">
           @for (e of a.exemplos; track e.hanzi) {
-            <app-cartao-som [hanzi]="e.hanzi" [pinyin]="e.pinyin" [traducao]="e.traducao" />
+            <app-cartao-som [hanzi]="e.hanzi" [pinyin]="e.pinyin" [traducao]="i.tr(e, 'traducao')" />
           }
         </div>
       </article>
@@ -48,5 +48,6 @@ import { ARMADILHAS } from '../dados-pinyin';
   `,
 })
 export class ArmadilhasPagina {
-  protected readonly armadilhas = ARMADILHAS;
+  protected readonly i = inject(IdiomaService);
+  protected readonly armadilhas = computed(() => (this.i.ingles() ? ARMADILHAS_EN : ARMADILHAS));
 }

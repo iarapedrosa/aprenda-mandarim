@@ -1,21 +1,22 @@
-import { Component, input, output } from '@angular/core';
+import { Component, input, output, inject } from '@angular/core';
 import { ExemplosGramatica } from '../../gramatica/exemplos-gramatica';
 import { ItemGramatica, ResultadoItem } from '../sessao.model';
+import { IdiomaService } from '../../../core/i18n/idioma.service';
 
 /** Explicação curta de um ponto de gramática, antes dos exercícios. */
 @Component({
   selector: 'app-ex-gramatica',
   imports: [ExemplosGramatica],
   template: `
-    <p class="etiqueta">Gramática</p>
-    <h2>{{ item().dados.titulo }}</h2>
-    <p class="estrutura">{{ item().dados.estrutura }}</p>
-    @for (p of item().dados.explicacao; track p) {
+    <p class="etiqueta">{{ i.t('Gramática', 'Grammar') }}</p>
+    <h2>{{ i.tr(item().dados, 'titulo') }}</h2>
+    <p class="estrutura">{{ i.tr(item().dados, 'estrutura') }}</p>
+    @for (p of i.trLista(item().dados, 'explicacao'); track p) {
       <p>{{ p }}</p>
     }
     <app-exemplos-gramatica [exemplos]="item().dados.exemplos" />
     <button type="button" class="botao botao-primario botao-bloco" (click)="concluir.emit({ acertou: true, informativo: true })">
-      Entendi, vamos praticar
+      {{ i.t('Entendi, vamos praticar', 'Got it, let’s practice') }}
     </button>
   `,
   styles: `
@@ -39,6 +40,7 @@ import { ItemGramatica, ResultadoItem } from '../sessao.model';
   `,
 })
 export class ExGramatica {
+  protected readonly i = inject(IdiomaService);
   readonly item = input.required<ItemGramatica>();
   readonly concluir = output<ResultadoItem>();
 }

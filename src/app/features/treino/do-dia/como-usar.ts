@@ -1,5 +1,6 @@
-import { Component, input } from '@angular/core';
+import { Component, inject, input } from '@angular/core';
 import { RouterLink } from '@angular/router';
+import { IdiomaService } from '../../../core/i18n/idioma.service';
 
 /** Explicação do site: o que é, como usar no dia a dia e sugestões. */
 @Component({
@@ -8,8 +9,57 @@ import { RouterLink } from '@angular/router';
   template: `
     <details class="cartao como-usar" [class.destaque]="destaque()">
       <summary>
-        <h2>{{ destaque() ? '👋 Novo por aqui? Veja como usar o site' : '👋 Como usar o site' }}</h2>
+        <h2>
+          @if (destaque()) {
+            {{ i.t('👋 Novo por aqui? Veja como usar o site', '👋 New here? See how to use the site') }}
+          } @else {
+            {{ i.t('👋 Como usar o site', '👋 How to use the site') }}
+          }
+        </h2>
       </summary>
+
+      @if (i.ingles()) {
+        <p>
+          <strong>Learn Mandarin</strong> is a free site to learn Mandarin from scratch. No sign-up needed: your
+          progress is saved on this device (make a backup in <a routerLink="/progresso">Progress</a>). You can install
+          it as an app and use it offline.
+        </p>
+
+        <h3>The path</h3>
+        <ol>
+          <li><strong>Pinyin and tones</strong> (first days): the sounds of Mandarin and its 4 melodies.</li>
+          <li><strong>Words and characters</strong>: HSK 1 and 2 vocabulary, with spaced repetition.</li>
+          <li><strong>Sentences</strong>: reading, listening, speaking and grammar with what you’ve learned.</li>
+        </ol>
+        <p class="suave pequeno">The site decides when to move on to the next stage — just follow Today’s training.</p>
+
+        <h3>Day to day</h3>
+        <ol>
+          <li>
+            <strong>Do Today’s training</strong> (15–20 min), ideally at the same time every day. It mixes everything
+            and brings reviews at the right moment.
+          </li>
+          <li><strong>Read the phrase of the day out loud</strong> and, if you like, add it to your reviews.</li>
+          <li>Extra time? Go to <a routerLink="/praticar">Practice</a>: flashcards, reading, listening, speaking…</li>
+          <li>Outside the site, listen to and read things at your level — see <a routerLink="/recursos">Study resources</a>.</li>
+        </ol>
+
+        <h3>Tips that make a difference</h3>
+        <ul>
+          <li>🎧 <strong>Use headphones</strong> and <strong>always speak out loud</strong> — repeating is part of the training.</li>
+          <li>✋ <strong>Draw the tone contour in the air</strong> with your hand while you repeat words.</li>
+          <li>🧠 <strong>Try to remember before seeing the answer</strong>, even if you get it wrong: the effort is what makes it stick.</li>
+          <li>💡 A word that won’t stick? <strong>Create a memory hint</strong> (an image, a little story).</li>
+          <li>📅 <strong>Don’t break your streak</strong>: on a busy day, just do the start of the training — a little every day beats a lot once in a while.</li>
+          <li>⏳ Be patient: a habit takes weeks or months to become automatic, and Mandarin is a marathon.</li>
+          <li>⚙️ Adjust the pace in <a routerLink="/progresso">Progress</a> (new words per day, handwriting, voice).</li>
+        </ul>
+
+        <p class="pequeno">
+          Curious why the site works this way? See <a routerLink="/metodo">The method and the science</a>, with the
+          study references.
+        </p>
+      } @else {
 
       <p>
         O <strong>Aprenda Mandarim</strong> é um site gratuito para aprender mandarim do zero, em português. Não precisa
@@ -56,6 +106,7 @@ import { RouterLink } from '@angular/router';
         Quer saber por que o site funciona assim? Veja <a routerLink="/metodo">O método e a ciência</a>, com as
         referências dos estudos.
       </p>
+      }
     </details>
   `,
   styles: `
@@ -108,6 +159,7 @@ import { RouterLink } from '@angular/router';
   `,
 })
 export class ComoUsar {
+  protected readonly i = inject(IdiomaService);
   /** chamada destacada para quem está começando */
   readonly destaque = input(false);
 }
