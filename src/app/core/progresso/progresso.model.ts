@@ -15,6 +15,18 @@ export const NOMES_MODULOS: Record<Modulo, string> = {
   gramatica: 'Gramática',
 };
 
+export const NOMES_MODULOS_EN: Record<Modulo, string> = {
+  tons: 'Tones',
+  pinyin: 'Pinyin',
+  caracteres: 'Characters',
+  escrita: 'Writing',
+  leitura: 'Reading',
+  escuta: 'Listening',
+  fala: 'Speaking',
+  numeros: 'Numbers',
+  gramatica: 'Grammar',
+};
+
 export interface Placar {
   acertos: number;
   total: number;

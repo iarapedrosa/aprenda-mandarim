@@ -137,7 +137,18 @@ function juntar(a: NumeroChines, b: NumeroChines): NumeroChines {
 
 /** Lê algarismos digitados pela pessoa ("1.250", "1 250", "12,5"). */
 export function lerNumeroDigitado(texto: string): number | null {
-  const limpo = texto.trim().replace(/\s/g, '').replace(/\.(?=\d{3}(\D|$))/g, '').replace(',', '.');
+  let limpo = texto.trim().replace(/\s/g, '');
+  const separadores = limpo.match(/[.,]/g) ?? [];
+  if (new Set(separadores).size === 2) {
+    // "1.250,50" ou "1,250.50": o último separador é o decimal
+    const decimal = limpo.lastIndexOf(',') > limpo.lastIndexOf('.') ? ',' : '.';
+    limpo = limpo.split(decimal === ',' ? '.' : ',').join('').replace(decimal, '.');
+  } else if (separadores.length > 1 || /^\d{1,3}[.,]\d{3}$/.test(limpo)) {
+    // "1.250", "1,250" ou "1.000.000": separador de milhar (pt-BR ou inglês)
+    limpo = limpo.replace(/[.,]/g, '');
+  } else {
+    limpo = limpo.replace(',', '.');
+  }
   if (!/^\d+(\.\d+)?$/.test(limpo)) return null;
   return Number(limpo);
 }

@@ -92,4 +92,12 @@ describe('números: usos do dia a dia', () => {
     expect(lerNumeroDigitado('12,5')).toBe(12.5);
     expect(lerNumeroDigitado('abc')).toBeNull();
   });
+
+  it('aceita o formato inglês', () => {
+    expect(lerNumeroDigitado('1,250')).toBe(1250);
+    expect(lerNumeroDigitado('12.50')).toBe(12.5);
+    expect(lerNumeroDigitado('1,250.50')).toBe(1250.5);
+    expect(lerNumeroDigitado('1.250,50')).toBe(1250.5);
+    expect(lerNumeroDigitado('1,000,000')).toBe(1000000);
+  });
 });

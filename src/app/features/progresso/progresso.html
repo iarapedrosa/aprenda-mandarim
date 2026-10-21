@@ -1,46 +1,46 @@
 <section class="pagina">
   <header>
-    <h1>Progresso</h1>
-    <p class="subtitulo">Sua sequência, estatísticas, metas e backup.</p>
+    <h1>{{ i.t('Progresso', 'Progress') }}</h1>
+    <p class="subtitulo">{{ i.t('Sua sequência, estatísticas, metas e backup.', 'Your streak, stats, goals and backup.') }}</p>
   </header>
 
   <div class="numeros">
     <div class="cartao numero">
       <span class="valor">🔥 {{ progresso.sequencia() }}</span>
-      <span class="rotulo">dias seguidos</span>
+      <span class="rotulo">{{ i.t('dias seguidos', 'day streak') }}</span>
     </div>
     <div class="cartao numero">
       <span class="valor">{{ progresso.melhorSequencia() }}</span>
-      <span class="rotulo">melhor sequência</span>
+      <span class="rotulo">{{ i.t('melhor sequência', 'best streak') }}</span>
     </div>
     <div class="cartao numero">
       <span class="valor">{{ contagem().estudadas }}</span>
-      <span class="rotulo">palavras estudadas</span>
+      <span class="rotulo">{{ i.t('palavras estudadas', 'words studied') }}</span>
     </div>
     <div class="cartao numero">
       <span class="valor">{{ contagem().dominadas }}</span>
-      <span class="rotulo">palavras dominadas</span>
+      <span class="rotulo">{{ i.t('palavras dominadas', 'words mastered') }}</span>
     </div>
     <div class="cartao numero">
       <span class="valor">{{ contagem().caracteres }}</span>
-      <span class="rotulo">caracteres escritos</span>
+      <span class="rotulo">{{ i.t('caracteres escritos', 'characters written') }}</span>
     </div>
     <div class="cartao numero">
       <span class="valor">{{ minutosTotais() }}</span>
-      <span class="rotulo">minutos de treino</span>
+      <span class="rotulo">{{ i.t('minutos de treino', 'minutes of practice') }}</span>
     </div>
   </div>
   <p class="suave pequeno">
-    “Dominadas” = palavras cuja próxima revisão está a 21 dias ou mais. {{ diasPraticados() }} dia(s) com prática no
-    total.
+    {{ i.t('“Dominadas” = palavras cuja próxima revisão está a 21 dias ou mais.', '“Mastered” = words whose next review is 21 or more days away.') }}
+    {{ diasPraticados() }} {{ i.t('dia(s) com prática no total.', 'day(s) of practice in total.') }}
   </p>
 
   <section class="cartao">
-    <h2>Calendário de atividade</h2>
+    <h2>{{ i.t('Calendário de atividade', 'Activity calendar') }}</h2>
     <div class="rolagem-x">
-      <div class="calendario" role="img" [attr.aria-label]="'Atividade das últimas ' + calendario().length + ' semanas'">
+      <div class="calendario" role="img" [attr.aria-label]="i.t('Atividade das últimas ', 'Activity over the last ') + calendario().length + i.t(' semanas', ' weeks')">
         <div class="dias-semana" aria-hidden="true">
-          <span>seg</span><span></span><span>qua</span><span></span><span>sex</span><span></span><span></span>
+          <span>{{ i.t('seg', 'Mon') }}</span><span></span><span>{{ i.t('qua', 'Wed') }}</span><span></span><span>{{ i.t('sex', 'Fri') }}</span><span></span><span></span>
         </div>
         @for (semana of calendario(); track $index) {
           <div class="semana">
@@ -59,14 +59,14 @@
       </div>
     </div>
     <p class="legenda" aria-hidden="true">
-      menos <span class="dia nivel-0"></span><span class="dia nivel-1"></span><span class="dia nivel-2"></span
-      ><span class="dia nivel-3"></span><span class="dia nivel-4"></span> mais exercícios
+      {{ i.t('menos', 'less') }} <span class="dia nivel-0"></span><span class="dia nivel-1"></span><span class="dia nivel-2"></span
+      ><span class="dia nivel-3"></span><span class="dia nivel-4"></span> {{ i.t('mais exercícios', 'more exercises') }}
     </p>
   </section>
 
   <div class="duas-colunas">
     <section class="cartao">
-      <h2>Acertos por módulo</h2>
+      <h2>{{ i.t('Acertos por módulo', 'Accuracy by module') }}</h2>
       <ul class="barras">
         @for (m of porModulo(); track m.nome) {
           <li>
@@ -77,11 +77,11 @@
           </li>
         }
       </ul>
-      <p class="suave pequeno">Porcentagem de acertos · última coluna: total de exercícios.</p>
+      <p class="suave pequeno">{{ i.t('Porcentagem de acertos · última coluna: total de exercícios.', 'Percentage correct · last column: total exercises.') }}</p>
     </section>
 
     <section class="cartao">
-      <h2>Acertos por tom</h2>
+      <h2>{{ i.t('Acertos por tom', 'Accuracy by tone') }}</h2>
       <ul class="barras">
         @for (t of porTom(); track t.tom) {
           <li>
@@ -92,33 +92,32 @@
           </li>
         }
       </ul>
-      <p class="suave pequeno">Vem do treino de tons e dos exercícios com áudio.</p>
-      <h3 class="titulo-confusoes">Tons que você mais confunde</h3>
+      <p class="suave pequeno">{{ i.t('Vem do treino de tons e dos exercícios com áudio.', 'From tone drills and audio exercises.') }}</p>
+      <h3 class="titulo-confusoes">{{ i.t('Tons que você mais confunde', 'Tones you confuse most') }}</h3>
       @if (confusoes().length) {
         <ul class="confusoes">
           @for (c of confusoes(); track c.a + '-' + c.b) {
             <li>
               <span [class]="'tom-' + c.a">{{ nomeTom(c.a) }}</span> ×
               <span [class]="'tom-' + c.b">{{ nomeTom(c.b) }}</span>
-              <span class="suave">— {{ c.vezes }} vez(es)</span>
+              <span class="suave">— {{ c.vezes }} {{ i.t('vez(es)', 'time(s)') }}</span>
             </li>
           }
         </ul>
         <p class="suave pequeno">
-          O treino de tons e o aquecimento passam a sortear mais esses tons. Confundir 2º × 3º é o clássico de quem
-          vem de língua não tonal — e pode durar até níveis avançados (Hao, 2012).
+          {{ i.t('O treino de tons e o aquecimento passam a sortear mais esses tons. Confundir 2º × 3º é o clássico de quem vem de língua não tonal — e pode durar até níveis avançados (Hao, 2012).', 'Tone drills and the warm-up will now pick these tones more often. Mixing up tones 2 and 3 is the classic for speakers of non-tonal languages — and it can last into advanced levels (Hao, 2012).') }}
         </p>
       } @else {
-        <p class="suave pequeno">Ainda sem dados. Faça o treino de tons para descobrir seus pontos fracos.</p>
+        <p class="suave pequeno">{{ i.t('Ainda sem dados. Faça o treino de tons para descobrir seus pontos fracos.', 'No data yet. Do the tone drills to find your weak spots.') }}</p>
       }
     </section>
   </div>
 
   <section class="cartao">
-    <h2>Revisões nos próximos dias</h2>
+    <h2>{{ i.t('Revisões nos próximos dias', 'Reviews in the coming days') }}</h2>
     <div class="previsao" role="list">
       @for (d of previsao(); track $index) {
-        <div class="coluna" role="listitem" [attr.aria-label]="d.rotulo + ': ' + d.total + ' revisões'">
+        <div class="coluna" role="listitem" [attr.aria-label]="d.rotulo + ': ' + d.total + i.t(' revisões', ' reviews')">
           <span class="numero-coluna">{{ d.total }}</span>
           <span class="trilho-vertical"><span class="barra-vertical" [style.height.%]="d.altura"></span></span>
           <span class="suave pequeno">{{ d.rotulo }}</span>
@@ -128,10 +127,10 @@
   </section>
 
   <section class="cartao" aria-labelledby="titulo-metas">
-    <h2 id="titulo-metas">Meta diária</h2>
+    <h2 id="titulo-metas">{{ i.t('Meta diária', 'Daily goal') }}</h2>
     <div class="metas">
       <label>
-        Palavras novas por dia
+        {{ i.t('Palavras novas por dia', 'New words per day') }}
         <input
           class="campo"
           type="number"
@@ -144,7 +143,7 @@
         />
       </label>
       <label>
-        Revisões por dia
+        {{ i.t('Revisões por dia', 'Reviews per day') }}
         <input
           class="campo"
           type="number"
@@ -158,39 +157,46 @@
       </label>
     </div>
     <label class="modo-escrita">
-      Escrita à mão no treino
+      {{ i.t('Escrita à mão no treino', 'Handwriting in training') }}
       <select class="campo" [ngModel]="progresso.metas().escrita ?? 'leve'" (ngModelChange)="progresso.definirModoEscrita($event)">
-        <option value="leve">Leve — 1 caractere novo e até 3 revisões por dia (recomendado)</option>
-        <option value="normal">Normal — até 3 novos e todas as revisões</option>
-        <option value="desligada">Desligada — só digitar (teclado chinês)</option>
+        <option value="leve">{{ i.t('Leve — 1 caractere novo e até 3 revisões por dia (recomendado)', 'Light — 1 new character and up to 3 reviews a day (recommended)') }}</option>
+        <option value="normal">{{ i.t('Normal — até 3 novos e todas as revisões', 'Normal — up to 3 new and all reviews') }}</option>
+        <option value="desligada">{{ i.t('Desligada — só digitar (teclado chinês)', 'Off — typing only (Chinese keyboard)') }}</option>
       </select>
     </label>
     <p class="suave pequeno">
-      Regra prática: cada palavra nova por dia vira cerca de 10 revisões diárias depois de algumas semanas. Para 15–20 minutos, 5 a 7 novas por dia é o ideal. Se as revisões acumularem, o treino aumenta o limite (até o dobro) e reduz as palavras novas até normalizar.
+      {{ i.t('Regra prática: cada palavra nova por dia vira cerca de 10 revisões diárias depois de algumas semanas. Para 15–20 minutos, 5 a 7 novas por dia é o ideal. Se as revisões acumularem, o treino aumenta o limite (até o dobro) e reduz as palavras novas até normalizar.', 'Rule of thumb: each new word per day becomes about 10 daily reviews after a few weeks. For 15–20 minutes, 5 to 7 new words a day is ideal. If reviews pile up, training raises the limit (up to double) and cuts new words until things settle.') }}
     </p>
   </section>
 
   <section class="cartao" aria-labelledby="titulo-preferencias">
-    <h2 id="titulo-preferencias">Preferências</h2>
+    <h2 id="titulo-preferencias">{{ i.t('Preferências', 'Preferences') }}</h2>
     <div class="metas">
       <label>
-        Tema
-        <select class="campo" [ngModel]="tema.preferencia()" (ngModelChange)="mudarTema($event)">
-          <option value="sistema">Igual ao sistema</option>
-          <option value="claro">Claro</option>
-          <option value="escuro">Escuro</option>
+        {{ i.t('Idioma do site', 'Site language') }}
+        <select class="campo" [ngModel]="i.idioma()" (ngModelChange)="i.idioma.set($event)">
+          <option value="pt">Português → 中文</option>
+          <option value="en">English → 中文</option>
         </select>
       </label>
       <label>
-        Velocidade da voz
+        {{ i.t('Tema', 'Theme') }}
+        <select class="campo" [ngModel]="tema.preferencia()" (ngModelChange)="mudarTema($event)">
+          <option value="sistema">{{ i.t('Igual ao sistema', 'Same as system') }}</option>
+          <option value="claro">{{ i.t('Claro', 'Light') }}</option>
+          <option value="escuro">{{ i.t('Escuro', 'Dark') }}</option>
+        </select>
+      </label>
+      <label>
+        {{ i.t('Velocidade da voz', 'Voice speed') }}
         <select class="campo" [ngModel]="voz.velocidade()" (ngModelChange)="voz.velocidade.set($event)">
           <option value="normal">Normal</option>
-          <option value="lenta">Lenta</option>
+          <option value="lenta">{{ i.t('Lenta', 'Slow') }}</option>
         </select>
       </label>
       @if (voz.vozesChinesas().length > 1) {
         <label>
-          Voz em chinês
+          {{ i.t('Voz em chinês', 'Chinese voice') }}
           <select
             class="campo"
             [ngModel]="voz.voz()?.name"
@@ -207,33 +213,32 @@
     <label class="variar">
       <input type="checkbox" [checked]="voz.variarVozes()" (change)="voz.variarVozes.set($any($event.target).checked)" />
       <span>
-        Variar as vozes
+        {{ i.t('Variar as vozes', 'Vary voices') }}
         <span class="suave pequeno">
-          — ouvir pessoas diferentes ajuda a reconhecer os tons.
+          — {{ i.t('ouvir pessoas diferentes ajuda a reconhecer os tons.', 'hearing different people helps you recognize tones.') }}
           @if (voz.podeVariar()) {
-            {{ voz.vozesMandarim().length }} vozes de mandarim neste aparelho.
+            {{ voz.vozesMandarim().length }} {{ i.t('vozes de mandarim neste aparelho.', 'Mandarin voices on this device.') }}
           } @else {
-            Este aparelho tem só uma voz de mandarim (no Edge e no Chrome costuma haver mais).
+            {{ i.t('Este aparelho tem só uma voz de mandarim (no Edge e no Chrome costuma haver mais).', 'This device has only one Mandarin voice (Edge and Chrome usually have more).') }}
           }
         </span>
       </span>
     </label>
-    <button type="button" class="botao" (click)="testarVoz()" [disabled]="!voz.suportado">🔊 Testar voz</button>
+    <button type="button" class="botao" (click)="testarVoz()" [disabled]="!voz.suportado">🔊 {{ i.t('Testar voz', 'Test voice') }}</button>
     @if (voz.semVozChinesa()) {
-      <p class="aviso pequeno">Nenhuma voz em chinês encontrada neste aparelho. Veja como instalar na seção <a routerLink="/pinyin/tons">Pinyin</a>.</p>
+      <p class="aviso pequeno">{{ i.t('Nenhuma voz em chinês encontrada neste aparelho. Veja como instalar na seção', 'No Chinese voice found on this device. See how to install one in the') }} <a routerLink="/pinyin/tons">Pinyin</a>{{ i.t('.', ' section.') }}</p>
     }
   </section>
 
   <section class="cartao" aria-labelledby="titulo-backup">
-    <h2 id="titulo-backup">Backup do progresso</h2>
+    <h2 id="titulo-backup">{{ i.t('Backup do progresso', 'Progress backup') }}</h2>
     <p>
-      Seu progresso fica salvo só neste navegador. Exporte um backup de vez em quando — e use-o para levar o progresso
-      para outro aparelho.
+      {{ i.t('Seu progresso fica salvo só neste navegador. Exporte um backup de vez em quando — e use-o para levar o progresso para outro aparelho.', 'Your progress is saved only in this browser. Export a backup now and then — and use it to move your progress to another device.') }}
     </p>
     <div class="linha">
-      <button type="button" class="botao botao-primario" (click)="exportar()">⬇ Exportar (JSON)</button>
+      <button type="button" class="botao botao-primario" (click)="exportar()">⬇ {{ i.t('Exportar (JSON)', 'Export (JSON)') }}</button>
       <label class="botao arquivo">
-        ⬆ Importar backup
+        ⬆ {{ i.t('Importar backup', 'Import backup') }}
         <input type="file" accept="application/json,.json" (change)="escolherArquivo($event)" class="visualmente-oculto" />
       </label>
     </div>
@@ -241,10 +246,10 @@
     @if (backupPendente(); as b) {
       <div class="aviso confirmacao" role="alert">
         <p>{{ b.resumo }}</p>
-        <p><strong>Isso substitui todo o progresso atual.</strong> Continuar?</p>
+        <p><strong>{{ i.t('Isso substitui todo o progresso atual.', 'This replaces all current progress.') }}</strong> {{ i.t('Continuar?', 'Continue?') }}</p>
         <div class="linha">
-          <button type="button" class="botao botao-primario" (click)="confirmarImportacao()">Sim, restaurar</button>
-          <button type="button" class="botao" (click)="backupPendente.set(null)">Cancelar</button>
+          <button type="button" class="botao botao-primario" (click)="confirmarImportacao()">{{ i.t('Sim, restaurar', 'Yes, restore') }}</button>
+          <button type="button" class="botao" (click)="backupPendente.set(null)">{{ i.t('Cancelar', 'Cancel') }}</button>
         </div>
       </div>
     }
@@ -253,15 +258,15 @@
     }
 
     <details class="perigo">
-      <summary>Apagar todo o progresso</summary>
+      <summary>{{ i.t('Apagar todo o progresso', 'Erase all progress') }}</summary>
       @if (!confirmarApagar()) {
-        <button type="button" class="botao" (click)="confirmarApagar.set(true)">Apagar progresso…</button>
+        <button type="button" class="botao" (click)="confirmarApagar.set(true)">{{ i.t('Apagar progresso…', 'Erase progress…') }}</button>
       } @else {
         <div class="erro confirmacao" role="alert">
-          <p><strong>Tem certeza?</strong> Isso não pode ser desfeito (exporte um backup antes).</p>
+          <p><strong>{{ i.t('Tem certeza?', 'Are you sure?') }}</strong> {{ i.t('Isso não pode ser desfeito (exporte um backup antes).', 'This cannot be undone (export a backup first).') }}</p>
           <div class="linha">
-            <button type="button" class="botao botao-primario" (click)="apagar()">Sim, apagar tudo</button>
-            <button type="button" class="botao" (click)="confirmarApagar.set(false)">Cancelar</button>
+            <button type="button" class="botao botao-primario" (click)="apagar()">{{ i.t('Sim, apagar tudo', 'Yes, erase everything') }}</button>
+            <button type="button" class="botao" (click)="confirmarApagar.set(false)">{{ i.t('Cancelar', 'Cancel') }}</button>
           </div>
         </div>
       }

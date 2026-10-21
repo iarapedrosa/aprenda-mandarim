@@ -9,13 +9,14 @@ import { PinyinColorido } from '../../../shared/pinyin-colorido/pinyin-colorido'
 import { ExEscolha } from '../../treino/exercicios/ex-escolha';
 import { ItemEscolha, ResultadoItem } from '../../treino/sessao.model';
 import { AlvoNumero, CATEGORIAS, Categoria, distratores, normalizarResposta, sortearAlvo } from '../alvos';
+import { IdiomaService } from '../../../core/i18n/idioma.service';
 
 type Modo = 'ouvir' | 'ler' | 'pinyin';
 
-const MODOS: { id: Modo; nome: string; descricao: string }[] = [
-  { id: 'ouvir', nome: 'Ouvir', descricao: 'Ouça e digite o número' },
-  { id: 'ler', nome: 'Ler', descricao: 'Leia os caracteres e digite' },
-  { id: 'pinyin', nome: 'Falar', descricao: 'Veja o número e escolha o pinyin' },
+const MODOS: { id: Modo; nome: string; descricao: string; nomeEn: string; descricaoEn: string }[] = [
+  { id: 'ouvir', nome: 'Ouvir', descricao: 'Ouça e digite o número', nomeEn: 'Listen', descricaoEn: 'Listen and type the number' },
+  { id: 'ler', nome: 'Ler', descricao: 'Leia os caracteres e digite', nomeEn: 'Read', descricaoEn: 'Read the characters and type' },
+  { id: 'pinyin', nome: 'Falar', descricao: 'Veja o número e escolha o pinyin', nomeEn: 'Speak', descricaoEn: 'See the number and pick the pinyin' },
 ];
 
 let contador = 0;
@@ -24,46 +25,46 @@ let contador = 0;
   selector: 'app-praticar-numeros',
   imports: [FormsModule, BotaoAudio, PinyinColorido, ExEscolha],
   template: `
-    <div class="modos" role="radiogroup" aria-label="Tipo de prática">
+    <div class="modos" role="radiogroup" [attr.aria-label]="i.t('Tipo de prática', 'Practice type')">
       @for (m of modos; track m.id) {
         <label class="modo">
           <input type="radio" name="modo-numeros" [value]="m.id" [ngModel]="modo()" (ngModelChange)="modo.set($event); nova()" />
-          <span><strong>{{ m.nome }}</strong><br /><small>{{ m.descricao }}</small></span>
+          <span><strong>{{ i.tr(m, 'nome') }}</strong><br /><small>{{ i.tr(m, 'descricao') }}</small></span>
         </label>
       }
     </div>
 
-    <div class="categorias" role="group" aria-label="Que números praticar">
+    <div class="categorias" role="group" [attr.aria-label]="i.t('Que números praticar', 'Which numbers to practice')">
       @for (c of categorias; track c.id) {
         <button type="button" [class.ativo]="categoria() === c.id" [attr.aria-pressed]="categoria() === c.id" (click)="categoria.set(c.id); nova()">
-          {{ c.nome }}
+          {{ i.tr(c, 'nome') }}
         </button>
       }
     </div>
 
     <section class="cartao rodada" aria-live="polite">
-      <p class="placar suave">Acertos: <strong>{{ acertos() }}</strong> de {{ total() }}</p>
+      <p class="placar suave">{{ i.t('Acertos:', 'Score:') }} <strong>{{ acertos() }}</strong> {{ i.t('de', 'of') }} {{ total() }}</p>
 
       @if (!iniciado()) {
-        <button type="button" class="botao botao-primario botao-bloco" (click)="comecar()">Começar</button>
+        <button type="button" class="botao botao-primario botao-bloco" (click)="comecar()">{{ i.t('Começar', 'Start') }}</button>
       } @else if (alvo(); as a) {
         @if (modo() === 'pinyin') {
           @for (item of itemEscolha() ? [itemEscolha()!] : []; track item.id) {
             <app-ex-escolha [item]="item" (concluir)="registrarEscolha($event)" />
           }
         } @else {
-          <p class="enunciado">{{ modo() === 'ouvir' ? 'Ouça e digite em algarismos' : 'Leia e digite em algarismos' }}</p>
+          <p class="enunciado">{{ modo() === 'ouvir' ? i.t('Ouça e digite em algarismos', 'Listen and type it in digits') : i.t('Leia e digite em algarismos', 'Read and type it in digits') }}</p>
           <div class="pergunta">
             @if (modo() === 'ler' || resposta() !== null) {
               <p class="hanzi-alvo" lang="zh-CN">{{ a.hanzi }}</p>
             }
             <div class="linha centro">
-              <app-botao-audio [texto]="a.hanzi" legenda="Ouvir" rotulo="o número" />
-              <app-botao-audio [texto]="a.hanzi" legenda="Devagar" rotulo="o número" velocidade="lenta" />
+              <app-botao-audio [texto]="a.hanzi" [legenda]="i.t('Ouvir', 'Listen')" [rotulo]="i.t('o número', 'the number')" />
+              <app-botao-audio [texto]="a.hanzi" [legenda]="i.t('Devagar', 'Slow')" [rotulo]="i.t('o número', 'the number')" velocidade="lenta" />
             </div>
           </div>
           <form (submit)="$event.preventDefault(); verificar()">
-            <label for="resposta-numero" class="visualmente-oculto">Sua resposta em algarismos</label>
+            <label for="resposta-numero" class="visualmente-oculto">{{ i.t('Sua resposta em algarismos', 'Your answer in digits') }}</label>
             <input
               id="resposta-numero"
               class="campo grande"
@@ -76,15 +77,15 @@ let contador = 0;
               [disabled]="resposta() !== null"
             />
             @if (resposta() === null) {
-              <button type="submit" class="botao botao-primario verificar" [disabled]="!texto().trim()">Verificar</button>
+              <button type="submit" class="botao botao-primario verificar" [disabled]="!texto().trim()">{{ i.t('Verificar', 'Check') }}</button>
             }
           </form>
           @if (resposta() !== null) {
             <div [class]="resposta() ? 'sucesso retorno' : 'erro retorno'" role="status">
-              <strong>{{ resposta() ? 'Certo!' : 'Era ' + a.exibicao }}</strong>
+              <strong>{{ resposta() ? i.t('Certo!', 'Correct!') : i.t('Era ', 'It was ') + i.tr(a, 'exibicao') }}</strong>
               <span><app-pinyin [texto]="a.pinyin" /></span>
             </div>
-            <button type="button" class="botao botao-primario botao-bloco" (click)="nova()">Próximo</button>
+            <button type="button" class="botao botao-primario botao-bloco" (click)="nova()">{{ i.t('Próximo', 'Next') }}</button>
           }
         }
       }
@@ -168,6 +169,7 @@ let contador = 0;
   `,
 })
 export class PraticarNumerosPagina {
+  protected readonly i = inject(IdiomaService);
   private readonly voz = inject(VozService);
   private readonly progresso = inject(ProgressoService);
 
@@ -183,11 +185,12 @@ export class PraticarNumerosPagina {
   protected readonly acertos = signal(0);
   protected readonly total = signal(0);
 
-  protected readonly dica = computed(() =>
-    ({ precos: 'ex.: 12,50', horas: 'ex.: 8:30', telefones: 'só os dígitos', anos: 'ex.: 1990' })[
-      this.categoria() as 'precos'
-    ] ?? 'ex.: 25',
-  );
+  protected readonly dica = computed(() => {
+    const dicas = this.i.ingles()
+      ? { precos: 'e.g. 12.50', horas: 'e.g. 8:30', telefones: 'digits only', anos: 'e.g. 1990' }
+      : { precos: 'ex.: 12,50', horas: 'ex.: 8:30', telefones: 'só os dígitos', anos: 'ex.: 1990' };
+    return dicas[this.categoria() as 'precos'] ?? this.i.t('ex.: 25', 'e.g. 25');
+  });
 
   protected comecar(): void {
     this.iniciado.set(true);
@@ -207,7 +210,8 @@ export class PraticarNumerosPagina {
         tipo: 'escolha',
         modulo: 'numeros',
         enunciado: 'Como se fala?',
-        pergunta: { texto: alvo.exibicao },
+        enunciadoEn: 'How do you say it?',
+        pergunta: { texto: alvo.exibicao, textoEn: alvo.exibicaoEn },
         opcoes: opcoes.map((o) => ({ valor: o.hanzi, rotulo: o.pinyin, pinyin: true })),
         correta: alvo.hanzi,
         resposta: { hanzi: alvo.hanzi, pinyin: alvo.pinyin },

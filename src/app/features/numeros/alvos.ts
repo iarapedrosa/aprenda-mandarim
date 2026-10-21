@@ -2,15 +2,15 @@ import { NumeroChines, ano, digitoADigito, hora, lerNumeroDigitado, numero, prec
 
 export type Categoria = 'ate10' | 'ate99' | 'ate999' | 'grandes' | 'precos' | 'horas' | 'telefones' | 'anos';
 
-export const CATEGORIAS: { id: Categoria; nome: string }[] = [
-  { id: 'ate10', nome: '0 a 10' },
-  { id: 'ate99', nome: '11 a 99' },
-  { id: 'ate999', nome: '100 a 999' },
-  { id: 'grandes', nome: '1.000 a 99.999' },
-  { id: 'precos', nome: 'Preços' },
-  { id: 'horas', nome: 'Horas' },
-  { id: 'telefones', nome: 'Telefones' },
-  { id: 'anos', nome: 'Anos' },
+export const CATEGORIAS: { id: Categoria; nome: string; nomeEn: string }[] = [
+  { id: 'ate10', nome: '0 a 10', nomeEn: '0 to 10' },
+  { id: 'ate99', nome: '11 a 99', nomeEn: '11 to 99' },
+  { id: 'ate999', nome: '100 a 999', nomeEn: '100 to 999' },
+  { id: 'grandes', nome: '1.000 a 99.999', nomeEn: '1,000 to 99,999' },
+  { id: 'precos', nome: 'Preços', nomeEn: 'Prices' },
+  { id: 'horas', nome: 'Horas', nomeEn: 'Times' },
+  { id: 'telefones', nome: 'Telefones', nomeEn: 'Phone numbers' },
+  { id: 'anos', nome: 'Anos', nomeEn: 'Years' },
 ];
 
 /** Um número a praticar: como aparece em algarismos e como se diz em chinês. */
@@ -18,6 +18,8 @@ export interface AlvoNumero extends NumeroChines {
   categoria: Categoria;
   /** como mostrar em algarismos (ex.: "R$"-like "12,50 yuans", "08:30") */
   exibicao: string;
+  /** a mesma exibição no formato inglês ("12.50 yuan", "1,250") */
+  exibicaoEn?: string;
   /** forma canônica para comparar respostas digitadas */
   chave: string;
 }
@@ -46,7 +48,7 @@ export function sortearAlvo(categoria: Categoria): AlvoNumero {
     case 'precos': {
       const valor = Math.random() < 0.5 ? entre(1, 200) : entre(10, 9990) / 10;
       const v = Math.round(valor * 10) / 10;
-      return { categoria, ...preco(v), exibicao: `${v.toFixed(2).replace('.', ',')} yuans`, chave: v.toFixed(2) };
+      return { categoria, ...preco(v), exibicao: `${v.toFixed(2).replace('.', ',')} yuans`, exibicaoEn: `${v.toFixed(2)} yuan`, chave: v.toFixed(2) };
     }
     case 'horas': {
       const h = entre(1, 12);
@@ -69,7 +71,7 @@ export function sortearAlvo(categoria: Categoria): AlvoNumero {
     default: {
       const [min, max] = { ate10: [0, 10], ate99: [11, 99], ate999: [100, 999], grandes: [1000, 99_999] }[categoria];
       const n = entre(min, max);
-      return { categoria, ...numero(n), exibicao: formatar(n), chave: String(n) };
+      return { categoria, ...numero(n), exibicao: formatar(n), exibicaoEn: n.toLocaleString('en-US'), chave: String(n) };
     }
   }
 }

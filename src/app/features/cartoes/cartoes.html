@@ -1,33 +1,32 @@
 <section class="pagina">
   @if (!estudando()) {
     <header>
-      <h1>Cartões <span class="suave pequeno">(estilo Anki)</span></h1>
+      <h1>{{ i.t('Cartões', 'Flashcards') }} <span class="suave pequeno">{{ i.t('(estilo Anki)', '(Anki style)') }}</span></h1>
       <p class="subtitulo">
-        Flashcards com repetição espaçada: veja a frente, tente lembrar, vire e diga como foi. Os cartões são os
-        mesmos do Treino de hoje — o que você revisar aqui conta lá também.
+        {{ i.t('Flashcards com repetição espaçada: veja a frente, tente lembrar, vire e diga como foi. Os cartões são os mesmos do Treino de hoje — o que você revisar aqui conta lá também.', 'Spaced-repetition flashcards: look at the front, try to recall, flip and rate how it went. The cards are the same as in Today’s training — what you review here counts there too.') }}
       </p>
     </header>
 
     <section class="cartao destaque-vencidos">
       <div>
-        <h2>Revisões de hoje</h2>
-        <p class="suave">{{ totalVencidos() }} cartão(ões) para revisar em todos os baralhos.</p>
+        <h2>{{ i.t('Revisões de hoje', 'Today’s reviews') }}</h2>
+        <p class="suave">{{ totalVencidos() }} {{ i.t('cartão(ões) para revisar em todos os baralhos.', 'card(s) to review across all decks.') }}</p>
       </div>
       <button type="button" class="botao botao-primario" [disabled]="totalVencidos() === 0" (click)="estudar('vencidos')">
-        Revisar agora
+        {{ i.t('Revisar agora', 'Review now') }}
       </button>
     </section>
 
     <section class="cartao opcoes-estudo" aria-labelledby="titulo-opcoes">
-      <h2 id="titulo-opcoes" class="visualmente-oculto">Opções</h2>
+      <h2 id="titulo-opcoes" class="visualmente-oculto">{{ i.t('Opções', 'Options') }}</h2>
       <fieldset>
-        <legend>Frente do cartão</legend>
-        <label><input type="radio" name="frente" value="hanzi" [checked]="frente() === 'hanzi'" (change)="frente.set('hanzi')" /> Caracteres → significado</label>
-        <label><input type="radio" name="frente" value="portugues" [checked]="frente() === 'portugues'" (change)="frente.set('portugues')" /> Português → caracteres</label>
-        <label><input type="radio" name="frente" value="audio" [checked]="frente() === 'audio'" (change)="frente.set('audio')" /> Só áudio → significado</label>
+        <legend>{{ i.t('Frente do cartão', 'Card front') }}</legend>
+        <label><input type="radio" name="frente" value="hanzi" [checked]="frente() === 'hanzi'" (change)="frente.set('hanzi')" /> {{ i.t('Caracteres → significado', 'Characters → meaning') }}</label>
+        <label><input type="radio" name="frente" value="portugues" [checked]="frente() === 'portugues'" (change)="frente.set('portugues')" /> {{ i.t('Português → caracteres', 'English → characters') }}</label>
+        <label><input type="radio" name="frente" value="audio" [checked]="frente() === 'audio'" (change)="frente.set('audio')" /> {{ i.t('Só áudio → significado', 'Audio only → meaning') }}</label>
       </fieldset>
       <label class="novos">
-        Cartões novos por sessão
+        {{ i.t('Cartões novos por sessão', 'New cards per session') }}
         <select class="campo" [value]="novosPorSessao()" (change)="novosPorSessao.set(+$any($event.target).value)">
           @for (n of [0, 5, 10, 20, 30]; track n) {
             <option [value]="n" [selected]="n === novosPorSessao()">{{ n }}</option>
@@ -36,24 +35,24 @@
       </label>
     </section>
 
-    <h2>Baralhos</h2>
+    <h2>{{ i.t('Baralhos', 'Decks') }}</h2>
     <ul class="baralhos">
       @for (b of baralhos(); track b.id) {
         @if (contagens().get(b.id); as c) {
           <li class="cartao baralho">
             <div class="info-baralho">
-              <strong>{{ b.nome }}</strong>
-              <span class="suave pequeno">{{ b.descricao }}</span>
+              <strong>{{ i.tr(b, 'nome') }}</strong>
+              <span class="suave pequeno">{{ i.tr(b, 'descricao') }}</span>
               <span class="numeros-baralho">
-                <span class="novo" title="Novos">{{ c.novos }} novos</span>
-                <span class="vencido" title="Para revisar hoje">{{ c.vencidos }} p/ revisar</span>
-                <span class="aprendido" title="Já estudados">{{ c.aprendidos }} estudados</span>
+                <span class="novo">{{ c.novos }} {{ i.t('novos', 'new') }}</span>
+                <span class="vencido">{{ c.vencidos }} {{ i.t('p/ revisar', 'due') }}</span>
+                <span class="aprendido">{{ c.aprendidos }} {{ i.t('estudados', 'studied') }}</span>
               </span>
             </div>
             <div class="acoes-baralho">
-              <button type="button" class="botao botao-primario" (click)="estudar(b.id)" [disabled]="!b.itens.length">Estudar</button>
+              <button type="button" class="botao botao-primario" (click)="estudar(b.id)" [disabled]="!b.itens.length">{{ i.t('Estudar', 'Study') }}</button>
               <button type="button" class="botao botao-texto pequeno" (click)="exportar(b)" [disabled]="!b.itens.length">
-                ⬇ Exportar p/ Anki
+                ⬇ {{ i.t('Exportar p/ Anki', 'Export to Anki') }}
               </button>
             </div>
           </li>
@@ -62,20 +61,30 @@
     </ul>
 
     <details class="cartao ajuda">
-      <summary>Como usar no app do Anki</summary>
-      <ol>
-        <li>Toque em <strong>Exportar p/ Anki</strong> no baralho desejado (baixa um arquivo .txt).</li>
-        <li>No Anki (computador), vá em <strong>Arquivo › Importar</strong> e escolha o arquivo.</li>
-        <li>Tipo de nota: <strong>Básico</strong>. O baralho "Aprenda Mandarim::…" é criado automaticamente.</li>
-        <li>Depois é só sincronizar com o AnkiMobile/AnkiDroid.</li>
-      </ol>
-      <p class="suave pequeno">O progresso do Anki e o deste site são independentes.</p>
+      <summary>{{ i.t('Como usar no app do Anki', 'How to use it in the Anki app') }}</summary>
+      @if (i.ingles()) {
+        <ol>
+          <li>Tap <strong>Export to Anki</strong> on the deck you want (downloads a .txt file).</li>
+          <li>In Anki (desktop), go to <strong>File › Import</strong> and pick the file.</li>
+          <li>Note type: <strong>Basic</strong>. The "Aprenda Mandarim::…" deck is created automatically.</li>
+          <li>Then just sync with AnkiMobile/AnkiDroid.</li>
+        </ol>
+        <p class="suave pequeno">Anki progress and this site’s progress are independent.</p>
+      } @else {
+        <ol>
+          <li>Toque em <strong>Exportar p/ Anki</strong> no baralho desejado (baixa um arquivo .txt).</li>
+          <li>No Anki (computador), vá em <strong>Arquivo › Importar</strong> e escolha o arquivo.</li>
+          <li>Tipo de nota: <strong>Básico</strong>. O baralho "Aprenda Mandarim::…" é criado automaticamente.</li>
+          <li>Depois é só sincronizar com o AnkiMobile/AnkiDroid.</li>
+        </ol>
+        <p class="suave pequeno">O progresso do Anki e o deste site são independentes.</p>
+      }
     </details>
   } @else {
     <div class="barra-estudo">
-      <button type="button" class="botao botao-texto botao-icone" (click)="sair()" aria-label="Voltar aos baralhos">✕</button>
+      <button type="button" class="botao botao-texto botao-icone" (click)="sair()" [attr.aria-label]="i.t('Voltar aos baralhos', 'Back to decks')">✕</button>
       <strong>{{ nomeEstudo() }}</strong>
-      <span class="suave pequeno">{{ feitos() }} feitos · {{ fila().length }} restantes</span>
+      <span class="suave pequeno">{{ feitos() }} {{ i.t('feitos', 'done') }} · {{ fila().length }} {{ i.t('restantes', 'left') }}</span>
     </div>
 
     @if (atual(); as c) {
@@ -83,11 +92,11 @@
         <div class="frente">
           @switch (frente()) {
             @case ('portugues') {
-              <p class="texto-frente">{{ c.traducao }}</p>
+              <p class="texto-frente">{{ i.tr(c, 'traducao') }}</p>
             }
             @case ('audio') {
-              <app-botao-audio [texto]="c.hanzi" legenda="Ouvir de novo" rotulo="o cartão" />
-              <app-botao-audio [texto]="c.hanzi" legenda="Devagar" rotulo="o cartão" velocidade="lenta" />
+              <app-botao-audio [texto]="c.hanzi" [legenda]="i.t('Ouvir de novo', 'Listen again')" [rotulo]="i.t('o cartão', 'the card')" />
+              <app-botao-audio [texto]="c.hanzi" [legenda]="i.t('Devagar', 'Slow')" [rotulo]="i.t('o cartão', 'the card')" velocidade="lenta" />
             }
             @default {
               <p class="hanzi-frente" lang="zh-CN">{{ c.hanzi }}</p>
@@ -97,7 +106,7 @@
 
         @if (!virado()) {
           <button type="button" class="botao botao-primario botao-bloco" (click)="virar()">
-            Mostrar resposta <span class="suave pequeno">(espaço)</span>
+            {{ i.t('Mostrar resposta', 'Show answer') }} <span class="suave pequeno">{{ i.t('(espaço)', '(space)') }}</span>
           </button>
         } @else {
           <hr />
@@ -107,29 +116,29 @@
             }
             <p class="pinyin-verso"><app-pinyin [texto]="c.pinyin" /></p>
             @if (frente() !== 'portugues') {
-              <p class="traducao-verso">{{ c.traducao }}</p>
+              <p class="traducao-verso">{{ i.tr(c, 'traducao') }}</p>
             }
             @if (c.extra) {
-              <p class="suave pequeno">{{ c.extra }}</p>
+              <p class="suave pequeno">{{ i.tr(c, 'extra') }}</p>
             }
-            <app-botao-audio [texto]="c.hanzi" [rotulo]="c.pinyin" legenda="Ouvir" />
+            <app-botao-audio [texto]="c.hanzi" [rotulo]="c.pinyin" [legenda]="i.t('Ouvir', 'Listen')" />
             @if (c.exemplo; as ex) {
               <div class="info exemplo">
                 <span lang="zh-CN">{{ ex.hanzi }}</span>
                 <app-pinyin [texto]="ex.pinyin" />
-                <span class="suave">{{ ex.traducao }}</span>
+                <span class="suave">{{ i.tr(ex, 'traducao') }}</span>
               </div>
             }
             @if (c.palavraId) {
               <app-nota-mnemonica [palavraId]="c.palavraId" />
-              <a [routerLink]="['/caracteres/palavra', c.palavraId]" class="pequeno">Ver traços e detalhes</a>
+              <a [routerLink]="['/caracteres/palavra', c.palavraId]" class="pequeno">{{ i.t('Ver traços e detalhes', 'See strokes and details') }}</a>
             }
           </div>
-          <div class="botoes-nota" role="group" aria-label="Como foi?">
+          <div class="botoes-nota" role="group" [attr.aria-label]="i.t('Como foi?', 'How did it go?')">
             @for (b of botoes; track b.nota) {
               <button type="button" [class]="'nota ' + b.classe" (click)="avaliar(b.nota)">
                 <span class="intervalo">{{ previsoes().get(b.nota) }}</span>
-                <strong>{{ b.rotulo }}</strong>
+                <strong>{{ i.tr(b, 'rotulo') }}</strong>
                 <span class="tecla" aria-hidden="true">{{ b.tecla }}</span>
               </button>
             }
@@ -139,9 +148,9 @@
     } @else {
       <article class="cartao fim">
         <p class="festa" aria-hidden="true">🎉</p>
-        <h2>Baralho concluído por hoje!</h2>
-        <p>Você revisou {{ feitos() }} cartão(ões). Volte amanhã para as próximas revisões.</p>
-        <button type="button" class="botao botao-primario" (click)="sair()">Voltar aos baralhos</button>
+        <h2>{{ i.t('Baralho concluído por hoje!', 'Deck done for today!') }}</h2>
+        <p>{{ i.t('Você revisou', 'You reviewed') }} {{ feitos() }} {{ i.t('cartão(ões). Volte amanhã para as próximas revisões.', 'card(s). Come back tomorrow for the next reviews.') }}</p>
+        <button type="button" class="botao botao-primario" (click)="sair()">{{ i.t('Voltar aos baralhos', 'Back to decks') }}</button>
       </article>
     }
   }

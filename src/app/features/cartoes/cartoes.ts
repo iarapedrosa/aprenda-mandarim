@@ -10,21 +10,23 @@ import { BotaoAudio } from '../../shared/botao-audio/botao-audio';
 import { PinyinColorido } from '../../shared/pinyin-colorido/pinyin-colorido';
 import { NotaMnemonica } from '../../shared/nota-mnemonica/nota-mnemonica';
 import { Baralho, ConteudoCartao, contar, deFrase, deVocabulario, exportarParaAnki } from './baralhos';
+import { IdiomaService } from '../../core/i18n/idioma.service';
 
 type Frente = 'hanzi' | 'portugues' | 'audio';
 
 interface Botao {
   nota: Nota;
   rotulo: string;
+  rotuloEn: string;
   tecla: string;
   classe: string;
 }
 
 const BOTOES: Botao[] = [
-  { nota: 1, rotulo: 'Errei', tecla: '1', classe: 'errei' },
-  { nota: 3, rotulo: 'Difícil', tecla: '2', classe: 'dificil' },
-  { nota: 4, rotulo: 'Bom', tecla: '3', classe: 'bom' },
-  { nota: 5, rotulo: 'Fácil', tecla: '4', classe: 'facil' },
+  { nota: 1, rotulo: 'Errei', rotuloEn: 'Again', tecla: '1', classe: 'errei' },
+  { nota: 3, rotulo: 'Difícil', rotuloEn: 'Hard', tecla: '2', classe: 'dificil' },
+  { nota: 4, rotulo: 'Bom', rotuloEn: 'Good', tecla: '3', classe: 'bom' },
+  { nota: 5, rotulo: 'Fácil', rotuloEn: 'Easy', tecla: '4', classe: 'facil' },
 ];
 
 @Component({
@@ -34,6 +36,7 @@ const BOTOES: Botao[] = [
   styleUrl: './cartoes.css',
 })
 export class CartoesPagina {
+  protected readonly i = inject(IdiomaService);
   private readonly vocabulario = inject(VocabularioService);
   private readonly frases = inject(FrasesService);
   protected readonly progresso = inject(ProgressoService);
@@ -49,6 +52,7 @@ export class CartoesPagina {
       id: n.id,
       nome: n.nome,
       descricao: n.descricao ?? '',
+      descricaoEn: n.descricaoEn,
       itens: this.vocabulario
         .palavras()
         .filter((p) => p.nivel === i + 1)
@@ -58,6 +62,8 @@ export class CartoesPagina {
       id: 'frases',
       nome: 'Frases do dia',
       descricao: 'Expressões úteis do dia a dia.',
+      nomeEn: 'Daily phrases',
+      descricaoEn: 'Useful everyday expressions.',
       itens: this.frases.frases().map(deFrase),
     };
     return [...porNivel, frases];
@@ -88,9 +94,17 @@ export class CartoesPagina {
     const cartao = this.progresso.estado().cartoes[idCartao(c.tipo, c.ref)] ?? novoCartao(c.tipo, c.ref, hoje);
     return new Map(
       BOTOES.map((b) => {
-        if (b.nota < 3) return [b.nota, 'de novo'];
+        if (b.nota < 3) return [b.nota, this.i.t('de novo', 'again')];
         const dias = revisarSm2(cartao, b.nota, hoje).intervalo;
-        return [b.nota, dias === 1 ? '1 dia' : dias < 30 ? `${dias} dias` : `${Math.round(dias / 30)} mês(es)`];
+        const meses = Math.round(dias / 30);
+        return [
+          b.nota,
+          dias === 1
+            ? this.i.t('1 dia', '1 day')
+            : dias < 30
+              ? this.i.t(`${dias} dias`, `${dias} days`)
+              : this.i.t(`${meses} mês(es)`, `${meses} month(s)`),
+        ];
       }),
     );
   });
@@ -171,7 +185,7 @@ export class CartoesPagina {
   }
 
   protected exportar(b: Baralho): void {
-    const url = URL.createObjectURL(new Blob([exportarParaAnki(b)], { type: 'text/plain;charset=utf-8' }));
+    const url = URL.createObjectURL(new Blob([exportarParaAnki(b, this.i.ingles())], { type: 'text/plain;charset=utf-8' }));
     const link = document.createElement('a');
     link.href = url;
     link.download = `aprenda-mandarim-${b.id}-anki.txt`;
@@ -183,7 +197,8 @@ export class CartoesPagina {
 
   protected nomeEstudo(): string {
     const id = this.estudando();
-    return id === 'vencidos' ? 'Revisões de hoje' : (this.baralhos().find((b) => b.id === id)?.nome ?? '');
+    const b = this.baralhos().find((x) => x.id === id);
+    return id === 'vencidos' ? this.i.t('Revisões de hoje', 'Today’s reviews') : b ? this.i.tr(b, 'nome') : '';
   }
 
   @HostListener('document:keydown', ['$event'])

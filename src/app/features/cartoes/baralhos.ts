@@ -1,4 +1,5 @@
 import { FraseDoDia } from '../../core/dados/frases.service';
+import { CLASSES_EN } from '../../core/i18n/classes';
 import { Palavra } from '../../core/dados/modelos';
 import { CartaoSrs, TipoCartao, idCartao } from '../../core/srs/sm2';
 import { DataISO } from '../../core/util/datas';
@@ -10,8 +11,10 @@ export interface ConteudoCartao {
   hanzi: string;
   pinyin: string;
   traducao: string;
+  traducaoEn?: string;
   extra?: string;
-  exemplo?: { hanzi: string; pinyin: string; traducao: string };
+  extraEn?: string;
+  exemplo?: { hanzi: string; pinyin: string; traducao: string; traducaoEn?: string };
   /** link para a página da palavra */
   palavraId?: string;
 }
@@ -20,6 +23,8 @@ export interface Baralho {
   id: string;
   nome: string;
   descricao: string;
+  nomeEn?: string;
+  descricaoEn?: string;
   itens: ConteudoCartao[];
 }
 
@@ -36,14 +41,16 @@ export function deVocabulario(p: Palavra): ConteudoCartao {
     hanzi: p.hanzi,
     pinyin: p.pinyin,
     traducao: p.traducao,
+    traducaoEn: p.traducaoEn,
     extra: `HSK ${p.nivel} · ${p.classe}`,
+    extraEn: `HSK ${p.nivel} · ${CLASSES_EN[p.classe] ?? p.classe}`,
     exemplo: p.exemplo,
     palavraId: p.id,
   };
 }
 
 export function deFrase(f: FraseDoDia): ConteudoCartao {
-  return { tipo: 'frase', ref: f.id, hanzi: f.hanzi, pinyin: f.pinyin, traducao: f.traducao, extra: f.nota };
+  return { tipo: 'frase', ref: f.id, hanzi: f.hanzi, pinyin: f.pinyin, traducao: f.traducao, traducaoEn: f.traducaoEn, extra: f.nota, extraEn: f.notaEn };
 }
 
 export function contar(b: Baralho, cartoes: Record<string, CartaoSrs>, hoje: DataISO): ContagemBaralho {
@@ -67,15 +74,16 @@ function escaparHtml(t: string): string {
 
 /**
  * Arquivo de texto que o Anki importa direto (Arquivo › Importar), com tipo de nota "Básico":
- * frente = caracteres; verso = pinyin, tradução e exemplo.
+ * frente = caracteres; verso = pinyin, tradução e exemplo (em inglês, se `ingles`).
  */
-export function exportarParaAnki(b: Baralho): string {
+export function exportarParaAnki(b: Baralho, ingles = false): string {
+  const traducao = (x: { traducao: string; traducaoEn?: string }) => (ingles ? (x.traducaoEn ?? x.traducao) : x.traducao);
   const sanitizar = (t: string) => escaparHtml(t).replace(/[\t\n]/g, ' ');
   const linhas = b.itens.map((i) => {
     const verso = [
       `<b>${sanitizar(i.pinyin)}</b>`,
-      sanitizar(i.traducao),
-      i.exemplo ? `<br>${sanitizar(i.exemplo.hanzi)}<br>${sanitizar(i.exemplo.pinyin)}<br><i>${sanitizar(i.exemplo.traducao)}</i>` : '',
+      sanitizar(traducao(i)),
+      i.exemplo ? `<br>${sanitizar(i.exemplo.hanzi)}<br>${sanitizar(i.exemplo.pinyin)}<br><i>${sanitizar(traducao(i.exemplo))}</i>` : '',
     ]
       .filter(Boolean)
       .join('<br>');
@@ -84,7 +92,7 @@ export function exportarParaAnki(b: Baralho): string {
   return [
     '#separator:tab',
     '#html:true',
-    `#deck:Aprenda Mandarim::${b.nome}`,
+    `#deck:Aprenda Mandarim::${ingles ? (b.nomeEn ?? b.nome) : b.nome}`,
     '#tags column:3',
     ...linhas,
   ].join('\n') + '\n';
