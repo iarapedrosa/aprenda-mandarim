@@ -90,15 +90,6 @@ import { IdiomaService } from '../../core/i18n/idioma.service';
       </section>
 
       <app-como-usar [destaque]="iniciante()" />
-      </div>
-
-      <div class="coluna lateral">
-        @if (fraseDoDia(); as f) {
-          <app-frase-do-dia [frase]="f" />
-        }
-        @if (palavra(); as p) {
-          <app-palavra-do-dia [palavra]="p" />
-        }
 
       @if (anteriores().length) {
         <details class="cartao anteriores">
@@ -115,6 +106,16 @@ import { IdiomaService } from '../../core/i18n/idioma.service';
           </ul>
         </details>
       }
+      </div>
+
+      <div class="coluna lateral">
+        @if (fraseDoDia(); as f) {
+          <app-frase-do-dia [frase]="f" />
+        }
+        @if (palavra(); as p) {
+          <app-palavra-do-dia [palavra]="p" />
+        }
+
 
       </div>
       </div>
@@ -225,18 +226,17 @@ import { IdiomaService } from '../../core/i18n/idioma.service';
       min-width: 0;
     }
     .coluna > * {
-      display: block;
       margin: 0;
     }
     @media (min-width: 1000px) {
+      /* as duas colunas terminam na mesma altura: o cartão principal de cada uma estica */
       .painel {
         grid-template-columns: minmax(0, 3fr) minmax(0, 2fr);
-        align-items: start;
         gap: 24px;
       }
-      .lateral {
-        position: sticky;
-        top: 80px;
+      .lateral > app-frase-do-dia,
+      .lateral > app-palavra-do-dia {
+        flex: 1;
       }
     }
     .anteriores summary {
